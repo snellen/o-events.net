@@ -1,10 +1,51 @@
 Data Model Description
 Project: o-events.net
 
+
 ==
-Competitor: Is a user that competes in an event.
+AdditionalFee: 
+==
+AgeRange: 
+==
+Category:
+==
+CategoryGroup:
+==
+Club: 
+==
+CompetingClub: 
+==
+Competition:
+==
+CompetitionGroup:
+==
+Competitor: Is a person who competes in an event.
+==
+Country: 
+==
+CountryGroup:
 ==
 Event: Represents an orienteering event.
   Type: one of {SINGLE, GROUP}
+==
+Log: 
+==
+Payment:
+==
+PaymentGroup:
+==
+RegistrationDeadline: 
+==
+Result:
+==
+Run:
+==
+StartFee:
+==
+Team:
+==
+TotalResult:
+==
+User: 
 ==
 
