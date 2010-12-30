@@ -1,0 +1,10 @@
+Data Model Description
+Project: o-events.net
+
+==
+Competitor: Is a user that competes in an event.
+==
+Event: Represents an orienteering event.
+  Type: one of {SINGLE, GROUP}
+==
+
