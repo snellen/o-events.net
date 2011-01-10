@@ -1,0 +1,60 @@
+/**
+ * "Yet Another Multicolumn Layout" - (X)HTML/CSS Framework
+ *
+ * (en) RTL Screen layout for YAML examples
+ * (de) RTL-Bildschirmlayout für YAML-Beispiele
+ *
+ * @note:           Many thanks to Alexander Hass (http://www.yaml-fuer-drupal.de/) for contribution
+ *
+ * @copyright       Copyright 2005-2010, Dirk Jesse
+ * @license         CC-A 2.0 (http://creativecommons.org/licenses/by/2.0/),
+ *                  YAML-C (http://www.yaml.de/en/license/license-conditions.html)
+ * @link            http://www.yaml.de
+ * @package         yaml
+ * @version         3.3
+ * @revision        $Revision: 466 $
+ * @lastmodified    $Date: 2010-09-14 21:19:30 +0200 (Di, 14 Sep 2010) $
+ */
+
+@media all
+{
+  /* (en) Centering layout in old IE-versions */
+  /* (de) Zentrierung des Layouts in alten IE-versionen */
+  .page_margins {
+    text-align: right;
+  }
+
+  /* (en) Designing main layout elements */
+  /* (de) Gestaltung der Hauptelemente des Layouts */
+  #header { padding: 45px 20px 1em 2em; }
+
+  /* (en) adjustment of top navigation */
+  /* (de) Anpassung der oberen Navigation */
+  #header #topnav {
+    left: 10px;
+    right: 0;
+    text-align: left;
+  }
+
+  /* (en) adjustment of main navigation */
+  /* (de) Anpassung der Hauptnavigation */
+  #nav ul {
+    margin-left: 0px; /* Reset LTR */
+    margin-right: 20px;
+  }
+
+  /*------------------------------------------------------------------------------------------------------*/
+
+  /**
+   * (en) Modifying "shiny buttons" navigation
+   * (en) Anpassung der "Shiny Buttons" Navigation
+   */
+
+  #nav_main ul {
+    margin-left: 0px; /* Reset LTR */
+  }
+  #nav_main {
+    padding-right: 10px; /* Reset LTR */
+  }
+
+}

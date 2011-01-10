@@ -1,0 +1,51 @@
+Data Model Description
+Project: o-events.net
+
+
+==
+AdditionalFee: Fees for additional services which do not depend on the competitors' age, class, or other parameters. Example: Set of training maps.
+==
+AgeRange: Ranges used to define start fees depending on age. Note that this can only be used for single events, since the age of a team is not defined otherwise.
+==
+Category: Group of teams which compete against each other. Each competition generates an overall result list (TotalResult) for each category.
+==
+CategoryGroup: Group of categories which have the same start fees.
+==
+Club: Group of users. Each user can be a member of several clubs, one of which is the user's default club (isDefault = true). Club members can have special rights, e.g. the right to add teams to club registrations.
+==
+CompetingClub: Club that is competing in an event. Each competitor may be assigned at most one competing club, i.e. the user must choose which club to run for when registering for an event. It is possible to compete without joining a club.
+==
+Competition: The largest unit in an event that has an overall result. An event can consist of several competitions if it is e.g. a multi-day event with daily results [TODO]
+==
+CompetitionGroup:
+==
+Competitor: Is a user who competes in an event.
+==
+Country: 
+==
+CountryGroup:
+==
+Event: Represents an orienteering event.
+  Type: one of {SINGLE, GROUP}
+==
+Log: 
+==
+Payment:
+==
+PaymentGroup:
+==
+RegistrationDeadline: 
+==
+Result:
+==
+Run:
+==
+StartFee:
+==
+Team:
+==
+TotalResult:
+==
+User: 
+==
+

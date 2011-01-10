@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>YAML | Example "building forms"</title>
+<!-- (en) Add your meta data here -->
+<!-- (de) Fuegen Sie hier ihre Meta-Daten ein -->
+
+<link href="css/layout_building_forms.css" rel="stylesheet" type="text/css"/>
+<!--[if lte IE 7]>
+<link href="css/patches/patch_building_forms.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!-- embedded styles for dynamic layout options -->
+<style type="text/css">
+  #js-info { display:block; padding: 10px 20px; background: #fee; color: #800; margin: 0 0 10px 0; }
+  .js #js-info { display:none; }
+
+  p.switch { display:none; }
+  .js p.switch { display:block; }
+  
+  .active { font-weight:bold; color: #800 !important; }
+</style>
+
+<!-- JavaScript Detection -->
+<script type="text/javascript">document.documentElement.className += " js";</script>
+<!-- jQuery & Plugins -->
+<script src="../../js/lib/jquery-1.4.2.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+  $('a[id*=toggle]').click(function(){
+    if ($(this).hasClass('active') === true) {
+      $('a').removeClass('active');
+      $('body').removeAttr('class');
+    } else {
+      $('a').removeClass('active');
+      $('body').removeAttr('class').addClass($(this).text());
+      $(this).addClass('active');
+    }     
+  });
+  $('a#formReset').click(function(){
+      $('a').removeClass('active');
+      $('body').removeAttr('class');
+      $(this).addClass('active');
+  });
+});
+</script>
+</head>
+<body>
+<!-- skip link navigation -->
+<ul id="skiplinks">
+	<li><a class="skip" href="#nav">Skip to navigation (Press Enter).</a></li>
+	<li><a class="skip" href="#col3">Skip to main content (Press Enter).</a></li>
+</ul>
+
+<div class="page_margins">
+  <div class="page">
+    <div id="header" role="banner">
+      <div id="topnav" role="contentinfo">
+        <span><a href="#">Login</a> | <a href="#">Contact</a> | <a href="#">Imprint</a></span>
+      </div>
+      <h1>Example | Beispiel <em>&laquo;building_forms&raquo;</em></h1>
+      <span>YAML &#8226; (X)HTML/CSS Framework</span>
+    </div>
+    <!-- begin: main navigation #nav -->
+    <div id="nav" role="navigation">
+      <div class="hlist">
+        <ul>
+          <li><a href="../index.html">Table Of Contents</a></li>
+          <li><a href="multicolumnar_forms.html">Next Example</a></li>
+          <li><a href="styling_content.html">Previous Example</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- end: main navigation -->
+    <!-- begin: main content area #main -->
+    <div id="main">
+      <!-- begin: #col1 - first float column -->
+      <div id="col1" role="complementary">
+        <div id="col1_content" class="clearfix">
+                                  <div class="info">
+          <h2>About this example </h2>
+          <p>YAML's <a href="http://www.yaml.de/en/documentation/css-components/form-construction-kit.html">Form Construction Kit</a> provides a  set of standard form elements (html markup &amp; css) and two different layouts for vertical forms (linear and columnar display).</p>
+          <p>The provided HTML markup is based on best practices for accessible forms and to allow easy cross-browser styling of all form elements.</p>
+          <p>The standard layout is the linear display were labels and form elements are placed below each other. By adding class<code> .columnar</code> or <code>.full</code> to <code>&lt;form&gt;</code>, <code>&lt;fieldset&gt;</code> or <code>&lt;div&gt;</code> elements, you can switch to alternative views.</p>
+          <p>The <code>.full</code> class should be used in forms with small widths, e.g. in <a href="multicolumnar_forms.html">multicolumnar forms</a>.</p>
+          </div>
+        </div>
+      </div>
+      <!-- end: #col1 -->
+      <!-- begin: #col3 static column -->
+      <div id="col3" role="main">
+        <div id="col3_content" class="clearfix">
+          <h2>YAML-based form styling</h2>
+          <div id="js-info">JavaScript has to be enabled for this demonstration.</div>
+          <p class="switch"><strong>Toggle to change the form layout:</strong> <a id="formReset" class="active" href="#">linear (default)</a> | <a id="toggle_b" href="#">full</a> | <a id="toggle_a" href="#">columnar</a></p>
+
+          <form method="post" action="" class="yform" role="application">
+            <fieldset>
+              <legend>First Fieldset (<code>text-fields</code> &amp; <code>select-boxes</code>)</legend>
+              <div class="type-select">
+                <label for="salutation">Salutation <sup title="This field is mandatory.">*</sup> </label>
+                <select name="salutation" id="salutation" size="1" aria-required="true">
+                  <option value="0" selected="selected" disabled="disabled">Please choose</option>
+                  <option value="Mr.">Mr.</option>
+                  <option value="Ms.">Ms.</option>
+                  <option value="Mrs.">Mrs.</option>
+                </select>
+              </div>
+              <div class="type-text">
+                <label for="firstname">First name</label>
+                <input type="text" name="firstname" id="firstname" size="20" />
+              </div>
+              <div class="type-text error" role="alert" aria-live="assertive">
+                <strong class="message">Field &laquo;Last name&raquo; not properly filled.</strong>
+                <label for="lastname">Last name <sup title="This field is mandatory.">*</sup></label>
+                <input type="text" name="lastname" id="lastname" size="20"  aria-required="true"/>
+              </div>
+              <div class="type-text">
+                <label for="email">E-Mail <sup title="This field is mandatory.">*</sup></label>
+                <input type="text" name="email" id="email" size="20"  aria-required="true"/>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Second Fieldset (<code>select</code>, <code>textarea</code> &amp; <code>checkbox</code>)</legend>
+              <div class="type-select">
+                <label for="more">More Options</label>
+                <select name="more" id="more" size="1">
+                  <option value="0" selected="selected" disabled="disabled">Please choose</option>
+                  <optgroup label="First options to choose from">
+                    <option value="Empfehlung">Option 1</option>
+                    <option value="Suchmaschine">Option 2</option>
+                  </optgroup>
+                  <optgroup label="Yet more options to choose from">
+                    <option value="Weblog">Option 3</option>
+                    <option value="Werbung">Option 4</option>
+                    <option value="Zeitung / Magazin">Option 5</option>
+                    <option value="Sonstiges">Option 6</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="type-text">
+                <label for="message">Message</label>
+                <textarea name="message" id="message" cols="30" rows="7"></textarea>
+              </div>
+              <div class="type-check">
+                <input type="checkbox" name="newsletter" id="newsletter" />
+                <label for="newsletter">Sign me up for your newsletter</label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Third Fieldset (<code>radio-buttons</code>)</legend>
+              <div class="type-check">
+                <div>
+                    <input type="radio" name="vote" value="Option 1" id="vote1" />
+                    <label for="vote1">Option 1</label>
+                </div>
+                <div>
+                    <input type="radio" name="vote" id="vote2" />
+                    <label for="vote2">Option 2</label>
+                </div>
+                <div>
+                    <input type="radio" name="vote" id="vote3" />
+                    <label for="vote3">Option 3</label>
+                </div>
+              </div>
+            </fieldset>
+            <div class="type-button">
+              <input type="button" value="button" id="button1" name="button1" />
+              <input type="reset" value="reset" class="reset" id="reset" name="reset" />
+              <input type="submit" value="submit"  class="submit" id="submit" name="submit" />
+            </div>
+          </form>
+        </div>
+        <!-- IE Column Clearing -->
+        <div id="ie_clearing">&nbsp;</div>
+        <!-- End: IE Column Clearing -->
+      </div>
+      <!-- end: #col3 -->
+    </div>
+    <!-- end: #main -->
+    <!-- begin: #footer -->
+    <div id="footer" role="contentinfo">Footer with copyright notice and status information<br />
+Layout based on <a href="http://www.yaml.de/">YAML</a></div>
+    <!-- end: #footer -->
+  </div>
+</div>
+<!-- full skiplink functionality in webkit browsers -->
+<script src="../../yaml/core/js/yaml-focusfix.js" type="text/javascript"></script>
+</body>
+</html>

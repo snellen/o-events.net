@@ -1,0 +1,27 @@
+/**
+ * "Yet Another Multicolumn Layout" - (X)HTML/CSS Framework
+ *
+ * (en) central stylesheet - layout example "dynamic layout switchting"
+ * (de) Zentrales Stylesheet - Beispiellayout "dynamic layout switchting"
+ *
+ * @copyright       Copyright 2005-2010, Dirk Jesse
+ * @license         CC-A 2.0 (http://creativecommons.org/licenses/by/2.0/),
+ *                  YAML-C (http://www.yaml.de/en/license/license-conditions.html)
+ * @link            http://www.yaml.de
+ * @package         yaml
+ * @version         3.3
+ * @revision        $Revision: 252 $
+ * @lastmodified    $Date: 2008-11-16 11:26:47 +0100 (So, 16. Nov 2008) $
+ */
+ 
+/* import core styles | Basis-Stylesheets einbinden */
+@import url(../../../yaml/core/base.css);
+
+/* import screen layout | Screen-Layout einbinden */
+@import url(../../../yaml/navigation/nav_shinybuttons.css);
+@import url(screen/basemod.css);
+@import url(screen/basemod_dynamic_layout_switching.css);
+@import url(screen/content.css);
+
+/* import print layout | Druck-Layout einbinden */
+@import url(../../../yaml/print/print_003_draft.css);

@@ -1,0 +1,191 @@
+/**
+ * "Yet Another Multicolumn Layout" - (X)HTML/CSS Framework
+ *
+ * (en) Uniform design of standard content elements
+ * (de) Einheitliche Standardformatierungen für die wichtigten Inhalts-Elemente
+ *
+ * @copyright       Copyright 2005-2010, Dirk Jesse
+ * @license         CC-A 2.0 (http://creativecommons.org/licenses/by/2.0/),
+ *                  YAML-C (http://www.yaml.de/en/license/license-conditions.html)
+ * @link            http://www.yaml.de
+ * @package         yaml
+ * @version         3.3
+ * @revision        $Revision: 466 $
+ * @lastmodified    $Date: 2010-09-14 21:19:30 +0200 (Di, 14 Sep 2010) $
+ * @appdef yaml
+ */
+
+@media all
+{
+  /**
+   * Fonts
+   * (en) font-family and font-size selection for headings and standard text elements
+   * (de) Zeichensatz und Schriftgrößen für Überschriften und übliche Text-Elemente
+   *
+   * @section content-fonts
+   */
+
+  /* (en) reset font size for all elements to standard (16 Pixel) */
+  /* (de) Alle Schriftgrößen auf Standardgröße (16 Pixel) zurücksetzen */
+  html * { font-size: 100.01% }
+
+  /* (en) reset monospaced elements to font size 16px in Gecko browsers */
+  /* (de) Schriftgröße von monospaced Elemente auf 16 Pixel setzen */
+  textarea, pre, tt, code {
+  font-family:"Courier New", Courier, monospace;
+  }
+
+  /* (en) base layout gets standard font size 12px */
+  /* (de) Basis-Layout erhält Standardschriftgröße von 12 Pixeln */
+  body {
+    font-family: Verdana, 'Trebuchet MS', Helvetica, Arial, sans-serif;
+    font-size: 75.00%;
+    color: #444;
+  }
+
+  h1,h3,h4,h5,h6 {
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    font-weight:normal;
+  letter-spacing: -1px;
+    color:#000;
+  }
+
+  h2, h3 em {
+    font-family: "Warnock Pro","Goudy Old Style","Palatino","Book Antiqua",Georgia,serif;
+  font-weight:normal;
+  letter-spacing: 0px;
+  font-style:italic;
+  }
+
+  h1 { font-size: 300%; line-height: .5em; margin-top: .5em; margin-bottom: .5em; letter-spacing: -2px; }/* 36px */
+  h2 { font-size: 200%; line-height: 1.5em; margin-top: .75em; margin-bottom: .75em; color: #666; }    /* 24px */
+  h3 { font-size: 150%; line-height: 1.0em; margin-top: 1.0em; margin-bottom: 1.0em; }                 /* 18px */
+  h4 { font-size: 133.333%; line-height: 1.125em; margin-top: 1.125em; margin-bottom: 1.125em; }       /* 16px */
+  h5 { font-size: 116.67%; line-height: 1.286em; margin-top: 1.286em; margin-bottom: 1.286em; font-weight:bold;}  /* 14px */
+  h6 { font-size: 116.67%; line-height: 1.286em; margin-top: 1.286em; margin-bottom: 1.286em; font-weight:bold;}  /* 14px */
+
+  #header h2 {border-top: 1px #ddd solid; border-bottom: 1px #ddd solid; margin: 0; padding: .75em 0 .75em 0;}
+  #footer h2 {border-bottom: 1px #ddd solid; margin-bottom: 0; padding-bottom: .75em;}
+
+  p { font-size: 1em; color: #444; line-height: 1.5em; margin: 1.5em 0; }
+  p.small { font-size: 0.8333em; line-height: 1.8em; margin: 1.8em 0; }
+  #main p + p { text-indent: 2em; }
+  #header .subcolumns p, .subcolumns .subcolumns p { margin-bottom: 0; padding-bottom: 1.5em;}
+
+  .subcolumns .subcolumns p { text-indent: 0; margin-left: 0;}
+
+  /* ### Lists | Listen  #### */
+
+  ul, ol, dl { line-height: 1.5em; margin: 0 0 1em 1em }
+  li { margin-left: 1.5em; line-height: 1.5em }
+
+  dt { font-weight: bold }
+  dd { margin: 1.5em 0em 1.5em 2em }
+
+  /* ### text formatting | Textauszeichnung ### */
+
+  cite, blockquote { font-style:italic }
+  blockquote { margin: 1.5em 0 1.5em 2em; color: #888;}
+
+  strong,b { font-weight: bold }
+  em,i { font-style:italic }
+
+  pre, code { font-family: monospace; font-size: 1.1em; }
+
+  acronym, abbr {
+    letter-spacing: .07em;
+    border-bottom: .1em dashed #c00;
+    cursor: help;
+  }
+
+  /**
+   * Generic Content Classes
+   * (en) standard classes for positioning and highlighting
+   * (de) Standardklassen zur Positionierung und Hervorhebung
+   *
+   * @section content-generic-classes
+   */
+
+  .note { text-indent: 0 !important; color: #333; background: #f4f4f4; padding: 1.5em; }
+  .important { text-indent: 0 !important; background: #ffd; padding: 1.5em; }
+  .warning { text-indent: 0 !important; background: #fdd; padding: 1.5em; }
+
+  .float_left { float: left; display:inline; margin: 0 1.5em 1em -36px; }
+  .float_right { float: right; display:inline; margin: 0 -36px 1em 1.5em; }
+  .center { text-align:center; margin: 1.5em auto }
+
+  img {padding: 5px; border: 1px #888 solid; }
+
+  /*--- Links ----------------------------------------------------------------------------------------- */
+
+  a {color: #4D87C7; text-decoration:none;}
+  
+  /* (en) maximum constrast for tab focus - change with great care */
+  /* (en) Maximaler Kontrast für Tab Focus - Ändern Sie diese Regel mit Bedacht */
+  a:focus { text-decoration:underline; color:#000; background: #fff; outline: 3px #f93 solid; }
+
+  a:hover,
+  a:active {color:#182E7A; text-decoration:underline;}
+
+  #topnav a { color: #999; font-weight: normal; background:transparent; text-decoration:none; }
+  #topnav a:focus,
+  #topnav a:hover,
+  #topnav a:active { text-decoration:underline; background-color: transparent;}
+
+  #footer a { color: #222; background:transparent; font-weight: bold;}
+  #footer a:focus,
+  #footer a:hover,
+  #footer a:active {color: #4D87C7; background-color: transparent; text-decoration:underline;}
+
+  /**
+   * (en) Emphasizing external Hyperlinks via CSS
+   * (de) Hervorhebung externer Hyperlinks mit CSS
+   *
+   * @section             content-external-links
+   * @app-yaml-default    disabled
+   */
+
+  /*
+  #main a[href^="http://www.my-domain.com"],
+  #main a[href^="https://www.my-domain.com"]
+  {
+    padding-left: 12px;
+    background-image: url('your_image.gif');
+    background-repeat: no-repeat;
+    background-position: 0 0.45em;
+  }
+  */
+
+  /**
+   * Tables | Tabellen
+   * (en) Generic classes for table-width and design definition
+   * (de) Generische Klassen für die Tabellenbreite und Gestaltungsvorschriften für Tabellen
+   *
+   * @section content-tables
+   */
+
+  table { width: auto; border-collapse:collapse; margin-bottom: 0.5em; }
+  table.full { width: 100%; }
+  table.fixed { table-layout:fixed }
+
+  th,td { padding: 0.5em; }
+  thead th { background: #444; color: #fff }
+  tbody th { background: #ccc; color: #333 }
+  tbody th.sub { background: #ddd; color: #333 }
+
+  /**
+   * Miscellaneous | Sonstiges
+   *
+   * @section content-misc
+   */
+
+  hr {
+    color: #fff;
+    background:transparent;
+    margin: 1.5em 0;
+  padding:0;
+    border:0;
+    border-bottom: 2px #ddd solid;
+  }
+}
+

@@ -1,0 +1,80 @@
+/**
+ * "Yet Another Multicolumn Layout" - (X)HTML/CSS Framework
+ *
+ * (en) Screen layout for YAML examples
+ * (de) Bildschirmlayout für YAML-Beispiele
+ *
+ * @copyright       Copyright 2005-2010, Dirk Jesse
+ * @license         CC-A 2.0 (http://creativecommons.org/licenses/by/2.0/),
+ *                  YAML-C (http://www.yaml.de/en/license/license-conditions.html)
+ * @link            http://www.yaml.de
+ * @package         yaml
+ * @version         3.3
+ * @revision        $Revision: 466 $
+ * @lastmodified    $Date: 2010-09-14 21:19:30 +0200 (Di, 14 Sep 2010) $
+ */
+
+@media screen, projection
+{
+  /*-------------------------------------------------------------------------*/
+
+  /* (en) Marginal areas & page background */
+  /* (de) Randbereiche & Seitenhintergrund */
+  body { background: #fff; }
+
+  /* Layout Alignment | Layout-Ausrichtung */
+  body { text-align:center; }
+  body * { text-align:left; }
+  .page_margins { margin: 0 auto; }
+
+  /* Layout Properties | Layout-Eigenschaften */
+  .page_margins { width: auto;  min-width: 740px; max-width: 90em; background: #ddd; padding: 12px; }
+  .page { padding: 12px 24px; border: 1px #aaa solid; background: #fff; }
+  #header { position:relative; padding: 12px 24px 0 24px; color: #000; background: #fff; }
+  #topnav { position:absolute; top: 24px; right: 24px; color: #aaa; background: transparent; }
+  #main { margin: 12px 0; background: #fff; }
+  #footer { padding: 0px 24px; color:#666; }
+
+  /*-------------------------------------------------------------------------*/
+
+  /**
+   * (en) Formatting content container
+   * (de) Formatierung der Inhalts-Container
+   *
+   */
+
+  #main { padding: 0px 24px; }
+
+  #header .subc  { padding: 0 24px; }
+  .subcl { padding: 0 24px 0 0; }
+  .subcr { padding: 0 0 0 24px; }
+  #header .subc  { border-left: 1px #ddd solid; border-right: 1px #ddd solid; }
+  #main .subcl { border-right: 1px #ddd solid; }
+  .subcolumns { border-bottom: 1px #ddd solid; }
+  .subcolumns  .subcolumns {border-bottom: 0px #ddd solid; }
+
+  .maincontent { padding-left: 36px; }
+
+ /**
+  * ------------------------------------------------------------------------------------------------- #
+  *
+  * Skiplinks 
+  *
+  * (en) Visual styling for skiplink navigation
+  * (de) Visuelle Gestaltung der Skiplink-Navigation
+  *
+  * @section content-skiplinks
+  */
+
+  #skiplinks a.skip:focus,
+  #skiplinks a.skip:active { 
+    text-align: center;
+	color: #fff; 
+	background: #333;
+  	border: 0 none;
+	border-bottom: 1px #000 solid;
+	padding: 10px 0;
+	text-decoration:none;
+  }
+}
+}

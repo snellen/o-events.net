@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title>Equal Heights with YAML's subtemplates</title>
+<!-- add your meta tags here -->
+<link href="css/layout_equal_heights.css" rel="stylesheet" type="text/css" />
+<!--[if lte IE 7]>
+<link href="css/patches/patch_equal_heights.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+</head>
+<body>
+<!-- skip link navigation -->
+<ul id="skiplinks">
+	<li><a class="skip" href="#nav">Skip to navigation (Press Enter).</a></li>
+	<li><a class="skip" href="#col1">Skip to main content (Press Enter).</a></li>
+</ul>
+
+<div class="page_margins">
+  <div class="page">
+    <div id="header" role="banner">
+      <div id="topnav" role="contentinfo">
+        <a href="#">Login</a> | <a href="#">Contact</a> | <a href="#">Imprint</a>
+      </div>
+      <h1><strong>Example | Beispiel</strong> <em>&laquo;equal height boxes&raquo;</em></h1>
+      <span>YAML &#8226; (X)HTML/CSS Framework</span>
+    </div>
+    <div id="nav" role="navigation">
+      <div class="hlist">
+        <!-- main navigation: #nav_main -->
+        <ul>
+          <li><a href="../index.html">Table Of Contents</a></li>
+          <li><a href="../07_layouts_advanced_2/fullpage_3col.html">Next Example</a></li>
+          <li><a href="flexible_grids2.html">Previous Example</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="main">
+      <!-- begin: #col1 - first float column -->
+      <div id="col1" role="complementary">
+        <div id="col1_content" class="clearfix">
+          <!-- Insert your subtemplate content here -->
+          <h2>Truly flexible &amp; equal height content boxes </h2>
+          <p>Have you ever dreamed of flexible content boxes with complete graphical styling ability? Do you wish them to feature <em>equal heights</em> via pure CSS? Do you need them to be available <em>crossbrowser</em> with full support for <em>older versions</em> of the Internet Explorer? So, here they are ...          </p>
+          <h3>Simple Usage</h3>
+          <p>This very simple example shows how to use Class <code>.equalize</code> to set up a subtemplate with equal height content boxes.</p>
+          <div class="subcolumns equalize example1">
+            <div class="c50l">
+              <div class="subcl">
+                <!-- Insert your subtemplate content here -->
+                <h6>Topic One </h6>
+                <ul>
+                  <li>List Item 1</li>
+                  <li>List Item 2</li>
+                  <li>List Item 3</li>
+                  <li>List Item 4</li>
+                  <li>List Item 5</li>
+                </ul>
+              </div>
+            </div>
+            <div class="c50r">
+              <div class="subc">
+                <!-- Insert your subtemplate content here -->
+                <h6>Topic Two </h6>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.</p>
+              </div>
+            </div>
+          </div>
+
+          <h3>Advanced Usage</h3>
+          <p>Now a more advanced example. The following three content boxes are fully grahpical styled and they contain a &quot;more&quot; link at the bottom of each box. Check out the markup these links as this is an accessible best-practice-solution.</p>
+          <div class="subcolumns equalize box-top">
+            <div class="c33l">
+              <div class="subcl">
+                <!-- Insert your subtemplate content here -->
+                <h6>Topic One </h6>
+                <ul>
+                  <li>List Item 1</li>
+                  <li>List Item 2</li>
+                  <li>List Item 3</li>
+                  <li>List Item 4</li>
+                  <li>List Item 5</li>
+                </ul>
+                <a href="#" class="hideme">&rarr; read more ...</a>
+              </div>
+            </div>
+            <div class="c33l">
+              <div class="subc">
+                <!-- Insert your subtemplate content here -->
+                <h6>Topic Two </h6>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.</p>
+                <a href="#" class="hideme">&rarr; read more ...</a>
+              </div>
+            </div>
+            <div class="c33r">
+              <div class="subcr">
+                <!-- Insert your subtemplate content here -->
+                <h6>Topic Three</h6>
+                <ul>
+                  <li>List Item 1</li>
+                  <li>List Item 2</li>
+                  <li>List Item 3</li>
+                  <li>List Item 4</li>
+                  <li>List Item 5</li>
+                </ul>
+                <a href="#" class="hideme">&rarr; read more ...</a>
+              </div>
+            </div>
+          </div>
+          <h3 class="hideme">Summing up</h3>
+          <div class="subcolumns equalize no-ie-padding box-bottom">
+            <div class="c33l">
+              <div class="subcl"><a href="#" class="noprint">&rarr; read more<span class="hideme"> about Topic One</span>.</a></div>
+            </div>
+            <div class="c33l">
+              <div class="subc"><a href="#" class="noprint">&rarr; read more<span class="hideme"> about Topic Two</span>.</a></div>
+            </div>
+            <div class="c33r">
+              <div class="subcr"><a href="#" class="noprint">&rarr; read more<span class="hideme"> about Topic Tree</span>.</a></div>
+            </div>
+          </div>
+          <div class="important">
+            <h2>About this example</h2>
+            <p>This <em>flexible equal heights</em> solution is based on YAML's <a href="http://www.yaml.de/en/documentation/practice/subtemplates.html">subtemplates</a> and combines three layout techniques for a crossbrowser working result. The equal height boxes are based on CSS tables (in all modern browsers) and floats (in Internet Explorer 5.x &ndash; 7.0). Additionally it uses Alex Robinson's <em>Equal Height</em> technique with all browsers and therefore  inherits one of its limits.</p>
+            <h2>Limits of this &quot;equal heights&quot; approach</h2>
+            <p>As Alex Robinson writes in the <a href="http://www.positioniseverything.net/articles/onetruelayout/appendix/equalheightproblems">Appendix J</a> of his &laquo;one true layout&raquo; article, some browsers have issues when <strong>linking to anchors in elements within the containing block</strong> (e.g. anchors of skip-links). This problem is fixed in recent versions of Firefox, Opera and Safari and there is a workaround for IE5.x &amp; IE6 &ndash; but this can't be fixed in Internet Explorer 7.0 with CSS. Therefore keep that issue in mind (avoid linking into equalized containers) when using equal heights subcolumns.</p>
+          </div>
+        </div>
+      </div>
+      <!-- end: #col1 -->
+      <!-- begin: #col3 static column -->
+      <div id="col3" role="main">
+        <div id="col3_content" class="clearfix">
+          <div class="info">
+          <h2>Successfully tested in   ...</h2>
+          <h3>Windows XP/Vista:</h3>
+          <ul>
+            <li>Firefox 1.0.4, 1.5, 2.0.17, 3.0.x, 3.5+</li>
+            <li>Internet Explorer 5.01, 5.5, 6.0, 7.0, 8.0</li>
+            <li>Safari 3.x, 4.0+</li>
+            <li>Chrome 1.0+</li>
+            <li>Opera 7.50, 8.54, 9.2, 9.5, 9.6 </li>
+            <li>Netscape 7.2, 8.1.3 </li>
+          </ul>
+          <h3>Mac (OS 10.4/10.5):</h3>
+          <ul>
+            <li>Firefox 3.0.3</li>
+            <li>iCab 4</li>
+            <li>Safari 3.1.2, 3.2</li>
+            <li>Webkit nightly 5525.26.12</li>
+            <li>Camino 1.6.4</li>
+            <li>Opera 9.62</li>
+          </ul>
+          <h3>Linux (Ubuntu):</h3>
+          <ul>
+            <li>Firefox 3.0.3</li>
+          </ul>
+          <h3>Mobile Browsers:</h3>
+          <ul>
+            <li>Safari (iPhone)</li>
+            <li>Fennec 1.0a1 (Mobile Firefox, m9 Nokia)</li>
+            <li>Opera Mini 4.2 (Windows Mobile)</li>
+          </ul>
+          <h3>Other Plattforms:</h3>
+          <ul>
+            <li>Opera 9.3 (Nintendo Wii)</li>
+          </ul>
+          </div>
+        </div>
+        <div id="ie_clearing">&nbsp;</div>
+        <!-- End: IE Column Clearing -->
+      </div>
+      <!-- end: #col3 -->
+    </div>
+    <!-- begin: #footer -->
+    <div id="footer" role="contentinfo">Footer with copyright notice and status information<br />
+      Layout based on <a href="http://www.yaml.de/">YAML</a> </div>
+  </div>
+</div>
+<!-- full skiplink functionality in webkit browsers -->
+<script src="../../yaml/core/js/yaml-focusfix.js" type="text/javascript"></script>
+</body>
+</html>

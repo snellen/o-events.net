@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>YAML | Example &quot;accessible tabs with jQuery&quot;</title>
+<!-- (en) Add your meta data here -->
+<!-- (de) Fuegen Sie hier ihre Meta-Daten ein -->
+<link href="css/layout_accessible_tabs.css" rel="stylesheet" type="text/css"/>
+<!--[if lte IE 7]>
+<link href="css/patches/patch_accessible_tabs.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!-- embedded styles for dynamic layout options -->
+<style type="text/css">
+  #js-info { display:block; padding: 10px 20px; background: #fee; color: #800; margin: 0 0 10px 0; }
+  .js #js-info { display:none; }
+</style>
+
+<!-- JavaScript Detection -->
+<script type="text/javascript">document.documentElement.className += " js";</script>
+<!-- jQuery & Plugins -->
+<script src="../../js/lib/jquery-1.4.2.js" type="text/javascript"></script>
+<script src="../../yaml/add-ons/accessible-tabs/jquery.tabs.js" type="text/javascript"></script>
+<script src="../../yaml/add-ons/syncheight/jquery.syncheight.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$(".example1").accessibleTabs({fx:"show",fxspeed: '', syncheights: false, tabbody:'.tab-content'});
+	$(".example2").accessibleTabs({fx:"show",fxspeed: '', syncheights: true, tabbody:'.tab-content'});
+});
+
+</script>
+</head>
+<body>
+<!-- skip link navigation -->
+<ul id="skiplinks">
+	<li><a class="skip" href="#nav">Skip to navigation (Press Enter).</a></li>
+	<li><a class="skip" href="#col3">Skip to main content (Press Enter).</a></li>
+</ul>
+
+<div class="page_margins">
+  <div class="page">
+    <div id="header" role="banner">
+      <div id="topnav" role="contentinfo">
+        <span><a href="#">Login</a> | <a href="#">Contact</a> | <a href="#">Imprint</a></span>
+      </div>
+      <h1>Example | Beispiel <em>&laquo;accessible tabs with jQuery&raquo;</em></h1>
+      <span>YAML &#8226; (X)HTML/CSS Framework</span>
+    </div>
+    <!-- begin: main navigation #nav -->
+    <div id="nav" role="navigation">
+      <div class="hlist">
+        <ul>
+          <li><a href="../index.html">Table Of Contents</a></li>
+          <li><a href="rtl_support.html">Next Example</a></li>
+          <li><a href="../08_special_interest/minmax_js.html">Previous Example</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- end: main navigation -->
+    <!-- begin: main content area #main -->
+    <div id="main">
+      <!-- begin: #col1 - first float column -->
+      <div id="col1" role="complementary">
+        <div id="col1_content" class="clearfix">
+    <div class="info">
+      <h2>About this example</h2>
+      <p>This layout example demonstrate the usage of Dirk Ginaders &quot;Accessible Tabs&quot; plugin (v1.5) and the SyncHeight plugin for <a href="http://www.jquery.com">jQuery</a>.</p>
+      <p>These plugins are released under GPL and MIT License and therefore can be used standalone without violating YAML's license conditions.      </p>
+      <p>For the latest versions of both  plugins, visit Dirk Ginaders <a href="http://github.com/ginader">project homepage</a> at Github. Fore more information, see <a href="http://www.yaml.de/en/documentation/tools-tips/add-ons.html">Section 5.4: Add-ons</a>. </p>
+    </div>
+        </div>
+      </div>
+      <!-- end: #col1 -->
+      <!-- begin: #col3 static column -->
+      <div id="col3" role="main">
+        <div id="col3_content" class="clearfix">
+          <h2>Simple Example</h2>
+          <p>Here comes some example content that will be used to dynamically create  tabs, using the &quot;accessible tabs&quot; Plugin.</p>
+          <div id="js-info">JavaScript has to be enabled for this demonstration.</div>
+          <div class="jquery_tabs example1">
+            <h3>tab heading 1</h3>
+            <div class="tab-content">
+            <h4>Lorem ipsum ... </h4>
+            <p>Nullam malesuada suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque. Vivamus viverra. Duis dolor arcu, lacinia sit amet, sollicitudin sed, aliquet vel, quam. Pellentesque molestie laoreet tortor. Aenean quam. Pellentesque magna metus, venenatis sit amet, congue nec, dictum in, est. Aliquam nibh. </p>
+            <h4>Lorem ipsum ... </h4>
+            <p>Nullam malesuada suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque. Vivamus viverra. Duis dolor arcu, lacinia sit amet, sollicitudin sed, aliquet vel, quam. Pellentesque molestie laoreet tortor. Aenean quam. Pellentesque magna metus, venenatis sit amet, congue nec, dictum in, est. Aliquam nibh. </p>
+            </div>
+            <h3>tab heading 2</h3>
+            <div class="tab-content">
+              <h4>Lorem ipsum ... </h4>
+              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam malesuada   suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque. </p>
+              <h4>Lorem ipsum ... </h4>
+              <p>Nullam malesuada   suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque.   Vivamus viverra. Duis dolor arcu, lacinia sit amet, sollicitudin sed, aliquet   vel, quam. Pellentesque molestie laoreet tortor. Aenean quam. Pellentesque magna   metus, venenatis sit amet, congue nec, dictum in, est. Aliquam nibh. </p>
+            </div>
+            <h3>tab heading 3</h3>
+            <div class="tab-content">
+              <p>Your content could be here.</p>
+            </div>
+          </div>
+
+	<h2>Advanced Example</h2>
+        <p>This Tabbing environment has synchronized tab heights. This is realized by combining the &quot;Accessible Tabs&quot; Plugin with the &quot;syncHeight&quot; Plugin.</p>
+          <div class="jquery_tabs example2">
+            <h3>tab heading 1</h3>
+            <div class="tab-content">
+            <h4>Lorem ipsum ... </h4>
+            <p>Nullam malesuada suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque. Vivamus viverra. Duis dolor arcu, lacinia sit amet, sollicitudin sed, aliquet vel, quam. Pellentesque molestie laoreet tortor. Aenean quam. Pellentesque magna metus, venenatis sit amet, congue nec, dictum in, est. Aliquam nibh. </p>
+            <h4>Lorem ipsum ... </h4>
+            <p>Nullam malesuada suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque. Vivamus viverra. Duis dolor arcu, lacinia sit amet, sollicitudin sed, aliquet vel, quam. Pellentesque molestie laoreet tortor. Aenean quam. Pellentesque magna metus, venenatis sit amet, congue nec, dictum in, est. Aliquam nibh. </p>
+            </div>
+            <h3>tab heading 2</h3>
+            <div class="tab-content">
+              <h4>Lorem ipsum ... </h4>
+              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam malesuada   suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque. </p>
+              <h4>Lorem ipsum ... </h4>
+              <p>Nullam malesuada   suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque.   Vivamus viverra. Duis dolor arcu, lacinia sit amet, sollicitudin sed, aliquet   vel, quam. Pellentesque molestie laoreet tortor. Aenean quam. Pellentesque magna   metus, venenatis sit amet, congue nec, dictum in, est. Aliquam nibh. </p>
+            </div>
+            <h3>tab heading 3</h3>
+            <div class="tab-content">
+              <p>Your content could be here.</p>
+            </div>
+          </div>
+
+        </div>
+        <div id="ie_clearing">&nbsp;</div>
+        <!-- End: IE Column Clearing -->
+      </div>
+      <!-- end: #col3 -->
+    </div>
+    <!-- end: #main -->
+    <!-- begin: #footer -->
+    <div id="footer" role="contentinfo">Footer with copyright notice and status information<br />
+      Layout based on <a href="http://www.yaml.de/">YAML</a></div>
+    <!-- end: #footer -->
+  </div>
+</div>
+<!-- full skiplink functionality in webkit browsers -->
+<script src="../../yaml/core/js/yaml-focusfix.js" type="text/javascript"></script>
+</body>
+</html>

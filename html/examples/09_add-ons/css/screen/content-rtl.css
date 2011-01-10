@@ -1,0 +1,62 @@
+/**
+ * "Yet Another Multicolumn Layout" - (X)HTML/CSS Framework
+ *
+ * (en) RTL Uniform design of standard content elements
+ * (de) RTL Einheitliche Standardformatierungen für die wichtigten Inhalts-Elemente
+ *
+ * @note:           Many thanks to Alexander Hass (http://www.yaml-fuer-drupal.de/) for contribution
+ *
+ * @copyright       Copyright 2005-2010, Dirk Jesse
+ * @license         CC-A 2.0 (http://creativecommons.org/licenses/by/2.0/),
+ *                  YAML-C (http://www.yaml.de/en/license/license-conditions.html)
+ * @link            http://www.yaml.de
+ * @package         yaml
+ * @version         3.3
+ * @revision        $Revision: 466 $
+ * @lastmodified    $Date: 2010-09-14 21:19:30 +0200 (Di, 14 Sep 2010) $
+ * @appdef yaml
+ */
+
+@media all
+{
+  /* --- Lists | Listen  -------------------------------------------------------------------------------- */
+
+  ul, ol, dl { margin: 0 1em 1em 0; }
+  li {
+    margin-left: 0; /* Reset LTR */
+    margin-right: 0.8em;
+  }
+
+  dd { margin: 0 0.8 1em 0 }
+
+  /* --- general text formatting | Allgemeine Textauszeichnung ------------------------------------------ */
+
+  /* cite, blockquote { font-style: normal } */ /* FF <=2.x corrupts italic text with RTL fonts */
+  blockquote { margin: 0 1.6em 1em 0 }
+
+ /**
+  * ------------------------------------------------------------------------------------------------------ #
+  *
+  * Miscellaneous | Sonstiges
+  *
+  * @section content-misc
+  */
+
+ /**
+  * (en) Emphasizing external Hyperlinks via CSS
+  * (de) Hervorhebung externer Hyperlinks mit CSS
+  *
+  * @section             content-external-links
+  * @app-yaml-default    disabled
+  */
+
+  /*
+  #main a[href^="http://www.my-domain.com"],
+  #main a[href^="https://www.my-domain.com"]
+  {
+    padding-left: 0px;  Reset LTR value
+    padding-right: 12px;
+  }
+  */
+}
+
