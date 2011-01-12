@@ -76,7 +76,7 @@
 
   .page {
     border: 0 none;
-    margin: 0 0 0 5px; padding: 0px 5px 10px 0px; /*10px 15px 10px 10px; */
+    margin: 0 0 0 5px; padding: 0px 5px 5px 0px; /*10px 15px 10px 10px; */
     background-image:  url(../../images/gfxborder/border_right.gif);
     background-repeat:repeat-y;
     background-position:right;
