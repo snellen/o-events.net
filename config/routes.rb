@@ -61,6 +61,11 @@ OEventsNet::Application.routes.draw do
     # put everything in here that should be localized
     resources :users
     resources :events
+    resources :competitions
+    resources :categories
+    resources :additional_fees
+    resources :runs
+
     # root :to => ...
   end
 

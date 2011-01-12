@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  slug: MyString
+  min_age: 1
+  max_age: 1
+  sex: MyString
+
+two:
+  name: MyString
+  slug: MyString
+  min_age: 1
+  max_age: 1
+  sex: MyString

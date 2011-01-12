@@ -1,21 +1,40 @@
 Data Model Description
 Project: o-events.net
 
+NOTE: The models are spelled with CapitalLetters here and in the diagram, but with_underscores in the actual application.
+      Also, i18n of event-specific strings is not implemented in the DB structure (yet).
 
 ==
 AdditionalFee: Fees for additional services which do not depend on the Competitors' age, Category, or other parameters. Example: Set of training maps provided by the organizer.
+  name:string          The name of the fee, as determined by the event organizer.
+  description:string   A short description of the fee. 
+  amount:decimal       The fee (in the event's main currency).
+  event:ref            The event that the fee belongs to.
 ==
 AgeRange: Range used to define StartFees depending on age. Note that this can only be used for single events, since the age of a Team is not defined otherwise.
 ==
-Category: Group of Teams which compete against each other. Each Competition generates an overall result list (TotalResult) for each Category. A Category may limit the age and sex of Competitors, or the total age of Teams that are allowed to compete in it. The Category usually determines the length of the courses to be run throughout an Event.  
+Category: Group of Teams which compete against each other. Each Competition generates an overall result list (TotalResult) for each Category. A Category may limit the age and sex of Competitors, or the total age of Teams that are allowed to compete in it. The Category usually determines the length of the courses to be run throughout an Event.
+  name:string        The name of the category, as displayed to the user.
+  slug:string        A unique category name consisting only of latin letters and digits. (Use in URLs and maybe in export files.)
+  min_age:integer    The minimum total age of a team's competitors in order to join this category.
+  max_age:integer    The maximum total age of a team's competitors in order to join this category. 99 will be treated as infinity.
+  sex:string         Determines whether this category is for men ('M'), women ('F'), or open ('O'). Categories with 'M' are open for women as well, but 'O' expresses that the category is really intended for everyone.
+  competition:ref    The competition that the category belongs to.
 ==
 CategoryGroup: Group of Categories which have the same StartFees.
+
+NOTE: Categories are defined on Competition level, but CategoryGroups are on Event level since StartFees are on Event level.
+      This implies that a CategoryGroup can contain Categories from several Competitions!
+
 ==
 Club: Group of Users. Each User can be a member of several Clubs, one of which is the User's default Club (isDefault = true). Club members can have special rights, e.g. the right to add teams to Club registrations.
 ==
 CompetingClub: Club that is competing in an Event. Each Competitor may be assigned at most one CompetingClub, i.e. the User must choose which Club to run for when registering for an Event. It is possible to compete without joining a Club.
 ==
 Competition: A group of Runs that has a TotalResult. An Event can consist of several Competitions if it is e.g. a multi-day Event with daily prize giving.
+  name:string       The name of the competition. May be empty if the event has only one competition.
+  type:string       Determines how the event data is interpreted: 'single' (one competitor per team), 'relay' (one competitor per run), or 'team' (all competitors do all runs)
+  event:ref         The event that the competition belongs to.
 ==
 CompetitionGroup: A group of Competitions for which total StartFees are defined. CompetitionGroups may consist of a single Competition, and the same Competition can be in several CompetitionGroups.
   Example: Given an Event with Competitions A, B, and C, there could for instance be four CompetitionGroups: One for each Competition, plus one "full package" containing all three Competitions. The StartFee of the "full package" could be made lower than the sum of the three Competitions' StartFees.
@@ -27,12 +46,17 @@ Country: A nation that Teams can run for. Use the IOC definitions on http://en.w
 CountryGroup: Used to define StartFees that depend on the Team's nation. A CountryGroup is a group of nations with the same StartFees. (Rename to "NationGroup"?)  
 ==
 Event: Represents an orienteering event.
-  Type: one of {SINGLE, GROUP}
+  name:string       The name of the event, to be displayed in the calendar, page title, and other places.
+  slug:string       Event name to be used in URLs, consisting of only latin letters and digits. Must be unique. (The term "slug" is used for this in WordPress.)
+  start_date:date   Start date of the event (does not need to match the date of the first run)
+  end_date:date     End date of the event (does not need to match the date of the last run)
+  club:ref          Organizer of the event.  
+  country:ref       Country under which the event should be listed. The organizer's country is used by default, but other countries can be chosen by the organizer.
 ==
 Log: Chronological list of modifications in the other database tables. Logging may be limited to important transactions (e.g. payments) as soon as the software becomes stable.
 ==
 Payment: Represents a payment from the user to o-events.net using either an e-payment platform or a Swiss ESR payment slip. (All payments are processed automatically.)
-==
+== 
 PaymentGroup: A group of Teams whose StartFees are paid by the same User. The StartFees of a PaymentGroup may be paid in several partial payments. In this case, the "isPaid" flag will be set only for some of the Teams, depending on the amount paid so far.  
 ==
 RegistrationDeadline: A date that is relevant to an Event's StartFees. The online registration of an Event is open until its latest deadline, but the StartFees may be increased over time, to give Competitors an incentive to register early. 
@@ -40,6 +64,11 @@ RegistrationDeadline: A date that is relevant to an Event's StartFees. The onlin
 Result: A dataset that represents the performance of a Competitor or Team in a particular Run. This data is used to create the result lists of a Run.
 ==
 Run: A part of a Competition which involves one passing of start and finish per Team. In relay events, a Run represents a relay leg, and age restrictions can be defined for each Run. In individual events, a Run may represent a day of a multi-day event.
+  name:string      The name of the run. May be blank if the competition contains only one run, or if the competition is a relay.
+  date:date        The date on which the run takes place.
+  age_limit_1      Defines the maximum age of junior competitors (below 21) who may participate in the run. Values over 20 indicate no limit. 
+  age_limit_2      Defines the minimum age of senior competitors (above 35) who may participate in the run. Value below 35 indicate no limit.
+  competition:ref  The competition that the run belongs to.
 ==
 StartFee: The amount of money a Team has to pay to take part in all competitions of a CompetitionGroup.
 ==
