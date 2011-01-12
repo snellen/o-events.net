@@ -1,15 +1,15 @@
 # Localization file for English. Add more files in this directory for other locales.
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
-en:
+fr:
   layouts:
     application:
       title:           "O-events.net"
-      home:            "Home"
-      browseevents:    "Browse Events"
-      myeventcal:      "My Event Calendar"
-      myclubs:         "My Clubs"
-      myaccount:       "My Account"
-      logout:          "Logout"
+      home:            ""
+      browseevents:    ""
+      myeventcal:      ""
+      myclubs:         ""
+      myaccount:       ""
+      logout:          ""
       contact:         "Contact"
-      imprint:         "Imprint"
+      imprint:         ""
