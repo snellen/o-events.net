@@ -1,5 +1,4 @@
 OEventsNet::Application.routes.draw do
-  resources :events
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -60,9 +59,8 @@ OEventsNet::Application.routes.draw do
   
   scope '(:locale)' do
     # put everything in here that should be localized
-    # resources :users
-    # resources :events
-    # etc
+    resources :users
+    resources :events
     # root :to => ...
   end
 
