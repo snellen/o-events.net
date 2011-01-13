@@ -10,8 +10,13 @@ AdditionalFee: Fees for additional services which do not depend on the Competito
   description:string   A short description of the fee. 
   amount:decimal       The fee (in the event's main currency).
   event:ref            The event that the fee belongs to.
+  age_range:ref        The age range that the fee applies to. Zero for team events.
 ==
 AgeRange: Range used to define StartFees depending on age. Note that this can only be used for single events, since the age of a Team is not defined otherwise.
+  lower:integer        The lower end of the age range.
+  upper:integer        The upper end of the age range. 99 is treated as infinity.
+  type:string          Either 'start_fee' or 'additional_fee'. Used to list an event's age ranges for start and additional fees separately.
+  event:ref            The event that the range is used in.
 ==
 Category: Group of Teams which compete against each other. Each Competition generates an overall result list (TotalResult) for each Category. A Category may limit the age and sex of Competitors, or the total age of Teams that are allowed to compete in it. The Category usually determines the length of the courses to be run throughout an Event.
   name:string        The name of the category, as displayed to the user.
@@ -20,26 +25,69 @@ Category: Group of Teams which compete against each other. Each Competition gene
   max_age:integer    The maximum total age of a team's competitors in order to join this category. 99 will be treated as infinity.
   sex:string         Determines whether this category is for men ('M'), women ('F'), or open ('O'). Categories with 'M' are open for women as well, but 'O' expresses that the category is really intended for everyone.
   competition:ref    The competition that the category belongs to.
+  category_group:ref The category group that the category is part of.
 ==
 CategoryGroup: Group of Categories which have the same StartFees.
-
-NOTE: Categories are defined on Competition level, but CategoryGroups are on Event level since StartFees are on Event level.
-      This implies that a CategoryGroup can contain Categories from several Competitions!
-
+  fee_age_dependent:boolean     Determines whether the start fee in this category depends on age. This is used e.g. for "open" categories where people of any age are allowed to start.
+==
+Chip: A chip number used by a competitor in a run.
+  number:integer     The chip number. May be the number of a SPORTident chip or any other chip with an integer number.
+  run:ref            The run that this chip is being used in.
+  competitor:ref     The competitor who is using this chip in the specified run.
 ==
 Club: Group of Users. Each User can be a member of several Clubs, one of which is the User's default Club (isDefault = true). Club members can have special rights, e.g. the right to add teams to Club registrations.
+  name:string            The name of the club. O-events.net does not split up club names.
+  address_line_1:string  Self-explanatory...
+  address_line_2:string
+  zipcode:string
+  city:string
+  website:string
+  country:ref            The country in which the club is domiciled.
+=
+ClubMember: A user who has joined a club.
+  is_default:boolean    Determines whether a club is the user's default club. May only be true for ONE of each user's clubs.
+  role:integer          Determines the rights a member has within a club.
 ==
 CompetingClub: Club that is competing in an Event. Each Competitor may be assigned at most one CompetingClub, i.e. the User must choose which Club to run for when registering for an Event. It is possible to compete without joining a Club.
+  name:string            The name of the club. O-events.net does not split up club names.
+  address_line_1:string  Self-explanatory...
+  address_line_2:string
+  zipcode:string
+  city:string
+  website:string
+  country:ref            The country in which the club is domiciled.
+  event:ref              The event that some of the club's members are competing in.
+  club:ref               The club that this competing club is a copy of. Will be set to zero if a club is deleted.
+==
+CompetitionGroup: A group of Competitions which share Categories, Teams, and StartFees. It is not possible to sign up for individual Competitions in the CompetitionGroup. CompetitionGroups may consist of a single Competition.
+  <no attributes>
 ==
 Competition: A group of Runs that has a TotalResult. An Event can consist of several Competitions if it is e.g. a multi-day Event with daily prize giving.
   name:string       The name of the competition. May be empty if the event has only one competition.
   type:string       Determines how the event data is interpreted: 'single' (one competitor per team), 'relay' (one competitor per run), or 'team' (all competitors do all runs)
   event:ref         The event that the competition belongs to.
 ==
-CompetitionGroup: A group of Competitions for which total StartFees are defined. CompetitionGroups may consist of a single Competition, and the same Competition can be in several CompetitionGroups.
-  Example: Given an Event with Competitions A, B, and C, there could for instance be four CompetitionGroups: One for each Competition, plus one "full package" containing all three Competitions. The StartFee of the "full package" could be made lower than the sum of the three Competitions' StartFees.
-==
 Competitor: A User who competes in an Event.
+  license_number:string     Nation-specific identification number or character code. This is where the "SOLV Number" is stored for Swiss competitors.
+  region_code:string        Nation-specific identifier of the competitor's residential region.
+  first_name:string         Self-explanatory...
+  last_name:string
+  email:string
+  phone:string
+  address_line_1:string
+  address_line_2:string
+  zipcode:string
+  city:string
+  province:string           State, province, canton etc. (may be part of the postal address)
+  sex:string                'M' or 'F'  
+  birthdate_y:integer       Four-digit year of birth. This is stored separately from the date since the date may not always be available.
+  birthdate_m:integer       Month of birth.
+  birthdate_d:integer       Day of birth.
+  country:ref               Country of residence.
+  nation:ref                Nation represented by the competitor.
+  event:ref                 The event that the competitor is participating in.
+  competing_club:ref        The club that this competitor represents (in the current event).        
+  user:ref                  The user that this competitor is a copy of. This reference is set to zero when a user is deleted.
 ==
 Country: A nation that Teams can run for. Use the IOC definitions on http://en.wikipedia.org/wiki/List_of_IOC_country_codes. Rename the table to "Nation"?
 ==
@@ -64,19 +112,49 @@ RegistrationDeadline: A date that is relevant to an Event's StartFees. The onlin
 Result: A dataset that represents the performance of a Competitor or Team in a particular Run. This data is used to create the result lists of a Run.
 ==
 Run: A part of a Competition which involves one passing of start and finish per Team. In relay events, a Run represents a relay leg, and age restrictions can be defined for each Run. In individual events, a Run may represent a day of a multi-day event.
-  name:string      The name of the run. May be blank if the competition contains only one run, or if the competition is a relay.
-  date:date        The date on which the run takes place.
-  age_limit_1      Defines the maximum age of junior competitors (below 21) who may participate in the run. Values over 20 indicate no limit. 
-  age_limit_2      Defines the minimum age of senior competitors (above 35) who may participate in the run. Value below 35 indicate no limit.
-  competition:ref  The competition that the run belongs to.
+  name:string          The name of the run. May be blank if the competition contains only one run, or if the competition is a relay.
+  date:date            The date on which the run takes place.
+  age_limit_1:integer  Defines the maximum age of junior competitors (below 21) who may participate in the run. Values over 20 indicate no limit. 
+  age_limit_2:integer  Defines the minimum age of senior competitors (above 35) who may participate in the run. Value below 35 indicate no limit.
+  competition:ref      The competition that the run belongs to.
 ==
 StartFee: The amount of money a Team has to pay to take part in all competitions of a CompetitionGroup.
 ==
-Team: A group of one or more Competitors which takes part in an Event.
+StartTime: The time at which a competitor starts in a run.
+start_time:time       The time, relative to the event's zero time, at which the competitor starts in the run.
+competitor:ref        The competitor in question.
+run:ref               The affected run.
+==
+Team: A group of one or more Competitors which takes part in a group of competitions.
+==
+TeamMember: A competitor who is in a team. Since competitors are defined on event level and teams are specific to competition groups, a competitor may be in several teams.
+  is_leader:boolean      Determines whether this team member is the team leader. The leader is responsible for administration, i.e. their address is used to send information. In team competitions, the team leader also provides a reference to the team's chip. 
+  sortkey:integer        Determines the order of the team members. This is especially important in relay events, where the runs are assigned to team members in this order.
+  competitor:ref         The competitor who is represented by this record.
+  team:ref               The team that the competitor is a member of.
 ==
 TotalResult: A total score or time that can be calculated from all the Results of a Team in a Competition. This data is used to create the overall result list of a Competition.
   Example: In the "Swiss O Week", a Team's TotalResult is calculated from its six Results as follows: The times of the four Results with the best rank are added up. (In the "Swiss O Week", each Team consists of one Competitor.)
 ==
-User: A person who has created an account on o-events.net, or who has been registered for an Event by another User (resulting in an "unclaimed" User account). 
+User: A person who has created an account on o-events.net, or who has been registered for an Event by another User (resulting in an "unclaimed" User account).
+  license_number:string     Nation-specific identification number or character code. This is where the "SOLV Number" is stored for Swiss users.
+  region_code:string        Nation-specific identifier of the user's residential region.
+  sicard_number:integer     Number of the SPORTident card that this user normally runs with.
+  first_name:string         Self-explanatory...
+  last_name:string
+  email:string
+  phone:string              The phone field may be used for any kind of phone where the user wishes to be contacted by event organizers.
+  address_line_1:string
+  address_line_2:string
+  zipcode:string
+  city:string
+  province:string           State, province, canton etc. (may be part of the postal address)
+  sex:string                'M' or 'F'  
+  birthdate_y:integer       Four-digit year of birth. This is stored separately from the date since the date may not always be available.
+  birthdate_m:integer       Month of birth.
+  birthdate_d:integer       Day of birth.
+  country:ref               Country of residence.
+  nation:ref                Nation represented by the user.
+  unclaimed:boolean         Determines whether a user account is in "unclaimed" state, i.e. whether its owner still needs to set a password. 
 ==
 
