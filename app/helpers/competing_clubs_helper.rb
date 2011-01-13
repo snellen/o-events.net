@@ -1,0 +1,2 @@
+module CompetingClubsHelper
+end

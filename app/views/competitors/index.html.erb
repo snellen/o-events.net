@@ -1,0 +1,51 @@
+<h1>Listing competitors</h1>
+
+<table>
+  <tr>
+    <th>License number</th>
+    <th>Region code</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Address line 1</th>
+    <th>Address line 2</th>
+    <th>Zipcode</th>
+    <th>City</th>
+    <th>Province</th>
+    <th>Sex</th>
+    <th>Birthdate y</th>
+    <th>Birthdate m</th>
+    <th>Birthdate d</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @competitors.each do |competitor| %>
+  <tr>
+    <td><%= competitor.license_number %></td>
+    <td><%= competitor.region_code %></td>
+    <td><%= competitor.first_name %></td>
+    <td><%= competitor.last_name %></td>
+    <td><%= competitor.email %></td>
+    <td><%= competitor.phone %></td>
+    <td><%= competitor.address_line_1 %></td>
+    <td><%= competitor.address_line_2 %></td>
+    <td><%= competitor.zipcode %></td>
+    <td><%= competitor.city %></td>
+    <td><%= competitor.province %></td>
+    <td><%= competitor.sex %></td>
+    <td><%= competitor.birthdate_y %></td>
+    <td><%= competitor.birthdate_m %></td>
+    <td><%= competitor.birthdate_d %></td>
+    <td><%= link_to 'Show', competitor %></td>
+    <td><%= link_to 'Edit', edit_competitor_path(competitor) %></td>
+    <td><%= link_to 'Destroy', competitor, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Competitor', new_competitor_path %>

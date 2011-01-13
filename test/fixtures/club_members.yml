@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  is_default: false
+  role: 1
+
+two:
+  is_default: false
+  role: 1

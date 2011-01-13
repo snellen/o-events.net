@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Is default:</b>
+  <%= @club_member.is_default %>
+</p>
+
+<p>
+  <b>Role:</b>
+  <%= @club_member.role %>
+</p>
+
+
+<%= link_to 'Edit', edit_club_member_path(@club_member) %> |
+<%= link_to 'Back', club_members_path %>

@@ -1,0 +1,2 @@
+module CategoryGroupsHelper
+end

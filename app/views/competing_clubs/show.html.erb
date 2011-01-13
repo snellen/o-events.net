@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @competing_club.name %>
+</p>
+
+<p>
+  <b>Address line 1:</b>
+  <%= @competing_club.address_line_1 %>
+</p>
+
+<p>
+  <b>Address line 2:</b>
+  <%= @competing_club.address_line_2 %>
+</p>
+
+<p>
+  <b>Zipcode:</b>
+  <%= @competing_club.zipcode %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @competing_club.city %>
+</p>
+
+<p>
+  <b>Website:</b>
+  <%= @competing_club.website %>
+</p>
+
+
+<%= link_to 'Edit', edit_competing_club_path(@competing_club) %> |
+<%= link_to 'Back', competing_clubs_path %>

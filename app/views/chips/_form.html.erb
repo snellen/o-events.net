@@ -1,0 +1,21 @@
+<%= form_for(@chip) do |f| %>
+  <% if @chip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@chip.errors.count, "error") %> prohibited this chip from being saved:</h2>
+
+      <ul>
+      <% @chip.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :number %><br />
+    <%= f.text_field :number %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
