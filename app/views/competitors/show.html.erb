@@ -1,0 +1,80 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>License number:</b>
+  <%= @competitor.license_number %>
+</p>
+
+<p>
+  <b>Region code:</b>
+  <%= @competitor.region_code %>
+</p>
+
+<p>
+  <b>First name:</b>
+  <%= @competitor.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @competitor.last_name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @competitor.email %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @competitor.phone %>
+</p>
+
+<p>
+  <b>Address line 1:</b>
+  <%= @competitor.address_line_1 %>
+</p>
+
+<p>
+  <b>Address line 2:</b>
+  <%= @competitor.address_line_2 %>
+</p>
+
+<p>
+  <b>Zipcode:</b>
+  <%= @competitor.zipcode %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @competitor.city %>
+</p>
+
+<p>
+  <b>Province:</b>
+  <%= @competitor.province %>
+</p>
+
+<p>
+  <b>Sex:</b>
+  <%= @competitor.sex %>
+</p>
+
+<p>
+  <b>Birthdate y:</b>
+  <%= @competitor.birthdate_y %>
+</p>
+
+<p>
+  <b>Birthdate m:</b>
+  <%= @competitor.birthdate_m %>
+</p>
+
+<p>
+  <b>Birthdate d:</b>
+  <%= @competitor.birthdate_d %>
+</p>
+
+
+<%= link_to 'Edit', edit_competitor_path(@competitor) %> |
+<%= link_to 'Back', competitors_path %>

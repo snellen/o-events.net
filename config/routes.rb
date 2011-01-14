@@ -67,13 +67,21 @@ OEventsNet::Application.routes.draw do
   
   scope '(:locale)' do
     # put everything in here that should be localized
-    resources :users
-    resources :events
-    resources :competitions
-    resources :categories
-    resources :additional_fees
-    resources :runs
 
+    resources :additional_fees
+    resources :age_ranges
+    resources :categories
+    resources :category_groups
+    resources :chips
+    resources :club_members
+    resources :clubs
+    resources :competing_clubs
+    resources :competition_groups
+    resources :competitions
+    resources :competitors
+    resources :events
+    resources :runs
+    resources :users
     # root :to => ...
   end
 

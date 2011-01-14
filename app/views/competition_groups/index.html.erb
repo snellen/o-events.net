@@ -1,0 +1,21 @@
+<h1>Listing competition_groups</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @competition_groups.each do |competition_group| %>
+  <tr>
+    <td><%= link_to 'Show', competition_group %></td>
+    <td><%= link_to 'Edit', edit_competition_group_path(competition_group) %></td>
+    <td><%= link_to 'Destroy', competition_group, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Competition group', new_competition_group_path %>

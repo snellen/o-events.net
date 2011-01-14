@@ -1,0 +1,33 @@
+<h1>Listing competing_clubs</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address line 1</th>
+    <th>Address line 2</th>
+    <th>Zipcode</th>
+    <th>City</th>
+    <th>Website</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @competing_clubs.each do |competing_club| %>
+  <tr>
+    <td><%= competing_club.name %></td>
+    <td><%= competing_club.address_line_1 %></td>
+    <td><%= competing_club.address_line_2 %></td>
+    <td><%= competing_club.zipcode %></td>
+    <td><%= competing_club.city %></td>
+    <td><%= competing_club.website %></td>
+    <td><%= link_to 'Show', competing_club %></td>
+    <td><%= link_to 'Edit', edit_competing_club_path(competing_club) %></td>
+    <td><%= link_to 'Destroy', competing_club, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Competing club', new_competing_club_path %>

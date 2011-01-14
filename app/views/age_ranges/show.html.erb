@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Lower:</b>
+  <%= @age_range.lower %>
+</p>
+
+<p>
+  <b>Upper:</b>
+  <%= @age_range.upper %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @age_range.type %>
+</p>
+
+
+<%= link_to 'Edit', edit_age_range_path(@age_range) %> |
+<%= link_to 'Back', age_ranges_path %>

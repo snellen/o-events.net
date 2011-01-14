@@ -10,7 +10,44 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110112035754) do
+ActiveRecord::Schema.define(:version => 20110113040452) do
+
+  create_table "additional_fees", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.decimal  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "age_ranges", :force => true do |t|
+    t.integer  "lower"
+    t.integer  "upper"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.integer  "min_age"
+    t.integer  "max_age"
+    t.string   "sex"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "category_groups", :force => true do |t|
+    t.boolean  "fee_age_dependent"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "competition_groups", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "competitions", :force => true do |t|
     t.string   "name"
@@ -24,6 +61,15 @@ ActiveRecord::Schema.define(:version => 20110112035754) do
     t.date     "start_date"
     t.date     "end_date"
     t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "runs", :force => true do |t|
+    t.string   "name"
+    t.date     "date"
+    t.integer  "age_limit_1"
+    t.integer  "age_limit_2"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,23 @@
+<h1>Listing chips</h1>
+
+<table>
+  <tr>
+    <th>Number</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @chips.each do |chip| %>
+  <tr>
+    <td><%= chip.number %></td>
+    <td><%= link_to 'Show', chip %></td>
+    <td><%= link_to 'Edit', edit_chip_path(chip) %></td>
+    <td><%= link_to 'Destroy', chip, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Chip', new_chip_path %>

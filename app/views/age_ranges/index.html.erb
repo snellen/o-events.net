@@ -1,0 +1,27 @@
+<h1>Listing age_ranges</h1>
+
+<table>
+  <tr>
+    <th>Lower</th>
+    <th>Upper</th>
+    <th>Type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @age_ranges.each do |age_range| %>
+  <tr>
+    <td><%= age_range.lower %></td>
+    <td><%= age_range.upper %></td>
+    <td><%= age_range.type %></td>
+    <td><%= link_to 'Show', age_range %></td>
+    <td><%= link_to 'Edit', edit_age_range_path(age_range) %></td>
+    <td><%= link_to 'Destroy', age_range, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Age range', new_age_range_path %>

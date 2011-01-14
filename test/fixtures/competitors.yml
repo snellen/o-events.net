@@ -1,0 +1,35 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  license_number: MyString
+  region_code: MyString
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  phone: MyString
+  address_line_1: MyString
+  address_line_2: MyString
+  zipcode: MyString
+  city: MyString
+  province: MyString
+  sex: MyString
+  birthdate_y: 1
+  birthdate_m: 1
+  birthdate_d: 1
+
+two:
+  license_number: MyString
+  region_code: MyString
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  phone: MyString
+  address_line_1: MyString
+  address_line_2: MyString
+  zipcode: MyString
+  city: MyString
+  province: MyString
+  sex: MyString
+  birthdate_y: 1
+  birthdate_m: 1
+  birthdate_d: 1
