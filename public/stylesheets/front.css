@@ -154,3 +154,16 @@ border:0;
 	background-position:0 -5px;
 	cursor:pointer;
 }
+
+#topnav a.signout {
+	background:#88bbd4;
+	padding:4px 6px 6px;
+	text-decoration:none;
+	font-weight:bold;
+	color:#fff;
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+	border-radius:4px;
+	*background:transparent url("/layout/images/login_box/signin-nav-bg-ie.png") no-repeat 0 0;
+	*padding:4px 12px 6px;
+}
