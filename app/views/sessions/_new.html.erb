@@ -1,7 +1,6 @@
-  <a href="login" class="signin"><span>Sign in</span></a>
-  <fieldset id="signin_menu">
+<a href="login" class="signin"><span>Sign in</span></a>
+<fieldset id="signin_menu">
   <%= form_tag sessions_new_path, :id => 'signin' do %>
-    <legend>Please Log In</legend>
     <div>
       <label for="name" >Name:</label>
       <%= text_field_tag :name, params[:name] %>
@@ -13,9 +12,8 @@
      <div>
        <%= submit_tag "Login" %>
      </div>
-   <% end %>
-   </fieldset>
-
+  <% end %>
+</fieldset>
 <script type="text/javascript">
         $(document).ready(function() {
 
