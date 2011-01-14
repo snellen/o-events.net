@@ -1,10 +1,6 @@
 OEventsNet::Application.routes.draw do
 
-  resources :total_results
-
-  resources :team_members
-
-  resources :teams
+  resources :currencies
 
   get "main/index"
 
@@ -95,6 +91,9 @@ OEventsNet::Application.routes.draw do
     resources :split_times    
     resources :start_fees
     resources :start_times
+    resources :team_members
+    resources :teams
+    resources :total_results
     resources :users
     
     root :to => "main#index", :as => 'main'
