@@ -1,7 +1,5 @@
 OEventsNet::Application.routes.draw do
 
-  resources :currencies
-
   get "main/index"
 
   get "sessions/new"
@@ -87,6 +85,7 @@ OEventsNet::Application.routes.draw do
     resources :payments
     resources :registration_deadlines
     resources :results
+    resources :currencies
     resources :runs
     resources :split_times    
     resources :start_fees
