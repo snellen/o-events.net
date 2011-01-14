@@ -1,0 +1,41 @@
+<div class="login_form_partial" id="login_form_partial" >
+  <a href="login" class="signin"><span>Sign in</span></a>
+  <fieldset id="signin_menu">
+  <%= form_tag sessions_new_path, :id => 'signin' do %>
+    <legend>Please Log In</legend>
+    <div>
+      <label for="name" >Name:</label>
+      <%= text_field_tag :name, params[:name] %>
+    </div>
+    <div>
+      <label for="password" >Password:</label>
+      <%= password_field_tag :password, params[:password] %>
+     </div>
+     <div>
+       <%= submit_tag "Login" %>
+     </div>
+   <% end %>
+   </fieldset>
+</div>
+<script type="text/javascript">
+        $(document).ready(function() {
+
+            $(".signin").click(function(e) {          
+		e.preventDefault();
+                $("fieldset#signin_menu").toggle();
+		$(".signin").toggleClass("menu-open");
+            });
+			
+	    $("fieldset#signin_menu").mouseup(function() {
+		return false
+	    });
+
+	    $(document).mouseup(function(e) {
+		if($(e.target).parent("a.signin").length==0) {
+		   $(".signin").removeClass("menu-open");
+		   $("fieldset#signin_menu").hide();
+		}
+	    });			
+			
+        });
+</script>
