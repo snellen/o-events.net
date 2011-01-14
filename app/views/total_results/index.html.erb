@@ -1,0 +1,27 @@
+<h1>Listing total_results</h1>
+
+<table>
+  <tr>
+    <th>Total time</th>
+    <th>Score</th>
+    <th>Rank</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @total_results.each do |total_result| %>
+  <tr>
+    <td><%= total_result.total_time %></td>
+    <td><%= total_result.score %></td>
+    <td><%= total_result.rank %></td>
+    <td><%= link_to 'Show', total_result %></td>
+    <td><%= link_to 'Edit', edit_total_result_path(total_result) %></td>
+    <td><%= link_to 'Destroy', total_result, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Total result', new_total_result_path %>

@@ -1,0 +1,25 @@
+<%= form_for(@nation) do |f| %>
+  <% if @nation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@nation.errors.count, "error") %> prohibited this nation from being saved:</h2>
+
+      <ul>
+      <% @nation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :ioc_code %><br />
+    <%= f.text_field :ioc_code %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @team.name %>
+</p>
+
+<p>
+  <b>Registration time:</b>
+  <%= @team.registration_time %>
+</p>
+
+<p>
+  <b>Paid by club:</b>
+  <%= @team.paid_by_club %>
+</p>
+
+<p>
+  <b>Start fee:</b>
+  <%= @team.start_fee %>
+</p>
+
+<p>
+  <b>Is paid:</b>
+  <%= @team.is_paid %>
+</p>
+
+
+<%= link_to 'Edit', edit_team_path(@team) %> |
+<%= link_to 'Back', teams_path %>

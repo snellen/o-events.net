@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Reference number:</b>
+  <%= @payment.reference_number %>
+</p>
+
+<p>
+  <b>Valuta:</b>
+  <%= @payment.valuta %>
+</p>
+
+<p>
+  <b>Fees valuta:</b>
+  <%= @payment.fees_valuta %>
+</p>
+
+<p>
+  <b>Registration time:</b>
+  <%= @payment.registration_time %>
+</p>
+
+<p>
+  <b>Security data:</b>
+  <%= @payment.security_data %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @payment.type %>
+</p>
+
+<p>
+  <b>Fees:</b>
+  <%= @payment.fees %>
+</p>
+
+<p>
+  <b>Fees included:</b>
+  <%= @payment.fees_included %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @payment.amount %>
+</p>
+
+
+<%= link_to 'Edit', edit_payment_path(@payment) %> |
+<%= link_to 'Back', payments_path %>

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Total time:</b>
+  <%= @total_result.total_time %>
+</p>
+
+<p>
+  <b>Score:</b>
+  <%= @total_result.score %>
+</p>
+
+<p>
+  <b>Rank:</b>
+  <%= @total_result.rank %>
+</p>
+
+
+<%= link_to 'Edit', edit_total_result_path(@total_result) %> |
+<%= link_to 'Back', total_results_path %>

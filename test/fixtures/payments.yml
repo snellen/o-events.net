@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  reference_number: MyString
+  valuta: 2011-01-13
+  fees_valuta: 2011-01-13
+  registration_time: 2011-01-13 21:19:08
+  security_data: MyString
+  type: MyString
+  fees: 9.99
+  fees_included: false
+  amount: 9.99
+
+two:
+  reference_number: MyString
+  valuta: 2011-01-13
+  fees_valuta: 2011-01-13
+  registration_time: 2011-01-13 21:19:08
+  security_data: MyString
+  type: MyString
+  fees: 9.99
+  fees_included: false
+  amount: 9.99

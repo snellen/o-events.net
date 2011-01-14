@@ -1,5 +1,11 @@
 OEventsNet::Application.routes.draw do
 
+  resources :total_results
+
+  resources :team_members
+
+  resources :teams
+
   get "main/index"
 
   get "sessions/new"
@@ -57,7 +63,6 @@ OEventsNet::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => "main#index", :as => 'main'
 
   # See how all your routes lay out with "rake routes"
 
@@ -79,10 +84,20 @@ OEventsNet::Application.routes.draw do
     resources :competition_groups
     resources :competitions
     resources :competitors
+    resources :countries
     resources :events
+    resources :nations
+    resources :payment_groups
+    resources :payments
+    resources :registration_deadlines
+    resources :results
     resources :runs
+    resources :split_times    
+    resources :start_fees
+    resources :start_times
     resources :users
-    # root :to => ...
+    
+    root :to => "main#index", :as => 'main'
   end
 
 end

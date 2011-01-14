@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Control number:</b>
+  <%= @split_time.control_number %>
+</p>
+
+<p>
+  <b>Time:</b>
+  <%= @split_time.time %>
+</p>
+
+
+<%= link_to 'Edit', edit_split_time_path(@split_time) %> |
+<%= link_to 'Back', split_times_path %>

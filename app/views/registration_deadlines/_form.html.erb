@@ -1,0 +1,21 @@
+<%= form_for(@registration_deadline) do |f| %>
+  <% if @registration_deadline.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@registration_deadline.errors.count, "error") %> prohibited this registration_deadline from being saved:</h2>
+
+      <ul>
+      <% @registration_deadline.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date %><br />
+    <%= f.date_select :date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

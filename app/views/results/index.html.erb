@@ -1,0 +1,31 @@
+<h1>Listing results</h1>
+
+<table>
+  <tr>
+    <th>Start time</th>
+    <th>Finish time</th>
+    <th>Run time</th>
+    <th>Rank</th>
+    <th>Chip</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @results.each do |result| %>
+  <tr>
+    <td><%= result.start_time %></td>
+    <td><%= result.finish_time %></td>
+    <td><%= result.run_time %></td>
+    <td><%= result.rank %></td>
+    <td><%= result.chip %></td>
+    <td><%= link_to 'Show', result %></td>
+    <td><%= link_to 'Edit', edit_result_path(result) %></td>
+    <td><%= link_to 'Destroy', result, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Result', new_result_path %>

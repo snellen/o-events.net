@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  registration_time: 2011-01-13 22:57:56
+  paid_by_club: false
+  start_fee: 9.99
+  is_paid: false
+
+two:
+  name: MyString
+  registration_time: 2011-01-13 22:57:56
+  paid_by_club: false
+  start_fee: 9.99
+  is_paid: false

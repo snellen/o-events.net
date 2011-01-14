@@ -1,0 +1,29 @@
+<%= form_for(@total_result) do |f| %>
+  <% if @total_result.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@total_result.errors.count, "error") %> prohibited this total_result from being saved:</h2>
+
+      <ul>
+      <% @total_result.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :total_time %><br />
+    <%= f.text_field :total_time %>
+  </div>
+  <div class="field">
+    <%= f.label :score %><br />
+    <%= f.text_field :score %>
+  </div>
+  <div class="field">
+    <%= f.label :rank %><br />
+    <%= f.text_field :rank %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110113040452) do
+ActiveRecord::Schema.define(:version => 20110114035756) do
 
   create_table "additional_fees", :force => true do |t|
     t.string   "name"
@@ -44,6 +44,41 @@ ActiveRecord::Schema.define(:version => 20110113040452) do
     t.datetime "updated_at"
   end
 
+  create_table "chips", :force => true do |t|
+    t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "club_members", :force => true do |t|
+    t.boolean  "is_default"
+    t.integer  "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "clubs", :force => true do |t|
+    t.string   "name"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "zipcode"
+    t.string   "city"
+    t.string   "website"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "competing_clubs", :force => true do |t|
+    t.string   "name"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "zipcode"
+    t.string   "city"
+    t.string   "website"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "competition_groups", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -52,6 +87,33 @@ ActiveRecord::Schema.define(:version => 20110113040452) do
   create_table "competitions", :force => true do |t|
     t.string   "name"
     t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "competitors", :force => true do |t|
+    t.string   "license_number"
+    t.string   "region_code"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "zipcode"
+    t.string   "city"
+    t.string   "province"
+    t.string   "sex"
+    t.integer  "birthdate_y"
+    t.integer  "birthdate_m"
+    t.integer  "birthdate_d"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "countries", :force => true do |t|
+    t.string   "name"
+    t.string   "iso_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -65,11 +127,81 @@ ActiveRecord::Schema.define(:version => 20110113040452) do
     t.datetime "updated_at"
   end
 
+  create_table "nations", :force => true do |t|
+    t.string   "name"
+    t.string   "ioc_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payment_groups", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payments", :force => true do |t|
+    t.string   "reference_number"
+    t.date     "valuta"
+    t.date     "fees_valuta"
+    t.datetime "registration_time"
+    t.string   "security_data"
+    t.string   "type"
+    t.decimal  "fees"
+    t.boolean  "fees_included"
+    t.decimal  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "registration_deadlines", :force => true do |t|
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "results", :force => true do |t|
+    t.integer  "start_time"
+    t.integer  "finish_time"
+    t.integer  "run_time"
+    t.integer  "rank"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "runs", :force => true do |t|
     t.string   "name"
     t.date     "date"
     t.integer  "age_limit_1"
     t.integer  "age_limit_2"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "split_times", :force => true do |t|
+    t.integer  "control_number"
+    t.integer  "time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "start_fees", :force => true do |t|
+    t.decimal  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "start_times", :force => true do |t|
+    t.time     "start_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teams", :force => true do |t|
+    t.string   "name"
+    t.datetime "registration_time"
+    t.boolean  "paid_by_club"
+    t.decimal  "start_fee"
+    t.boolean  "is_paid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

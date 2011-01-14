@@ -1,0 +1,23 @@
+<h1>Listing start_fees</h1>
+
+<table>
+  <tr>
+    <th>Amount</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @start_fees.each do |start_fee| %>
+  <tr>
+    <td><%= start_fee.amount %></td>
+    <td><%= link_to 'Show', start_fee %></td>
+    <td><%= link_to 'Edit', edit_start_fee_path(start_fee) %></td>
+    <td><%= link_to 'Destroy', start_fee, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Start fee', new_start_fee_path %>

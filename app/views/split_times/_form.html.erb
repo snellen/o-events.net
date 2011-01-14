@@ -1,0 +1,25 @@
+<%= form_for(@split_time) do |f| %>
+  <% if @split_time.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@split_time.errors.count, "error") %> prohibited this split_time from being saved:</h2>
+
+      <ul>
+      <% @split_time.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :control_number %><br />
+    <%= f.text_field :control_number %>
+  </div>
+  <div class="field">
+    <%= f.label :time %><br />
+    <%= f.text_field :time %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

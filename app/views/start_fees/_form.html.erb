@@ -1,0 +1,21 @@
+<%= form_for(@start_fee) do |f| %>
+  <% if @start_fee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@start_fee.errors.count, "error") %> prohibited this start_fee from being saved:</h2>
+
+      <ul>
+      <% @start_fee.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

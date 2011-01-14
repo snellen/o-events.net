@@ -1,0 +1,23 @@
+<h1>Listing start_times</h1>
+
+<table>
+  <tr>
+    <th>Start time</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @start_times.each do |start_time| %>
+  <tr>
+    <td><%= start_time.start_time %></td>
+    <td><%= link_to 'Show', start_time %></td>
+    <td><%= link_to 'Edit', edit_start_time_path(start_time) %></td>
+    <td><%= link_to 'Destroy', start_time, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Start time', new_start_time_path %>

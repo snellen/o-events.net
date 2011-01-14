@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  start_time: 1
+  finish_time: 1
+  run_time: 1
+  rank: 1
+  chip: 
+
+two:
+  start_time: 1
+  finish_time: 1
+  run_time: 1
+  rank: 1
+  chip: 
