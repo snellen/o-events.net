@@ -1,11 +1,5 @@
 OEventsNet::Application.routes.draw do
 
-  resources :total_results
-
-  resources :team_members
-
-  resources :teams
-
   get "main/index"
 
   get "sessions/new"
@@ -91,10 +85,14 @@ OEventsNet::Application.routes.draw do
     resources :payments
     resources :registration_deadlines
     resources :results
+    resources :currencies
     resources :runs
     resources :split_times    
     resources :start_fees
     resources :start_times
+    resources :team_members
+    resources :teams
+    resources :total_results
     resources :users
     
     root :to => "main#index", :as => 'main'

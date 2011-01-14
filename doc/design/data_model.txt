@@ -98,14 +98,19 @@ Country: A political country, as used for postal addresses.
   name:string               Name of the country.
   iso_code:string           Country code according to ISO 3166 Alpha-2 (see http://en.wikipedia.org/wiki/ISO_3166-1)
 ==
+Currency: A currency used for payments by an event.
+  name:string               The name of the currency, e.g. "Canadian Dollar"
+  iso_code:string           The currency code according to this list: http://en.wikipedia.org/wiki/ISO_4217
+  <TODO> Somehow manage to display the currency in a localized fashion. Try to use Rails i18n features for this.
+==
 Event: Represents an orienteering event.
-  <TODO> add a reference to currencies.
   name:string       The name of the event, to be displayed in the calendar, page title, and other places.
   slug:string       Event name to be used in URLs, consisting of only latin letters and digits. Must be unique. (The term "slug" is used for this in WordPress.)
   start_date:date   Start date of the event (does not need to match the date of the first run)
   end_date:date     End date of the event (does not need to match the date of the last run)
   club:ref          Organizer of the event.  
   country:ref       Country under which the event should be listed. The country of the organizing is used by default, but other countries can be chosen.
+  currency:ref      The event's official currency. All start fees are defined in this currency, and (currently) have to be paid in this currency.
 ==
 Log: Chronological list of modifications in the other database tables. Logging may be limited to important transactions (e.g. payments) as soon as the software becomes stable.
   <TODO>
@@ -128,7 +133,9 @@ Payment: Represents a payment from the user to o-events.net using either an e-pa
   fees:decimal                The fees which have to be paid to the payment service provider for this payment.
   fees_included:boolean       Determines whether the fees are included in the amount. If this is false, the organizer covers the fees.
   debit_amount:decimal        The amount of money that is debited to the user's bank or credit card account. (The amount that gets credited to the organizer is amount minus fees!)
-  payment_group:ref           The payment group to whose balance this payment contributes.
+  payment_group:ref           The payment group to whose balance this payment contributes. Payments are linked to Users only through PaymentGroups.
+  currency:ref                The currency in which the payment has been made.
+  <TODO> Add a mechanism for currency conversion, and keep track of all payments in the event's official currency, using the daily exchange rate of the value date.
 == 
 PaymentGroup: A group of Teams whose StartFees are paid by the same User.
 The StartFees of a PaymentGroup may be paid in several partial payments. In this case, the "isPaid" flag will be set only for some of the Teams, depending on the amount paid so far.
