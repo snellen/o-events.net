@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110114035756) do
+ActiveRecord::Schema.define(:version => 20110117181824) do
 
   create_table "additional_fees", :force => true do |t|
     t.string   "name"
@@ -118,6 +118,13 @@ ActiveRecord::Schema.define(:version => 20110114035756) do
     t.datetime "updated_at"
   end
 
+  create_table "currencies", :force => true do |t|
+    t.string   "name"
+    t.string   "iso_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", :force => true do |t|
     t.string   "name"
     t.date     "start_date"
@@ -179,7 +186,13 @@ ActiveRecord::Schema.define(:version => 20110114035756) do
 
   create_table "split_times", :force => true do |t|
     t.integer  "control_number"
-    t.integer  "time"
+    t.integer  "split_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "start_blocks", :force => true do |t|
+    t.integer  "start_block"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -196,12 +209,27 @@ ActiveRecord::Schema.define(:version => 20110114035756) do
     t.datetime "updated_at"
   end
 
+  create_table "team_members", :force => true do |t|
+    t.boolean  "is_leader"
+    t.integer  "sortkey"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "teams", :force => true do |t|
     t.string   "name"
     t.datetime "registration_time"
     t.boolean  "paid_by_club"
     t.decimal  "start_fee"
     t.boolean  "is_paid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "total_results", :force => true do |t|
+    t.integer  "total_time"
+    t.integer  "score"
+    t.integer  "rank"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

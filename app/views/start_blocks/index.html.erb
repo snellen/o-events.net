@@ -1,0 +1,23 @@
+<h1>Listing start_blocks</h1>
+
+<table>
+  <tr>
+    <th>Start block</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @start_blocks.each do |start_block| %>
+  <tr>
+    <td><%= start_block.start_block %></td>
+    <td><%= link_to 'Show', start_block %></td>
+    <td><%= link_to 'Edit', edit_start_block_path(start_block) %></td>
+    <td><%= link_to 'Destroy', start_block, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Start block', new_start_block_path %>

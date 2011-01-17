@@ -87,7 +87,8 @@ OEventsNet::Application.routes.draw do
     resources :results
     resources :currencies
     resources :runs
-    resources :split_times    
+    resources :split_times
+    resources :start_blocks    
     resources :start_fees
     resources :start_times
     resources :team_members
