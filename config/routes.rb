@@ -1,5 +1,7 @@
 OEventsNet::Application.routes.draw do
 
+  resources :nation_groups
+
   get "browse_events/index"
 
   get "sessions/new"

@@ -116,12 +116,14 @@ Log: Chronological list of modifications in the other database tables. Logging m
   <TODO>
 ==
 Nation: A nation that participates in international sports events.
-  name:string      The name of the nation.
-  ioc_code:string  Olympic country code according to this list: http://en.wikipedia.org/wiki/List_of_IOC_country_codes
+  name:string           The name of the nation.
+  ioc_code:string       Olympic country code according to this list: http://en.wikipedia.org/wiki/List_of_IOC_country_codes
+  nation_groups:n-to-n  The nation groups of different events that this nation is in.
 ==
 NationGroup: Used to define StartFees that depend on the Team's nation. A NationGroup is a group of nations with the same StartFees.
   <no attributes>
   event:ref       The event that the NationGroup belongs to.
+  nations:n-to-n  The nations that belong to this nation group.
 ==
 Payment: Represents a payment from the user to o-events.net using either an e-payment platform or a Swiss ESR payment slip. (All payments are processed automatically.)
   reference_number:string     The ESR or E-Payment reference number.
