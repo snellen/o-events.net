@@ -230,8 +230,8 @@ User: A person who has created an account on o-events.net, or who has been regis
   birthdate_y:integer       Four-digit year of birth. This is stored separately from the date since the date may not always be available.
   birthdate_m:integer       Month of birth.
   birthdate_d:integer       Day of birth.
+  is_unclaimed:boolean         Determines whether a user account is in "unclaimed" state, i.e. whether its owner still needs to set a password.
   country:ref               Country of residence.
   nation:ref                Nation represented by the user.
-  unclaimed:boolean         Determines whether a user account is in "unclaimed" state, i.e. whether its owner still needs to set a password. 
 ==
 

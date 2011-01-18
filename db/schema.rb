@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110117181824) do
+ActiveRecord::Schema.define(:version => 20110118010031) do
 
   create_table "additional_fees", :force => true do |t|
     t.string   "name"
@@ -235,12 +235,29 @@ ActiveRecord::Schema.define(:version => 20110117181824) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name"
+    t.string   "username"
     t.string   "email"
     t.string   "hashed_password"
     t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "license_number"
+    t.string   "region_code"
+    t.integer  "sicard_number"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "zipcode"
+    t.string   "city"
+    t.string   "province"
+    t.string   "sex"
+    t.integer  "birthdate_y"
+    t.integer  "birthdate_m"
+    t.integer  "birthdate_d"
+    t.boolean  "is_unclaimed"
+    t.string   "password_reset_code"
   end
 
 end
