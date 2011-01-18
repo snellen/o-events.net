@@ -1,6 +1,6 @@
 OEventsNet::Application.routes.draw do
 
-  get "main/index"
+  get "browse_events/index"
 
   get "sessions/new"
 
@@ -95,8 +95,9 @@ OEventsNet::Application.routes.draw do
     resources :teams
     resources :total_results
     resources :users
+    resources :browse_events
     
-    root :to => "main#index", :as => 'main'
+    root :to => "browse_events#index", :as => 'browse_events'
   end
 
 end

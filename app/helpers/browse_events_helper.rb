@@ -1,0 +1,2 @@
+module BrowseEventsHelper
+end
