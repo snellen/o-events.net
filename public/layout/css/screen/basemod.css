@@ -37,10 +37,11 @@
   #header { position:relative; padding: 45px 2em 1em 20px; color: #000; background: #edf2f8 url("../../images/header/bg_header.gif") repeat-x bottom left; }
   #toplogo { position:absolute; top:10px; left:10px; background: transparent; }
   #topnav { position:absolute; top:10px; right:10px; text-align:right; color: #aaa; background: transparent; }
+  #bottomnav { position:absolute; bottom:10px; right:10px; text-align:right; color: #aaa; background: transparent; }
   #nav { overflow:hidden; }
-  div.hlist { background-color: #c8ddf3; margin-bottom:20px }
-  #main { margin: 30px 0; background: #fff; }
-  #footer { padding: 10px 20px; color:#666; background: #f9f9f9; border-top: 5px #efefef solid; }
+  div.hlist { background-color: #c8ddf3;}
+  #main { margin: 0; background: #fff; }
+  #footer { position:relative; padding: 10px 20px; color:#666; background: #f9f9f9; border-top: 5px #efefef solid; }
 
   /* (en) navigation: horizontal adjustment | (de) horizontale Ausrichtung  */
   #nav ul { margin-left: 20px; }

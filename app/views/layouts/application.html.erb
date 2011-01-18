@@ -17,14 +17,14 @@
     <div class="page">
       <div id="header">
         <div id="toplogo">
-          <img src="layout/images/header/toplogo.png" alt="O-events.net" />
+          <img src="/layout/images/header/toplogo.png" alt="O-events.net" />
         </div>
         <div id="topnav">
           <!-- start: skip link navigation -->
           <a class="skip" title="skip link" href="#navigation">Skip to the navigation</a><span class="hideme">.</span>
           <a class="skip" title="skip link" href="#content">Skip to the content</a><span class="hideme">.</span>
           <!-- end: skip link navigation -->
-          <a href="#">Contact</a> | <a href="#">Imprint</a> | <%= render :partial => 'sessions/new' %>
+          <%= render :partial => 'sessions/new' %>
         </div>
       </div>
       <div id="nav">
@@ -46,6 +46,9 @@
       </div>
       <!-- begin: #footer -->
       <div id="footer">O-events.net is a free service of <a href="http://www.supsport.ch">supsport.ch</a> - Your <a href="http://www.paypal.com">donations</a> keep it running.<br />Powered by Ruby on Rails. Layout based on YAML.
+        <div id="bottomnav">
+          <a href="#">Contact</a> | <a href="#">Imprint</a>
+        </div>
       </div>
     </div>
     <div id="border-bottom">
