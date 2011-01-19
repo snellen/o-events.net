@@ -3,7 +3,7 @@ require 'digest/sha2'
 class User < ActiveRecord::Base
   has_many :club_members
   
-  validates :name, :presence => true, :uniqueness => true
+  validates :username, :presence => true, :uniqueness => true
   validates :email, :presence => true, :uniqueness => true
   validates :password, :confirmation => true
 
@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   end
 
   def User.authenticate(name, password)
-    if user = find_by_name(name)
+    if user = find_by_username(name)
       if user.hashed_password == encrypt_password(password, user.salt)
         user
       end

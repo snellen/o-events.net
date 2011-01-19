@@ -24,7 +24,11 @@
           <a class="skip" title="skip link" href="#navigation">Skip to the navigation</a><span class="hideme">.</span>
           <a class="skip" title="skip link" href="#content">Skip to the content</a><span class="hideme">.</span>
           <!-- end: skip link navigation -->
-          <%= render :partial => 'sessions/new' %>
+          <% if session[:user_id] %>
+            <%= render :partial => 'sessions/destroy' %>
+          <% else %>
+            <%= render :partial => 'sessions/new' %>
+          <% end %>
         </div>
       </div>
       <div id="nav">

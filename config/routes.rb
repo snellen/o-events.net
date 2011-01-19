@@ -1,13 +1,4 @@
 OEventsNet::Application.routes.draw do
-
-  get "browse_events/index"
-
-  get "sessions/new"
-
-  get "sessions/create"
-
-  get "sessions/destroy"
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -64,6 +55,12 @@ OEventsNet::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
   
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
   scope '(:locale)' do
     # put everything in here that should be localized
 
@@ -95,9 +92,8 @@ OEventsNet::Application.routes.draw do
     resources :teams
     resources :total_results
     resources :users
-    resources :browse_events
     
-    root :to => "browse_events#index", :as => 'browse_events'
+    root :to => "events#index", :as => 'events_index'
   end
 
 end

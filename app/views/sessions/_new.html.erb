@@ -1,20 +1,23 @@
-<div id="loginbox"><a href="login" class="signin"><span>Sign in</span></a>
-<fieldset id="signin_menu">
-  <%= form_tag sessions_new_path, :id => 'signin' do %>
-    <div>
-      <label for="name" >Name:</label>
-      <%= text_field_tag :name, params[:name] %>
-    </div>
-    <div>
-      <label for="password" >Password:</label>
-      <%= password_field_tag :password, params[:password] %>
-     </div>
-     <div>
-       <%= submit_tag "Login" %>
-     </div>
+<div id="loginbox">
+  <%= link_to login_path, :class => "signin" do %>
+    <span>Sign in</span>
   <% end %>
-</fieldset>
-<script type="text/javascript">
+  <%= field_set_tag nil, :id => "signin_menu" do %>
+    <%= form_tag login_path, :id => 'signin' do %>
+      <div>
+        <label for="name" >Username:</label>
+        <%= text_field_tag :name, params[:name] %>
+      </div>
+      <div>
+        <label for="password" >Password:</label>
+        <%= password_field_tag :password, params[:password] %>
+       </div>
+       <div>
+         <%= submit_tag "Login" %>
+       </div>
+    <% end %>
+  <% end %>
+  <%= javascript_tag do %>
         $(document).ready(function() {
 
             $(".signin").click(function(e) {          
@@ -35,4 +38,5 @@
 	    });			
 			
         });
-</script></div>
+  <% end %>
+</div>

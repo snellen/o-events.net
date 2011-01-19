@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-    @users = User.order(:name)
+    @users = User.order(:username)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -74,7 +74,6 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to(users_url) }
       format.xml  { head :ok }
     end
   end
