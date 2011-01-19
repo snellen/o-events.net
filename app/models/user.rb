@@ -2,6 +2,9 @@ require 'digest/sha2'
 
 class User < ActiveRecord::Base
   has_many :club_members
+  has_many :competitors
+  belongs_to :country
+  belongs_to :nation
   
   validates :username, :presence => true, :uniqueness => true
   validates :email, :presence => true, :uniqueness => true
