@@ -25,8 +25,11 @@
           <a class="skip" title="skip link" href="#content">Skip to the content</a><span class="hideme">.</span>
           <!-- end: skip link navigation -->
           <% if session[:user_id] %>
+            <% user = User.find(session[:user_id]) %>
+            <span> Welcome <%= user.username %> !</span>
             <%= render :partial => 'sessions/destroy' %>
           <% else %>
+            <span> Welcome guest!</span> <%= link_to "Register", new_user_path %> <span> or </span>
             <%= render :partial => 'sessions/new' %>
           <% end %>
         </div>

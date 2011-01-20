@@ -1,11 +1,7 @@
 <div id="loginbox">
+  <%= link_to "Sign out", "javascript:loginbox_signout_sumbit()", :class => "signin" %>
   <%= form_tag logout_path, :id => 'signin', :name => "signout", :method => :delete do %>
-    <div>
-      <%= link_to "Sign out", "javascript:loginbox_signout_sumbit()", :class => "signin"%>
-    </div>
-    <div>
       <%= submit_tag "Sign out", :type => "hidden"%>
-    </div>
   <% end %>
   <%= javascript_tag do %>
     function loginbox_signout_sumbit() {
