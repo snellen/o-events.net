@@ -1,6 +1,41 @@
-<h1>Editing event</h1>
+<% content_for :toptitle do %>
+  Berner sCOOL-Cup 2011
+<% end %>
 
-<%= render 'form' %>
 
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+<% content_for :left do %>
+  <h4>Left column</h4>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut porttitor vulputate augue, placerat luctus purus sollicitudin vel. Cras et ligula sodales tortor vestibulum facilisis vitae id lacus. Aenean euismod auctor nunc, vitae rhoncus neque aliquam a. Donec ipsum ligula, posuere id euismod non, cursus ut felis. Sed dictum lorem at ipsum mattis dictum. Nam sed risus sapien. Aliquam erat volutpat. Curabitur fermentum est lacinia tortor imperdiet elementum. Sed molestie ornare mollis. Phasellus lorem sapien, dignissim at accumsan malesuada, tempor in neque. Nam rhoncus sollicitudin pulvinar. Pellentesque sed odio tortor.</p>
+  
+  <p>Suspendisse dolor dui, aliquet et hendrerit ut, congue posuere erat. Cras nec erat a turpis pretium tristique mollis iaculis augue. Morbi ornare diam nec sapien sollicitudin tempor. Aenean nibh odio, aliquet sed lacinia sed, pellentesque vitae magna. Integer vel odio quis odio sollicitudin varius. Aliquam eget justo eget lacus porta feugiat. Donec sodales tempus lorem, nec varius velit dictum eget. Praesent pellentesque, mi faucibus cursus euismod, velit leo tempor velit, pharetra facilisis nisi erat a tellus. Maecenas ut dui tortor. Proin sed velit ligula, non malesuada nunc. Aliquam feugiat, erat ac vulputate pulvinar, orci sem pretium arcu, id vestibulum velit est a justo. Integer placerat dui eget risus tempus ut luctus felis cursus. Curabitur vulputate scelerisque pulvinar. Nullam a dapibus purus. Aenean sed orci at lectus interdum hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin at eros at justo tristique feugiat non sed lacus. Nulla vel dolor quis quam laoreet pulvinar. Vivamus pellentesque nulla non leo vestibulum dictum. Nam tristique interdum nunc at molestie.</p>
+  
+  <p>Aliquam ligula nisi, congue nec laoreet quis, adipiscing placerat sem. Phasellus sit amet sem dignissim tellus rutrum tempor ut ac justo. Phasellus ultricies metus eu turpis suscipit interdum. Proin malesuada nisl tortor, ut dapibus magna. Sed sit amet sapien vel risus egestas convallis nec posuere quam. Maecenas congue lacus vel lectus dictum imperdiet. Mauris porttitor mollis ultricies. Ut vel nisl ut sem rutrum posuere nec eget eros. Morbi enim risus, elementum quis euismod et, interdum sollicitudin lectus. Morbi lobortis diam at orci dictum lobortis. Proin blandit, lacus ultricies aliquam consectetur, magna ligula pharetra tellus, vitae venenatis dui tellus nec diam. Donec commodo tristique felis, eu condimentum dui ultricies nec. Vestibulum sit amet felis mi, tempus rhoncus odio. Duis sollicitudin accumsan velit, in mollis dolor facilisis eget. Duis sit amet purus in eros consectetur ullamcorper a et turpis.</p>
+  
+  <p>Maecenas ornare lorem vel dolor sollicitudin adipiscing. Phasellus ullamcorper volutpat hendrerit. Curabitur pretium eleifend mauris auctor condimentum. Curabitur condimentum lacinia aliquam. Ut accumsan, justo fringilla pharetra varius, mi turpis interdum justo, at pulvinar mi arcu eu arcu. Fusce hendrerit dui quis neque luctus non ornare massa ullamcorper. Aenean elementum ultrices sem, dapibus porttitor ipsum convallis in. Proin condimentum ultricies pharetra. Aliquam erat volutpat. Praesent eget commodo mauris. Proin et nisl massa. Praesent sit amet ligula quis odio euismod tempus vitae et eros. Sed rutrum, augue vel pharetra consectetur, lectus risus tempus dolor, quis egestas arcu libero quis sapien. Proin vestibulum eros libero. Aliquam erat volutpat. In hac habitasse platea dictumst. Mauris vulputate diam ut orci vulputate rhoncus fringilla scelerisque nisi. Pellentesque vulputate egestas neque id feugiat. Donec vel urna sapien, pulvinar consequat nisl.</p> 
+<% end %>
+
+
+<% content_for :main do %>
+
+  <h1>Editing event</h1>
+  
+  <%= render 'form' %>
+  
+  <%= link_to 'Show', @event %> |
+  <%= link_to 'Back', events_path %>
+  
+<% end %>
+
+
+<% content_for :right do %>
+  <h4>Right column</h4>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut porttitor vulputate augue, placerat luctus purus sollicitudin vel. Cras et ligula sodales tortor vestibulum facilisis vitae id lacus. Aenean euismod auctor nunc, vitae rhoncus neque aliquam a. Donec ipsum ligula, posuere id euismod non, cursus ut felis. Sed dictum lorem at ipsum mattis dictum. Nam sed risus sapien. Aliquam erat volutpat. Curabitur fermentum est lacinia tortor imperdiet elementum. Sed molestie ornare mollis. Phasellus lorem sapien, dignissim at accumsan malesuada, tempor in neque. Nam rhoncus sollicitudin pulvinar. Pellentesque sed odio tortor.</p>
+  
+  <p>Suspendisse dolor dui, aliquet et hendrerit ut, congue posuere erat. Cras nec erat a turpis pretium tristique mollis iaculis augue. Morbi ornare diam nec sapien sollicitudin tempor. Aenean nibh odio, aliquet sed lacinia sed, pellentesque vitae magna. Integer vel odio quis odio sollicitudin varius. Aliquam eget justo eget lacus porta feugiat. Donec sodales tempus lorem, nec varius velit dictum eget. Praesent pellentesque, mi faucibus cursus euismod, velit leo tempor velit, pharetra facilisis nisi erat a tellus. Maecenas ut dui tortor. Proin sed velit ligula, non malesuada nunc. Aliquam feugiat, erat ac vulputate pulvinar, orci sem pretium arcu, id vestibulum velit est a justo. Integer placerat dui eget risus tempus ut luctus felis cursus. Curabitur vulputate scelerisque pulvinar. Nullam a dapibus purus. Aenean sed orci at lectus interdum hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin at eros at justo tristique feugiat non sed lacus. Nulla vel dolor quis quam laoreet pulvinar. Vivamus pellentesque nulla non leo vestibulum dictum. Nam tristique interdum nunc at molestie.</p>
+  
+  <p>Aliquam ligula nisi, congue nec laoreet quis, adipiscing placerat sem. Phasellus sit amet sem dignissim tellus rutrum tempor ut ac justo. Phasellus ultricies metus eu turpis suscipit interdum. Proin malesuada nisl tortor, ut dapibus magna. Sed sit amet sapien vel risus egestas convallis nec posuere quam. Maecenas congue lacus vel lectus dictum imperdiet. Mauris porttitor mollis ultricies. Ut vel nisl ut sem rutrum posuere nec eget eros. Morbi enim risus, elementum quis euismod et, interdum sollicitudin lectus. Morbi lobortis diam at orci dictum lobortis. Proin blandit, lacus ultricies aliquam consectetur, magna ligula pharetra tellus, vitae venenatis dui tellus nec diam. Donec commodo tristique felis, eu condimentum dui ultricies nec. Vestibulum sit amet felis mi, tempus rhoncus odio. Duis sollicitudin accumsan velit, in mollis dolor facilisis eget. Duis sit amet purus in eros consectetur ullamcorper a et turpis.</p>
+  
+  <p>Maecenas ornare lorem vel dolor sollicitudin adipiscing. Phasellus ullamcorper volutpat hendrerit. Curabitur pretium eleifend mauris auctor condimentum. Curabitur condimentum lacinia aliquam. Ut accumsan, justo fringilla pharetra varius, mi turpis interdum justo, at pulvinar mi arcu eu arcu. Fusce hendrerit dui quis neque luctus non ornare massa ullamcorper. Aenean elementum ultrices sem, dapibus porttitor ipsum convallis in. Proin condimentum ultricies pharetra. Aliquam erat volutpat. Praesent eget commodo mauris. Proin et nisl massa. Praesent sit amet ligula quis odio euismod tempus vitae et eros. Sed rutrum, augue vel pharetra consectetur, lectus risus tempus dolor, quis egestas arcu libero quis sapien. Proin vestibulum eros libero. Aliquam erat volutpat. In hac habitasse platea dictumst. Mauris vulputate diam ut orci vulputate rhoncus fringilla scelerisque nisi. Pellentesque vulputate egestas neque id feugiat. Donec vel urna sapien, pulvinar consequat nisl.</p> 
+<% end %>
+
+<%= render :partial => 'layouts/three_columns' %>
