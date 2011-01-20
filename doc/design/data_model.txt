@@ -217,6 +217,7 @@ TotalResult: A total score or time that can be calculated from all the Results o
 ==
 User: A person who has created an account on o-events.net, or who has been registered for an Event by another User (resulting in an "unclaimed" User account).
   username:string            A nickname that can be used to log in. The e-mail address is also accepted as a login name.
+  email:string		     The email address of the user.
   hashed_password:string     A hash that is used to verify the password entered at login.
   salt:string                The salt that was used to generate the hashed_password.
   password_reset_code:string An alphanumeric code that has been sent to the user as part of the password reset link in a "forgotten password" e-mail. It can be used to reset the password.
