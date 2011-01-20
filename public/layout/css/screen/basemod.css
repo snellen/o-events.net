@@ -40,11 +40,11 @@
   #bottomnav { position:absolute; bottom:10px; right:10px; text-align:right; color: #aaa; background: transparent; }
   #nav { overflow:hidden; }
   div.hlist { background-color: #c8ddf3;}
-  #main { margin: 0; background: #fff; }
+  #main { margin: 0; background: #fff; padding: 20px }
   #footer { position:relative; padding: 10px 20px; color:#666; background: #f9f9f9; border-top: 5px #efefef solid; }
 
   /* (en) navigation: horizontal adjustment | (de) horizontale Ausrichtung  */
-  #nav ul { margin-left: 20px; }
+  #nav ul { margin-left: 20px }
 
   /*-------------------------------------------------------------------------*/
 
@@ -57,12 +57,12 @@
   #col1 { float: left; width: 20%;  margin:0 }
   #col2 { float: left; width: 50%;  margin:0 }
   #col3 { width: auto; margin: 0 0 0 75%}
-  #col1_content { padding: 0 20px 0 10px }
+  #col1_content { padding-right: 20px }
   #col2_content { padding: 0 10px }
-  #col3_content { padding: 0 20px 0 10px }
+  #col3_content { padding-left: 20px }
   
   /* left navbar */
-  #col1_content ul{ list-style-type: none; font-size: 120%; border-top: 1px solid #ccc; padding: 0 }
+  #col1_content ul{ list-style-type: none; font-size: 120%; border-top: 1px solid #ccc; padding: 0; margin-top:10px }
   #col1_content li{ padding: 2px 10px 2px 10px; border-bottom: 1px solid #ccc; margin: 0 }
   #col1_content li:hover{ background: #ddf }  
   #col1_content a:hover{ text-decoration: none }
