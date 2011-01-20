@@ -111,12 +111,13 @@ Event: Represents an orienteering event.
   club:ref          Organizer of the event.  
   country:ref       Country under which the event should be listed. The country of the organizing is used by default, but other countries can be chosen.
   currency:ref      The event's official currency. All start fees are defined in this currency, and (currently) have to be paid in this currency.
+  language:n-to-n   The languages in which the event website is available.
 ==
 Language: A language in which some of the site content is available.
-  englishname:string     The English name of this language.
-  nativename:string      The name of this language in this language. Note that other translations of the language name may be provided through the i18n system - they are available here: http://en.wikipedia.org/wiki/ISO_639-1_language_matrix.
-  iso_code:string:       The ISO 639-1 two-letter code of the language. See http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
-  <TODO add refs (in both directions)>
+  english_name:string     The English name of this language.
+  native_name:string      The name of this language in this language. Note that other translations of the language name may be provided through the i18n system - they are available here: http://en.wikipedia.org/wiki/ISO_639-1_language_matrix.
+  iso_code:string         The ISO 639-1 two-letter code of the language. See http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+  event:n-to-n            The events whose website is available in this language.
 ==
 Log: Chronological list of modifications in the other database tables. Logging may be limited to important transactions (e.g. payments) as soon as the software becomes stable.
   <TODO>

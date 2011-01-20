@@ -8,4 +8,5 @@ class Event < ActiveRecord::Base
   has_many :competitors
   has_many :nation_groups
   has_many :registration_deadlines
+  has_and_belongs_to_many :languages
 end

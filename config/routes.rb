@@ -1,5 +1,7 @@
 OEventsNet::Application.routes.draw do
 
+  resources :languages
+
   resources :nation_groups
 
   # The priority is based upon order of creation:
