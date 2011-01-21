@@ -2,8 +2,8 @@
 
 one:
   control_number: 1
-  time: 1
+  split_time: 1
 
 two:
   control_number: 1
-  time: 1
+  split_time: 1

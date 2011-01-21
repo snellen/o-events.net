@@ -10,7 +10,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20110121043120) do
+=======
+ActiveRecord::Schema.define(:version => 20110121042633) do
+>>>>>>> 0d08515251c10fcfb7ef07e7650c57932b9e3f9a
 
   create_table "additional_fees", :force => true do |t|
     t.string   "name"
@@ -25,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20110121043120) do
   create_table "age_ranges", :force => true do |t|
     t.integer  "lower"
     t.integer  "upper"
-    t.string   "type"
+    t.string   "belongs_to"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "event_id"
@@ -99,7 +103,7 @@ ActiveRecord::Schema.define(:version => 20110121043120) do
 
   create_table "competitions", :force => true do |t|
     t.string   "name"
-    t.string   "type"
+    t.string   "kind"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "event_id"
@@ -200,7 +204,7 @@ ActiveRecord::Schema.define(:version => 20110121043120) do
     t.date     "fees_valuta"
     t.datetime "registration_time"
     t.string   "security_data"
-    t.string   "type"
+    t.string   "method"
     t.decimal  "fees"
     t.boolean  "fees_included"
     t.decimal  "amount"

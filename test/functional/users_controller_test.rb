@@ -3,7 +3,8 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
   setup do
     @input_attributes = {
-      :name => "sam",
+      :username => "sam",
+      :email => "sam@pizza.com",
       :password => "private",
       :password_confirmation => "private"
     }
@@ -25,7 +26,7 @@ class UsersControllerTest < ActionController::TestCase
       post :create, :user => @input_attributes
     end
 
-    assert_redirected_to user_path(assigns(:user))
+    assert_redirected_to users_url
   end
 
   test "should show user" do
