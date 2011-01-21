@@ -4,7 +4,7 @@
   <tr>
     <th>Lower</th>
     <th>Upper</th>
-    <th>Type</th>
+    <th>Belongs to</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,7 +14,7 @@
   <tr>
     <td><%= age_range.lower %></td>
     <td><%= age_range.upper %></td>
-    <td><%= age_range.type %></td>
+    <td><%= age_range.belongs_to %></td>
     <td><%= link_to 'Show', age_range %></td>
     <td><%= link_to 'Edit', edit_age_range_path(age_range) %></td>
     <td><%= link_to 'Destroy', age_range, :confirm => 'Are you sure?', :method => :delete %></td>

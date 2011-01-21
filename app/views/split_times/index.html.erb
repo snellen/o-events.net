@@ -12,7 +12,7 @@
 <% @split_times.each do |split_time| %>
   <tr>
     <td><%= split_time.control_number %></td>
-    <td><%= split_time.time %></td>
+    <td><%= split_time.split_time %></td>
     <td><%= link_to 'Show', split_time %></td>
     <td><%= link_to 'Edit', edit_split_time_path(split_time) %></td>
     <td><%= link_to 'Destroy', split_time, :confirm => 'Are you sure?', :method => :delete %></td>

@@ -3,9 +3,9 @@
 one:
   lower: 1
   upper: 1
-  type: MyString
+  belongs_to: MyString
 
 two:
   lower: 1
   upper: 1
-  type: MyString
+  belongs_to: MyString

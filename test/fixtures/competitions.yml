@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  type: MyString
+  kind: MyString
 
 two:
   name: MyString
-  type: MyString
+  kind: MyString

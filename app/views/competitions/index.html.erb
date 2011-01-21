@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Type</th>
+    <th>Kind</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,7 +12,7 @@
 <% @competitions.each do |competition| %>
   <tr>
     <td><%= competition.name %></td>
-    <td><%= competition.type %></td>
+    <td><%= competition.kind %></td>
     <td><%= link_to 'Show', competition %></td>
     <td><%= link_to 'Edit', edit_competition_path(competition) %></td>
     <td><%= link_to 'Destroy', competition, :confirm => 'Are you sure?', :method => :delete %></td>

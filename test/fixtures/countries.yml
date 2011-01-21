@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  isocode: MyString
+  iso_code: MyString
 
 two:
   name: MyString
-  isocode: MyString
+  iso_code: MyString

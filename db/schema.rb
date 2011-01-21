@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110120042936) do
+ActiveRecord::Schema.define(:version => 20110121042633) do
 
   create_table "additional_fees", :force => true do |t|
     t.string   "name"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
   create_table "age_ranges", :force => true do |t|
     t.integer  "lower"
     t.integer  "upper"
-    t.string   "type"
+    t.string   "belongs_to"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
 
   create_table "competitions", :force => true do |t|
     t.string   "name"
-    t.string   "type"
+    t.string   "kind"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -139,6 +139,14 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
     t.integer "language_id"
   end
 
+  create_table "languages", :force => true do |t|
+    t.string   "english_name"
+    t.string   "native_name"
+    t.string   "iso_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "nation_groups", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -167,7 +175,7 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
     t.date     "fees_valuta"
     t.datetime "registration_time"
     t.string   "security_data"
-    t.string   "type"
+    t.string   "method"
     t.decimal  "fees"
     t.boolean  "fees_included"
     t.decimal  "amount"
