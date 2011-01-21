@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110120042936) do
+ActiveRecord::Schema.define(:version => 20110121043120) do
 
   create_table "additional_fees", :force => true do |t|
     t.string   "name"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
     t.decimal  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "event_id"
+    t.integer  "age_range_id"
   end
 
   create_table "age_ranges", :force => true do |t|
@@ -26,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "event_id"
   end
 
   create_table "categories", :force => true do |t|
@@ -36,18 +39,23 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
     t.string   "sex"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "competition_id"
+    t.integer  "category_group_id"
   end
 
   create_table "category_groups", :force => true do |t|
     t.boolean  "fee_age_dependent"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "competition_group_id"
   end
 
   create_table "chips", :force => true do |t|
     t.integer  "number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "run_id"
+    t.integer  "competitor_id"
   end
 
   create_table "club_members", :force => true do |t|
@@ -55,6 +63,8 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
     t.integer  "role"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "club_id"
   end
 
   create_table "clubs", :force => true do |t|
@@ -66,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
     t.string   "website"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "country_id"
   end
 
   create_table "competing_clubs", :force => true do |t|
@@ -77,6 +88,8 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
     t.string   "website"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "country_id"
+    t.integer  "club_id"
   end
 
   create_table "competition_groups", :force => true do |t|
@@ -89,6 +102,8 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "event_id"
+    t.integer  "competition_group_id"
   end
 
   create_table "competitors", :force => true do |t|
@@ -109,6 +124,11 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
     t.integer  "birthdate_d"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "country_id"
+    t.integer  "nation_id"
+    t.integer  "event_id"
+    t.integer  "competing_club_id"
+    t.integer  "user_id"
   end
 
   create_table "countries", :force => true do |t|
@@ -132,6 +152,9 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "club_id"
+    t.integer  "country_id"
+    t.integer  "currency_id"
   end
 
   create_table "events_languages", :id => false, :force => true do |t|
@@ -139,9 +162,18 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
     t.integer "language_id"
   end
 
+  create_table "languages", :force => true do |t|
+    t.string   "english_name"
+    t.string   "native_name"
+    t.string   "iso_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "nation_groups", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "event_id"
   end
 
   create_table "nation_groups_nations", :id => false, :force => true do |t|
@@ -159,6 +191,7 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
   create_table "payment_groups", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "payments", :force => true do |t|
@@ -173,12 +206,15 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
     t.decimal  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "payment_group_id"
+    t.integer  "currency_id"
   end
 
   create_table "registration_deadlines", :force => true do |t|
     t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "event_id"
   end
 
   create_table "results", :force => true do |t|
@@ -188,6 +224,7 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
     t.integer  "rank"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "chip_id"
   end
 
   create_table "runs", :force => true do |t|
@@ -197,6 +234,7 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
     t.integer  "age_limit_2"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "competition_id"
   end
 
   create_table "split_times", :force => true do |t|
@@ -204,24 +242,34 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
     t.integer  "split_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "result_id"
   end
 
   create_table "start_blocks", :force => true do |t|
     t.integer  "start_block"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "competitor_id"
+    t.integer  "run_id"
   end
 
   create_table "start_fees", :force => true do |t|
     t.decimal  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "age_range_id"
+    t.integer  "category_group_id"
+    t.integer  "competition_group_id"
+    t.integer  "registration_deadline_id"
+    t.integer  "nation_group_id"
   end
 
   create_table "start_times", :force => true do |t|
     t.time     "start_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "competitor_id"
+    t.integer  "run_id"
   end
 
   create_table "team_members", :force => true do |t|
@@ -229,6 +277,8 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
     t.integer  "sortkey"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "competitor_id"
+    t.integer  "team_id"
   end
 
   create_table "teams", :force => true do |t|
@@ -239,6 +289,8 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
     t.boolean  "is_paid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "payment_group_id"
+    t.integer  "category_id"
   end
 
   create_table "total_results", :force => true do |t|
@@ -247,6 +299,8 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
     t.integer  "rank"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "team_id"
+    t.integer  "competition_id"
   end
 
   create_table "users", :force => true do |t|
@@ -273,6 +327,8 @@ ActiveRecord::Schema.define(:version => 20110120042936) do
     t.integer  "birthdate_d"
     t.boolean  "is_unclaimed"
     t.string   "password_reset_code"
+    t.integer  "country_id"
+    t.integer  "nation_id"
   end
 
 end

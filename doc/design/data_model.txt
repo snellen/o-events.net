@@ -15,7 +15,7 @@ AdditionalFee: Fees for additional services which do not depend on the Competito
 AgeRange: Range used to define StartFees depending on age. Note that this can only be used for single events, since the age of a Team is not defined otherwise.
   lower:integer        The lower end of the age range.
   upper:integer        The upper end of the age range. 99 is treated as infinity.
-  type:string          Either 'start_fee' or 'additional_fee'. Used to list an event's age ranges for start and additional fees separately.
+  belongs_to:string    Either 'start_fee' or 'additional_fee'. Used to list an event's age ranges for start and additional fees separately.
   event:ref            The event that the range is used in.
 ==
 Category: Group of Teams which compete against each other. Each Competition generates an overall result list (TotalResult) for each Category. A Category may limit the age and sex of Competitors, or the total age of Teams that are allowed to compete in it. The Category usually determines the length of the courses to be run throughout an Event.
@@ -35,7 +35,7 @@ Chip: A chip number used by a competitor in a run. Note a chip may be used sever
   number:integer     The chip number. May be the number of a SPORTident chip or any other chip with an integer number.
   run:ref            The run that this chip is being used in.
   competitor:ref     The competitor who is using this chip in the specified run.
-  result:ref         The result that was generated in the specified run, by the specified competitor, using this chip.
+  [result:ref]       The result that was generated in the specified run, by the specified competitor, using this chip. (Foreign key in other table)
 ==
 Club: Group of Users. Each User can be a member of several Clubs, one of which is the User's default Club (isDefault = true). Club members can have special rights, e.g. the right to add teams to Club registrations.
   name:string            The name of the club. O-events.net does not split up club names.
@@ -68,7 +68,7 @@ CompetitionGroup: A group of Competitions which share Categories, Teams, and Sta
 ==
 Competition: A group of Runs that has a TotalResult. An Event can consist of several Competitions if it is e.g. a multi-day Event with daily prize giving.
   name:string           The name of the competition. May be empty if the event has only one competition.
-  type:string           Determines how the event data is interpreted: 'single' (one competitor per team), 'relay' (one competitor per run), or 'team' (all competitors do all runs)
+  kind:string           Determines how the event data is interpreted: 'single' (one competitor per team), 'relay' (one competitor per run), or 'team' (all competitors do all runs)
   event:ref             The event that the competition belongs to.
   competition_group:ref The competition group that the competition belongs to.
 ==
@@ -138,7 +138,7 @@ Payment: Represents a payment from the user to o-events.net using either an e-pa
   fees_valuta:date            The date on which the fees are debited from the account of supsport.ch.
   registration_time:datetime  A timestamp of the instant when the payment is registered in the O-events.net system.
   security_data:string        A collection of header data used to track fradulent users of the payment system. Contains IP address, browser version, and other information.
-  type:string                 Type of payment, e.g. one of 'esr','postfinance_card','postfinance_efinance','paypal'
+  method:string               Method of payment, e.g. one of 'esr','postfinance_card','postfinance_efinance','paypal'
   fees:decimal                The fees which have to be paid to the payment service provider for this payment.
   fees_included:boolean       Determines whether the fees are included in the amount. If this is false, the organizer covers the fees.
   debit_amount:decimal        The amount of money that is debited to the user's bank or credit card account. (The amount that gets credited to the organizer is amount minus fees!)

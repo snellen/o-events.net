@@ -3,21 +3,14 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.xml
   def index
-    @events = Event.all
+    if(params[:user_id])
+      @events = User.find(params[:user_id]).events
+    else
+      @events = Event.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @events }
-    end
-  end
-  
-  # GET /events/my
-  # GET /events/my.xml
-  def my
-    @events = Event.all
-    #TODO
-    respond_to do |format|
-      format.html # my.html.erb
       format.xml  { render :xml => @events }
     end
   end

@@ -42,7 +42,7 @@
           <ul>
             <li class="active"><strong><% if @title %><%= @title %><% else %>Untitled Page<% end %></strong></li>            
             <li><%= link_to 'Browse Events', events_path %></li>            
-            <li><%= link_to 'My Event Calendar', events_my_path %></li>
+            <li><%= link_to 'My Event Calendar', user_events_path(session[:user_id]) %></li>
             <li><%= link_to 'My Clubs', clubs_path %></li>
             <li><%= link_to 'My Account', user %></li>
             <li><%= link_to 'Create an Event', new_event_path %></li>

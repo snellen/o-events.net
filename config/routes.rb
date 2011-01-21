@@ -78,11 +78,7 @@ OEventsNet::Application.routes.draw do
     resources :competitions
     resources :competitors
     resources :countries
-    resources :events do
-      collection do
-        get 'my'
-      end
-    end
+    resources :events
     resources :languages
     resources :nations
     resources :nation_groups
@@ -99,7 +95,9 @@ OEventsNet::Application.routes.draw do
     resources :team_members
     resources :teams
     resources :total_results
-    resources :users
+    resources :users do
+      resources :events
+    end
     
     root :to => "events#index", :as => 'events_index'
   end
