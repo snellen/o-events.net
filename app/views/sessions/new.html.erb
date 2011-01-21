@@ -2,11 +2,11 @@
   <% if flash[:alert] %>
     <p id="notice" ><%= flash[:alert] %></p>
   <% end %>
-  <%= form_tag do %>
+  <%= form_tag login_path do %>
     <h1>Please Log In</h1>
     <div class="field">
       <label for="name" >Name</label><br />
-      <%= text_field_tag :username, params[:username] %>
+      <%= text_field_tag :name, params[:name] %>
     </div>
     <div class="field">
       <label for="password" >Password</label><br />
