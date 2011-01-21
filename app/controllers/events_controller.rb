@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+
   # GET /events
   # GET /events.xml
   def index
@@ -9,11 +10,23 @@ class EventsController < ApplicationController
       format.xml  { render :xml => @events }
     end
   end
+  
+  # GET /events/my
+  # GET /events/my.xml
+  def my
+    @events = Event.all
+    #TODO
+    respond_to do |format|
+      format.html # my.html.erb
+      format.xml  { render :xml => @events }
+    end
+  end
 
   # GET /events/1
   # GET /events/1.xml
   def show
     @event = Event.find(params[:id])
+    @title = @event.name
 
     respond_to do |format|
       format.html # show.html.erb
@@ -35,6 +48,7 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
+    @title =  @event.name
   end
 
   # POST /events

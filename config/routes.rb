@@ -1,9 +1,6 @@
 OEventsNet::Application.routes.draw do
 
-  resources :languages
-
-  resources :nation_groups
-
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -81,8 +78,14 @@ OEventsNet::Application.routes.draw do
     resources :competitions
     resources :competitors
     resources :countries
-    resources :events
+    resources :events do
+      collection do
+        get 'my'
+      end
+    end
+    resources :languages
     resources :nations
+    resources :nation_groups
     resources :payment_groups
     resources :payments
     resources :registration_deadlines
