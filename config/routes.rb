@@ -78,7 +78,9 @@ OEventsNet::Application.routes.draw do
     resources :competitions
     resources :competitors
     resources :countries
-    resources :events
+    resources :events do
+      resources :competitors
+    end
     resources :languages
     resources :nations
     resources :nation_groups
