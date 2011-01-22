@@ -2,6 +2,7 @@ require 'digest/sha2'
 
 class User < ActiveRecord::Base
   has_many :club_members
+  has_many :clubs, :through => :club_members
   has_many :competitors
   has_many :events, :through => :competitors
   belongs_to :country

@@ -97,6 +97,7 @@ OEventsNet::Application.routes.draw do
     resources :total_results
     resources :users do
       resources :events
+      resources :clubs
     end
     
     root :to => "events#index", :as => 'events_index'

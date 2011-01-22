@@ -44,11 +44,13 @@
             <li><%= link_to 'Browse Events', events_path %></li>
             <% if session[:user_id] %>
               <li><%= link_to 'My Event Calendar', user_events_path(session[:user_id]) %></li>
+              <li><%= link_to 'My Clubs', user_clubs_path(session[:user_id]) %></li>
+              <li><%= link_to 'My Account', user %></li>
             <% else %>
               <li><%= link_to 'My Event Calendar', login_path %></li>
+              <li><%= link_to 'My Clubs', login_path %></li>
+              <li><%= link_to 'My Account', login_path %></li>
             <% end %>            
-            <li><%= link_to 'My Clubs', clubs_path %></li>
-            <li><%= link_to 'My Account', user %></li>
             <li><%= link_to 'Create an Event', new_event_path %></li>
           </ul>
         </div>

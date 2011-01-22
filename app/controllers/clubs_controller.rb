@@ -1,8 +1,13 @@
 class ClubsController < ApplicationController
+
   # GET /clubs
   # GET /clubs.xml
   def index
-    @clubs = Club.all
+    if params[:user_id]
+      @clubs = User.find(params[:user_id]).clubs
+    else
+      @clubs = Club.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
