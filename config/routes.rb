@@ -1,6 +1,6 @@
 OEventsNet::Application.routes.draw do
 
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -74,13 +74,13 @@ OEventsNet::Application.routes.draw do
     resources :club_members
     resources :clubs
     resources :competing_clubs
-    resources :competition_groups
+    resources :competition_groups do
+      resources :teams
+    end
     resources :competitions
     resources :competitors
     resources :countries
-    resources :events do
-      resources :competitors
-    end
+    resources :events
     resources :languages
     resources :nations
     resources :nation_groups
@@ -95,7 +95,7 @@ OEventsNet::Application.routes.draw do
     resources :start_fees
     resources :start_times
     resources :team_members
-    resources :teams
+    resources :team_registrations
     resources :total_results
     resources :users do
       resources :events

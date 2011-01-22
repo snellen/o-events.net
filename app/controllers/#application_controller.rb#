@@ -4,6 +4,9 @@ class ApplicationController < ActionController::Base
   before_filter :set_i18n_locale_from_params
   
   protected
+  
+  nav_tabs  = ['Browse Events']
+  nav_urls = []
 
   #TODO: navbar items (paths, active item, captions)
   
@@ -22,4 +25,4 @@ class ApplicationController < ActionController::Base
     { :locale => I18n.locale }
   end
 
-end
+endrails protected
