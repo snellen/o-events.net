@@ -1,0 +1,21 @@
+<h1>Listing country_groups</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @country_groups.each do |country_group| %>
+  <tr>
+    <td><%= link_to 'Show', country_group %></td>
+    <td><%= link_to 'Edit', edit_country_group_path(country_group) %></td>
+    <td><%= link_to 'Destroy', country_group, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Nation group', new_country_group_path %>
