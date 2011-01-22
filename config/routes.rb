@@ -66,41 +66,51 @@ OEventsNet::Application.routes.draw do
   scope '(:locale)' do
     # put everything in here that should be localized
 
-    resources :additional_fees
-    resources :age_ranges
-    resources :categories
-    resources :category_groups
-    resources :chips
-    resources :club_members
-    resources :clubs
-    resources :competing_clubs
-    resources :competition_groups do
-      resources :teams
-    end
-    resources :competitions
-    resources :competitors
-    resources :countries
-    resources :events
+    #must be on top:
     resources :languages
     resources :nations
-    resources :nation_groups
-    resources :payment_groups
-    resources :payments
-    resources :registration_deadlines
-    resources :results
-    resources :currencies
-    resources :runs
-    resources :split_times
-    resources :start_blocks    
-    resources :start_fees
-    resources :start_times
-    resources :team_members
-    resources :team_registrations
-    resources :total_results
+    resources :countries
     resources :users
     resources :events
     resources :clubs
+    resources :club_members
+    resources :currencies    
+    #end    
     
+    resources :chips
+    resources :results
+    resources :split_times
+    resources :start_blocks    
+    resources :start_times
+    resources :team_members
+
+    
+    resources :competitions do
+      resources :team_registrations
+      resources :total_results
+      resources :runs
+    end
+    
+    resources :competition_groups do
+      resources :categories
+      resources :category_groups
+      resources :teams
+    end
+    
+    resources :events do
+      resources :age_ranges
+      resources :additional_fees      
+      resources :competitors
+      resources :competing_clubs
+      resources :nation_groups
+      resources :start_fees
+      resources :registration_deadlines      
+    end
+    
+    resources :payment_groups do
+      resources :payments      
+    end
+
     root :to => "events#index", :as => 'events_index'
   end
 
