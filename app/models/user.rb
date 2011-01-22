@@ -26,11 +26,15 @@ class User < ActiveRecord::Base
     end
   end
 
-  def User.authenticate(name, password)
-    if user = find_by_username(name)
-      if user.hashed_password == encrypt_password(password, user.salt)
-        user
-      end
+  def User.authenticate(identifier, password)
+    user = nil
+    if not user = find_by_username(identifier)
+      user = find_by_email(identifier)
+    end
+    if user and user.hashed_password == encrypt_password(password, user.salt)
+      user
+    else
+      nil
     end
   end
 
