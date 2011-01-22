@@ -82,8 +82,7 @@ OEventsNet::Application.routes.draw do
     resources :countries
     resources :events
     resources :languages
-    resources :nations
-    resources :nation_groups
+    resources :country_groups
     resources :payment_groups
     resources :payments
     resources :registration_deadlines

@@ -3,7 +3,9 @@
 one:
   name: MyString
   iso_code: MyString
+  ioc_code: MyString
 
 two:
   name: MyString
   iso_code: MyString
+  ioc_code: MyString

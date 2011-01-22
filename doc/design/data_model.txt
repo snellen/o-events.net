@@ -73,8 +73,8 @@ Competition: A group of Runs that has a TotalResult. An Event can consist of sev
   competition_group:ref The competition group that the competition belongs to.
 ==
 Competitor: A User who competes in an Event.
-  license_number:string     Nation-specific identification number or character code. This is where the "SOLV Number" is stored for Swiss competitors.
-  region_code:string        Nation-specific identifier of the competitor's residential region.
+  license_number:string     Country-specific identification number or character code. This is where the "SOLV Number" is stored for Swiss competitors.
+  region_code:string        Country-specific identifier of the competitor's residential region.
   first_name:string         Self-explanatory...
   last_name:string
   email:string
@@ -89,7 +89,7 @@ Competitor: A User who competes in an Event.
   birthdate_m:integer       Month of birth.
   birthdate_d:integer       Day of birth.
   country:ref               Country of residence.
-  nation:ref                Nation represented by the competitor.
+  country:ref                Country represented by the competitor.
   event:ref                 The event that the competitor is participating in.
   competing_club:ref        The club that this competitor represents (in the current event).        
   user:ref                  The user that this competitor is a copy of. This reference is set to zero when a user is deleted.
@@ -97,6 +97,12 @@ Competitor: A User who competes in an Event.
 Country: A political country, as used for postal addresses.
   name:string               Name of the country.
   iso_code:string           Country code according to ISO 3166 Alpha-2 (see http://en.wikipedia.org/wiki/ISO_3166-1)
+  ioc_code:string           Olympic country code according to this list: http://en.wikipedia.org/wiki/List_of_IOC_country_codes
+==
+CountryGroup: Used to define StartFees that depend on the Team's country. A CountryGroup is a group of countries with the same StartFees.
+  <no attributes>
+  event:ref       The event that the CountryGroup belongs to.
+  countries:n-to-n  The countries that belong to this country group.
 ==
 Currency: A currency used for payments by an event.
   name:string               The name of the currency, e.g. "Canadian Dollar"
@@ -121,16 +127,6 @@ Language: A language in which some of the site content is available.
 ==
 Log: Chronological list of modifications in the other database tables. Logging may be limited to important transactions (e.g. payments) as soon as the software becomes stable.
   <TODO>
-==
-Nation: A nation that participates in international sports events.
-  name:string           The name of the nation.
-  ioc_code:string       Olympic country code according to this list: http://en.wikipedia.org/wiki/List_of_IOC_country_codes
-  nation_groups:n-to-n  The nation groups of different events that this nation is in.
-==
-NationGroup: Used to define StartFees that depend on the Team's nation. A NationGroup is a group of nations with the same StartFees.
-  <no attributes>
-  event:ref       The event that the NationGroup belongs to.
-  nations:n-to-n  The nations that belong to this nation group.
 ==
 Payment: Represents a payment from the user to o-events.net using either an e-payment platform or a Swiss ESR payment slip. (All payments are processed automatically.)
   reference_number:string     The ESR or E-Payment reference number.
@@ -189,7 +185,7 @@ StartFee: The amount of money a Team has to pay to take part in all competitions
   category_group:ref        The group of categories to which the fee applies. This reference is nil if fees do not depend on categories. The CategoryGroup must be linked to the same CompetitionGroup that the StartFee is linked to.  
   competition_group:ref     The group of competitions for which the fee is a total start fee. This reference is nil if fees do not depend on the competition.
   registration_deadline:ref The deadline until which this start fee is valid.
-  nation_group:ref          The group of nations whose teams are paying this start fee.
+  country_group:ref          The group of countries whose teams are paying this start fee.
 ==
 StartTime: The time at which a competitor starts in a run.
   start_time:time       The time, relative to the event's zero time, at which the competitor starts in the run.
@@ -226,20 +222,18 @@ TotalResult: A total score or time that can be calculated from all the Results o
   team:ref            The Team that has accomplished this result.
   competition:ref     The competition that this result belongs to.
 ==
-User: A person who has created an account on o-events.net, or who has been registered for an Event by another User (resulting in an "unclaimed" User account).
+User: A person who has created an account on o-events.net.
   username:string            A nickname that can be used to log in. The e-mail address is also accepted as a login name.
   email:string		     The email address of the user.
   hashed_password:string     A hash that is used to verify the password entered at login.
   salt:string                The salt that was used to generate the hashed_password.
   password_reset_code:string An alphanumeric code that has been sent to the user as part of the password reset link in a "forgotten password" e-mail. It can be used to reset the password.
                              The code is generated when an account is created and when the password is reset using the current code. If a user requests a "forgotten password" e-mail several times, the code remains unchanged.
-  is_unclaimed:boolean       Determines whether a user account is in "unclaimed" state, i.e. whether its owner still needs to set a password.
-  license_number:string      Nation-specific identification number or character code. This is where the "SOLV Number" is stored for Swiss users.
-  region_code:string         Nation-specific identifier of the user's residential region.
+  license_number:string      Country-specific identification number or character code. This is where the "SOLV Number" is stored for Swiss users.
+  region_code:string         Country-specific identifier of the user's residential region.
   sicard_number:integer      Number of the SPORTident card that this user normally runs with.
   first_name:string          Self-explanatory...
   last_name:string
-  email:string
   phone:string               The phone field may be used for any kind of phone where the user wishes to be contacted by event organizers.
   address_line_1:string
   address_line_2:string
@@ -251,6 +245,6 @@ User: A person who has created an account on o-events.net, or who has been regis
   birthdate_m:integer        Month of birth.
   birthdate_d:integer        Day of birth. 
   country:ref                Country of residence.
-  nation:ref                 Nation represented by the user.
+  nation:ref(country)        Nation represented by the user.
 ==
 

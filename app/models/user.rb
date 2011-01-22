@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :competitors
   has_many :events, :through => :competitors
   belongs_to :country
-  belongs_to :nation
+  belongs_to :nation, :class_name => "Country"
   
   validates :username, :presence => true, :uniqueness => true
   validates :email, :presence => true, :uniqueness => true
