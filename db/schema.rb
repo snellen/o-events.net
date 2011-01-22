@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110121043120) do
+ActiveRecord::Schema.define(:version => 20110122022334) do
 
   create_table "additional_fees", :force => true do |t|
     t.string   "name"
@@ -39,15 +39,14 @@ ActiveRecord::Schema.define(:version => 20110121043120) do
     t.string   "sex"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "competition_id"
     t.integer  "category_group_id"
+    t.integer  "competition_group_id"
   end
 
   create_table "category_groups", :force => true do |t|
     t.boolean  "fee_age_dependent"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "competition_group_id"
   end
 
   create_table "chips", :force => true do |t|
@@ -281,6 +280,14 @@ ActiveRecord::Schema.define(:version => 20110121043120) do
     t.integer  "team_id"
   end
 
+  create_table "team_registrations", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "team_id"
+    t.integer  "category_id"
+    t.integer  "competition_id"
+  end
+
   create_table "teams", :force => true do |t|
     t.string   "name"
     t.datetime "registration_time"
@@ -290,7 +297,8 @@ ActiveRecord::Schema.define(:version => 20110121043120) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "payment_group_id"
-    t.integer  "category_id"
+    t.integer  "competition_group_id"
+    t.integer  "competing_club_id"
   end
 
   create_table "total_results", :force => true do |t|
