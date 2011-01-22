@@ -5,8 +5,8 @@
   <%= form_tag login_path do %>
     <h1>Please Log In</h1>
     <div class="field">
-      <label for="name" >Name</label><br />
-      <%= text_field_tag :name, params[:name] %>
+      <label for="identifier" >Username or E-mail Address</label><br />
+      <%= text_field_tag :identifier, params[:identifier] %>
     </div>
     <div class="field">
       <label for="password" >Password</label><br />

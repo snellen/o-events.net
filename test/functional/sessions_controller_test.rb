@@ -7,16 +7,29 @@ class SessionsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should login" do
+  test "should login username" do
     dave = users(:one)
-    post :create, :name => dave.username, :password => 'secret'
+    post :create, :identifier => dave.username, :password => 'secret'
     assert_redirected_to events_index_url
     assert_equal dave.id, session[:user_id]
   end
 
-  test "should fail login" do
+  test "should login email" do
     dave = users(:one)
-    post :create, :name => dave.username, :password => 'wrong'
+    post :create, :identifier => dave.email, :password => 'secret'
+    assert_redirected_to events_index_url
+    assert_equal dave.id, session[:user_id]
+  end
+
+  test "should fail login password" do
+    dave = users(:one)
+    post :create, :identifier => dave.username, :password => 'wrong'
+    assert_redirected_to login_url
+  end
+
+  test "should fail login identifier" do
+    dave = users(:one)
+    post :create, :identifier => "idontexist", :password => 'wrong'
     assert_redirected_to login_url
   end
 
