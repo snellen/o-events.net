@@ -5,7 +5,7 @@ class Competitor < ActiveRecord::Base
   has_many :team_members
   belongs_to :country
   belongs_to :competing_club
-  belongs_to :nation
+  belongs_to :country
   belongs_to :event
   belongs_to :user
 end

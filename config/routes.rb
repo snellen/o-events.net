@@ -68,27 +68,29 @@ OEventsNet::Application.routes.draw do
 
     #must be on top:
     resources :languages
-    resources :nations
     resources :countries
     resources :users
     resources :events
     resources :clubs
-    resources :club_members
     resources :currencies    
     #end    
     
+    #should be on top because they may be filtered in different ways:
     resources :chips
-    resources :results
-    resources :split_times
     resources :start_blocks    
     resources :start_times
     resources :team_members
-
+    resources :club_members
+    
+    resources :results do
+      resources :split_times
+    end
     
     resources :competitions do
       resources :team_registrations
       resources :total_results
       resources :runs
+      
     end
     
     resources :competition_groups do
@@ -102,7 +104,7 @@ OEventsNet::Application.routes.draw do
       resources :additional_fees      
       resources :competitors
       resources :competing_clubs
-      resources :nation_groups
+      resources :country_groups
       resources :start_fees
       resources :registration_deadlines      
     end

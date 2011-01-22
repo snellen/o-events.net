@@ -1,9 +1,0 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  name: MyString
-  ioc_code: MyString
-
-two:
-  name: MyString
-  ioc_code: MyString

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110122022334) do
+ActiveRecord::Schema.define(:version => 20110122221706) do
 
   create_table "additional_fees", :force => true do |t|
     t.string   "name"
@@ -135,6 +135,18 @@ ActiveRecord::Schema.define(:version => 20110122022334) do
     t.string   "iso_code"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ioc_code"
+  end
+
+  create_table "countries_country_groups", :id => false, :force => true do |t|
+    t.integer "country_group_id"
+    t.integer "country_id"
+  end
+
+  create_table "country_groups", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "event_id"
   end
 
   create_table "currencies", :force => true do |t|
@@ -169,22 +181,9 @@ ActiveRecord::Schema.define(:version => 20110122022334) do
     t.datetime "updated_at"
   end
 
-  create_table "nation_groups", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "event_id"
-  end
-
   create_table "nation_groups_nations", :id => false, :force => true do |t|
     t.integer "nation_group_id"
     t.integer "nation_id"
-  end
-
-  create_table "nations", :force => true do |t|
-    t.string   "name"
-    t.string   "ioc_code"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "payment_groups", :force => true do |t|
@@ -333,7 +332,6 @@ ActiveRecord::Schema.define(:version => 20110122022334) do
     t.integer  "birthdate_y"
     t.integer  "birthdate_m"
     t.integer  "birthdate_d"
-    t.boolean  "is_unclaimed"
     t.string   "password_reset_code"
     t.integer  "country_id"
     t.integer  "nation_id"
