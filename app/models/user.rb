@@ -11,6 +11,12 @@ class User < ActiveRecord::Base
   validates :username, :presence => true, :uniqueness => true
   validates :email, :presence => true, :uniqueness => true
   validates :password, :confirmation => true
+  validates :sex, :presence => true, :inclusion => {:in =>  %w( M F ), :message => " invalid value"}
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
+  validates :birthdate_y, :presence => true, :numericality => {:only_integer => true}, :inclusion => {:in => 1900..Date.today.year, :message => " must be between 1900 and " + Date.today.year.to_s}
+  validates :nation_id, :presence => true
+  validates :sicard_number, :numericality => {:only_integer => true, :allow_nil => true}, :inclusion => {:in => 1..16777216, :message => " must be between 1 and 16777216", :allow_nil => true}
 
   attr_accessor :password_confirmation
   attr_reader :password
