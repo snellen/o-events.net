@@ -3,4 +3,5 @@ class CompetitionGroup < ActiveRecord::Base
   has_many :categories
   has_many :start_fees
   has_many :teams
+  has_and_belongs_to_many :additional_fees
 end

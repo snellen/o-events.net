@@ -1,7 +1,7 @@
 <% content_for :left do %>
   <ul>
     <li><a href="#">Ausschreibung</a></li>
-    <li><%= link_to 'Anmeldung', competition_groups_url(:event_id => params[:event_id]) %></li>
+    <li><%= link_to 'Anmeldung', registration_overview_url(:event_id => params[:id]) %></li>
     
     <!--<li><a href="#">Directions</a></li>
     <li><a href="#">Course Data</a></li>

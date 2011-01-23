@@ -1,13 +1,6 @@
 OEventsNet::Application.routes.draw do
 
 
-  get "registration/overview"
-
-  get "registration/main"
-
-  get "registration/team_members"
-
-  get "registration/team_options"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -71,8 +64,28 @@ OEventsNet::Application.routes.draw do
     delete 'logout' => :destroy
   end
 
+  controller :registration do
+    get "registration/overview" => :overview
+    get "registration/main" => :main
+    get "registration/team_members" => :team_members
+    get "registration/team_options" => :team_options
+  end
+  
   scope '(:locale)' do
     # put everything in here that should be localized
+
+    controller :sessions do
+      get 'login' => :new
+      post 'login' => :create
+      delete 'logout' => :destroy
+    end
+    
+    controller :registration do
+      get "registration/overview" => :overview
+      get "registration/main" => :main
+      get "registration/team_members" => :team_members
+      get "registration/team_options" => :team_options
+    end
 
     #must be on top:
     resources :languages
@@ -119,7 +132,7 @@ OEventsNet::Application.routes.draw do
     resources :payment_groups do
       resources :payments      
     end
-
+    
     root :to => "events#index", :as => 'events_index'
   end
 
