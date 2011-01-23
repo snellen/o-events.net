@@ -44,7 +44,7 @@
             else
               myaccount = login_path
             end
-            navbar = [ { 'tab' => 'Wettkampfkalender', 'url' => events_path, 'user' => false }, { 'tab' => 'Meine Wettkämpfe', 'url' => events_path(:user_id => session[:user_id]) , 'user' => true }, { 'tab' => 'Neuer Wettkampf', 'url' => new_event_path, 'user' => 'false' }, { 'tab' => 'Meine Vereine', 'url' => clubs_path(:user_id => session[:user_id]), 'user' => true }, { 'tab' => 'Mein Konto', 'url' => myaccount, 'user' => false }, { 'tab' => 'Meine Rechnungen', 'url' => payment_groups_path(:user_id => session[:user_id]), 'user' => true } ]            
+            navbar = [ { 'tab' => t('.browseevents'), 'url' => events_path, 'user' => false }, { 'tab' => t('.myeventcal'), 'url' => events_path(:user_id => session[:user_id]) , 'user' => true }, { 'tab' => t('.newevent'), 'url' => new_event_path, 'user' => 'false' }, { 'tab' => t('.myclubs'), 'url' => clubs_path(:user_id => session[:user_id]), 'user' => true }, { 'tab' => t('.myaccount'), 'url' => myaccount, 'user' => false }, { 'tab' => t('.mybills'), 'url' => payment_groups_path(:user_id => session[:user_id]), 'user' => true } ]            
           %>
           <ul>
             <% if @title  %>
@@ -61,6 +61,7 @@
         </div>
       </div>
       <div id="main">
+        <p id="notice"><%= notice %></p>
         <%= yield %>
       </div>
       <!-- begin: #footer -->

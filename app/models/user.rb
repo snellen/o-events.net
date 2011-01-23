@@ -10,13 +10,14 @@ class User < ActiveRecord::Base
   
   validates :username, :presence => true, :uniqueness => true
   validates :email, :presence => true, :uniqueness => true
+  validates_format_of :email, :with => /(\S+)@(\S+)/
   validates :password, :confirmation => true
-  validates :sex, :presence => true, :inclusion => {:in =>  %w( M F ), :message => " invalid value"}
+  validates :sex, :presence => true, :inclusion => {:in =>  %w( M F ), :message => I18n.t('activerecord.errors.messages.invalid'), :allow_nil => true}
   validates :first_name, :presence => true
   validates :last_name, :presence => true
-  validates :birthdate_y, :presence => true, :numericality => {:only_integer => true}, :inclusion => {:in => 1900..Date.today.year, :message => " must be between 1900 and " + Date.today.year.to_s}
-  validates :nation_id, :presence => true
-  validates :sicard_number, :numericality => {:only_integer => true, :allow_nil => true}, :inclusion => {:in => 1..16777216, :message => " must be between 1 and 16777216", :allow_nil => true}
+  validates :birthdate_y, :presence => true, :numericality => {:only_integer => true, :allow_nil => true}, :inclusion => {:in => 1900..Date.today.year, :message => I18n.t('activerecord.errors.messages.between', :from => 1900, :to => Date.today.year.to_s), :allow_nil => true}
+  validates_presence_of :nation_id, :message => I18n.t('activerecord.errors.messages.mustbeselected')
+  validates :sicard_number, :numericality => {:only_integer => true, :allow_nil => true}, :inclusion => {:in => 1..16777216, :message => I18n.t('activerecord.errors.messages.between', :from => 1, :to => 16777216), :allow_nil => true}
 
   attr_accessor :password_confirmation
   attr_reader :password
@@ -47,7 +48,7 @@ class User < ActiveRecord::Base
   private
 
     def password_must_be_present
-      errors.add(:password, "Missing password" ) unless hashed_password.present?
+      errors.add(:password, I18n.t('activerecord.errors.messages.blank') ) unless hashed_password.present?
     end
 
     def generate_salt

@@ -1,7 +1,15 @@
 # Localization file for English. Add more files in this directory for other locales.
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
-en:
+de:
+  errors:
+    template:
+      body:
+        one:           "Bitte korrigieren sie das folgende Feld:"
+        other:         "Bitte korrigieren sie die folgenden Felder:"
+      header:
+        one:           "Der %{model} konnte aufgrund eines Fehlers nicht gespeichert werden"
+        other:         "Der %{model} konnte aufgrund von %{count} Fehlern nicht gespeichert werden"
   layouts:
     application:
       title:           "O-events.net"
@@ -10,6 +18,51 @@ en:
       myeventcal:      "Angemeldete Wettkämpfe"
       myclubs:         "Meine Vereine"
       myaccount:       "Mein Konto"
+      mybills:         "Meine Rechnungen"
+      newevent:        "Neuer Wettkampf"
       logout:          "Ausloggen"
       contact:         "Kontakt"
       imprint:         "Impressum"
+  activerecord:
+    errors:
+      messages:
+        inclusion:      "ist nicht in der Liste"
+        blank:          "muss ausgefüllt sein"
+        between:        "muss zwischen %{from} und %{to} liegen"
+        invalid:        "ist ungültig"
+        mustbeselected: "muss ausgewählt werden"
+    models:
+      user:             "Benutzer"
+    attributes:
+      user:
+        username:       "Benutzername"
+        email:          "E-mail Adresse"
+        created_at:     "Erstellt am"
+        updated_at:     "Aktualisiert am"
+        license_number: "Lizenznummer"
+        region_code:    "Regionalcode"
+        sicard_number:  "Nummer der SI-Karte"
+        first_name:     "Vorname"
+        last_name:      "Nachname"
+        phone:          "Telefonnummer"
+        address_line_1: "Adress Zeile 1"
+        address_line_2: "Adress Zeile 2"
+        zipcode:        "Postleitzahl"
+        city:           "Stadt"
+        province:       "Bundesland/Kanton"
+        sex:            "Geschlecht"
+        birthdate_y:    "Jahrgang"
+        birthdate_m:    "Geburtsmonat"
+        birthdate_d:    "Geburtstag"
+        country_id:     "Land"
+        nation_id:      "Nation"
+  users:
+    new:
+      register:           "Registration"
+    form:
+      password:           "Passwort"
+      password_confirmation: "Passwort bestätigen"
+      submit:             "Registrieren"
+      pleaseselect:       "Bitte auswählen"
+      male:               "Männlich"
+      female:             "Weiblich"

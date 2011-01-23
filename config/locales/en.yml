@@ -2,6 +2,14 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  errors:
+    template:
+      body:
+        one:           "Please correct the error in the following field:"
+        other:         "Please correct the errors in the following fields:"
+      header:
+        one:           "1 error prohibited this %{model} from being saved"
+        other:         "%{count} error prohibited this %{model} from being saved"
   layouts:
     application:
       title:           "O-events.net"
@@ -10,6 +18,51 @@ en:
       myeventcal:      "My Event Calendar"
       myclubs:         "My Clubs"
       myaccount:       "My Account"
+      mybills:         "My Bills"
+      newevent:        "Create Event"
       logout:          "Logout"
       contact:         "Contact"
       imprint:         "Imprint"
+  activerecord:
+    errors:
+      messages:
+        inclusion:      "is not included in the list"
+        blank:          "can't be blank"
+        between:        "must be between %{from} and %{to}"
+        invalid:        "is invalid"
+        mustbeselected: "must be selected"
+    models:
+      user:             "user"
+    attributes:
+      user:
+        username:       "Username"
+        email:          "E-mail Address"
+        created_at:     "Created at"
+        updated_at:     "Updated at"
+        license_number: "License Number"
+        region_code:    "Region Code"
+        sicard_number:  "SI-Card Number"
+        first_name:     "First Name"
+        last_name:      "Last Name"
+        phone:          "Phone Number"
+        address_line_1: "Address Line 1"
+        address_line_2: "Address Line 2"
+        zipcode:        "Zip Code"
+        city:           "City"
+        province:       "Province/State"
+        sex:            "Sex"
+        birthdate_y:    "Year of Birth"
+        birthdate_m:    "Month of Birth"
+        birthdate_d:    "Day of Birth"
+        country_id:     "Country"
+        nation_id:      "Nation"
+  users:
+    new:
+      register:           "Register"
+    form:
+      password:           "Password"
+      password_confirmation: "Confirm Password"
+      submit:             "Register"
+      pleaseselect:       "Please select"
+      male:               "Male"
+      female:             "Female"

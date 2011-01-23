@@ -1,8 +1,8 @@
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
+      <h2> <%= t('errors.template.header', :count=>@user.errors.size, :model=>t('activerecord.models.user')) %></h2>
+      <p><%= t('errors.template.body', :count=>@user.errors.size) %></p>
       <ul>
       <% @user.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -12,47 +12,52 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :username %>
+    <%= f.label :username %>*
     <%= f.text_field :username %>
   </div>
   <div class="field">
-    <%= f.label :email %>
+    <%= f.label :email %>*
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :password, 'Password' %>
+    <%= f.label :password, t('.password') %>*
     <%= f.password_field :password %>
   </div>
   <div class="field">
-    <%= f.label :password_confirmation, 'Confirm Password' %>
+    <%= f.label :password_confirmation, t('.password_confirmation') %>*
     <%= f.password_field :password_confirmation %>
   </div>
+  
   <br>
+  
   <div class="field">
-    <%= f.label :first_name %>
+    <%= f.label :first_name %>*
     <%= f.text_field :first_name %>
   </div>
   <div class="field">
-    <%= f.label :last_name %>
+    <%= f.label :last_name %>*
     <%= f.text_field :last_name %>
   </div>
   <div class="field">
-    <%= f.label :sex %>
-    <%= f.radio_button :sex, "M" %> Male
-    <%= f.radio_button :sex, "F" %> Female
+    <%= f.label :sex %>*
+    <%= f.radio_button :sex, "M" %><%= t('.male') %>
+    <%= f.radio_button :sex, "F" %><%= t('.female') %>
   </div>
   <div class="field">
-    <%= f.label :birthdate_y, 'Year of Birth' %>
+    <%= f.label :birthdate_y %>*
     <%= f.text_field :birthdate_y %>
   </div>
   <div class="field">
-    <%= f.label :sicard_number, 'SI-Card Number' %>
+    <%= f.label :sicard_number %>
     <%= f.text_field :sicard_number %>
   </div>
   <div class="field">
-    <%= f.label :nation_id %>
-    <%= f.text_field :nation_id %>
+    <%= f.label :nation_id %>*
+    <%= select (:user, :nation_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('.pleaseselect')) %>
   </div>
+  
+  <br>
+  
   <div class="field">
     <%= f.label :address_line_1 %>
     <%= f.text_field :address_line_1 %>
@@ -79,9 +84,12 @@
   </div>
   <div class="field">
     <%= f.label :country_id %>
-    <%= f.text_field :country_id %>
+    <%= select (:user, :country_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('.pleaseselect')) %>
   </div>
+    
+  <br>
+  
   <div class="actions">
-    <%= f.submit "Save" %>
+    <%= f.submit t('.submit') %>
   </div>
 <% end %>
