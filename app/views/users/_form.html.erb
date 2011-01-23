@@ -38,7 +38,20 @@
   </div>
   <div class="field">
     <%= f.label :sex %>
-    <%= f.text_field :sex %>
+    <%= f.radio_button :sex, "M" %> Male
+    <%= f.radio_button :sex, "F" %> Female
+  </div>
+  <div class="field">
+    <%= f.label :birthdate_y, 'Year of Birth' %>
+    <%= f.text_field :birthdate_y %>
+  </div>
+  <div class="field">
+    <%= f.label :sicard_number, 'SI-Card Number' %>
+    <%= f.text_field :sicard_number %>
+  </div>
+  <div class="field">
+    <%= f.label :nation_id %>
+    <%= f.text_field :nation_id %>
   </div>
   <div class="field">
     <%= f.label :address_line_1 %>
@@ -67,22 +80,6 @@
   <div class="field">
     <%= f.label :country_id %>
     <%= f.text_field :country_id %>
-  </div>
-  <div class="field">
-    <%= f.label :birthdate_y %>
-    <%= f.text_field :birthdate_y %>
-  </div>
-  <div class="field">
-    <%= f.label :birthdate_m %>
-    <%= f.text_field :birthdate_m %>
-  </div>
-  <div class="field">
-    <%= f.label :birthdate_d %>
-    <%= f.text_field :birthdate_d %>
-  </div>
-  <div class="field">
-    <%= f.label :nation_id %>
-    <%= f.text_field :nation_id %>
   </div>
   <div class="actions">
     <%= f.submit "Save" %>

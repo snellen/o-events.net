@@ -139,8 +139,8 @@ ActiveRecord::Schema.define(:version => 20110122221706) do
   end
 
   create_table "countries_country_groups", :id => false, :force => true do |t|
-    t.integer "country_group_id"
     t.integer "country_id"
+    t.integer "country_group_id"
   end
 
   create_table "country_groups", :force => true do |t|

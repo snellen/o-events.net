@@ -231,7 +231,7 @@ User: A person who has created an account on o-events.net.
                              The code is generated when an account is created and when the password is reset using the current code. If a user requests a "forgotten password" e-mail several times, the code remains unchanged.
   license_number:string      Country-specific identification number or character code. This is where the "SOLV Number" is stored for Swiss users.
   region_code:string         Country-specific identifier of the user's residential region.
-  sicard_number:integer      Number of the SPORTident card that this user normally runs with.
+  sicard_number:integer      Number of the SPORTident card that this user normally runs with. Range 1...16777216
   first_name:string          Self-explanatory...
   last_name:string
   phone:string               The phone field may be used for any kind of phone where the user wishes to be contacted by event organizers.
