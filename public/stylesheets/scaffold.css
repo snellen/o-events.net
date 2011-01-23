@@ -8,6 +8,19 @@ div.field, div.actions {
   margin-bottom: 10px;
 }
 
+div.field label {
+  width: 10em;
+  float: left;
+  text-align: left;
+  padding-top: 0.2em;
+  margin-right: 0.1em;
+  display: block;
+}
+
+div.field input {
+  margin-left: 0.5em;
+}
+
 #notice {
   color: green;
 }
