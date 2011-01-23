@@ -12,20 +12,77 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :username %><br />
+    <%= f.label :username %>
     <%= f.text_field :username %>
   </div>
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email %>
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :password, 'Password' %><br />
+    <%= f.label :password, 'Password' %>
     <%= f.password_field :password %>
   </div>
   <div class="field">
-    <%= f.label :password_confirmation, 'Confirm Password' %><br />
+    <%= f.label :password_confirmation, 'Confirm Password' %>
     <%= f.password_field :password_confirmation %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :sex %>
+    <%= f.text_field :sex %>
+  </div>
+  <div class="field">
+    <%= f.label :address_line_1 %>
+    <%= f.text_field :address_line_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :address_line_2 %>
+    <%= f.text_field :address_line_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :zipcode %>
+    <%= f.text_field :zipcode %>
+  </div>
+  <div class="field">
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+  </div>
+  <div class="field">
+    <%= f.label :province %>
+    <%= f.text_field :province %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :country_id %>
+    <%= f.text_field :country_id %>
+  </div>
+  <div class="field">
+    <%= f.label :birthdate_y %>
+    <%= f.text_field :birthdate_y %>
+  </div>
+  <div class="field">
+    <%= f.label :birthdate_m %>
+    <%= f.text_field :birthdate_m %>
+  </div>
+  <div class="field">
+    <%= f.label :birthdate_d %>
+    <%= f.text_field :birthdate_d %>
+  </div>
+  <div class="field">
+    <%= f.label :nation_id %>
+    <%= f.text_field :nation_id %>
   </div>
   <div class="actions">
     <%= f.submit "Save" %>
