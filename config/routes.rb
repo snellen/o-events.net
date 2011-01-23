@@ -1,6 +1,14 @@
 OEventsNet::Application.routes.draw do
 
 
+  get "registration/overview"
+
+  get "registration/main"
+
+  get "registration/team_members"
+
+  get "registration/team_options"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
