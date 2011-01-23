@@ -38,19 +38,25 @@
         <a id="navigation" name="navigation"></a>
         <div class="hlist">
           <!-- main navigation: horizontal list -->
+          <%
+            if session[:user_id]
+              myaccount = user_path(session[:user_id])
+            else
+              myaccount = login_path
+            end
+            navbar = [ { 'tab' => 'Wettkampfkalender', 'url' => events_path, 'user' => false }, { 'tab' => 'Meine Wettkämpfe', 'url' => events_path(:user_id => session[:user_id]) , 'user' => true }, { 'tab' => 'Neuer Wettkampf', 'url' => new_event_path, 'user' => 'false' }, { 'tab' => 'Meine Vereine', 'url' => clubs_path(:user_id => session[:user_id]), 'user' => true }, { 'tab' => 'Mein Konto', 'url' => myaccount, 'user' => false }, { 'tab' => 'Meine Rechnungen', 'url' => payment_groups_path(:user_id => session[:user_id]), 'user' => true } ]            
+          %>
           <ul>
-            <li class="active"><strong><% if @title %><%= @title %><% else %>Untitled Page<% end %></strong></li>            
-            <li><%= link_to 'Browse Events', events_path %></li>
-            <% if session[:user_id] %>
-              <li><%= link_to 'My Event Calendar', user_events_path(session[:user_id]) %></li>
-              <li><%= link_to 'My Clubs', user_clubs_path(session[:user_id]) %></li>
-              <li><%= link_to 'My Account', user %></li>
-            <% else %>
-              <li><%= link_to 'My Event Calendar', login_path %></li>
-              <li><%= link_to 'My Clubs', login_path %></li>
-              <li><%= link_to 'My Account', login_path %></li>
+            <% if @title  %>
+              <li class="active"><strong><%= @title %></strong></li>
+            <% end %>
+            <% navbar.each_with_index do |page,idx| %>
+              <% if !@title && page['user'] != (params[:user_id].nil?) && current_page?(page['url']) %>
+                <li class="active"><strong><%= page['tab'] %></strong></li>
+              <% else %>
+                <li><%= link_to page['tab'], page['url'] %></li>
+              <% end %>
             <% end %>            
-            <li><%= link_to 'Create an Event', new_event_path %></li>
           </ul>
         </div>
       </div>

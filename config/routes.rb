@@ -70,7 +70,6 @@ OEventsNet::Application.routes.draw do
     resources :languages
     resources :countries
     resources :users
-    resources :events
     resources :clubs
     resources :currencies    
     #end    
