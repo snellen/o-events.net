@@ -23,6 +23,12 @@ de:
       logout:          "Ausloggen"
       contact:         "Kontakt"
       imprint:         "Impressum"
+      welcomeuser:     "Wilkommen %{user}!"
+      welcomeguest:    "Wilkommen Gast! Bitte {{reglink}} oder"
+      register:        "registrieren"
+      supsportbanner:  "O-events.net ist ein Gratisdienst von {{supsport_link}} - Ihre {{donation_link}} halten es am laufen."
+      donations:       "Spenden"
+      poweredbyruby:   "Die Seite verwendet Ruby on Rails mit einem Layout basierend auf YAML."
   activerecord:
     errors:
       messages:
@@ -66,3 +72,13 @@ de:
       pleaseselect:       "Bitte auswählen"
       male:               "Männlich"
       female:             "Weiblich"
+      requiredfields:     "Mit * markierte Angaben sind zwingend."
+  sessions:
+    new:
+      signin:             "Anmelden"
+      pleaselogin:        "Anmeldung"
+      username_or_email:  "Benutzername or E-mail"
+      password:           "Passwort"
+      submit:             "Anmelden"
+    destroy:
+      signout:             "Abmelden"

@@ -3,17 +3,17 @@
     <p id="notice" ><%= flash[:alert] %></p>
   <% end %>
   <%= form_tag login_path do %>
-    <h1>Please Log In</h1>
+    <h1><%= t('.pleaselogin') %></h1>
     <div class="field">
-      <label for="identifier" >Username or E-mail Address</label><br />
+      <label for="identifier" ><%= t('.username_or_email') %></label>
       <%= text_field_tag :identifier, params[:identifier] %>
     </div>
     <div class="field">
-      <label for="password" >Password</label><br />
+      <label for="password" ><%= t('.password') %></label>
       <%= password_field_tag :password, params[:password] %>
      </div>
      <div>
-       <%= submit_tag "Login" %>
+       <%= submit_tag  t('.submit')  %>
      </div>
    <% end %>
 </div>

@@ -12,48 +12,54 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :username %>*
-    <%= f.text_field :username %>
+    <%= t('.requiredfields') %>
+  </div>
+
+  <br>
+
+  <div class="field">
+    <%= f.label :username %>
+    <%= f.text_field :username %> *
   </div>
   <div class="field">
-    <%= f.label :email %>*
-    <%= f.text_field :email %>
+    <%= f.label :email %>
+    <%= f.text_field :email %> *
   </div>
   <div class="field">
-    <%= f.label :password, t('.password') %>*
-    <%= f.password_field :password %>
+    <%= f.label :password, t('.password') %>
+    <%= f.password_field :password %> *
   </div>
   <div class="field">
-    <%= f.label :password_confirmation, t('.password_confirmation') %>*
-    <%= f.password_field :password_confirmation %>
+    <%= f.label :password_confirmation, t('.password_confirmation') %>
+    <%= f.password_field :password_confirmation %> *
   </div>
   
   <br>
   
   <div class="field">
-    <%= f.label :first_name %>*
-    <%= f.text_field :first_name %>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %> *
   </div>
   <div class="field">
-    <%= f.label :last_name %>*
-    <%= f.text_field :last_name %>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %> *
   </div>
   <div class="field">
-    <%= f.label :sex %>*
+    <%= f.label :sex %>
     <%= f.radio_button :sex, "M" %><%= t('.male') %>
-    <%= f.radio_button :sex, "F" %><%= t('.female') %>
+    <%= f.radio_button :sex, "F" %><%= t('.female') %> *
   </div>
   <div class="field">
-    <%= f.label :birthdate_y %>*
-    <%= f.text_field :birthdate_y %>
+    <%= f.label :birthdate_y %>
+    <%= f.text_field :birthdate_y %> *
   </div>
   <div class="field">
     <%= f.label :sicard_number %>
     <%= f.text_field :sicard_number %>
   </div>
   <div class="field">
-    <%= f.label :nation_id %>*
-    <%= select (:user, :nation_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('.pleaseselect')) %>
+    <%= f.label :nation_id %>
+    <%= select (:user, :nation_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('.pleaseselect')) %> *
   </div>
   
   <br>
@@ -92,4 +98,5 @@
   <div class="actions">
     <%= f.submit t('.submit') %>
   </div>
+  
 <% end %>

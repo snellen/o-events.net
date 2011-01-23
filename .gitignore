@@ -5,3 +5,6 @@ tmp/**/*
 *~
 *.lock
 #*#
+.buildpath
+.project
+

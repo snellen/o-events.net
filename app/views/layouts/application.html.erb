@@ -25,10 +25,10 @@
           <!-- end: skip link navigation -->
           <% if session[:user_id] %>
             <% user = User.find(session[:user_id]) %>
-            <span> Welcome <%= user.username %> !</span>
+            <span> <%= t('.welcomeuser', :user => user.username)%></span>
             <%= render :partial => 'sessions/destroy' %>
           <% else %>
-            <span> Welcome guest!</span> <%= link_to "Register", new_user_path %> <span> or </span>
+            <span> <%= t('.welcomeguest', :reglink => link_to(t('.register'), new_user_path)).html_safe %></span> 
             <%= render :partial => 'sessions/new' %>
           <% end %>
         </div>
@@ -65,9 +65,9 @@
         <%= yield %>
       </div>
       <!-- begin: #footer -->
-      <div id="footer">O-events.net is a free service of <a href="http://www.supsport.ch">supsport.ch</a> - Your <a href="http://www.paypal.com">donations</a> keep it running.<br />Powered by Ruby on Rails. Layout based on YAML.
+      <div id="footer"><%= t('.supsportbanner', :supsport_link => link_to('supsport.ch','http://www.supsport.ch'), :donation_link => link_to(t('.donations'),'http://www.paypal.com')).html_safe %><br /><%= t('.poweredbyruby') %>
         <div id="bottomnav">
-          <a href="#">Contact</a> | <a href="#">Imprint</a>
+          <a href="#"><%=t('.contact')%></a> | <a href="#"><%=t('.imprint')%></a>
         </div>
       </div>
     </div>

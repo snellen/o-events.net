@@ -1,19 +1,19 @@
 <div id="loginbox">
   <%= link_to login_path, :class => "signin" do %>
-    <span>Sign in</span>
+    <span><%= t('.signin') %></span>
   <% end %>
   <%= field_set_tag nil, :id => "signin_menu" do %>
     <%= form_tag login_path, :id => 'signin' do %>
       <div>
-        <label for="identifier" >Username or E-mail Address</label>
+        <label for="identifier" ><%= t('.username_or_email') %></label>
         <%= text_field_tag :identifier, params[:identifier] %>
       </div>
       <div>
-        <label for="password" >Password</label>
+        <label for="password" ><%= t('.password') %></label>
         <%= password_field_tag :password, params[:password] %>
        </div>
        <div>
-         <%= submit_tag "Login" %>
+         <%= submit_tag t('.submit') %>
        </div>
     <% end %>
   <% end %>
