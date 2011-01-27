@@ -95,6 +95,15 @@ Competitor: A User who competes in an Event.
   event:ref                 The event that the competitor is participating in.
   competing_club:ref        The club that this competitor represents (in the current event).        
   user:ref                  The user that this competitor is a copy of. This reference is set to zero when a user is deleted.
+  num1:integer                Custom data as defined by the organizer
+  num2:integer
+  num3:integer
+  text1:string
+  text2:string
+  text3:string
+  flag1:boolean
+  flag2:boolean
+  flag3:boolean
 ==
 Country: A political country, as used for postal addresses.
   name:string               Name of the country.
@@ -202,6 +211,15 @@ Team: A group of one or more Competitors which takes part in a group of competit
   start_fee:decimal           The StartFee amount that this team has to pay. This is a copy of the StartFee entry that applies to the team, and is used to reduce the amount of calculations needed to determine a PaymentGroup's balance.
   is_paid:boolean             This flag is set when a Payment is processed that covers the full start fee of this Team. If the paid amount is not sufficient to cover the entire PaymentGroup, teams are marked as paid in order of their registration_time.
   payment_group:ref           The PaymentGroup that this Team is covered by. This reference is nil until a PaymentGroup is created by the paying User.
+  num1:integer                Custom data as defined by the organizer
+  num2:integer
+  num3:integer
+  text1:string
+  text2:string
+  text3:string
+  flag1:boolean
+  flag2:boolean
+  flag3:boolean
 ==
 TeamMember: A competitor who is in a team. Since competitors are defined on event level and teams are specific to competition groups, a competitor may be in several teams.
   is_leader:boolean      Determines whether this team member is the team leader. The leader is the competitor/user who has registered the team.

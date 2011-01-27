@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110127032622) do
+ActiveRecord::Schema.define(:version => 20110127061512) do
 
   create_table "additional_fees", :force => true do |t|
     t.string   "name"
@@ -134,6 +134,15 @@ ActiveRecord::Schema.define(:version => 20110127032622) do
     t.integer  "event_id"
     t.integer  "competing_club_id"
     t.integer  "user_id"
+    t.integer  "num1"
+    t.integer  "num2"
+    t.integer  "num3"
+    t.string   "text1"
+    t.string   "text2"
+    t.string   "text3"
+    t.boolean  "flag1"
+    t.boolean  "flag2"
+    t.boolean  "flag3"
   end
 
   create_table "countries", :force => true do |t|
@@ -305,6 +314,15 @@ ActiveRecord::Schema.define(:version => 20110127032622) do
     t.integer  "payment_group_id"
     t.integer  "competition_group_id"
     t.integer  "competing_club_id"
+    t.integer  "num1"
+    t.integer  "num2"
+    t.integer  "num3"
+    t.string   "text1"
+    t.string   "text2"
+    t.string   "text3"
+    t.boolean  "flag1"
+    t.boolean  "flag2"
+    t.boolean  "flag3"
   end
 
   create_table "total_results", :force => true do |t|
