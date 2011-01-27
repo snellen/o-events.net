@@ -18,7 +18,7 @@
     <td><%= run.age_limit_1 %></td>
     <td><%= run.age_limit_2 %></td>
     <td><%= link_to 'Show', run %></td>
-    <td><%= link_to 'Edit', edit_run_path(run) %></td>
+    <td><%= link_to 'Edit', edit_competition_run_path(run) %></td>
     <td><%= link_to 'Destroy', run, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
@@ -26,4 +26,4 @@
 
 <br />
 
-<%= link_to 'New Run', new_run_path %>
+<%= link_to 'New Run', new_competition_run_path %>

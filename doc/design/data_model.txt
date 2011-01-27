@@ -64,9 +64,11 @@ CompetingClub: Club that is competing in an Event. Each Competitor may be assign
   NOTE: CompetingClubs do not reference an event directly, they are only linked to it via the competitors.
 ==
 CompetitionGroup: A group of Competitions which share Categories, Teams, and StartFees. It is not possible to sign up for individual Competitions in the CompetitionGroup. CompetitionGroups may consist of a single Competition.
+  name:string         A name that summarizes the competitions in the competition group.
   <no attributes or references>
 ==
 Competition: A group of Runs that has a TotalResult. An Event can consist of several Competitions if it is e.g. a multi-day Event with daily prize giving.
+Note that a competition does not have a date; its start and end date is the date of the first and last run, respectively.
   name:string           The name of the competition. May be empty if the event has only one competition.
   kind:string           Determines how the event data is interpreted: 'single' (one competitor per team), 'relay' (one competitor per run), or 'team' (all competitors do all runs)
   event:ref             The event that the competition belongs to.
@@ -167,6 +169,7 @@ Run: A part of a Competition which involves one passing of start and finish per 
   age_limit_1:integer  Defines the maximum age of junior competitors (below 21) who may participate in the run. Values over 20 indicate no limit. 
   age_limit_2:integer  Defines the minimum age of senior competitors (above 35) who may participate in the run. Value below 35 indicate no limit.
   competition:ref      The competition that the run belongs to.
+  sortkey:integer      Defines the order in which the runs are held. (This is not necessarily specified by the date, since several runs may take place on the same day.)
 ==
 SplitTime: The run time between two controls in an orienteering competition, or e.g. a lap time in a running competition.
   control_number:integer        The control punched after this SplitTime.

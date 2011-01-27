@@ -1,0 +1,20 @@
+<h1><%= t('.register_for') %> <%= @event.name %></h1><br />
+
+
+<% @competition_groups.each do |competition_group| %>
+
+  <h2 class="with_link"><%= competition_group.name %></h2><%= link_to t('.register')+' >>', registration_main_url(:competition_group_id => competition_group.id) %>
+  <table>
+  <tr>
+    <th><%= t('.competition') %></th><th><%= t('.date') %></th>
+  </tr>
+  <% competition_group.competitions.each do |competition| %>
+
+    <tr><td><%= competition.name %></td>
+    <td><%= date_interval(competition.runs.minimum(:date),competition.runs.maximum(:date)) %></td>
+    </tr>
+    
+  <% end %>
+  </table>
+  <br />
+<% end %>

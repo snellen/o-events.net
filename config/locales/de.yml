@@ -2,11 +2,35 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 de:
+  date:
+    month_names: [~, Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
+    abbr_month_names: [~, Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez]
+    default: "%d.%m.%Y"
+    short: "%d.%m."
+    long: "%d. %B %Y"
+    interval_long:
+      year_from: "%d. %B %Y - "
+      year_to: "%d. %B %Y"
+      month_from: "%d. %B - "
+      month_to: "%d. %B %Y"
+      day_from: "%d. -"
+      day_to: "%d. %B %Y"
+      single: "%d. %B %Y"
+      nil: "Datum unbekannt"
+    interval_short:
+      year_from: "%d.%m.%y - "
+      year_to: "%d.%m.%y"
+      month_from: "%d.%m. - "
+      month_to: "%d.%m.%y"
+      day_from: "%d.-"
+      day_to: "%d.%m.%y" 
+      single: "%d.%m.%y"
+      nil: "unbekannt"
   errors:
     template:
       body:
-        one:           "Bitte korrigieren sie das folgende Feld:"
-        other:         "Bitte korrigieren sie die folgenden Felder:"
+        one:           "Bitte korrigiere das folgende Feld:"
+        other:         "Bitte korrigiere die folgenden Felder:"
       header:
         one:           "Der %{model} konnte aufgrund eines Fehlers nicht gespeichert werden"
         other:         "Der %{model} konnte aufgrund von %{count} Fehlern nicht gespeichert werden"
@@ -26,7 +50,7 @@ de:
       welcomeuser:     "Wilkommen %{user}!"
       welcomeguest:    "Wilkommen Gast! Bitte {{reglink}} oder"
       register:        "registrieren"
-      supsportbanner:  "O-events.net ist ein Gratisdienst von {{supsport_link}} - Ihre {{donation_link}} halten es am laufen."
+      supsportbanner:  "O-events.net ist ein kostenloser Dienst von {{supsport_link}} - Ihre {{donation_link}} halten es am laufen."
       donations:       "Spenden"
       poweredbyruby:   "Die Seite verwendet Ruby on Rails mit einem Layout basierend auf YAML."
   activerecord:
@@ -42,17 +66,17 @@ de:
     attributes:
       user:
         username:       "Benutzername"
-        email:          "E-mail Adresse"
+        email:          "E-mail-Adresse"
         created_at:     "Erstellt am"
         updated_at:     "Aktualisiert am"
         license_number: "Lizenznummer"
-        region_code:    "Regionalcode"
-        sicard_number:  "Nummer der SI-Karte"
+        region_code:    "Regions-Code"
+        sicard_number:  "SI-Card-Nummer"
         first_name:     "Vorname"
         last_name:      "Nachname"
         phone:          "Telefonnummer"
-        address_line_1: "Adress Zeile 1"
-        address_line_2: "Adress Zeile 2"
+        address_line_1: "Adresse Zeile 1"
+        address_line_2: "Adresse Zeile 2"
         zipcode:        "Postleitzahl"
         city:           "Stadt"
         province:       "Bundesland/Kanton"
@@ -61,7 +85,7 @@ de:
         birthdate_m:    "Geburtsmonat"
         birthdate_d:    "Geburtstag"
         country_id:     "Land"
-        nation_id:      "Nation"
+        nation_id:      "Nationalität"
   users:
     new:
       register:           "Registration"
@@ -82,3 +106,9 @@ de:
       submit:             "Anmelden"
     destroy:
       signout:             "Abmelden"
+  competition_groups:
+    register_for:
+      register_for:      "Anmeldung für"
+      competition:       "Wettkampf"
+      date:              "Datum"
+      register:          "Anmelden"

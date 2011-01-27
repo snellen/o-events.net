@@ -2,6 +2,30 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  date:
+    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
+    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+    default: "%Y-%m-%d"
+    short: "%b %d"
+    long: "%B %d, %Y"
+    interval_long:
+      year_from: "%B %d, %Y - "
+      year_to: "%B %d, %Y"
+      month_from: "%B %d - "
+      month_to: "%B %d, %Y"
+      day_from: "%B %d-"
+      day_to: "%d, %Y"
+      single: "%B %d, %Y"
+      nil: "Date unknown"
+    interval_short:
+      year_from: "%m/%d/%y - "
+      year_to: "%m/%d/%y"
+      month_from: "%m/%d - "
+      month_to: "%m/%d %Y"
+      day_from: "%m/%d - "
+      day_to: "%m/%d %Y"
+      single: "%m/%d%y"
+      nil: "unknown"
   errors:
     template:
       body:
@@ -82,3 +106,9 @@ en:
       submit:             "Login"
     destroy:
       signout:             "Sign out"
+  competition_groups:
+    register_for:
+      register_for:      "Register for"
+      competition:       "Competition"
+      date:              "Date"
+      register:          "Register"
