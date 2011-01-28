@@ -9,9 +9,16 @@ class RegistrationController < ApplicationController
 
   def main
     @teams = CompetitionGroup.find(params[:competition_group_id]).teams
+    if @teams.empty?
+      redirect_to :action => 'team_members', :competition_group_id => params[:competition_group_id] 
+    end
   end
 
   def team_members
+    if params[:team_id]
+      @team_members = Team.find(params[:team_id]).team_members
+    else
+      @team_members = []
   end
 
   def team_options

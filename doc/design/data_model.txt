@@ -26,6 +26,8 @@ Category: Group of Teams which compete against each other. Each Competition gene
   sex:string             Determines whether this category is for men ('M'), women ('F'), or open ('O'). Categories with 'M' are open for women as well, but 'O' expresses that the category is really intended for everyone.
   competition_group:ref  The competition group that the category belongs to.
   category_group:ref     The category group that the category is part of.
+  min_team_size:integer  The minimum number of competitors in teams competing in this category. This is only enforced during registration if the organizer choses to, otherwise incomplete teams are accepted with a warning message.  
+  max_team_size:integer  The maximum number of competitors in teams competing in this category.
 ==
 CategoryGroup: Group of Categories which have the same StartFees.
   fee_age_dependent:boolean     Determines whether the start fee in this category depends on age. This is used e.g. for "open" categories where people of any age are allowed to start.
