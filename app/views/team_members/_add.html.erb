@@ -1,0 +1,29 @@
+<h1><%= t('.add_team_member') %></h1>
+
+  <div class="field">
+    <%= label_tag t('activerecord.attributes.user.country_id') %>
+    <%= select (:user, :country_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('countries.select.pleaseselect')) %> *
+  </div
+  <div class="field">
+    <%= label_tag t('activerecord.attributes.user.first_name') %>
+    <%= text_field_tag :first_name, params[:first_name] %><br />
+  </div>
+  <div class="field">
+    <%= label_tag t('activerecord.attributes.user.last_name') %>
+    <%= text_field_tag :last_name, params[:last_name] %><br />
+  </div>
+  <div class="field">
+    <%= label_tag t('activerecord.attributes.user.birthdate_y') %>
+    <%= text_field_tag :birthdate_y, params[:birthdate_y] %><br />
+  </div>
+  <div>
+    <%= submit_tag t('.add') %>
+  </div>
+  <br /><br />
+  <h2><%= t('.suggested') %></h2>
+  <p><%= t('.suggested_desc') %></p>
+  
+  <table><tr><th><%= t('activerecord.attributes.user.username') %></th><th><%= t('.license_number') %></th><th><%= t('.name') %></th><th><%= t('activerecord.attributes.user.birthdate_y') %></th><th></th></tr>
+  </table>
+
+  TODO: How to include the country and clubs in this listing? Use a layout with multiple rows per person!

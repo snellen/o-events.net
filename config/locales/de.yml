@@ -63,13 +63,14 @@ de:
         mustbeselected: "muss ausgewählt werden"
     models:
       user:             "Benutzer"
+      club:             "Verein"    
     attributes:
       user:
         username:       "Benutzername"
         email:          "E-mail-Adresse"
         created_at:     "Erstellt am"
         updated_at:     "Aktualisiert am"
-        license_number: "Lizenznummer"
+        license_number: "Lizenznummer/SOLV-Nummer"
         region_code:    "Regions-Code"
         sicard_number:  "SI-Card-Nummer"
         first_name:     "Vorname"
@@ -88,12 +89,11 @@ de:
         nation_id:      "Nationalität"
   users:
     new:
-      register:           "Registration"
+      register:           "Benutzerkonto erstellen"
     form:
       password:           "Passwort"
       password_confirmation: "Passwort bestätigen"
       submit:             "Registrieren"
-      pleaseselect:       "Bitte auswählen"
       male:               "Männlich"
       female:             "Weiblich"
       requiredfields:     "Mit * markierte Angaben sind zwingend."
@@ -112,3 +112,19 @@ de:
       competition:       "Wettkampf"
       date:              "Datum"
       register:          "Anmelden"
+  team_members:
+    add:
+      add_team_member:  "Teammitglied hinzufügen"
+      add:              "Hinzufügen"
+      suggested:        "Empfohlene Läufer"
+      suggested_desc:   "Hier sind Läufer aufgeführt, die du kürzlich für andere Wettkämpfe angemeldet hast. Klicke auf 'Auswählen', um sie zum Team hinzuzufügen."
+      name:             "Name"
+      license_number:   "SOLV-/Lizenznr."
+    list:
+      members:          "Teammitglieder"
+      name:             "Name"
+      leader:           "Admin."
+      team_complete:    "Team komplett"      
+  countries:
+    select:
+      pleaseselect:       "Bitte auswählen"

@@ -1,2 +1,5 @@
-<h1>Registration#team_members</h1>
-<p>Find me in app/views/registration/team_members.html.erb</p>
+<% content_for :main do %>
+  <%= render :partial => 'team_members/list' %><br /><br %>
+  <%= render :partial => 'team_members/add' %>
+<% end %>
+<%= render :partial => 'events/eventsite' %>

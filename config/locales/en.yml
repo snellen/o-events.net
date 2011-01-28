@@ -62,7 +62,8 @@ en:
         invalid:        "is invalid"
         mustbeselected: "must be selected"
     models:
-      user:             "user"
+      user:             "User"
+      club:             "Club"
     attributes:
       user:
         username:       "Username"
@@ -93,7 +94,6 @@ en:
       password:           "Password"
       password_confirmation: "Confirm Password"
       submit:             "Register"
-      pleaseselect:       "Please select"
       male:               "Male"
       female:             "Female"
       requiredfields:     "* marks required fields"
@@ -112,3 +112,19 @@ en:
       competition:       "Competition"
       date:              "Date"
       register:          "Register"
+  team_members:
+    add:
+      add_team_member:  "Add a Team Member"
+      add:              "Add"
+      suggested:        "Suggested Runners"
+      suggested_desc:   "You have recently registered these runners for other events. Click 'Select' to add them to the team."
+      name:             "Name"
+      license_number:   "License No."
+    list:
+      members:          "Team Members"
+      name:             "Name"
+      leader:           "Leader"   
+      team_complete:    "Team complete"
+  countries:
+    select:
+      pleaseselect:       "Please select"
