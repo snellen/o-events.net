@@ -37,6 +37,13 @@ de:
         between:        "muss zwischen %{from} und %{to} liegen"
         invalid:        "ist ungültig"
         mustbeselected: "muss ausgewählt werden"
+      models:
+        user:
+          attributes:
+             username:
+              taken:    "wird bereits verwendet"
+             email:
+              taken:    "wird bereits verwendet"
     models:
       user:             "Benutzer"
     attributes:
@@ -68,11 +75,15 @@ de:
     form:
       password:           "Passwort"
       password_confirmation: "Passwort bestätigen"
-      submit:             "Registrieren"
+      submit:             "Speichern"
       pleaseselect:       "Bitte auswählen"
       male:               "Männlich"
       female:             "Weiblich"
       requiredfields:     "Mit * markierte Angaben sind zwingend."
+    show:
+      notspecified:       "keine Angabe"
+      welcomeuser:        "Willkommen %{username}"
+      edit:               "Bearbeiten"
   sessions:
     new:
       signin:             "Anmelden"

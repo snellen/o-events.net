@@ -16,11 +16,12 @@
   </div>
 
   <br>
-
-  <div class="field">
-    <%= f.label :username %>
-    <%= f.text_field :username %> *
-  </div>
+  <% if @user.new_record? %>
+    <div class="field">
+      <%= f.label :username %>
+      <%= f.text_field :username %> *
+    </div>
+  <% end %>
   <div class="field">
     <%= f.label :email %>
     <%= f.text_field :email %> *
