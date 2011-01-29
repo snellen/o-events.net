@@ -1,0 +1,35 @@
+<h1>
+<% if(@team.nil?) %>
+  <%= t('.new_members') %>
+<% else %>
+  <%= t('.members') %>
+<% end %>
+</h1>
+
+<table>
+  <tr>
+    <th><%= t('.leader') %></th>
+    <th><%= t('.name') %></th>
+    <th><%= t('activerecord.models.club') %></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% if(! @team.nil?) %>
+<% @team.team_members.each do |team_member| %>
+  <tr><%= form_for(team_member) do |f| %>
+    <td><%= f.radio_button :is_leader %></td>
+    <td><%= team_member.competitor.first_name %> <%= team_member.competitor.last_name %></td>
+    <td><%= team_member.competitor.competing_club.name %></td>
+    <td><%= link_to 'Move up', registration_team_members_path(:team_member_id => team_member.id, :move => 'up') %></td>
+    <td><%= link_to 'Move up', registration_team_members_path(:team_member_id => team_member.id, :move => 'down') %></td>
+    <td><%= link_to 'Edit', registration_team_members_path(:team_member_id => team_member.id) %></td>
+    <td><%= link_to 'Delete', registration_team_members_path(:team_member_id => team_member.id), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr><% end %>
+<% end %>
+<% end %>
+</table>
+
+<br /><%= button_to t('.team_complete'), registration_team_options_url %>

@@ -1,0 +1,29 @@
+<%= form_for(User.new) do |f| %>
+  <div class="field">
+    <b><%= f.label :username %></b>
+    <%= f.text_field :username %><br />
+  </div>
+  <div class="actions">
+    <%= submit_tag search_button_caption %>
+  </div>
+  <p><br /><b><%= t('.search_runner') %></b></p>
+  <div class="field">
+    <%= f.label :country_id %>
+    <%= f.select (:country_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('countries.select.pleaseselect')) %>
+  </div>
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %><br />
+  </div>
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %><br />
+  </div>
+  <div class="field">
+    <%= f.label :birthdate_y %>
+    <%= f.text_field :birthdate_y %><br />
+  </div>
+  <div class="actions">
+    <%= submit_tag search_button_caption %>
+  </div>
+<% end %>

@@ -84,6 +84,10 @@ OEventsNet::Application.routes.draw do
       get "registration/overview" => :overview
       get "registration/main" => :main
       get "registration/team_members" => :team_members
+      post "registration/team_members" => :team_addmember
+      delete "registration/team_members" => :team_removemember
+      post "registration/team_save" => :team_save
+      post "registration/search_user" => :search_user      
       get "registration/team_options" => :team_options
     end
 

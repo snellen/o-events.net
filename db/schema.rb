@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110122221706) do
+ActiveRecord::Schema.define(:version => 20110128041133) do
 
   create_table "additional_fees", :force => true do |t|
     t.string   "name"
@@ -20,6 +20,11 @@ ActiveRecord::Schema.define(:version => 20110122221706) do
     t.datetime "updated_at"
     t.integer  "event_id"
     t.integer  "age_range_id"
+  end
+
+  create_table "additional_fees_competition_groups", :id => false, :force => true do |t|
+    t.integer "additional_fee_id"
+    t.integer "competition_group_id"
   end
 
   create_table "age_ranges", :force => true do |t|
@@ -41,6 +46,8 @@ ActiveRecord::Schema.define(:version => 20110122221706) do
     t.datetime "updated_at"
     t.integer  "category_group_id"
     t.integer  "competition_group_id"
+    t.integer  "min_team_size"
+    t.integer  "max_team_size"
   end
 
   create_table "category_groups", :force => true do |t|
@@ -94,6 +101,7 @@ ActiveRecord::Schema.define(:version => 20110122221706) do
   create_table "competition_groups", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   create_table "competitions", :force => true do |t|
@@ -128,6 +136,15 @@ ActiveRecord::Schema.define(:version => 20110122221706) do
     t.integer  "event_id"
     t.integer  "competing_club_id"
     t.integer  "user_id"
+    t.integer  "num1"
+    t.integer  "num2"
+    t.integer  "num3"
+    t.string   "text1"
+    t.string   "text2"
+    t.string   "text3"
+    t.boolean  "flag1"
+    t.boolean  "flag2"
+    t.boolean  "flag3"
   end
 
   create_table "countries", :force => true do |t|
@@ -233,6 +250,7 @@ ActiveRecord::Schema.define(:version => 20110122221706) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "competition_id"
+    t.integer  "sortkey"
   end
 
   create_table "split_times", :force => true do |t|
@@ -298,6 +316,15 @@ ActiveRecord::Schema.define(:version => 20110122221706) do
     t.integer  "payment_group_id"
     t.integer  "competition_group_id"
     t.integer  "competing_club_id"
+    t.integer  "num1"
+    t.integer  "num2"
+    t.integer  "num3"
+    t.string   "text1"
+    t.string   "text2"
+    t.string   "text3"
+    t.boolean  "flag1"
+    t.boolean  "flag2"
+    t.boolean  "flag3"
   end
 
   create_table "total_results", :force => true do |t|

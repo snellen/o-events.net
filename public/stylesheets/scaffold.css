@@ -17,6 +17,10 @@ div.field label {
   display: block;
 }
 
+div.actions input[type="submit"]{
+  margin-left: 10em; 
+}
+
 div.field input div.field select {
   margin-left: 0.5em;
 }

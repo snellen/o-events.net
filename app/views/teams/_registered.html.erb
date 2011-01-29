@@ -1,0 +1,31 @@
+<h1>Registered teams</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Registration time</th>
+    <th>Paid by club</th>
+    <th>Start fee</th>
+    <th>Is paid</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @teams.each do |team| %>
+  <tr>
+    <td><%= team.name %></td>
+    <td><%= team.registration_time %></td>
+    <td><%= team.paid_by_club %></td>
+    <td><%= team.start_fee %></td>
+    <td><%= team.is_paid %></td>
+    <td><%= link_to 'Show', team %></td>
+    <td><%= link_to 'Edit', edit_team_path(team) %></td>
+    <td><%= link_to 'Destroy', team, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Team', registration_team_members_path %>

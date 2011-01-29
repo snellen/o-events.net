@@ -1,0 +1,11 @@
+<h2><%= t('.add_team_member') %></h2>
+  <%= render :partial => 'users/search', :locals => {:path => registration_team_members_path, :options => {:team_id => @team.id}, :search_button_caption => t('.add')} %>
+  <br /><br />
+  <h2><%= t('.suggested') %></h2>
+  <p><%= t('.suggested_desc') %></p>
+  
+  <table>
+  <tr><td><a href="#"><b>Peter Müller</b> (1956)<br />OLG Baselland<br />peter</a></td><td><a href="#"><b>Peter Müller</b> (1956)<br />OLV Hindelbank<br />pmueller</a></td><td><a href="#"><b>Anna Fröhlich</b> (1977)<br />OLG Dachsen<br />SL4FRA</a></td></tr>
+  <tr><td><a href="#"><b>Ueli Maurer</b> (1940)<br />OLG Zürich<br />ueli_svp</a></td><td><a href="#"><b>Martin Zoller</b> (1987)<br />Das bist du!<br />mzoller</a></td><td><a href="#"><b>Kurt Fröhlich</b> (1950)<br />OLG Dachsen<br />SQ6FRK</a></td></tr>
+  <tr><td><a href="#"><b>Urs Meier</b> (1962)<br />OLK Argus<br /></a></td><td><a href="#"><b>Barbara Meier</b> (1967)<br />OLK Argus<br />barbara222</a></td><td><a href="#"><b>Linda Fröhlich</b> (2005)<br />OLG Dachsen<br /></a></td></tr>
+  </table>
