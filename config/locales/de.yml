@@ -101,7 +101,7 @@ de:
     new:
       signin:             "Anmelden"
       pleaselogin:        "Anmeldung"
-      username_or_email:  "Benutzername or E-mail"
+      username_or_email:  "Benutzername oder E-Mail"
       password:           "Passwort"
       submit:             "Anmelden"
     destroy:
@@ -114,14 +114,17 @@ de:
       register:          "Anmelden"
   team_members:
     add:
-      add_team_member:  "Teammitglied hinzufügen"
+      enter_username:   "Benutzername:"
+      search_runner:    "Läufer ohne Benutzernamen anmelden:"      
+      add_team_member:  "Neues Teammitglied"
       add:              "Hinzufügen"
-      suggested:        "Empfohlene Läufer"
-      suggested_desc:   "Hier sind Läufer aufgeführt, die du kürzlich für andere Wettkämpfe angemeldet hast. Klicke auf 'Auswählen', um sie zum Team hinzuzufügen."
-      name:             "Name"
-      license_number:   "SOLV-/Lizenznr."
+      suggested:        "Kürzlich angemeldet"
+      suggested_desc:   "Hier sind Läufer aufgeführt, die du in letzter Zeit für andere Wettkämpfe angemeldet hast. Klicke auf ihre Namen, um sie zum Team hinzuzufügen."
+      runner:           "Läufer"
+      clubs:            "Vereine"
     list:
-      members:          "Teammitglieder"
+      new_members:      "Wähle die Teammitglieder"      
+      members:          "Teamzusammensetzung"
       name:             "Name"
       leader:           "Admin."
       team_complete:    "Team komplett"      

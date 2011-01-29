@@ -114,13 +114,16 @@ en:
       register:          "Register"
   team_members:
     add:
+      enter_username:   "Username:"
+      search_runner:    "Add a runner without a username:"
       add_team_member:  "Add a Team Member"
       add:              "Add"
       suggested:        "Suggested Runners"
-      suggested_desc:   "You have recently registered these runners for other events. Click 'Select' to add them to the team."
-      name:             "Name"
-      license_number:   "License No."
+      suggested_desc:   "You have recently registered these runners for other events. Click on their names to add them to the team."
+      runner:           "Runner"
+      clubs:            "Clubs"
     list:
+      new_members:      "Choose the Team Members"      
       members:          "Team Members"
       name:             "Name"
       leader:           "Leader"   

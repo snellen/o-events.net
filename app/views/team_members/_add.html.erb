@@ -1,9 +1,14 @@
-<h1><%= t('.add_team_member') %></h1>
-
+<h2><%= t('.add_team_member') %></h2>
+<%= form_tag registration_team_members_path, :team_id => @team.id do %>
+  <div class="field">
+    <b><%= label_tag t('.enter_username') %></b>
+    <%= text_field_tag :username, params[:username] %> <%= submit_tag t('.add') %>
+  </div>
+  <p><br /><b><%= t('.search_runner') %></b></p>
   <div class="field">
     <%= label_tag t('activerecord.attributes.user.country_id') %>
-    <%= select (:user, :country_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('countries.select.pleaseselect')) %> *
-  </div
+    <%= select (:user, :country_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('countries.select.pleaseselect')) %>
+  </div>
   <div class="field">
     <%= label_tag t('activerecord.attributes.user.first_name') %>
     <%= text_field_tag :first_name, params[:first_name] %><br />
@@ -19,11 +24,13 @@
   <div>
     <%= submit_tag t('.add') %>
   </div>
+<% end %>
   <br /><br />
   <h2><%= t('.suggested') %></h2>
   <p><%= t('.suggested_desc') %></p>
   
-  <table><tr><th><%= t('activerecord.attributes.user.username') %></th><th><%= t('.license_number') %></th><th><%= t('.name') %></th><th><%= t('activerecord.attributes.user.birthdate_y') %></th><th></th></tr>
+  <table>
+  <tr><td><a href="#"><b>Peter Müller</b> (1956)<br />OLG Baselland<br />peter</a></td><td><a href="#"><b>Peter Müller</b> (1956)<br />OLV Hindelbank<br />pmueller</a></td><td><a href="#"><b>Anna Fröhlich</b> (1977)<br />OLG Dachsen<br />SL4FRA</a></td></tr>
+  <tr><td><a href="#"><b>Ueli Maurer</b> (1940)<br />OLG Zürich<br />ueli_svp</a></td><td><a href="#"><b>Martin Zoller</b> (1987)<br />Das bist du!<br />mzoller</a></td><td><a href="#"><b>Kurt Fröhlich</b> (1950)<br />OLG Dachsen<br />SQ6FRK</a></td></tr>
+  <tr><td><a href="#"><b>Urs Meier</b> (1962)<br />OLK Argus<br /></a></td><td><a href="#"><b>Barbara Meier</b> (1967)<br />OLK Argus<br />barbara222</a></td><td><a href="#"><b>Linda Fröhlich</b> (2005)<br />OLG Dachsen<br /></a></td></tr>
   </table>
-
-  TODO: How to include the country and clubs in this listing? Use a layout with multiple rows per person!

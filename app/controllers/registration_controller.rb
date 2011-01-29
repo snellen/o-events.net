@@ -26,12 +26,12 @@ class RegistrationController < ApplicationController
 
     if params[:team_member_id]
       @team_member = TeamMember.find(params[:team_member_id])
-      @team_members = @team_member.team.team_members
+      @team = @team_member.team
     elsif params[:team_id]
-      @team_members = Team.find(params[:team_id]).team_members
+      @team = Team.find(params[:team_id])
       @team_member = TeamMember.new
     else
-      @team_members = []
+      @team = nil
       @team_member = TeamMember.new
     end
   end
