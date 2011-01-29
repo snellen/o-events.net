@@ -97,6 +97,9 @@ en:
       male:               "Male"
       female:             "Female"
       requiredfields:     "* marks required fields"
+    search:
+      enter_username:   "Username:"
+      search_runner:    "Find a runner without a username:"
   sessions:
     new:
       signin:             "Sign in"
@@ -114,10 +117,8 @@ en:
       register:          "Register"
   team_members:
     add:
-      enter_username:   "Username:"
-      search_runner:    "Add a runner without a username:"
       add_team_member:  "Add a Team Member"
-      add:              "Add"
+      add:              "Hinzufügen"      
       suggested:        "Suggested Runners"
       suggested_desc:   "You have recently registered these runners for other events. Click on their names to add them to the team."
       runner:           "Runner"

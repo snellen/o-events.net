@@ -63,7 +63,7 @@ de:
         mustbeselected: "muss ausgewählt werden"
     models:
       user:             "Benutzer"
-      club:             "Verein"    
+      club:             "Verein" 
     attributes:
       user:
         username:       "Benutzername"
@@ -97,6 +97,9 @@ de:
       male:               "Männlich"
       female:             "Weiblich"
       requiredfields:     "Mit * markierte Angaben sind zwingend."
+    search:
+      enter_username:    "Benutzername:"
+      search_runner:     "Läufer ohne Benutzernamen suchen:"      
   sessions:
     new:
       signin:             "Anmelden"
@@ -114,8 +117,6 @@ de:
       register:          "Anmelden"
   team_members:
     add:
-      enter_username:   "Benutzername:"
-      search_runner:    "Läufer ohne Benutzernamen anmelden:"      
       add_team_member:  "Neues Teammitglied"
       add:              "Hinzufügen"
       suggested:        "Kürzlich angemeldet"

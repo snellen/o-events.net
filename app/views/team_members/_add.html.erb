@@ -1,30 +1,5 @@
 <h2><%= t('.add_team_member') %></h2>
-<%= form_tag registration_team_members_path, :team_id => @team.id do %>
-  <div class="field">
-    <b><%= label_tag t('.enter_username') %></b>
-    <%= text_field_tag :username, params[:username] %> <%= submit_tag t('.add') %>
-  </div>
-  <p><br /><b><%= t('.search_runner') %></b></p>
-  <div class="field">
-    <%= label_tag t('activerecord.attributes.user.country_id') %>
-    <%= select (:user, :country_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('countries.select.pleaseselect')) %>
-  </div>
-  <div class="field">
-    <%= label_tag t('activerecord.attributes.user.first_name') %>
-    <%= text_field_tag :first_name, params[:first_name] %><br />
-  </div>
-  <div class="field">
-    <%= label_tag t('activerecord.attributes.user.last_name') %>
-    <%= text_field_tag :last_name, params[:last_name] %><br />
-  </div>
-  <div class="field">
-    <%= label_tag t('activerecord.attributes.user.birthdate_y') %>
-    <%= text_field_tag :birthdate_y, params[:birthdate_y] %><br />
-  </div>
-  <div>
-    <%= submit_tag t('.add') %>
-  </div>
-<% end %>
+  <%= render :partial => 'users/search', :locals => {:path => registration_team_members_path, :options => {:team_id => @team.id}, :search_button_caption => t('.add')} %>
   <br /><br />
   <h2><%= t('.suggested') %></h2>
   <p><%= t('.suggested_desc') %></p>

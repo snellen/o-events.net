@@ -1,4 +1,6 @@
 class RegistrationController < ApplicationController
+  
+  # GET /registration/overview
   def overview
     @event = Event.find(params[:event_id])
     @title = @event.name
@@ -8,6 +10,7 @@ class RegistrationController < ApplicationController
     end
   end
 
+  # GET /registration/main
   def main
     @competition_group = CompetitionGroup.find(params[:competition_group_id])
     @teams = @competition_group.teams
@@ -19,6 +22,7 @@ class RegistrationController < ApplicationController
     end
   end
 
+  #GET /registration/team_members
   def team_members
     @competition_group = CompetitionGroup.find(params[:competition_group_id])
     @event = @competition_group.competitions.first.event
@@ -31,9 +35,30 @@ class RegistrationController < ApplicationController
       @team = Team.find(params[:team_id])
       @team_member = TeamMember.new
     else
-      @team = nil
+      @team = Team.new
       @team_member = TeamMember.new
     end
+  end
+  
+  # POST /registration/team_members
+  def team_addmember
+    
+  end
+  
+  # DELETE /registration/team_members
+  def team_removemember
+    
+  end
+  
+  # POST /registration/team_save
+  def team_save
+    #TODO
+    redirect_to team_options_url(:team_id => @team.id)
+  end
+  
+  # POST /registration/search_user
+  def search_user
+    @user = User.where(params[:user])
   end
 
   def team_options
