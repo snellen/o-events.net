@@ -34,12 +34,14 @@ de:
       header:
         one:           "Der %{model} konnte aufgrund eines Fehlers nicht gespeichert werden"
         other:         "Der %{model} konnte aufgrund von %{count} Fehlern nicht gespeichert werden"
+  form:
+    pleaseselect:       "Bitte auswählen"      
+    requiredfields:     "Mit * markierte Angaben sind zwingend."        
   layouts:
     application:
       title:           "O-events.net"
       home:            "Home"
-      browseevents:    "Alle Wettkämpfe"
-      myeventcal:      "Angemeldete Wettkämpfe"
+      browseevents:    "Wettkampfkalender"
       myclubs:         "Meine Vereine"
       myaccount:       "Mein Konto"
       mybills:         "Meine Rechnungen"
@@ -53,6 +55,7 @@ de:
       supsportbanner:  "O-events.net ist ein kostenloser Dienst von {{supsport_link}} - Ihre {{donation_link}} halten es am laufen."
       donations:       "Spenden"
       poweredbyruby:   "Die Seite verwendet Ruby on Rails mit einem Layout basierend auf YAML."
+      faq:             "FAQ"
   activerecord:
     errors:
       messages:
@@ -94,6 +97,23 @@ de:
         birthdate_d:    "Geburtstag"
         country_id:     "Land"
         nation_id:      "Nationalität"
+      competitor:
+        email:          "E-mail-Adresse"
+        license_number: "Lizenznummer/SOLV-Nummer"
+        region_code:    "Regions-Code"
+        sicard_number:  "SI-Card-Nummer"
+        first_name:     "Vorname"
+        last_name:      "Nachname"
+        phone:          "Telefonnummer"
+        address_line_1: "Adresse Zeile 1"
+        address_line_2: "Adresse Zeile 2"
+        zipcode:        "Postleitzahl"
+        city:           "Stadt"
+        province:       "Bundesland/Kanton"
+        sex:            "Geschlecht"
+        birthdate_y:    "Jahrgang"
+        country_id:     "Land"
+        nation_id:      "Nationalität"        
   users:
     new:
       register:           "Benutzerkonto erstellen"
@@ -104,7 +124,6 @@ de:
       pleaseselect:       "Bitte auswählen"
       male:               "Männlich"
       female:             "Weiblich"
-      requiredfields:     "Mit * markierte Angaben sind zwingend."
     show:
       notspecified:       "keine Angabe"
       welcomeuser:        "Willkommen %{username}"
@@ -112,10 +131,13 @@ de:
       submit:             "Registrieren"
       male:               "Männlich"
       female:             "Weiblich"
-      requiredfields:     "Mit * markierte Angaben sind zwingend."
     search:
       enter_username:     "Benutzername:"
-      search_runner:      "Läufer ohne Benutzernamen suchen:"      
+      search_runner:      "Läufer ohne Benutzernamen suchen:"   
+  competitors:
+    form:
+      male:               "Männlich"
+      female:             "Weiblich"
   sessions:
     new:
       signin:             "Anmelden"
@@ -145,7 +167,9 @@ de:
       name:             "Name"
       leader:           "Admin."
       team_complete:    "Team komplett"      
-  countries:
-    select:
-      pleaseselect:     "Bitte auswählen"
+  registration:
+    search_user:
+      save:             "Speichern"
+      runner_not_found: "Läufer nicht gefunden. Bitte trage die nötigen Angaben ins Formular ein."
+      multiple_runners_found: "Es wurden mehrere Läufer mit diesen Angaben gefunden. Bitte ergänze das untenstehende Formular."      
   pleaselogin:      "Bitte anmelden"

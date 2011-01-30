@@ -44,7 +44,7 @@
             else
               myaccount = login_path
             end
-            navbar = [ { 'tab' => t('.browseevents'), 'url' => events_path, 'user' => false }, { 'tab' => t('.myeventcal'), 'url' => events_path(:user_id => session[:user_id]) , 'user' => true }, { 'tab' => t('.newevent'), 'url' => new_event_path, 'user' => 'false' }, { 'tab' => t('.myclubs'), 'url' => clubs_path(:user_id => session[:user_id]), 'user' => true }, { 'tab' => t('.myaccount'), 'url' => myaccount, 'user' => false }, { 'tab' => t('.mybills'), 'url' => payment_groups_path(:user_id => session[:user_id]), 'user' => true } ]            
+            navbar = [ { 'tab' => t('.browseevents'), 'url' => events_path, 'user' => false }, { 'tab' => t('.newevent'), 'url' => new_event_path, 'user' => 'false' }, { 'tab' => t('.myclubs'), 'url' => clubs_path(:user_id => session[:user_id]), 'user' => true }, { 'tab' => t('.myaccount'), 'url' => myaccount, 'user' => false }, { 'tab' => t('.mybills'), 'url' => payment_groups_path(:user_id => session[:user_id]), 'user' => true }, { 'tab' => t('.faq'), 'url' => '#', 'user' => false } ]            
           %>
           <ul>
             <% if @title  %>

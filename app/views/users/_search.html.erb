@@ -1,7 +1,7 @@
-<%= form_for(User.new, :url => registration_search_user_url) do |f| %>
+<%= form_for(User.new, :url => url) do |f| %>
   <div class="field">
     <b><%= f.label :username %></b>
-    <%= f.text_field :username %><br />
+    <%= f.text_field :username %>
   </div>
   <div class="actions">
     <%= submit_tag search_button_caption %>
@@ -9,19 +9,19 @@
   <p><br /><b><%= t('.search_runner') %></b></p>
   <div class="field">
     <%= f.label :country_id %>
-    <%= f.select (:country_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('countries.select.pleaseselect')) %>
+    <%= f.select (:country_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect')) %>
   </div>
   <div class="field">
     <%= f.label :first_name %>
-    <%= f.text_field :first_name %><br />
+    <%= f.text_field :first_name %>
   </div>
   <div class="field">
     <%= f.label :last_name %>
-    <%= f.text_field :last_name %><br />
+    <%= f.text_field :last_name %>
   </div>
   <div class="field">
     <%= f.label :birthdate_y %>
-    <%= f.text_field :birthdate_y %><br />
+    <%= f.text_field :birthdate_y %>
   </div>
   <div class="actions">
     <%= submit_tag search_button_caption %>
