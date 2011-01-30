@@ -1,4 +1,4 @@
-<%= form_for(User.new) do |f| %>
+<%= form_for(User.new, :url => registration_search_user_url) do |f| %>
   <div class="field">
     <b><%= f.label :username %></b>
     <%= f.text_field :username %><br />

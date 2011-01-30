@@ -2,6 +2,8 @@ OEventsNet::Application.routes.draw do
 
 
 
+  resources :event_settings
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -68,6 +70,10 @@ OEventsNet::Application.routes.draw do
     get "registration/overview" => :overview
     get "registration/main" => :main
     get "registration/team_members" => :team_members
+    post "registration/team_members" => :team_addmember
+    delete "registration/team_members" => :team_removemember
+    post "registration/team_save" => :team_save
+    post "registration/search_user" => :search_user      
     get "registration/team_options" => :team_options
   end
   
@@ -91,51 +97,38 @@ OEventsNet::Application.routes.draw do
       get "registration/team_options" => :team_options
     end
 
-    #must be on top:
-    resources :languages
-    resources :countries
-    resources :users
-    resources :clubs
-    resources :currencies    
-    #end    
+    #resource nesting is no longer used, it only complicates things
     
-    #should be on top because they may be filtered in different ways:
+    resources :additional_fees      
+    resources :age_ranges
+    resources :categories
+    resources :category_groups
     resources :chips
+    resources :club_members
+    resources :clubs
+    resources :competing_clubs
+    resources :competition_groups
+    resources :competitions
+    resources :competitors
+    resources :countries
+    resources :country_groups
+    resources :currencies    
+    resources :events
+    resources :languages
+    resources :payment_groups
+    resources :payments      
+    resources :registration_deadlines      
+    resources :results
+    resources :runs
+    resources :split_times
     resources :start_blocks    
+    resources :start_fees
     resources :start_times
     resources :team_members
-    resources :club_members
-    
-    resources :results do
-      resources :split_times
-    end
-    
-    resources :competitions do
-      resources :team_registrations
-      resources :total_results
-      resources :runs
-      
-    end
-    
-    resources :competition_groups do
-      resources :categories
-      resources :category_groups
-      resources :teams
-    end
-    
-    resources :events do
-      resources :age_ranges
-      resources :additional_fees      
-      resources :competitors
-      resources :competing_clubs
-      resources :country_groups
-      resources :start_fees
-      resources :registration_deadlines      
-    end
-    
-    resources :payment_groups do
-      resources :payments      
-    end
+    resources :team_registrations
+    resources :teams
+    resources :total_results
+    resources :users
     
     root :to => "events#index", :as => 'events_index'
   end

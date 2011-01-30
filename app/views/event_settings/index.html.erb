@@ -1,0 +1,27 @@
+<h1>Listing event_settings</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Value</th>
+    <th>Event</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @event_settings.each do |event_setting| %>
+  <tr>
+    <td><%= event_setting.name %></td>
+    <td><%= event_setting.value %></td>
+    <td><%= event_setting.event_id %></td>
+    <td><%= link_to 'Show', event_setting %></td>
+    <td><%= link_to 'Edit', edit_event_setting_path(event_setting) %></td>
+    <td><%= link_to 'Destroy', event_setting, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Event setting', new_event_setting_path %>
