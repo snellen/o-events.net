@@ -18,13 +18,18 @@ class RegistrationController < ApplicationController
     @event = @competition_group.competitions.first.event
     @title = @event.name
     if @teams.empty?
-      redirect_to :action => 'team_members', :competition_group_id => params[:competition_group_id] 
+      redirect_to registration_team_members_url, :competition_group_id => params[:competition_group_id] 
     end
   end
 
   #GET /registration/team_members
   def team_members
-    @competition_group = CompetitionGroup.find(params[:competition_group_id])
+    if(params[:team_id])
+      @team = Team.find(params[:team_id])
+      @competition_group = @team.competition_group
+    else
+      @competition_group = CompetitionGroup.find(params[:competition_group_id])
+    end
     @event = @competition_group.competitions.first.event
     @title = @event.name
 
@@ -42,23 +47,43 @@ class RegistrationController < ApplicationController
   
   # POST /registration/team_members
   def team_addmember
-    
+    @team = Team.find(params[:team_id])
+    redirect_to registration_team_members_url(:team_id => @team.id)
   end
   
   # DELETE /registration/team_members
   def team_removemember
-    
+    @team = Team.find(params[:team_id])
+    redirect_to registration_team_members_url(:team_id => @team.id)
   end
   
   # POST /registration/team_save
   def team_save
     #TODO
-    redirect_to team_options_url(:team_id => @team.id)
+    redirect_to registration_team_options_url(:team_id => @team.id, :competition_group_id => params[:competition_group_id])
   end
   
   # POST /registration/search_user
   def search_user
-    @user = User.where(params[:user])
+    users = User.where(params[:user])
+    @team_member = TeamMember.new
+    
+    # One result: Create a competitor, add to team
+    if users.count == 1 then
+      @competitor = Competitor.new(users.first)
+      @competitor.save
+      @team_member.competitor_id = @competitor.id
+      @team_member.team_id = params[:team_id]
+      @team_member.sortkey = Team.find(params[:team_id]).team_members.maximum(:sortkey) + 1
+      @team_member.save
+      redirect_to registration_team_members_url(:team_id => params[:team_id], :competition_group_id => params[:competition_group_id])
+    elsif users.empty? then
+      @competitor = Competitor.new      
+    else
+      # TODO Show this notice, but don't redirect (let user fill the form manually)
+      redirect_to registration_team_members_url(:team_id => params[:team_id], :competition_group_id => params[:competition_group_id], :notice => 'Error: Multiple search results.')
+    end
+        
   end
 
   def team_options
