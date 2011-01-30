@@ -1,0 +1,51 @@
+O-events.net Event Settings
+***************************
+The event settings are all stored as strings, but they may be converted to a different data type when they are read.
+Integers will be stored as strings, and booleans are either "1" or "0".
+
+
+[Data structure]
+license_number_show:boolean        True if the "license_number" field should be shown in the competitor form, and copied from user to competitor if available
+license_number_require:boolean     True if the "license_number" field should be mandatory
+email_show:boolean
+email_require:boolean
+phone_show:boolean
+phone_require:boolean
+address_show:boolean
+address_require:boolean
+city_show:boolean
+city_require:boolean
+birthdate_y_show:boolean
+birthdate_y_require:boolean
+competing_club_show:boolean
+competing_club_require:boolean
+
+
+[Custom fields]
+num1_name:string         Name of the "num1" field
+num1_show:boolean        True if the "num1" field should be shown in the competitor form
+num1_require:boolean     True if the "num1" field should be mandatory
+num2_name:string         Name of the "num2" field
+num2_show:boolean        True if the "num2" field should be shown in the competitor form
+num2_require:boolean     True if the "num2" field should be mandatory
+num3_name:string         Name of the "num3" field
+num3_show:boolean        True if the "num3" field should be shown in the competitor form
+num3_require:boolean     True if the "num3" field should be mandatory
+text1_name:string        Name of the "text1" field
+text1_show:boolean       True if the "text1" field should be shown in the competitor form
+text1_require:boolean    True if the "text1" field should be mandatory
+text2_name:string        Name of the "text2" field
+text2_show:boolean       True if the "text2" field should be shown in the competitor form
+text2_require:boolean    True if the "text2" field should be mandatory
+text3_name:string        Name of the "text3" field
+text3_show:boolean       True if the "text3" field should be shown in the competitor form
+text3_require:boolean    True if the "text3" field should be mandatory
+flag1_name:string        Name of the "flag1" field
+flag1_show:boolean       True if the "flag1" field should be shown in the competitor form
+flag1_require:boolean    True if the "flag1" field should be mandatory
+flag2_name:string        Name of the "flag2" field
+flag2_show:boolean       True if the "flag2" field should be shown in the competitor form
+flag2_require:boolean    True if the "flag2" field should be mandatory
+flag3_name:string        Name of the "flag3" field
+flag3_show:boolean       True if the "flag3" field should be shown in the competitor form
+flag3_require:boolean    True if the "flag3" field should be mandatory
