@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_filter :authorize, :only => [:new,:create]
+
   # GET /users
   # GET /users.xml
   def index
@@ -34,6 +36,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    checkid session[:user_id], params[:id]
     @user = User.find(params[:id])
   end
 
@@ -56,6 +59,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
+    checkid session[:user_id], params[:id]
     @user = User.find(params[:id])
 
     respond_to do |format|
@@ -72,6 +76,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
+    checkid session[:user_id], params[:id]
     @user = User.find(params[:id])
     @user.destroy
 
@@ -79,5 +84,13 @@ class UsersController < ApplicationController
       format.html { redirect_to events_url }
       format.xml  { head :ok }
     end
+  end
+  
+  protected
+  # Check if sessionId matches paramId
+  def checkid(sessionId,paramId)
+    unless sessionId == Integer(paramId)
+      raise "Permission denied" 
+    end    
   end
 end

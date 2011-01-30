@@ -147,4 +147,5 @@ de:
       team_complete:    "Team komplett"      
   countries:
     select:
-      pleaseselect:       "Bitte auswählen"
+      pleaseselect:     "Bitte auswählen"
+  pleaselogin:      "Bitte anmelden"
