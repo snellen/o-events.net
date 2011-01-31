@@ -6,6 +6,7 @@ gem 'rails', '3.0.0.rc2'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
+#gem 'date_validator' #TODO find compatible version
 
 # Use unicorn as the web server
 # gem 'unicorn'

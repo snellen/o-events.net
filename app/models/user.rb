@@ -6,7 +6,9 @@ class User < ActiveRecord::Base
   has_many :competitors
   has_many :events, :through => :competitors
   belongs_to :country
+  validates_presence_of :country, :message => I18n.t('activerecord.errors.messages.mustbeselected'), :unless => "country_id.blank?"
   belongs_to :nation, :class_name => "Country"
+  validates_presence_of :nation, :message => I18n.t('activerecord.errors.messages.mustbeselected')
   
   validates :username, :presence => true, :uniqueness => true
   validates :email, :presence => true, :uniqueness => true
@@ -16,7 +18,6 @@ class User < ActiveRecord::Base
   validates :first_name, :presence => true
   validates :last_name, :presence => true
   validates :birthdate_y, :presence => true, :numericality => {:only_integer => true, :allow_nil => true}, :inclusion => {:in => 1900..Date.today.year, :message => I18n.t('activerecord.errors.messages.between', :from => 1900, :to => Date.today.year.to_s), :allow_nil => true}
-  validates_presence_of :nation_id, :message => I18n.t('activerecord.errors.messages.mustbeselected')
   validates :sicard_number, :numericality => {:only_integer => true, :allow_nil => true}, :inclusion => {:in => 1..16777216, :message => I18n.t('activerecord.errors.messages.between', :from => 1, :to => 16777216), :allow_nil => true}
 
   attr_accessor :password_confirmation
