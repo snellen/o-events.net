@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110128041133) do
+ActiveRecord::Schema.define(:version => 20110130212454) do
 
   create_table "additional_fees", :force => true do |t|
     t.string   "name"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20110128041133) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_group_id"
-    t.integer  "competition_group_id"
+    t.integer  "team_pool_id"
     t.integer  "min_team_size"
     t.integer  "max_team_size"
   end
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(:version => 20110128041133) do
   create_table "competition_groups", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
+    t.integer  "team_pool_id"
   end
 
   create_table "competitions", :force => true do |t|
@@ -133,7 +133,7 @@ ActiveRecord::Schema.define(:version => 20110128041133) do
     t.datetime "updated_at"
     t.integer  "country_id"
     t.integer  "nation_id"
-    t.integer  "event_id"
+    t.integer  "team_pool_id"
     t.integer  "competing_club_id"
     t.integer  "user_id"
     t.integer  "num1"
@@ -169,6 +169,14 @@ ActiveRecord::Schema.define(:version => 20110128041133) do
   create_table "currencies", :force => true do |t|
     t.string   "name"
     t.string   "iso_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "event_settings", :force => true do |t|
+    t.string   "name"
+    t.string   "value"
+    t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -297,6 +305,12 @@ ActiveRecord::Schema.define(:version => 20110128041133) do
     t.integer  "team_id"
   end
 
+  create_table "team_pools", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "team_registrations", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -314,7 +328,7 @@ ActiveRecord::Schema.define(:version => 20110128041133) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "payment_group_id"
-    t.integer  "competition_group_id"
+    t.integer  "team_pool_id"
     t.integer  "competing_club_id"
     t.integer  "num1"
     t.integer  "num2"

@@ -24,7 +24,7 @@ class RegistrationController < ApplicationController
   
   #GET /registration/team_members
   def team_members
-    if(params[:team_id])
+    if(params[:team])
       @team = Team.find(params[:team_id])
       @competition_group = @team.competition_group
     else
@@ -82,7 +82,6 @@ class RegistrationController < ApplicationController
     # One result: Create a competitor, add to team
     if users.count == 1 then
       @competitor = Competitor.new(users.first)
-      @competitor.save
       @team_member = TeamMember.new      
       @team_member.competitor_id = @competitor.id
       @team_member.team_id = params[:team_id]
@@ -91,7 +90,6 @@ class RegistrationController < ApplicationController
       else
         @team_member.sortkey = Team.find(params[:team_id]).team_members.maximum(:sortkey) + 1
       end
-      @team_member.save
       redirect_to registration_team_members_url(:team_id => params[:team_id], :competition_group_id => params[:competition_group_id])
     else
       if users.empty? then

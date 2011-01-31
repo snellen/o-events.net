@@ -24,10 +24,10 @@ Category: Group of Teams which compete against each other. Each Competition gene
   min_age:integer        The minimum total age of a team's competitors in order to join this category.
   max_age:integer        The maximum total age of a team's competitors in order to join this category. 99 will be treated as infinity.
   sex:string             Determines whether this category is for men ('M'), women ('F'), or open ('O'). Categories with 'M' are open for women as well, but 'O' expresses that the category is really intended for everyone.
-  competition_group:ref  The competition group that the category belongs to.
-  category_group:ref     The category group that the category is part of.
   min_team_size:integer  The minimum number of competitors in teams competing in this category. This is only enforced during registration if the organizer choses to, otherwise incomplete teams are accepted with a warning message.  
   max_team_size:integer  The maximum number of competitors in teams competing in this category.
+  team_pool:ref          The team pool that the category belongs to.
+  category_group:ref     The category group that the category is part of.
 ==
 CategoryGroup: Group of Categories which have the same StartFees.
   fee_age_dependent:boolean     Determines whether the start fee in this category depends on age. This is used e.g. for "open" categories where people of any age are allowed to start.
@@ -65,9 +65,9 @@ CompetingClub: Club that is competing in an Event. Each Competitor may be assign
   club:ref               The club that this competing club is a copy of. Will be set to zero if a club is deleted.
   NOTE: CompetingClubs do not reference an event directly, they are only linked to it via the competitors.
 ==
-CompetitionGroup: A group of Competitions which share Categories, Teams, and StartFees. It is not possible to sign up for individual Competitions in the CompetitionGroup. CompetitionGroups may consist of a single Competition.
-  name:string         A name that summarizes the competitions in the competition group.
-  <no attributes or references>
+CompetitionGroup: A group of Competitions which have the same StartFees. CompetitionGroups may consist of a single Competition.
+  <no attributes>
+  team_pool:ref         The TeamPool that this CompetitionGroup is part of.
 ==
 Competition: A group of Runs that has a TotalResult. An Event can consist of several Competitions if it is e.g. a multi-day Event with daily prize giving.
 Note that a competition does not have a date; its start and end date is the date of the first and last run, respectively.
@@ -92,11 +92,6 @@ Competitor: A User who competes in an Event.
   birthdate_y:integer       Four-digit year of birth. This is stored separately from the date since the date may not always be available.
   birthdate_m:integer       Month of birth.
   birthdate_d:integer       Day of birth.
-  country:ref               Country of residence.
-  country:ref                Country represented by the competitor.
-  event:ref                 The event that the competitor is participating in.
-  competing_club:ref        The club that this competitor represents (in the current event).        
-  user:ref                  The user that this competitor is a copy of. This reference is set to zero when a user is deleted.
   num1:integer                Custom data as defined by the organizer
   num2:integer
   num3:integer
@@ -106,6 +101,11 @@ Competitor: A User who competes in an Event.
   flag1:boolean
   flag2:boolean
   flag3:boolean
+  country:ref               Country of residence.
+  nation:ref                Country represented by the competitor.
+  team_pool:ref             The TeamPool that the competitor is a part of.
+  competing_club:ref        The club that this competitor represents (in the current event).        
+  user:ref                  The user that this competitor is a copy of. This reference is zero if a competitor was registered by another user, and is set to zero when the linked user is deleted.  
 ==
 Country: A political country, as used for postal addresses.
   name:string               Name of the country.
@@ -217,7 +217,6 @@ Team: A group of one or more Competitors which takes part in a group of competit
   paid_by_club:boolean        This is set to true if the team leader has the necessary permission to add the team to the club's bill, and has chosen to do so. In this case, the team leader's club is responsible for the payment.
   start_fee:decimal           The StartFee amount that this team has to pay. This is a copy of the StartFee entry that applies to the team, and is used to reduce the amount of calculations needed to determine a PaymentGroup's balance.
   is_paid:boolean             This flag is set when a Payment is processed that covers the full start fee of this Team. If the paid amount is not sufficient to cover the entire PaymentGroup, teams are marked as paid in order of their registration_time.
-  payment_group:ref           The PaymentGroup that this Team is covered by. This reference is nil until a PaymentGroup is created by the paying User.
   num1:integer                Custom data as defined by the organizer
   num2:integer
   num3:integer
@@ -226,7 +225,9 @@ Team: A group of one or more Competitors which takes part in a group of competit
   text3:string
   flag1:boolean
   flag2:boolean
-  flag3:boolean
+  flag3:boolean  
+  payment_group:ref           The PaymentGroup that this Team is covered by. This reference is nil until a PaymentGroup is created by the paying User.
+  team_pool:ref               The TeamPool that this team belongs to.
 ==
 TeamMember: A competitor who is in a team. Since competitors are defined on event level and teams are specific to competition groups, a competitor may be in several teams.
   is_leader:boolean      Determines whether this team member is the team leader. The leader is the competitor/user who has registered the team.
@@ -236,6 +237,10 @@ TeamMember: A competitor who is in a team. Since competitors are defined on even
   sortkey:integer        Determines the order of the team members. This is especially important in relay events, where the runs are assigned to team members in this order.
   competitor:ref         The competitor who is represented by this record.
   team:ref               The team that the competitor is a member of.
+==
+TeamPool: A collection of CompetitionGroups which share a pool of competitors and teams. Teams may register for individual competitions; registrations are stored as TeamRegistrations.
+  name:string         A name that summarizes the competitions linked to the TeamPool.
+  <no attributes or references>
 ==
 TeamRegistration: A registration of a team for a competition, specifying the team's category.
   team:ref         The team that is registered.

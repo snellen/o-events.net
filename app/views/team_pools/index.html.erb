@@ -1,0 +1,23 @@
+<h1>Listing team_pools</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @team_pools.each do |team_pool| %>
+  <tr>
+    <td><%= team_pool.name %></td>
+    <td><%= link_to 'Show', team_pool %></td>
+    <td><%= link_to 'Edit', edit_team_pool_path(team_pool) %></td>
+    <td><%= link_to 'Destroy', team_pool, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Team pool', new_team_pool_path %>
