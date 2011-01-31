@@ -1,9 +1,6 @@
 OEventsNet::Application.routes.draw do
 
 
-
-  resources :event_settings
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -112,7 +109,8 @@ OEventsNet::Application.routes.draw do
     resources :competitors
     resources :countries
     resources :country_groups
-    resources :currencies    
+    resources :currencies
+    resources :event_settings    
     resources :events
     resources :languages
     resources :payment_groups

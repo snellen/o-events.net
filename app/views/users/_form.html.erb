@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= t('.requiredfields') %>
+    <%= t('form.requiredfields') %>
   </div>
 
   <br>
@@ -60,7 +60,7 @@
   </div>
   <div class="field">
     <%= f.label :nation_id %>
-    <%= select(:user, :nation_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('countries.select.pleaseselect')) %> *
+    <%= select(:user, :nation_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect')) %> *
   </div>
   
   <br>
@@ -91,7 +91,7 @@
   </div>
   <div class="field">
     <%= f.label :country_id %>
-    <%= select(:user, :country_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('countries.select.pleaseselect')) %>
+    <%= select(:user, :country_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect')) %>
   </div>
     
   <br>

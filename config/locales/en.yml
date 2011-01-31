@@ -34,12 +34,14 @@ en:
       header:
         one:           "1 error prohibited this %{model} from being saved"
         other:         "%{count} error prohibited this %{model} from being saved"
+  form:
+    requiredfields:     "* marks required fields"      
+    pleaseselect:     "Please select"
   layouts:
     application:
       title:           "O-events.net"
       home:            "Home"
       browseevents:    "Browse Events"
-      myeventcal:      "My Event Calendar"
       myclubs:         "My Clubs"
       myaccount:       "My Account"
       mybills:         "My Bills"
@@ -53,6 +55,7 @@ en:
       supsportbanner:  "O-events.net is a free service of %{supsport_link} - Your %{donation_link} keep it running."
       poweredbyruby:   "Powered by Ruby on Rails. Layout based on YAML."
       donations:       "donations"
+      faq:             "FAQ"      
   activerecord:
     errors:
       messages:
@@ -94,6 +97,23 @@ en:
         birthdate_d:    "Day of Birth"
         country_id:     "Country"
         nation_id:      "Nation"
+      competitor:
+        email:          "E-mail Address"
+        license_number: "License Number"
+        region_code:    "Region Code"
+        sicard_number:  "SI-Card Number"
+        first_name:     "First Name"
+        last_name:      "Last Name"
+        phone:          "Phone Number"
+        address_line_1: "Address Line 1"
+        address_line_2: "Address Line 2"
+        zipcode:        "Zip Code"
+        city:           "City"
+        province:       "Province/State"
+        sex:            "Sex"
+        birthdate_y:    "Year of Birth"
+        country_id:     "Country"
+        nation_id:      "Nation"
   users:
     new:
       register:           "Register"
@@ -101,18 +121,15 @@ en:
       password:           "Password"
       password_confirmation: "Confirm Password"
       submit:             "Save"
-      pleaseselect:       "Please select"
       male:               "Male"
       female:             "Female"
-      requiredfields:     "* marks required fields"
     show:
       notspecified:       "not specified"
       welcomeuser:        "Welcome %{username}"
       edit:               "Edit"
       submit:             "Register"
       male:               "Male"
-      female:             "Female"
-      requiredfields:     "* marks required fields"
+      female:             "Female"      
     search:
       enter_username:     "Username:"
       search_runner:      "Find a runner without a username:"
@@ -134,7 +151,7 @@ en:
   team_members:
     add:
       add_team_member:  "Add a Team Member"
-      add:              "Hinzufügen"      
+      add:              "Add"      
       suggested:        "Suggested Runners"
       suggested_desc:   "You have recently registered these runners for other events. Click on their names to add them to the team."
       runner:           "Runner"
@@ -145,7 +162,9 @@ en:
       name:             "Name"
       leader:           "Leader"   
       team_complete:    "Team complete"
-  countries:
-    select:
-      pleaseselect:     "Please select"
+  registration:
+    search_user:
+      save:             "Save"     
+      runner_not_found: "Runner not found. Please enter the required details in the form below."
+      multiple_runners_found: "There are several runners matching the criteria. Please specify the details in the form below."      
   pleaselogin:          "Please log in"

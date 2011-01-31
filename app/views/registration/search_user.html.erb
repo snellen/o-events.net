@@ -1,5 +1,7 @@
 <% content_for :main do %>
   <%= render :partial => 'team_members/list' %><br /><br %>
-  stupid, this doesnt need a view at all
+  <h2><%= t('team_members.add.add_team_member') %></h2>
+  <p id="notice"><%= notice %></p>
+  <%= render :partial => 'competitors/form', :locals => {:url => registration_team_members_path(:team_id => @team.id, :competition_group_id => @competition_group.id), :save_button_caption => t('.save') } %>
 <% end %>
 <%= render :partial => 'events/eventsite' %>

@@ -23,4 +23,9 @@ module ApplicationHelper
     end
   end
 
+  # Provides an event setting. Assumes that @event is defined.
+  def event_get(setting)
+    @event.event_settings.where(:name => setting).first  
+  end
+  
 end

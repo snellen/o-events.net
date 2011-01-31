@@ -1,2 +1,4 @@
-<h1>Registration#team_options</h1>
-<p>Find me in app/views/registration/team_options.html.erb</p>
+<% content_for :main do %>
+  <%= render :partial => 'teams/form', :locals => {} %><br /><br %>
+<% end %>
+<%= render :partial => 'events/eventsite' %>
