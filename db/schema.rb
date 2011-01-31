@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110128041133) do
+ActiveRecord::Schema.define(:version => 20110129232214) do
 
   create_table "additional_fees", :force => true do |t|
     t.string   "name"
@@ -169,6 +169,14 @@ ActiveRecord::Schema.define(:version => 20110128041133) do
   create_table "currencies", :force => true do |t|
     t.string   "name"
     t.string   "iso_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "event_settings", :force => true do |t|
+    t.string   "name"
+    t.string   "value"
+    t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

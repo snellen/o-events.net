@@ -47,10 +47,10 @@ en:
       logout:          "Logout"
       contact:         "Contact"
       imprint:         "Imprint"
-      welcomeguest:    "Welcome Guest! Please {{reglink}} or"
+      welcomeguest:    "Welcome Guest! Please %{reglink} or"
       welcomeuser:     "Welcome %{user}!"
       register:        "register"
-      supsportbanner:  "O-events.net is a free service of {{supsport_link}} - Your {{donation_link}} keep it running."
+      supsportbanner:  "O-events.net is a free service of %{supsport_link} - Your %{donation_link} keep it running."
       poweredbyruby:   "Powered by Ruby on Rails. Layout based on YAML."
       donations:       "donations"
   activerecord:

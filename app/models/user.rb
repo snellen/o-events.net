@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   belongs_to :country
   validates_presence_of :country, :message => I18n.t('activerecord.errors.messages.mustbeselected'), :unless => "country_id.blank?"
   belongs_to :nation, :class_name => "Country"
-  validates_presence_of :nation_id, :message => I18n.t('activerecord.errors.messages.mustbeselected')
+  validates_presence_of :nation, :message => I18n.t('activerecord.errors.messages.mustbeselected')
   
   validates :username, :presence => true, :uniqueness => true
   validates :email, :presence => true, :uniqueness => true
