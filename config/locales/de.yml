@@ -32,8 +32,8 @@ de:
         one:           "Bitte korrigiere das folgende Feld:"
         other:         "Bitte korrigiere die folgenden Felder:"
       header:
-        one:           "Der %{model} konnte aufgrund eines Fehlers nicht gespeichert werden"
-        other:         "Der %{model} konnte aufgrund von %{count} Fehlern nicht gespeichert werden"
+        one:           "%{model} konnte aufgrund eines Fehlers nicht gespeichert werden"
+        other:         "%{model} konnte aufgrund von %{count} Fehlern nicht gespeichert werden"
   form:
     pleaseselect:       "Bitte auswählen"      
     requiredfields:     "Mit * markierte Angaben sind zwingend."        
@@ -74,6 +74,7 @@ de:
     models:
       user:             "Benutzer"
       club:             "Verein" 
+      event:            "Wettkampf"
     attributes:
       user:
         username:       "Benutzername"
@@ -113,7 +114,10 @@ de:
         sex:            "Geschlecht"
         birthdate_y:    "Jahrgang"
         country_id:     "Land"
-        nation_id:      "Nationalität"        
+        nation_id:      "Nationalität"  
+      event:
+        start_date:     "Startdatum"      
+        end_date:       "Enddatum"  
   users:
     new:
       register:           "Benutzerkonto erstellen"

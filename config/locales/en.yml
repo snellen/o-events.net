@@ -74,6 +74,7 @@ en:
     models:
       user:             "User"
       club:             "Club"
+      event:            "Event"
     attributes:
       user:
         username:       "Username"
@@ -114,6 +115,8 @@ en:
         birthdate_y:    "Year of Birth"
         country_id:     "Country"
         nation_id:      "Nation"
+      event:
+        start_date:     "Start date"
   users:
     new:
       register:           "Register"
