@@ -92,6 +92,7 @@ Competitor: A User who competes in an Event.
   birthdate_y:integer       Four-digit year of birth. This is stored separately from the date since the date may not always be available.
   birthdate_m:integer       Month of birth.
   birthdate_d:integer       Day of birth.
+  sortkey:integer           Determines the order of the competitors in a team. This is especially important in relay events, where the runs are assigned to team members in this order.
   num1:integer                Custom data as defined by the organizer
   num2:integer
   num3:integer
@@ -123,14 +124,14 @@ Currency: A currency used for payments by an event.
   <TODO> Somehow manage to display the currency in a localized fashion. Try to use Rails i18n features for this.
 ==
 Event: Represents an orienteering event.
-  name:string       The name of the event, to be displayed in the calendar, page title, and other places.
-  slug:string       Event name to be used in URLs, consisting of only latin letters and digits. Must be unique. (The term "slug" is used for this in WordPress.)
-  start_date:date   Start date of the event (does not need to match the date of the first run)
-  end_date:date     End date of the event (does not need to match the date of the last run)
-  club:ref          Organizer of the event.  
-  country:ref       Country under which the event should be listed. The country of the organizing is used by default, but other countries can be chosen.
-  currency:ref      The event's official currency. All start fees are defined in this currency, and (currently) have to be paid in this currency.
-  language:n-to-n   The languages in which the event website is available.
+  name:string          The name of the event, to be displayed in the calendar, page title, and other places.
+  slug:string          Event name to be used in URLs, consisting of only latin letters and digits. Must be unique. (The term "slug" is used for this in WordPress.)
+  start_date:date      Start date of the event (does not need to match the date of the first run)
+  end_date:date        End date of the event (does not need to match the date of the last run)
+  club:ref             The organizer of the event.  
+  country:ref          Country under which the event should be listed. The country of the organizing is used by default, but other countries can be chosen.
+  currency:ref         The event's official currency. All start fees are defined in this currency, and (currently) have to be paid in this currency.
+  language:n-to-n      The languages in which the event website is available.
 ==
 EventSetting: A configuration setting in the current event. See event_settings.txt for definitions.
   name:string       The name of the setting.
@@ -171,8 +172,7 @@ PaymentGroups are created when teams are registered, unless they are registered 
   is_paper_bill_sent:boolean   This flag can be set by the bill administrator to notify the user that their bill has been printed and mailed. It can also be used internally to keep track of the bills that still need to be printed.
   is_paid:boolean              This flag is set when the sum of payments linked to this payment group is larger or equal to the sum of start fees of all the teams in this payment group.
                                Note that transaction fees may be relevant for this comparison: If the organizer does not cover fees, the sum of (debit_amount -  fees) must be >= the sum of start fees
-                               Also note that payments may be in Swiss Francs or the event's currency, whereas StartFees are always in the event's currency.
-  user:ref                     The user who is paying for this group of teams. 
+                               Also note that payments may be in Swiss Francs or the event's currency, whereas StartFees are always in the event's currency. 
 ==
 RegistrationDeadline: A date that is relevant to an Event's StartFees. The online registration of an Event is open until its latest deadline, but the StartFees may be increased over time, to give Competitors an incentive to register early.
   date:date           The deadline.
@@ -237,18 +237,16 @@ Team: A group of one or more Competitors which takes part in a group of competit
   text3:string
   flag1:boolean
   flag2:boolean
-  flag3:boolean  
+  flag3:boolean
+  competing_club:ref          The CompetingClub that this Team represents. This is also the club responsible for payment if paid_by_club is true.
+                              The team's CompetingClub is set to the leader's CompetingClub by default, but may be set to the CompetingClub of any team member. Other clubs are not allowed.
+  leader:ref(competitor)      The leader of this team.
+                              The postal address and other contact information is always taken from the team leader. Furthermore, if the team needs only one chip in a competition, the team leader's chip is used.
+                              Since Teams do not have Results per Run, the Results in Team competitions are assigned to the TeamLeader. Only the TotalResult is linked directly to the Team.
+  nation:ref                  The nation that this Team represents. This is set to the leader's Nation by default, but may be set to the Nation of any team member.                              
   payment_group:ref           The PaymentGroup that this Team is covered by. This reference may be nil iff paid_by_club is true. (In this case, the PaymentGroup may be created by any of the club's payment officers.)
+  user:ref                    The user who has registered this team, and may be responsible for paying its StartFee.
   team_pool:ref               The TeamPool that this team belongs to.
-==
-TeamMember: A competitor who is in a team. Since competitors are defined on event level and teams are specific to competition groups, a competitor may be in several teams.
-  is_leader:boolean      Determines whether this team member is the team leader. The leader is the competitor/user who has registered the team.
-                         The starting fee of Teams must always be paid by their leader or the leader's Club. The postal address and other contact information is also taken from the leader. Furthermore, if the team needs only one chip in a run, the team leader's chip is used.
-                         Since Teams do not have Results per Run, the Results in Team competitions are assigned to the TeamLeader. Only the TotalResult is linked directly to the Team.
-                         NOTE: Teams have a directly assigned CompetingClub. This is set to the team leader's CompetingClub by default, but may be set to the CompetingClub of any team member. Other clubs are not allowed.
-  sortkey:integer        Determines the order of the team members. This is especially important in relay events, where the runs are assigned to team members in this order.
-  competitor:ref         The competitor who is represented by this record.
-  team:ref               The team that the competitor is a member of.
 ==
 TeamPool: A collection of CompetitionGroups which share a pool of competitors and teams. Teams may register for individual competitions; registrations are stored as TeamRegistrations.
   name:string         A name that summarizes the competitions linked to the TeamPool.

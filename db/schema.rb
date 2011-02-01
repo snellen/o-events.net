@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110201045539) do
+ActiveRecord::Schema.define(:version => 20110201184325) do
 
   create_table "additional_fees", :force => true do |t|
     t.string   "name"
@@ -133,7 +133,6 @@ ActiveRecord::Schema.define(:version => 20110201045539) do
     t.datetime "updated_at"
     t.integer  "country_id"
     t.integer  "nation_id"
-    t.integer  "team_pool_id"
     t.integer  "competing_club_id"
     t.integer  "user_id"
     t.integer  "num1"
@@ -214,7 +213,6 @@ ActiveRecord::Schema.define(:version => 20110201045539) do
   create_table "payment_groups", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
     t.boolean  "is_closed"
     t.datetime "closing_time"
     t.decimal  "exchange_rate"
@@ -302,15 +300,6 @@ ActiveRecord::Schema.define(:version => 20110201045539) do
     t.integer  "run_id"
   end
 
-  create_table "team_members", :force => true do |t|
-    t.boolean  "is_leader"
-    t.integer  "sortkey"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "competitor_id"
-    t.integer  "team_id"
-  end
-
   create_table "team_pools", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -344,6 +333,9 @@ ActiveRecord::Schema.define(:version => 20110201045539) do
     t.boolean  "flag1"
     t.boolean  "flag2"
     t.boolean  "flag3"
+    t.integer  "user_id"
+    t.integer  "leader_id"
+    t.integer  "nation_id"
   end
 
   create_table "total_results", :force => true do |t|

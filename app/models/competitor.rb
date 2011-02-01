@@ -2,17 +2,15 @@ class Competitor < ActiveRecord::Base
   has_many :chips
   has_many :start_blocks
   has_many :start_times
-  has_many :team_members
   belongs_to :country
   validates_presence_of :country, :unless => "country_id.blank?"
   belongs_to :competing_club
   validates_presence_of :competing_club, :unless => "competing_club_id.blank?"
   belongs_to :nation, :class_name => "Country"
   validates_presence_of :nation
-  belongs_to :event
-  validates_presence_of :event
   belongs_to :user
   validates_presence_of :user
+  has_one :leader_team, :foreign_key => "leader_id"
   validates :username, :presence => true
   validates :email, :presence => true
   validates_format_of :email, :with => /(\S+)@(\S+)/

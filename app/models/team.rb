@@ -2,11 +2,13 @@ class Team < ActiveRecord::Base
   belongs_to :payment_group
   belongs_to :competing_club
   validates_presence_of :competing_club 
-  belongs_to :competition_group
-  validates_presence_of :competition_group
-  belongs_to :country
+  belongs_to :team_pool
+  validates_presence_of :team_pool
+  belongs_to :nation, :class_name => "Country"
   validates_presence_of :country
-  has_many :team_members
+  belongs_to :leader, :class_name => "Competitor"
+  belongs_to :user
+  has_many :competitors
   has_many :team_registrations
   has_many :total_results
   validates_presence_of :name
