@@ -90,7 +90,7 @@ de:
         address_line_1: "Adresse Zeile 1"
         address_line_2: "Adresse Zeile 2"
         zipcode:        "Postleitzahl"
-        city:           "Stadt"
+        city:           "Ort"
         province:       "Bundesland/Kanton"
         sex:            "Geschlecht"
         birthdate_y:    "Jahrgang"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110130212454) do
+ActiveRecord::Schema.define(:version => 20110201045539) do
 
   create_table "additional_fees", :force => true do |t|
     t.string   "name"
@@ -215,6 +215,12 @@ ActiveRecord::Schema.define(:version => 20110130212454) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.boolean  "is_closed"
+    t.datetime "closing_time"
+    t.decimal  "exchange_rate"
+    t.boolean  "is_paper_bill"
+    t.boolean  "is_paper_bill_sent"
+    t.boolean  "is_paid"
   end
 
   create_table "payments", :force => true do |t|
@@ -324,7 +330,6 @@ ActiveRecord::Schema.define(:version => 20110130212454) do
     t.datetime "registration_time"
     t.boolean  "paid_by_club"
     t.decimal  "start_fee"
-    t.boolean  "is_paid"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "payment_group_id"

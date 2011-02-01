@@ -1,4 +1,23 @@
 class RegistrationController < ApplicationController
+
+  def get_session_params
+    if(params[:team_id])
+      @team = Team.find(params[:team_id])
+      @competition_group = @team.competition_group
+      session[:reg_team] = @team
+    elsif(params[:competition_group_id])
+      @competition_group = CompetitionGroup.find(params[:competition_group_id])
+      @team = Team.new
+      session[:reg_team] = @team
+    elsif(session[:reg_team])
+      @team = session[:reg_team]
+      @competition_group = @team.competition_group
+    end  
+    
+    if(session[:reg_competitors])
+      @competitors = session[:reg_competitors]
+    end
+  end
   
   # GET /registration/overview
   def overview
@@ -24,26 +43,12 @@ class RegistrationController < ApplicationController
   
   #GET /registration/team_members
   def team_members
-    if(params[:team_id])
-      @team = Team.find(params[:team_id])
-      @competition_group = @team.competition_group
-    else
-      @competition_group = CompetitionGroup.find(params[:competition_group_id])
-    end
+    get_session_params    
+     
     @event = @competition_group.competitions.first.event
     @title = @event.name
-
-    if params[:team_member_id]
-      @team_member = TeamMember.find(params[:team_member_id])
-      @team = @team_member.team
-    elsif params[:team_id]
-      @team = Team.find(params[:team_id])
-      @team_member = TeamMember.new
-    else
-      @team = Team.new
-      @team_member = TeamMember.new
-    end
   end
+
   
   # POST /registration/team_members
   def team_addmember
@@ -82,7 +87,6 @@ class RegistrationController < ApplicationController
     # One result: Create a competitor, add to team
     if users.count == 1 then
       @competitor = Competitor.new(users.first)
-      @competitor.save
       @team_member = TeamMember.new      
       @team_member.competitor_id = @competitor.id
       @team_member.team_id = params[:team_id]
@@ -91,7 +95,6 @@ class RegistrationController < ApplicationController
       else
         @team_member.sortkey = Team.find(params[:team_id]).team_members.maximum(:sortkey) + 1
       end
-      @team_member.save
       redirect_to registration_team_members_url(:team_id => params[:team_id], :competition_group_id => params[:competition_group_id])
     else
       if users.empty? then

@@ -1,0 +1,10 @@
+Speichern von competitors mit neuer Struktur
+
+- Suchen: 1. nach Competitor im gleichen Event, mit Name/Jahrgang/Klub/Land
+             - falls gleicher TeamPool, ID übernehmen
+             - sonst kopieren
+          2. nach User mit Username bzw. mit Name/Jahrgang/Klub/Land
+             - Neuen Competitor anlegen, Daten anlegen
+          3. nach 
+          
+          

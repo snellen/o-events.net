@@ -147,6 +147,7 @@ Log: Chronological list of modifications in the other database tables. Logging m
   <TODO>
 ==
 Payment: Represents a payment from the user to o-events.net using either an e-payment platform or a Swiss ESR payment slip. (All payments are processed automatically.)
+All payments must be made in Swiss francs (using current exchange rates, only if accepted by the organizer) or in the event's official currency.
   reference_number:string     The ESR or E-Payment reference number.
   valuta:date                 The date on which the money is transferred.
   fees_valuta:date            The date on which the fees are debited from the account of supsport.ch.
@@ -154,17 +155,24 @@ Payment: Represents a payment from the user to o-events.net using either an e-pa
   security_data:string        A collection of header data used to track fradulent users of the payment system. Contains IP address, browser version, and other information.
   method:string               Method of payment, e.g. one of 'esr','postfinance_card','postfinance_efinance','paypal'
   fees:decimal                The fees which have to be paid to the payment service provider for this payment.
-  fees_included:boolean       Determines whether the fees are included in the amount. If this is false, the organizer covers the fees.
-  debit_amount:decimal        The amount of money that is debited to the user's bank or credit card account. (The amount that gets credited to the organizer is amount minus fees!)
+  fees_included:boolean       Determines whether the fees are included in the debit_amount. If this is false, the organizer covers the fees.
+  debit_amount:decimal        The amount of money that is debited to the user's bank or credit card account.
+                              Note: The amount that gets credited to the organizer is debit_amount minus fees! (If the organizer does not cover transaction fees, this is equal to the StartFees.)
+                                    The amount of StartFees that the user has paid is debit_amount if fees_included is true, and debit_amount minus fees otherwise.
   payment_group:ref           The payment group to whose balance this payment contributes. Payments are linked to Users only through PaymentGroups.
   currency:ref                The currency in which the payment has been made.
-  <TODO> Add a mechanism for currency conversion, and keep track of all payments in the event's official currency, using the daily exchange rate of the value date.
 == 
-PaymentGroup: A group of Teams whose StartFees are paid by the same User.
-The StartFees of a PaymentGroup may be paid in several partial payments. In this case, the "isPaid" flag will be set only for some of the Teams, depending on the amount paid so far.
-PaymentGroups are created at the time of the first payment. Before that, it is not known which user will make the payment, especially if a Club is paying for the start fees.
-  <no attributes>
-  user:ref                  The user who is paying for this group of teams. 
+PaymentGroup: A group of Teams within the same event whose StartFees are paid by the same User.
+PaymentGroups are created when teams are registered, unless they are registered through a club. PaymentGroups for club registrations are created when the bill is closed.
+  is_closed:boolean            This flag is set when the user has closed the PaymentGroup by converting it into a "pending bill". If the flag is set, the teams in this group may no longer be deleted, and changes which influence the start fees are no longer allowed.
+  closing_time:datetime        A timestamp of the instant when the is_closed flag of the PaymentGroup was set to true.
+  exchange_rate:decimal        The price of one <Event's official currency> in Swiss Francs at the closing_time. This exchange rate is used to calculate the owed amount if the bill is paid in Swiss Francs.
+  is_paper_bill:boolean        This flag is set when the user selects "bill by mail" as a method of payment. In this case, the payment page can no longer be accessed, and only Swiss ESR payments are accepted. The organizer cannot override this setting!
+  is_paper_bill_sent:boolean   This flag can be set by the bill administrator to notify the user that their bill has been printed and mailed. It can also be used internally to keep track of the bills that still need to be printed.
+  is_paid:boolean              This flag is set when the sum of payments linked to this payment group is larger or equal to the sum of start fees of all the teams in this payment group.
+                               Note that transaction fees may be relevant for this comparison: If the organizer does not cover fees, the sum of (debit_amount -  fees) must be >= the sum of start fees
+                               Also note that payments may be in Swiss Francs or the event's currency, whereas StartFees are always in the event's currency.
+  user:ref                     The user who is paying for this group of teams. 
 ==
 RegistrationDeadline: A date that is relevant to an Event's StartFees. The online registration of an Event is open until its latest deadline, but the StartFees may be increased over time, to give Competitors an incentive to register early.
   date:date           The deadline.
@@ -214,9 +222,13 @@ StartTime: The time at which a competitor starts in a run.
 Team: A group of one or more Competitors which takes part in a group of competitions.
   name:string                 An arbitrary team name, defined by the team leader.
   registration_time:datetime  The instant at which the team was registered. This is used to determine which start fee is applied, if start fees depend on the deadline.
-  paid_by_club:boolean        This is set to true if the team leader has the necessary permission to add the team to the club's bill, and has chosen to do so. In this case, the team leader's club is responsible for the payment.
+  paid_by_club:boolean        This is set to true if the registration was made through the club, by an entitled member who has the permission to register teams on behalf of the club.
+                              Note: - To let a club pay for teams, the registration must be opened through the club's page. Teams registered through the normal system cannot be billed to a club, since they are added to a PaymentGroup automatically.
+                                    - All teams in a club registration must compete for the club that pays for the registration, i.e. the club of the team leader cannot be changed. (The team leader can be changed if the new leader is in the same club.)
+                                    - Club registrations do not create a PaymentGroup. They can be edited by all entitled club members through the club page. (Find them through the paid_by_club flag and the team leader's competing club.)
+                                    - Each club has one or more payment officers. They see the club registrations in a separate section on their payment page, and can turn them into bills. When that happens, a PaymentGroup is created, locked, and linked to the paying user.                                    
+                                    - Clubs without payment officers may not make club registrations. This means that if a club has unpaid registrations, the last payment officer may not be deleted, and the club itself may not be deleted either.    
   start_fee:decimal           The StartFee amount that this team has to pay. This is a copy of the StartFee entry that applies to the team, and is used to reduce the amount of calculations needed to determine a PaymentGroup's balance.
-  is_paid:boolean             This flag is set when a Payment is processed that covers the full start fee of this Team. If the paid amount is not sufficient to cover the entire PaymentGroup, teams are marked as paid in order of their registration_time.
   num1:integer                Custom data as defined by the organizer
   num2:integer
   num3:integer
@@ -226,7 +238,7 @@ Team: A group of one or more Competitors which takes part in a group of competit
   flag1:boolean
   flag2:boolean
   flag3:boolean  
-  payment_group:ref           The PaymentGroup that this Team is covered by. This reference is nil until a PaymentGroup is created by the paying User.
+  payment_group:ref           The PaymentGroup that this Team is covered by. This reference may be nil iff paid_by_club is true. (In this case, the PaymentGroup may be created by any of the club's payment officers.)
   team_pool:ref               The TeamPool that this team belongs to.
 ==
 TeamMember: A competitor who is in a team. Since competitors are defined on event level and teams are specific to competition groups, a competitor may be in several teams.

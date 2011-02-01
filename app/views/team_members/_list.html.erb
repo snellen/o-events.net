@@ -23,8 +23,8 @@
     <td><%= f.radio_button :is_leader %></td>
     <td><%= team_member.competitor.first_name %> <%= team_member.competitor.last_name %></td>
     <td><%= team_member.competitor.competing_club.name %></td>
-    <td><%= link_to 'Move up', registration_team_members_path(:team_member_id => team_member.id, :move => 'up') %></td>
-    <td><%= link_to 'Move up', registration_team_members_path(:team_member_id => team_member.id, :move => 'down') %></td>
+    <td><%= link_to 'Move up', registration_team_members_path(:move => 'up'), :method => :post %></td>
+    <td><%= link_to 'Move up', registration_team_members_path(:move => 'down'), :method => :post %></td>
     <td><%= link_to 'Edit', registration_team_members_path(:team_member_id => team_member.id) %></td>
     <td><%= link_to 'Delete', registration_team_members_path(:team_member_id => team_member.id), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr><% end %>
