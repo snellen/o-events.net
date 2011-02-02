@@ -1,8 +1,7 @@
 class CompetitionGroup < ActiveRecord::Base
+  belongs_to :team_pool
+  validates_presence_of :team_pool_id, :unless => "team_pool_id.blank?"
   has_many :competitions
-  has_many :categories
   has_many :start_fees
-  has_many :teams
-  has_and_belongs_to_many :additional_fees
-  validates_presence_of :name
+  has_many :additional_fees
 end

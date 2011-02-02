@@ -1,8 +1,8 @@
 class Category < ActiveRecord::Base
-  belongs_to :competition_group
-  validates_presence_of :competition_group
+  belongs_to :team_pool
+  validates_presence_of :team_pool
   belongs_to :category_group
-  validates_presence_of :competition_group, :unless => "competition_group_id.blank?"
+  validates_presence_of :category_group, :unless => "category_group_id.blank?"
   has_many :team_registrations
   validates_presence_of :name
   validates_format_of :slug, :with => /[a-z0-9]/i

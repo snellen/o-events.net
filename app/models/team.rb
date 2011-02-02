@@ -1,16 +1,21 @@
 class Team < ActiveRecord::Base
   belongs_to :payment_group
+  validates_presence_of :payment_group, :unless => "payment_group_id.blank?"
   belongs_to :competing_club
   validates_presence_of :competing_club 
   belongs_to :team_pool
   validates_presence_of :team_pool
   belongs_to :nation, :class_name => "Country"
-  validates_presence_of :country
-  belongs_to :leader, :class_name => "Competitor"
+  validates_presence_of :nation
   belongs_to :user
+  validates_presence_of :user, :unless => "user_id.blank?"
+  belongs_to :leader, :class_name => "Competitor"
+  validates_presence_of :leader, :unless => "leader_id.blank?"
+  
   has_many :competitors
   has_many :team_registrations
   has_many :total_results
+
   validates_presence_of :name
   validates_presence_of :registration_time
   validates_inclusion_of :paid_by_club, :in => [true, false]

@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   has_many :club_members
   has_many :clubs, :through => :club_members
   has_many :competitors
-  has_many :events, :through => :competitors
+  has_many :teams
+  
   belongs_to :country
   validates_presence_of :country, :message => I18n.t('activerecord.errors.messages.mustbeselected'), :unless => "country_id.blank?"
   belongs_to :nation, :class_name => "Country"

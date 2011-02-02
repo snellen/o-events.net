@@ -6,6 +6,7 @@ class Competition < ActiveRecord::Base
   has_many :team_registrations
   has_many :runs
   has_many :total_results
+  validates_presence_of :name
   validates_presence_of :kind
   validates_inclusion_of :kind, :in => %w(single relay team)
 end

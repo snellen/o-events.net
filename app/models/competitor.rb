@@ -9,7 +9,9 @@ class Competitor < ActiveRecord::Base
   belongs_to :nation, :class_name => "Country"
   validates_presence_of :nation
   belongs_to :user
-  validates_presence_of :user
+  validates_presence_of :user, :unless => "user_id.blank?"
+  belongs_to :team
+  validates_presence_of :team
   has_one :leader_team, :foreign_key => "leader_id"
   validates :username, :presence => true
   validates :email, :presence => true
@@ -18,7 +20,6 @@ class Competitor < ActiveRecord::Base
   validates :first_name, :presence => true
   validates :last_name, :presence => true
   validates :birthdate_y, :presence => true, :numericality => {:only_integer => true, :allow_nil => true}, :inclusion => {:in => 1900..Date.today.year, :allow_nil => true}
-  validates :sicard_number, :numericality => {:only_integer => true, :allow_nil => true}, :inclusion => {:in => 1..16777216, :allow_nil => true}
   validates_inclusion_of :flag1, :in => [true, false], :unless => "flag1.blank?"
   validates_inclusion_of :flag2, :in => [true, false], :unless => "flag2.blank?"
   validates_inclusion_of :flag3, :in => [true, false], :unless => "flag3.blank?"

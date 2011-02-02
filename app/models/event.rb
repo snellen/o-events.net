@@ -1,17 +1,16 @@
 class Event < ActiveRecord::Base
   belongs_to :club
-  validates_presence_of :club
+  validates_presence_of :club, :unless => "club_id.blank?"
   belongs_to :country
   validates_presence_of :country
   belongs_to :currency
   validates_presence_of :currency 
-  has_many :additional_fees
+  
   has_many :age_ranges
   has_many :competitions
-  has_many :competitors
-  has_many :users, :through => :competitors
   has_many :country_groups
   has_many :registration_deadlines
+  has_many :team_pools
   has_and_belongs_to_many :languages
   validates_presence_of :name
   validates_presence_of :start_date

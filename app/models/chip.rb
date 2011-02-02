@@ -5,5 +5,5 @@ class Chip < ActiveRecord::Base
   validates_presence_of :competitor
   has_one :result
   validates_presence_of :number
-  validates_numericality_of :number, :greater_than_or_equal_to => 0, :only_integer => true 
+  validates_numericality_of :number, :greater_than => 0, :only_integer => true 
 end

@@ -6,11 +6,11 @@ NOTE: The models are spelled with CapitalLetters here and in the diagram, but wi
 
 ==
 AdditionalFee: Fees for additional services which do not depend on the Competitors' age, Category, or other parameters. Example: Set of training maps provided by the organizer.
-  name:string          The name of the fee, as determined by the event organizer.
-  description:string   A short description of the fee. 
-  amount:decimal       The fee (in the event's main currency).
-  event:ref            The event that the fee belongs to.
-  age_range:ref        The age range that the fee applies to. Zero for team events.
+  name:string            The name of the fee, as determined by the event organizer.
+  description:string     A short description of the fee. 
+  amount:decimal         The fee (in the event's main currency).
+  competition_group:ref  The CompetitionGroup that the fee belongs to.
+  age_range:ref          The age range that the fee applies to. Zero for team events.
 ==
 AgeRange: Range used to define StartFees depending on age. Note that this can only be used for single events, since the age of a Team is not defined otherwise.
   lower:integer        The lower end of the age range.
@@ -63,7 +63,6 @@ CompetingClub: Club that is competing in an Event. Each Competitor may be assign
   website:string
   country:ref            The country in which the club is domiciled.
   club:ref               The club that this competing club is a copy of. Will be set to zero if a club is deleted.
-  NOTE: CompetingClubs do not reference an event directly, they are only linked to it via the competitors.
 ==
 CompetitionGroup: A group of Competitions which have the same StartFees. CompetitionGroups may consist of a single Competition.
   <no attributes>
@@ -104,7 +103,7 @@ Competitor: A User who competes in an Event.
   flag3:boolean
   country:ref               Country of residence.
   nation:ref                Country represented by the competitor.
-  team_pool:ref             The TeamPool that the competitor is a part of.
+  team:ref                  The Team that the competitor is a part of.
   competing_club:ref        The club that this competitor represents (in the current event).        
   user:ref                  The user that this competitor is a copy of. This reference is zero if a competitor was registered by another user, and is set to zero when the linked user is deleted.  
 ==
@@ -112,10 +111,11 @@ Country: A political country, as used for postal addresses.
   name:string               Name of the country.
   iso_code:string           Country code according to ISO 3166 Alpha-2 (see http://en.wikipedia.org/wiki/ISO_3166-1)
   ioc_code:string           Olympic country code according to this list: http://en.wikipedia.org/wiki/List_of_IOC_country_codes
+  country_groups:n-to-n     The CountryGroups that this country has been assigned to.
 ==
 CountryGroup: Used to define StartFees that depend on the Team's country. A CountryGroup is a group of countries with the same StartFees.
   <no attributes>
-  event:ref       The event that the CountryGroup belongs to.
+  event:ref         The event that the CountryGroup belongs to.
   countries:n-to-n  The countries that belong to this country group.
 ==
 Currency: A currency used for payments by an event.
@@ -156,10 +156,10 @@ All payments must be made in Swiss francs (using current exchange rates, only if
   security_data:string        A collection of header data used to track fradulent users of the payment system. Contains IP address, browser version, and other information.
   method:string               Method of payment, e.g. one of 'esr','postfinance_card','postfinance_efinance','paypal'
   fees:decimal                The fees which have to be paid to the payment service provider for this payment.
-  fees_included:boolean       Determines whether the fees are included in the debit_amount. If this is false, the organizer covers the fees.
-  debit_amount:decimal        The amount of money that is debited to the user's bank or credit card account.
-                              Note: The amount that gets credited to the organizer is debit_amount minus fees! (If the organizer does not cover transaction fees, this is equal to the StartFees.)
-                                    The amount of StartFees that the user has paid is debit_amount if fees_included is true, and debit_amount minus fees otherwise.
+  fees_included:boolean       Determines whether the fees are included in the amount. If this is false, the organizer covers the fees.
+  amount:decimal              The amount of money that is debited to the user's bank or credit card account.
+                              Note: The amount that gets credited to the organizer is (amount minus fees)! (If the organizer does not cover transaction fees, this is equal to the StartFees.)
+                                    The amount of StartFees that the user has paid is (amount) if fees_included is true, and (amount minus fees) otherwise.
   payment_group:ref           The payment group to whose balance this payment contributes. Payments are linked to Users only through PaymentGroups.
   currency:ref                The currency in which the payment has been made.
 == 
@@ -171,7 +171,7 @@ PaymentGroups are created when teams are registered, unless they are registered 
   is_paper_bill:boolean        This flag is set when the user selects "bill by mail" as a method of payment. In this case, the payment page can no longer be accessed, and only Swiss ESR payments are accepted. The organizer cannot override this setting!
   is_paper_bill_sent:boolean   This flag can be set by the bill administrator to notify the user that their bill has been printed and mailed. It can also be used internally to keep track of the bills that still need to be printed.
   is_paid:boolean              This flag is set when the sum of payments linked to this payment group is larger or equal to the sum of start fees of all the teams in this payment group.
-                               Note that transaction fees may be relevant for this comparison: If the organizer does not cover fees, the sum of (debit_amount -  fees) must be >= the sum of start fees
+                               Note that transaction fees may be relevant for this comparison: If the organizer does not cover fees, the sum of (amount -  fees) must be >= the sum of start fees
                                Also note that payments may be in Swiss Francs or the event's currency, whereas StartFees are always in the event's currency. 
 ==
 RegistrationDeadline: A date that is relevant to an Event's StartFees. The online registration of an Event is open until its latest deadline, but the StartFees may be increased over time, to give Competitors an incentive to register early.
@@ -191,9 +191,9 @@ Run: A part of a Competition which involves one passing of start and finish per 
   name:string          The name of the run. May be blank if the competition contains only one run, or if the competition is a relay.
   date:date            The date on which the run takes place.
   age_limit_1:integer  Defines the maximum age of junior competitors (below 21) who may participate in the run. Values over 20 indicate no limit. 
-  age_limit_2:integer  Defines the minimum age of senior competitors (above 35) who may participate in the run. Value below 35 indicate no limit.
+  age_limit_2:integer  Defines the minimum age of senior competitors (above 35) who may participate in the run. Values below 35 indicate no limit.
+  sortkey:integer      Defines the order in which the runs are held. (This is not necessarily specified by the date, since several runs may take place on the same day.)  
   competition:ref      The competition that the run belongs to.
-  sortkey:integer      Defines the order in which the runs are held. (This is not necessarily specified by the date, since several runs may take place on the same day.)
 ==
 SplitTime: The run time between two controls in an orienteering competition, or e.g. a lap time in a running competition.
   control_number:integer        The control punched after this SplitTime.
@@ -210,9 +210,9 @@ StartFee: The amount of money a Team has to pay to take part in all competitions
   amount:decimal            The start fee that is charged under the conditions described by the references below.
   age_range:ref             The age range to which the fee applies. This is only used if StartFees do not depend on categories, or if the fee_age_dependent flag of the linked CategoryGroup is set.
   category_group:ref        The group of categories to which the fee applies. This reference is nil if fees do not depend on categories. The CategoryGroup must be linked to the same CompetitionGroup that the StartFee is linked to.  
-  competition_group:ref     The group of competitions for which the fee is a total start fee. This reference is nil if fees do not depend on the competition.
-  registration_deadline:ref The deadline until which this start fee is valid.
-  country_group:ref          The group of countries whose teams are paying this start fee.
+  competition_group:ref     The group of competitions for which the fee is a total start fee. This reference must always be set.
+  registration_deadline:ref The deadline until which this start fee is valid. This reference is mandatory since every event has at least one deadline.
+  country_group:ref         The group of countries whose teams are paying this start fee. This reference is nil if fees do not depend on nationality.
 ==
 StartTime: The time at which a competitor starts in a run.
   start_time:time       The time, relative to the event's zero time, at which the competitor starts in the run.
@@ -250,7 +250,7 @@ Team: A group of one or more Competitors which takes part in a group of competit
 ==
 TeamPool: A collection of CompetitionGroups which share a pool of competitors and teams. Teams may register for individual competitions; registrations are stored as TeamRegistrations.
   name:string         A name that summarizes the competitions linked to the TeamPool.
-  <no attributes or references>
+  event:ref           The event that this TeamPool belongs to.
 ==
 TeamRegistration: A registration of a team for a competition, specifying the team's category.
   team:ref         The team that is registered.
