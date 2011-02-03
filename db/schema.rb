@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110202001744) do
+ActiveRecord::Schema.define(:version => 20110203013557) do
 
   create_table "additional_fees", :force => true do |t|
     t.string   "name"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(:version => 20110202001744) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "event_id"
+  end
+
+  create_table "bills", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "exchange_rate"
+    t.boolean  "is_paper_bill"
+    t.boolean  "is_paper_bill_sent"
+    t.boolean  "is_paid"
   end
 
   create_table "categories", :force => true do |t|
@@ -204,17 +213,6 @@ ActiveRecord::Schema.define(:version => 20110202001744) do
   create_table "nation_groups_nations", :id => false, :force => true do |t|
     t.integer "nation_group_id"
     t.integer "nation_id"
-  end
-
-  create_table "payment_groups", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "is_closed"
-    t.datetime "closing_time"
-    t.decimal  "exchange_rate"
-    t.boolean  "is_paper_bill"
-    t.boolean  "is_paper_bill_sent"
-    t.boolean  "is_paid"
   end
 
   create_table "payments", :force => true do |t|

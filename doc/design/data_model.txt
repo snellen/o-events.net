@@ -17,6 +17,15 @@ AgeRange: Range used to define StartFees depending on age. Note that this can on
   upper:integer        The upper end of the age range. 99 is treated as infinity.
   belongs_to:string    Either 'start_fee' or 'additional_fee'. Used to list an event's age ranges for start and additional fees separately.
   event:ref            The event that the range is used in.
+== 
+Bill: A group of Teams within the same event which a User is paying together. Teams in a Bill are locked, i.e. they may no longer be deleted, and changes which influence the start fees are not allowed anymore.
+Bills are created when teams are registered, unless they are registered through a club. PaymentGroups for club registrations are created when the bill is closed. 
+  exchange_rate:decimal        The price of one <Event's official currency> in Swiss Francs at the closing_time. This exchange rate is used to calculate the owed amount if the bill is paid in Swiss Francs.
+  is_paper_bill:boolean        This flag is set when the user selects "bill by mail" as a method of payment. In this case, the payment page can no longer be accessed, and only Swiss ESR payments are accepted. The organizer cannot override this setting!
+  is_paper_bill_sent:boolean   This flag can be set by the bill administrator to notify the user that their bill has been printed and mailed. It can also be used internally to keep track of the bills that still need to be printed.
+  is_paid:boolean              This flag is set when the sum of payments linked to this Bill is larger or equal to the sum of start fees of all the teams in this payment group.
+                               Note that transaction fees may be relevant for this comparison: If the organizer does not cover fees, the sum of (amount -  fees) must be >= the sum of start fees
+                               Also note that payments may be in Swiss Francs or the event's currency, whereas StartFees are always in the event's currency. 
 ==
 Category: Group of Teams which compete against each other. Each Competition generates an overall result list (TotalResult) for each Category. A Category may limit the age and sex of Competitors, or the total age of Teams that are allowed to compete in it. The Category usually determines the length of the courses to be run throughout an Event.
   name:string            The name of the category, as displayed to the user.
@@ -160,19 +169,8 @@ All payments must be made in Swiss francs (using current exchange rates, only if
   amount:decimal              The amount of money that is debited to the user's bank or credit card account.
                               Note: The amount that gets credited to the organizer is (amount minus fees)! (If the organizer does not cover transaction fees, this is equal to the StartFees.)
                                     The amount of StartFees that the user has paid is (amount) if fees_included is true, and (amount minus fees) otherwise.
-  payment_group:ref           The payment group to whose balance this payment contributes. Payments are linked to Users only through PaymentGroups.
+  bill:ref                    The bill to whose balance this payment contributes. Payments are linked to Users only through Bills and Teams.
   currency:ref                The currency in which the payment has been made.
-== 
-PaymentGroup: A group of Teams within the same event whose StartFees are paid by the same User.
-PaymentGroups are created when teams are registered, unless they are registered through a club. PaymentGroups for club registrations are created when the bill is closed.
-  is_closed:boolean            This flag is set when the user has closed the PaymentGroup by converting it into a "pending bill". If the flag is set, the teams in this group may no longer be deleted, and changes which influence the start fees are no longer allowed.
-  closing_time:datetime        A timestamp of the instant when the is_closed flag of the PaymentGroup was set to true.
-  exchange_rate:decimal        The price of one <Event's official currency> in Swiss Francs at the closing_time. This exchange rate is used to calculate the owed amount if the bill is paid in Swiss Francs.
-  is_paper_bill:boolean        This flag is set when the user selects "bill by mail" as a method of payment. In this case, the payment page can no longer be accessed, and only Swiss ESR payments are accepted. The organizer cannot override this setting!
-  is_paper_bill_sent:boolean   This flag can be set by the bill administrator to notify the user that their bill has been printed and mailed. It can also be used internally to keep track of the bills that still need to be printed.
-  is_paid:boolean              This flag is set when the sum of payments linked to this payment group is larger or equal to the sum of start fees of all the teams in this payment group.
-                               Note that transaction fees may be relevant for this comparison: If the organizer does not cover fees, the sum of (amount -  fees) must be >= the sum of start fees
-                               Also note that payments may be in Swiss Francs or the event's currency, whereas StartFees are always in the event's currency. 
 ==
 RegistrationDeadline: A date that is relevant to an Event's StartFees. The online registration of an Event is open until its latest deadline, but the StartFees may be increased over time, to give Competitors an incentive to register early.
   date:date           The deadline.
@@ -244,7 +242,7 @@ Team: A group of one or more Competitors which takes part in a group of competit
                               The postal address and other contact information is always taken from the team leader. Furthermore, if the team needs only one chip in a competition, the team leader's chip is used.
                               Since Teams do not have Results per Run, the Results in Team competitions are assigned to the TeamLeader. Only the TotalResult is linked directly to the Team.
   nation:ref                  The nation that this Team represents. This is set to the leader's Nation by default, but may be set to the Nation of any team member.                              
-  payment_group:ref           The PaymentGroup that this Team is covered by. This reference may be nil iff paid_by_club is true. (In this case, the PaymentGroup may be created by any of the club's payment officers.)
+  bill:ref                    The Bill that this Team is covered by. This reference may be nil iff paid_by_club is true. (In this case, the Bill may be created by any of the club's payment officers.)
   user:ref                    The user who has registered this team, and may be responsible for paying its StartFee.
   team_pool:ref               The TeamPool that this team belongs to.
 ==
