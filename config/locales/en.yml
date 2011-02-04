@@ -171,3 +171,4 @@ en:
       runner_not_found: "Runner not found. Please enter the required details in the form below."
       multiple_runners_found: "There are several runners matching the criteria. Please specify the details in the form below."      
   pleaselogin:          "Please log in"
+  loginfailed:          "Invalid user/password combination"

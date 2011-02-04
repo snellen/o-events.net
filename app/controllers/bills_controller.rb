@@ -1,82 +1,82 @@
 class BillsController < ApplicationController
-  # GET /payment_groups
-  # GET /payment_groups.xml
+  # GET /bills
+  # GET /bills.xml
   def index
-    @payment_groups = PaymentGroup.all
+    @bills = Bill.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @payment_groups }
+      format.xml  { render :xml => @bills }
     end
   end
 
-  # GET /payment_groups/1
-  # GET /payment_groups/1.xml
+  # GET /bills/1
+  # GET /bills/1.xml
   def show
-    @payment_group = PaymentGroup.find(params[:id])
+    @bill = Bill.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @payment_group }
+      format.xml  { render :xml => @bill }
     end
   end
 
-  # GET /payment_groups/new
-  # GET /payment_groups/new.xml
+  # GET /bills/new
+  # GET /bills/new.xml
   def new
-    @payment_group = PaymentGroup.new
+    @bill = Bill.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @payment_group }
+      format.xml  { render :xml => @bill }
     end
   end
 
-  # GET /payment_groups/1/edit
+  # GET /bills/1/edit
   def edit
-    @payment_group = PaymentGroup.find(params[:id])
+    @bill = Bill.find(params[:id])
   end
 
-  # POST /payment_groups
-  # POST /payment_groups.xml
+  # POST /bills
+  # POST /bills.xml
   def create
-    @payment_group = PaymentGroup.new(params[:payment_group])
+    @bill = Bill.new(params[:bill])
 
     respond_to do |format|
-      if @payment_group.save
-        format.html { redirect_to(@payment_group, :notice => 'Payment group was successfully created.') }
-        format.xml  { render :xml => @payment_group, :status => :created, :location => @payment_group }
+      if @bill.save
+        format.html { redirect_to(@bill, :notice => 'Payment group was successfully created.') }
+        format.xml  { render :xml => @bill, :status => :created, :location => @bill }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @payment_group.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @bill.errors, :status => :unprocessable_entity }
       end
     end
   end
 
-  # PUT /payment_groups/1
-  # PUT /payment_groups/1.xml
+  # PUT /bills/1
+  # PUT /bills/1.xml
   def update
-    @payment_group = PaymentGroup.find(params[:id])
+    @bill = Bill.find(params[:id])
 
     respond_to do |format|
-      if @payment_group.update_attributes(params[:payment_group])
-        format.html { redirect_to(@payment_group, :notice => 'Payment group was successfully updated.') }
+      if @bill.update_attributes(params[:bill])
+        format.html { redirect_to(@bill, :notice => 'Payment group was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @payment_group.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @bill.errors, :status => :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /payment_groups/1
-  # DELETE /payment_groups/1.xml
+  # DELETE /bills/1
+  # DELETE /bills/1.xml
   def destroy
-    @payment_group = PaymentGroup.find(params[:id])
-    @payment_group.destroy
+    @bill = Bill.find(params[:id])
+    @bill.destroy
 
     respond_to do |format|
-      format.html { redirect_to(payment_groups_url) }
+      format.html { redirect_to(bills_url) }
       format.xml  { head :ok }
     end
   end
