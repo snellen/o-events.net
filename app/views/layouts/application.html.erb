@@ -40,18 +40,18 @@
           <!-- main navigation: horizontal list -->
           <%
             if session[:user_id]
-              myaccount = user_path(session[:user_id])
+            myaccount = user_path(session[:user_id])
             else
               myaccount = login_path
             end
-            navbar = [ { 'tab' => t('.browseevents'), 'url' => events_path, 'user' => false }, { 'tab' => t('.newevent'), 'url' => new_event_path, 'user' => 'false' }, { 'tab' => t('.myclubs'), 'url' => clubs_path(:user_id => session[:user_id]), 'user' => true }, { 'tab' => t('.myaccount'), 'url' => myaccount, 'user' => false }, { 'tab' => t('.mybills'), 'url' => bills_path(:user_id => session[:user_id]), 'user' => true }, { 'tab' => t('.faq'), 'url' => '#', 'user' => false } ]            
+            navbar = [ { 'tab' => t('.browseevents'), 'url' => events_path }, { 'tab' => t('.newevent'), 'url' => new_event_path }, { 'tab' => t('.myclubs'), 'url' => clubs_path }, { 'tab' => t('.myaccount'), 'url' => myaccount }, { 'tab' => t('.mybills'), 'url' => bills_path }, { 'tab' => t('.faq'), 'url' => '#' } ]            
           %>
           <ul>
             <% if @title  %>
               <li class="active"><strong><%= @title %></strong></li>
             <% end %>
             <% navbar.each_with_index do |page,idx| %>
-              <% if !@title && page['user'] != (params[:user_id].nil?) && current_page?(page['url']) %>
+              <% if !@title && current_page?(page['url']) %>
                 <li class="active"><strong><%= page['tab'] %></strong></li>
               <% else %>
                 <li><%= link_to page['tab'], page['url'] %></li>
