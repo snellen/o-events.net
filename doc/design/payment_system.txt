@@ -1,0 +1,42 @@
+= Payment System - Requirement Specification =
+
+This document describes the payment system to be implemented for the o-events.net website. Please refer to data_model.txt for details about the data types described here (namely Bill, Payment and Team).
+
+Every user is responsible to pay the start fees for all the teams he registered. The stating point for all payment related activities is the "My Bill" page.
+
+== Bill Administration ==
+The "My Bills" page is divided in two sub pages, which are reachable through the navigation bar on the left side of the page: The "Bill Overview" page (Bill#index), which is the default page, shows a list of the unpaid bills. The "Unpaid Teams" (Bill#unpaid) page shows a list of the unpaid teams of the current user. The teams in the list are grouped by event and there is a button "Create Bill" for each group. The "Create Bill" button is linked to the Bill#new action, which allows the user to review the fees for each team and the total amount. The user has the option to cancel the bill and go back to the "My Bills" page or to accept the bill. If the user accepts, a new Bill is created and linked to all Teams that are being paid for, then the user is redirected to the Bill#show action. The Bill#show action renders a page that lists the teams, fees, the total amount and a link to go back to the "My Bills" page as well as a collection of links to pay the bill, one for every payment method. (The payment links are displayed only for Bills that haven't been paid.)
+
+== Payment ==
+The exact implementation of payments depends on the payment method. This section describes the elements common to all methods.
+Each Bill is assigned a unique reference number which is used to map incoming payments to a Bill. The user is asked to provide the reference number when paying for all or part of the bill. For each incoming payment a Payment is created and linked to the corresponding Bill. If the sum of all Payments of a Bill is equal to the sum of the start fees of all Teams of the Bill, it is marked as paid.
+After registration deadline the sum of all paid bills minus the sum of all transaction fees are forwarded to the event organizer.
+
+The following sections describe the details of the four payment methods supported by o-events.net. Each payment method is implemented in it's own controller which provides a partial for rendering payment buttons as well as actions to handle incoming payments.
+
+=== Post Finance - Controller PostFinance ===
+In case of the PostFinance controller the payment button partial contains the form as specified in the document "Advanced e-Commerce - Technical integration guide for e-Commerce – Version 3.4", chapter 5.1. The authenticity of the form is ensured with a SHA1 hash ("SHA1-in"), as described in chapter 6.2. The transaction feedback is implemented as suggested in chapter 8. O-events expects transaction feedback on the following urls:
+accepturl: https://www.o-events.net/post_finance/payment_accepted  ->  action PostFinance#payment_accepted
+declineurl: https://www.o-events.net/post_finance/payment_declined ->  action PostFinance#payment_declined 
+cancelurl: https://www.o-events.net/post_finance/payment_canceled  ->  action PostFinance#payment_canceled
+exceptionurl: https://www.o-events.net/post_finance/exception      ->  action PostFinance#exception
+The post sale request is expected at:
+https://www.o-events.net/post_finance/post_sale  ->  action PostFinance#post_sale
+
+All actions check the hash of the incoming request and ignore the request if the hash doesn't match. The actions of the PostFinance controller are specified as follows:
+PostFinance#payment_accepted: Lookup Bill by reference_number (read from parameter orderID). If the bill has no payment, create a new one, check is Bill is fully paid, update is_paid flag.
+PostFinance#payment_declined: TODO (at least log request...)
+PostFinance#payment_canceled: TODO (at least log request...)
+PostFinance#exception: TODO (at least log request...)
+
+PostFinance#post_sale: Lookup Bill by reference_number (read from parameter orderID). If the bill has no payment, create a new one, check is Bill is fully paid, update is_paid flag.
+
+=== Payment Slip ("Einzahlungsschein") - Controller PostFinance ===
+The user pays with a Payment Slip which is sent by mail to the user's address by the supsport.ch team. Since this costs postal charges choosing payment slip as payment method locks the Bill for futures payments.
+
+=== E-Banking ===
+Since E-Banking transaction don't cost fees it's up to the user to pay the bill in rates. Each rate generates a payment for the corresponding bill.
+
+=== PayPal ===
+TODO: Not supported in first version.
+
