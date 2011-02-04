@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110203013557) do
+ActiveRecord::Schema.define(:version => 20110203031549) do
 
   create_table "additional_fees", :force => true do |t|
     t.string   "name"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20110203013557) do
     t.boolean  "is_paper_bill"
     t.boolean  "is_paper_bill_sent"
     t.boolean  "is_paid"
+    t.string   "reference_number"
   end
 
   create_table "categories", :force => true do |t|

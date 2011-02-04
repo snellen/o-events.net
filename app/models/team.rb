@@ -1,6 +1,6 @@
 class Team < ActiveRecord::Base
-  belongs_to :payment_group
-  validates_presence_of :payment_group, :unless => "payment_group_id.blank?"
+  belongs_to :bill
+  validates_presence_of :bill, :unless => "bill_id.blank?"
   belongs_to :competing_club
   validates_presence_of :competing_club 
   belongs_to :team_pool

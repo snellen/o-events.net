@@ -25,7 +25,8 @@ Bills are created when teams are registered, unless they are registered through 
   is_paper_bill_sent:boolean   This flag can be set by the bill administrator to notify the user that their bill has been printed and mailed. It can also be used internally to keep track of the bills that still need to be printed.
   is_paid:boolean              This flag is set when the sum of payments linked to this Bill is larger or equal to the sum of start fees of all the teams in this payment group.
                                Note that transaction fees may be relevant for this comparison: If the organizer does not cover fees, the sum of (amount -  fees) must be >= the sum of start fees
-                               Also note that payments may be in Swiss Francs or the event's currency, whereas StartFees are always in the event's currency. 
+                               Also note that payments may be in Swiss Francs or the event's currency, whereas StartFees are always in the event's currency.
+  reference_number:string      A random number (or code) used to reference this bill in incoming payments.                              
 ==
 Category: Group of Teams which compete against each other. Each Competition generates an overall result list (TotalResult) for each Category. A Category may limit the age and sex of Competitors, or the total age of Teams that are allowed to compete in it. The Category usually determines the length of the courses to be run throughout an Event.
   name:string            The name of the category, as displayed to the user.

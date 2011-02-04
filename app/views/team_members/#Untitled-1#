@@ -16,9 +16,4 @@ Speichern von competitors mit neuer Struktur
              Danach das Team speichern (gibt ID zurück falls nicht schon vorhanden)
              Zum Schluss alle TeamMembers des Teams löschen und neu erzeugen
              
-ClubMember: isDefault evtl. durch User.default_club ersetzen
-EventSetting fertig machen!!
-PaymentGroup "inclusion in", and other validations missing
-Move away stuff from views/team_members and delete that folder!
-Völlig vergessen: Wertungen wie Fehlst, Disq etc.! Noch einbauen in Result und TotalResult!!
-Log?!
+

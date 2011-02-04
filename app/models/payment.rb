@@ -1,6 +1,6 @@
 class Payment < ActiveRecord::Base
-  belongs_to :payment_group
-  validates_presence_of :payment_group
+  belongs_to :bill
+  validates_presence_of :bill
   belongs_to :currency
   validates_presence_of :currency  
   validates_presence_of :valuta
