@@ -23,7 +23,7 @@ Bills are created when teams are registered, unless they are registered through 
   exchange_rate:decimal        The price of one <Event's official currency> in Swiss Francs at the closing_time. This exchange rate is used to calculate the owed amount if the bill is paid in Swiss Francs.
   is_paper_bill:boolean        This flag is set when the user selects "bill by mail" as a method of payment. In this case, the payment page can no longer be accessed, and only Swiss ESR payments are accepted. The organizer cannot override this setting!
   is_paper_bill_sent:boolean   This flag can be set by the bill administrator to notify the user that their bill has been printed and mailed. It can also be used internally to keep track of the bills that still need to be printed.
-  is_paid:boolean              This flag is set when the sum of payments linked to this Bill is larger or equal to the sum of start fees of all the teams in this payment group.
+  is_paid:boolean              This flag is set when the sum of payments linked to this Bill is larger or equal to the sum of start fees of all the teams in this bill.
                                Note that transaction fees may be relevant for this comparison: If the organizer does not cover fees, the sum of (amount -  fees) must be >= the sum of start fees
                                Also note that payments may be in Swiss Francs or the event's currency, whereas StartFees are always in the event's currency. 
 ==

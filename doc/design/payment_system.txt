@@ -26,14 +26,14 @@ The post sale request is expected at:
 https://www.o-events.net/post_finance/post_sale  ->  action PostFinance#post_sale
 
 All actions check the hash of the incoming request and ignore the request if the hash doesn't match. The actions of the PostFinance controller are specified as follows:
-PostFinance#payment_accepted: Lookup Bill by reference_number (read from parameter orderID). If the bill has no payment, create a new one, check is Bill is fully paid, update is_paid flag.
+PostFinance#payment_accepted: Lookup Bill by reference_number (read from parameter orderID). If the bill has no payment, create a new one, set all attributes and save . Check if Bill is fully paid, update is_paid flag.
 PostFinance#payment_declined: TODO (at least log request...)
 PostFinance#payment_canceled: TODO (at least log request...)
 PostFinance#exception: TODO (at least log request...)
 
 PostFinance#post_sale: Lookup Bill by reference_number (read from parameter orderID). If the bill has no payment, create a new one, check is Bill is fully paid, update is_paid flag.
 
-=== Payment Slip ("Einzahlungsschein") - Controller PostFinance ===
+=== Payment Slip ("Einzahlungsschein") - Controller PaymentSlip ===
 The user pays with a Payment Slip which is sent by mail to the user's address by the supsport.ch team. Since this costs postal charges choosing payment slip as payment method locks the Bill for futures payments.
 
 === E-Banking ===
