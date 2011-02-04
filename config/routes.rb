@@ -112,7 +112,7 @@ OEventsNet::Application.routes.draw do
     resources :event_settings    
     resources :events
     resources :languages
-    resources :payment_groups
+    resources :bills
     resources :payments      
     resources :registration_deadlines      
     resources :results

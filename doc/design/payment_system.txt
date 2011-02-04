@@ -15,7 +15,9 @@ After registration deadline the sum of all paid bills minus the sum of all trans
 The following sections describe the details of the four payment methods supported by o-events.net. Each payment method is implemented in it's own controller which provides a partial for rendering payment buttons as well as actions to handle incoming payments.
 
 === Post Finance - Controller PostFinance ===
-In case of the PostFinance controller the payment button partial contains the form as specified in the document "Advanced e-Commerce - Technical integration guide for e-Commerce – Version 3.4", chapter 5.1. The authenticity of the form is ensured with a SHA1 hash ("SHA1-in"), as described in chapter 6.2. The transaction feedback is implemented as suggested in chapter 8. O-events expects transaction feedback on the following urls:
+In case of the PostFinance controller the payment button partial contains the form as specified in the document "Advanced e-Commerce - Technical integration guide for e-Commerce – Version 3.4", chapter 5.1. The authenticity of the form is ensured with a SHA1 hash ("SHA1-in"), as described in chapter 6.2.
+
+The transaction feedback is implemented as suggested in chapter 8. The SHA-Out feture of the Post Finance system is used to ensure authenticity. O-events expects transaction feedback on the following urls:
 accepturl: https://www.o-events.net/post_finance/payment_accepted  ->  action PostFinance#payment_accepted
 declineurl: https://www.o-events.net/post_finance/payment_declined ->  action PostFinance#payment_declined 
 cancelurl: https://www.o-events.net/post_finance/payment_canceled  ->  action PostFinance#payment_canceled
@@ -24,14 +26,14 @@ The post sale request is expected at:
 https://www.o-events.net/post_finance/post_sale  ->  action PostFinance#post_sale
 
 All actions check the hash of the incoming request and ignore the request if the hash doesn't match. The actions of the PostFinance controller are specified as follows:
-PostFinance#payment_accepted: Lookup Bill by reference_number (read from parameter orderID). If the bill has no payment, create a new one, check is Bill is fully paid, update is_paid flag.
+PostFinance#payment_accepted: Lookup Bill by reference_number (read from parameter orderID). If the bill has no payment, create a new one, set all attributes and save . Check if Bill is fully paid, update is_paid flag.
 PostFinance#payment_declined: TODO (at least log request...)
 PostFinance#payment_canceled: TODO (at least log request...)
 PostFinance#exception: TODO (at least log request...)
 
 PostFinance#post_sale: Lookup Bill by reference_number (read from parameter orderID). If the bill has no payment, create a new one, check is Bill is fully paid, update is_paid flag.
 
-=== Payment Slip ("Einzahlungsschein") - Controller PostFinance ===
+=== Payment Slip ("Einzahlungsschein") - Controller PaymentSlip ===
 The user pays with a Payment Slip which is sent by mail to the user's address by the supsport.ch team. Since this costs postal charges choosing payment slip as payment method locks the Bill for futures payments.
 
 === E-Banking ===
