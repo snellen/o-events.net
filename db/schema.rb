@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110203031549) do
+ActiveRecord::Schema.define(:version => 20110203033104) do
 
   create_table "additional_fees", :force => true do |t|
     t.string   "name"
@@ -228,7 +228,7 @@ ActiveRecord::Schema.define(:version => 20110203031549) do
     t.decimal  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "payment_group_id"
+    t.integer  "bill_id"
     t.integer  "currency_id"
   end
 
@@ -317,7 +317,7 @@ ActiveRecord::Schema.define(:version => 20110203031549) do
     t.decimal  "start_fee"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "payment_group_id"
+    t.integer  "bill_id"
     t.integer  "team_pool_id"
     t.integer  "competing_club_id"
     t.integer  "num1"

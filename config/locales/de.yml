@@ -177,3 +177,4 @@ de:
       runner_not_found: "Läufer nicht gefunden. Bitte trage die nötigen Angaben ins Formular ein."
       multiple_runners_found: "Es wurden mehrere Läufer mit diesen Angaben gefunden. Bitte ergänze das untenstehende Formular."      
   pleaselogin:      "Bitte anmelden"
+  loginfailed:      "Ungültige Benutzername/Passwort Kombination"

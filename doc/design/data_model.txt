@@ -19,7 +19,6 @@ AgeRange: Range used to define StartFees depending on age. Note that this can on
   event:ref            The event that the range is used in.
 == 
 Bill: A group of Teams within the same event which a User is paying together. Teams in a Bill are locked, i.e. they may no longer be deleted, and changes which influence the start fees are not allowed anymore.
-Bills are created when teams are registered, unless they are registered through a club. PaymentGroups for club registrations are created when the bill is closed. 
   exchange_rate:decimal        The price of one <Event's official currency> in Swiss Francs at the closing_time. This exchange rate is used to calculate the owed amount if the bill is paid in Swiss Francs.
   is_paper_bill:boolean        This flag is set when the user selects "bill by mail" as a method of payment. In this case, the payment page can no longer be accessed, and only Swiss ESR payments are accepted. The organizer cannot override this setting!
   is_paper_bill_sent:boolean   This flag can be set by the bill administrator to notify the user that their bill has been printed and mailed. It can also be used internally to keep track of the bills that still need to be printed.
@@ -222,12 +221,12 @@ Team: A group of one or more Competitors which takes part in a group of competit
   name:string                 An arbitrary team name, defined by the team leader.
   registration_time:datetime  The instant at which the team was registered. This is used to determine which start fee is applied, if start fees depend on the deadline.
   paid_by_club:boolean        This is set to true if the registration was made through the club, by an entitled member who has the permission to register teams on behalf of the club.
-                              Note: - To let a club pay for teams, the registration must be opened through the club's page. Teams registered through the normal system cannot be billed to a club, since they are added to a PaymentGroup automatically.
+                              Note: - To let a club pay for teams, the registration must be opened through the club's page. Teams registered through the normal system cannot be billed to a club, since they are added to a Bill automatically.
                                     - All teams in a club registration must compete for the club that pays for the registration, i.e. the club of the team leader cannot be changed. (The team leader can be changed if the new leader is in the same club.)
-                                    - Club registrations do not create a PaymentGroup. They can be edited by all entitled club members through the club page. (Find them through the paid_by_club flag and the team leader's competing club.)
-                                    - Each club has one or more payment officers. They see the club registrations in a separate section on their payment page, and can turn them into bills. When that happens, a PaymentGroup is created, locked, and linked to the paying user.                                    
+                                    - Club registrations do not create a Bill. They can be edited by all entitled club members through the club page. (Find them through the paid_by_club flag and the team leader's competing club.)
+                                    - Each club has one or more payment officers. They see the club registrations in a separate section on their payment page, and can turn them into bills. When that happens, a Bill is created, locked, and linked to the paying user.                                    
                                     - Clubs without payment officers may not make club registrations. This means that if a club has unpaid registrations, the last payment officer may not be deleted, and the club itself may not be deleted either.    
-  start_fee:decimal           The StartFee amount that this team has to pay. This is a copy of the StartFee entry that applies to the team, and is used to reduce the amount of calculations needed to determine a PaymentGroup's balance.
+  start_fee:decimal           The StartFee amount that this team has to pay. This is a copy of the StartFee entry that applies to the team, and is used to reduce the amount of calculations needed to determine a Bill's balance.
   num1:integer                Custom data as defined by the organizer
   num2:integer
   num3:integer
