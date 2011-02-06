@@ -13,7 +13,6 @@ class Competitor < ActiveRecord::Base
   belongs_to :team
   validates_presence_of :team
   has_one :leader_team, :foreign_key => "leader_id"
-  validates :username, :presence => true
   validates :email, :presence => true
   validates_format_of :email, :with => /(\S+)@(\S+)/
   validates :sex, :presence => true, :inclusion => {:in =>  %w( M F ), :allow_nil => true}

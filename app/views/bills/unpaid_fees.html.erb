@@ -1,0 +1,14 @@
+<% content_for :main do %>
+  <h1>Unpaid Fees </h1>
+  <p id="notice"><%= notice %></p>
+  <% @teams_by_event.each_pair do |@event,@teams| %>
+    <p>
+      <h2><%= @event.name %></h2>
+    </p>
+    <%= render 'event_fees' %>
+  <% end %>
+  <%= link_to 'Back', bills_path %>
+
+<% end %>
+
+<%= render :partial => 'bills/billsite' %>

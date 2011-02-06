@@ -10,7 +10,17 @@
       </ul>
     </div>
   <% end %>
-
+  
+  <div class="field">
+    <%= f.label :reference_number %>
+    <%= f.text_field :reference_number %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :is_paid %>
+    <%= f.check_box :is_paid %>
+  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
