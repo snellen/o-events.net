@@ -37,6 +37,7 @@ de:
   form:
     pleaseselect:       "Bitte auswählen"      
     requiredfields:     "Mit * markierte Angaben sind zwingend."        
+    selectnationfirst:  "Bitte zuerst Nationalität auswählen"    
   layouts:
     application:
       title:           "O-events.net"

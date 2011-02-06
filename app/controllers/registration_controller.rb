@@ -3,16 +3,16 @@ class RegistrationController < ApplicationController
   def get_session_params
     if(params[:team_id])
       @team = Team.find(params[:team_id])
-      @team_pool = @team.team_pool
       @competitors = @team.competitors
+      @team_pool = @team.team_pool
     elsif(params[:team_pool_id])
       @team_pool = TeamPool.find(params[:team_pool_id])
       @team = Team.new
       @competitors = []
     elsif(session[:reg_team])
       @team = session[:reg_team]
-      @team_pool = @team.team_pool
       @competitors = session[:reg_competitors]
+      @team_pool = @team.team_pool
     end
     
     @event = @team_pool.event
@@ -20,8 +20,8 @@ class RegistrationController < ApplicationController
   end
   
   def set_session_params
-      session[:reg_team] = @team
-      session[:reg_competitors] = @competitors    
+      session[:reg_team]        = @team
+      session[:reg_competitors] = @competitors      
   end
   
   # GET /registration/overview
@@ -81,21 +81,23 @@ class RegistrationController < ApplicationController
     get_session_params
     
     udata = params[:user]
+    cmembers = User.where(:id => ClubMember.where(:club_id => params[:club_id]).map{|cm| cm.user_id})
+    
     if udata[:username].nil?
-      res_users = User.where(:first_name => udata[:first_name], :last_name => udata[:last_name], :birthdate_y => udata[:birthdate_y], :nation_id => udata[:nation_id])
+      res_users = cmembers.where(:first_name => udata[:first_name], :last_name => udata[:last_name], :birthdate_y => udata[:birthdate_y])
     else
-      res_users = User.where(:username => udata[:username])
+      res_users = cmembers.where(:username => udata[:username])
     end      
     
     # One result: Create a competitor, add to team
     if res_users.count == 1 then
-      @competitors << Competitor.new(res_users.first)      
-      @competitor.team_id = params[:team_id]
-      if(params[:team_id].nil?)
-        @competitor.sortkey = 1
+      comp = Competitor.build_from_user(res_users.first,Club.find(params[:club_id]),@team_pool)      
+      if(@competitors.empty?)
+        comp.sortkey = 1
       else
-        @competitor.sortkey = Team.find(params[:team_id]).competitors.maximum(:sortkey) + 1
+        comp.sortkey = @competitors.maximum(:sortkey) + 1 # TODO this doesn't work on arrays
       end
+      @competitors << comp      
       redirect_to registration_team_members_url(:team_id => params[:team_id], :competition_group_id => params[:competition_group_id])
     else
       if res_users.empty? then
@@ -103,11 +105,12 @@ class RegistrationController < ApplicationController
       else
         flash[:notice] = t('.multiple_runners_found')
       end
-      @competitor = Competitor.new
-      @competitor.first_name  = params[:user][:first_name]
-      @competitor.last_name   = params[:user][:last_name]
-      @competitor.birthdate_y = params[:user][:birthdate_y]
-      @competitor.country_id  = params[:user][:country_id]
+      comp = Competitor.new
+      comp.first_name  = params[:user][:first_name]
+      comp.last_name   = params[:user][:last_name]
+      comp.birthdate_y = params[:user][:birthdate_y]
+      comp.nation_id  = params[:user][:nation_id]
+      @competitors << comp
     end
   end
 

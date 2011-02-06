@@ -8,9 +8,17 @@
   </div>
   <p><br /><b><%= t('.search_runner') %></b></p>
   <div class="field">
-    <%= f.label :country_id %>
-    <%= f.select (:country_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect')) %>
+    <%= f.label :nation_id %>
+    <%= f.select (:nation_id, Country.all.map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect')) %>
   </div>
+  <div class="field">
+    <%= f.label :club_id %>
+    <% if params[:nation_id] # TODO AUTOSUBMIT THIS FORM %> 
+      <%= f.select (:club_id, Club.where(:nation_id => params[:nation_id]).map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect')) %>
+    <% else %>
+      <%= f.select (:club_id, [t('form.selectnationfirst'), 0]) %>
+    <% end %>
+  </div>  
   <div class="field">
     <%= f.label :first_name %>
     <%= f.text_field :first_name %>

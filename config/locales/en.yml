@@ -37,6 +37,7 @@ en:
   form:
     requiredfields:     "* marks required fields"      
     pleaseselect:     "Please select"
+    selectnationfirst: "Please select a nation first"
   layouts:
     application:
       title:           "O-events.net"

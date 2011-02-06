@@ -12,7 +12,7 @@ class Team < ActiveRecord::Base
   belongs_to :leader, :class_name => "Competitor"
   validates_presence_of :leader, :unless => "leader_id.blank?"
   
-  has_many :competitors, :autosave => true
+  has_many :competitors, :autosave => false
   has_many :team_registrations
   has_many :total_results
 
@@ -26,6 +26,8 @@ class Team < ActiveRecord::Base
   validates_numericality_of :num1, :only_integer => true, :unless => "num1.blank?"
   validates_numericality_of :num2, :only_integer => true, :unless => "num2.blank?"
   validates_numericality_of :num3, :only_integer => true, :unless => "num3.blank?"
+  
+  # TODO the following two functions may be obsolete.  
   
   # Adds a competitor to the team.
   # Defines the team leader if the team was empty, and sets a sortkey for the new competitor.
@@ -47,9 +49,10 @@ class Team < ActiveRecord::Base
       if @competitors.count == 1
         @leader = nil
       else
-        @leader = TODO 
+        @leader = @competitors.first
       end
     end
+  end
     
   def is_single
     competitors.size == 1
