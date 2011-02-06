@@ -1,5 +1,5 @@
 <h2><%= t('.add_team_member') %></h2>
-  <%= render :partial => 'users/search', :locals => {:url => registration_search_user_url(:team_id => @team.id, :competition_group_id => @competition_group.id), :search_button_caption => t('.add')} %>
+  <%= render :partial => 'users/search', :locals => {:url => registration_search_user_url, :search_button_caption => t('.add')} %>
   <br /><br />
   <h2><%= t('.suggested') %></h2>
   <p><%= t('.suggested_desc') %></p>

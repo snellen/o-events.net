@@ -4,15 +4,12 @@ class RegistrationController < ApplicationController
     if(params[:team_id])
       @team = Team.find(params[:team_id])
       @team_pool = @team.team_pool
-      @competitors = @team.competitors
     elsif(params[:team_pool_id])
       @team_pool = TeamPool.find(params[:team_pool_id])
       @team = Team.new
-      @competitors = []
     elsif(session[:reg_team])
       @team = session[:reg_team]
       @team_pool = @team.team_pool
-      @competitors = session[:reg_competitors]
     end
     
     @event = @team_pool.event
@@ -20,8 +17,7 @@ class RegistrationController < ApplicationController
   end
   
   def set_session_params
-      session[:reg_team] = @team
-      session[:reg_competitors] = @competitors    
+      session[:reg_team] = @team    
   end
   
   # GET /registration/overview
@@ -89,8 +85,7 @@ class RegistrationController < ApplicationController
     
     # One result: Create a competitor, add to team
     if res_users.count == 1 then
-      @competitors << Competitor.new(res_users.first)      
-      @competitor.team_id = params[:team_id]
+      @team.add_member(Competitor.build_from_user(res_users.first,Club.TODO,@team_pool))      
       if(params[:team_id].nil?)
         @competitor.sortkey = 1
       else

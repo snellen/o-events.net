@@ -142,6 +142,19 @@ de:
     form:
       male:               "Männlich"
       female:             "Weiblich"
+    add:
+      add_team_member:  "Neues Teammitglied"
+      add:              "Hinzufügen"
+      suggested:        "Kürzlich angemeldet"
+      suggested_desc:   "Hier sind Läufer aufgeführt, die du in letzter Zeit für andere Wettkämpfe angemeldet hast. Klicke auf ihre Namen, um sie zum Team hinzuzufügen."
+      runner:           "Läufer"
+      clubs:            "Vereine"
+    teammembers:
+      new_members:      "Wähle die Teammitglieder"      
+      members:          "Teamzusammensetzung"
+      name:             "Name"
+      leader:           "Admin."
+      team_complete:    "Team komplett"      
   sessions:
     new:
       signin:             "Anmelden"
@@ -157,20 +170,6 @@ de:
       competition:       "Wettkampf"
       date:              "Datum"
       register:          "Anmelden"
-  team_members:
-    add:
-      add_team_member:  "Neues Teammitglied"
-      add:              "Hinzufügen"
-      suggested:        "Kürzlich angemeldet"
-      suggested_desc:   "Hier sind Läufer aufgeführt, die du in letzter Zeit für andere Wettkämpfe angemeldet hast. Klicke auf ihre Namen, um sie zum Team hinzuzufügen."
-      runner:           "Läufer"
-      clubs:            "Vereine"
-    list:
-      new_members:      "Wähle die Teammitglieder"      
-      members:          "Teamzusammensetzung"
-      name:             "Name"
-      leader:           "Admin."
-      team_complete:    "Team komplett"      
   registration:
     search_user:
       save:             "Speichern"

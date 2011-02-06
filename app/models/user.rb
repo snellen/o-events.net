@@ -34,6 +34,16 @@ class User < ActiveRecord::Base
       self.hashed_password = self.class.encrypt_password(password, salt)
     end
   end
+  
+  # Provides a reader for the full name
+  # Pass true to it to get an alphabetically sortable name
+  def full_name(alpha = false)
+    if alpha then
+      last_name+', '+first_name
+    else
+      first_name+' '+last_name
+    end
+  end 
 
   def User.authenticate(identifier, password)
     user = nil

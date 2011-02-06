@@ -145,13 +145,7 @@ en:
       submit:             "Login"
     destroy:
       signout:             "Sign out"
-  competition_groups:
-    register_for:
-      register_for:      "Register for"
-      competition:       "Competition"
-      date:              "Date"
-      register:          "Register"
-  team_members:
+  competitors:
     add:
       add_team_member:  "Add a Team Member"
       add:              "Add"      
@@ -165,6 +159,12 @@ en:
       name:             "Name"
       leader:           "Leader"   
       team_complete:    "Team complete"
+  competition_groups:
+    register_for:
+      register_for:      "Register for"
+      competition:       "Competition"
+      date:              "Date"
+      register:          "Register"
   registration:
     search_user:
       save:             "Save"     
