@@ -112,7 +112,11 @@ OEventsNet::Application.routes.draw do
     resources :event_settings    
     resources :events
     resources :languages
-    resources :bills
+    resources :bills do
+        collection do 
+          get 'unpaid_fees', :as => 'unpaid_fees'
+        end
+    end
     resources :payments      
     resources :registration_deadlines      
     resources :results

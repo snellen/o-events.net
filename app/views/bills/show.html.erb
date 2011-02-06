@@ -1,5 +1,44 @@
-<p id="notice"><%= notice %></p>
+<% content_for :main do %>
 
+  <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_bill_path(@bill) %> |
-<%= link_to 'Back', bills_path %>
+  <h1> Bill <%= @bill.reference_number %> </h1>
+  <p>
+    <b>Status:</b>
+    <%= @bill.is_paid ? "paid" : "unpaid" %>
+  </p>
+      
+  <p>
+    <b>Event:</b>
+    <%= @bill.event.name %>
+  </p>
+  
+  <%  @event = @bill.event %>
+  <%  @teams = @bill.teams %>
+  <%= render 'event_fees' %>
+
+  <p>
+    <b>Total amount [<%= @bill.currency.name %>]:</b>
+    <%= @bill.amount %>
+  </p>
+  
+  <br>
+  
+   <p>
+    <b>Is paper bill:</b>
+    <%= @bill.is_paper_bill ? "Yes" : "No" %>
+  </p>
+
+<% if @bill.is_paper_bill %>
+  <p>
+    <b>Is paper bill sent:</b>
+    <%= @bill.is_paper_bill_sent ? "Yes" : "No" %>
+  </p>
+<% end %>
+
+  <%= link_to 'Edit', edit_bill_path(@bill) %> |
+  <%= link_to 'Back', bills_path %>
+
+<% end %>
+
+<%= render :partial => 'bills/billsite' %>

@@ -8,7 +8,7 @@ class Team < ActiveRecord::Base
   belongs_to :nation, :class_name => "Country"
   validates_presence_of :nation
   belongs_to :user
-  validates_presence_of :user, :unless => "user_id.blank?"
+  validates_presence_of :user
   belongs_to :leader, :class_name => "Competitor"
   validates_presence_of :leader, :unless => "leader_id.blank?"
   
@@ -51,5 +51,7 @@ class Team < ActiveRecord::Base
       end
     end
     
+  def is_single
+    competitors.size == 1
   end
 end

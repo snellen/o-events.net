@@ -1,21 +1,31 @@
-<h1>Listing bills</h1>
+<% content_for :main do %>
+  <h1>Listing bills</h1>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <table>
+    <tr>
+      <th>Reference Number</th>
+      <th>Amount</th>
+      <th>Paid</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
 
-<% @bills.each do |bill| %>
-  <tr>
-    <td><%= link_to 'Show', bill %></td>
-    <td><%= link_to 'Edit', edit_bill_path(bill) %></td>
-    <td><%= link_to 'Destroy', bill, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+  <% @bills.each do |bill| %>
+    <tr>
+      <td><%= bill.reference_number %></td>
+      <td><%= bill.amount %></td>
+      <td><%= bill.is_paid %></td>
+      <td><%= link_to 'Show', bill %></td>
+      <td><%= link_to 'Edit', edit_bill_path(bill) %></td>
+      <td><%= link_to 'Destroy', bill, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
+
+  <br />
+
+  <%= link_to 'New Bill', new_bill_path %>
 <% end %>
-</table>
 
-<br />
-
-<%= link_to 'New Bill', new_bill_path %>
+<%= render :partial => 'bills/billsite' %>

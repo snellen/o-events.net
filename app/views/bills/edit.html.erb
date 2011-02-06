@@ -1,6 +1,10 @@
-<h1>Editing bill</h1>
+<% content_for :main do %>
+  <h1>Editing bill</h1>
 
-<%= render 'form' %>
+  <%= render 'form' %>
 
-<%= link_to 'Show', @bill %> |
-<%= link_to 'Back', bills_path %>
+  <%= link_to 'Show', @bill %> |
+  <%= link_to 'Back', bills_path %>
+<% end %>
+
+<%= render :partial => 'bills/billsite' %>

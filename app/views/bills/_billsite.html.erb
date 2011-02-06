@@ -1,0 +1,10 @@
+<% content_for :left do %>
+  <ul>
+    <li><%= link_to 'Bill Overview', bills_path %></li>
+    <li><%= link_to 'Unpaid Fees', unpaid_fees_bills_path %></li>
+  </ul>
+<% end %>
+
+<% #content_for :main must be defined by the parent view of this partial %>
+
+<%= render :partial => 'layouts/two_columns' %>

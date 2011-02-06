@@ -1,5 +1,11 @@
-<h1>New bill</h1>
+<% content_for :main do %>
 
-<%= render 'form' %>
+  <h1>New bill</h1>
 
-<%= link_to 'Back', bills_path %>
+  <%= render 'form' %>
+
+  <%= link_to 'Back', bills_path %>
+
+<% end %>
+
+<%= render :partial => 'bills/billsite' %>
