@@ -1,8 +1,35 @@
 <% content_for :main do %>
+  <h1> New Bill </h1> 
+  <%if @total_amount > 0 %>     
+    <p>
+      <b>Event:</b>
+      <%= @event.name %>
+    </p>
+  
+    <%= render 'event_fees' %>
 
-  <h1>New bill</h1>
+    <p>
+      <b>Total amount:</b>
+      <%= @total_amount %>
+      <%= @event.currency.iso_code %>
+    </p>
 
-  <%= render 'form' %>
+    <%= form_for(@bill) do |f| %>
+      <% for team in @teams do %>
+         <%= f.hidden_field "team_ids", :name => "bill[team_ids][]", :value => team.id %>
+      <% end %>
+      <% if !@userAddressKnown %>
+        <p>
+        Complete address is required to pay bills!
+        </p> 
+      <% end %>
+      <div class="actions">
+        <%= f.submit "Accept Bill", :disabled => !@userAddressKnown%>
+      </div>
+    <% end %>
+  <% else %>
+    <p> The total amount of this bill is 0 <%= @event.currency.iso_code %>. </p>
+  <% end %>
 
   <%= link_to 'Back', bills_path %>
 

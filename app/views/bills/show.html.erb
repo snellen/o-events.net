@@ -1,12 +1,6 @@
 <% content_for :main do %>
-
   <p id="notice"><%= notice %></p>
-
-  <h1> Bill <%= @bill.reference_number %> </h1>
-  <p>
-    <b>Status:</b>
-    <%= @bill.is_paid ? "paid" : "unpaid" %>
-  </p>
+  <h1> Bill </h1>
       
   <p>
     <b>Event:</b>
@@ -18,11 +12,17 @@
   <%= render 'event_fees' %>
 
   <p>
-    <b>Total amount [<%= @bill.currency.name %>]:</b>
+    <b>Total amount:</b>
     <%= @bill.amount %>
+    <%= @bill.currency.iso_code %>
   </p>
   
   <br>
+  
+  <p>
+    <b>Status:</b>
+    <%= @bill.is_paid ? "paid" : "unpaid" %>
+  </p>
   
    <p>
     <b>Is paper bill:</b>
@@ -36,7 +36,6 @@
   </p>
 <% end %>
 
-  <%= link_to 'Edit', edit_bill_path(@bill) %> |
   <%= link_to 'Back', bills_path %>
 
 <% end %>

@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :clubs, :through => :club_members
   has_many :competitors
   has_many :teams
+  has_many :bills
   
   belongs_to :country
   validates_presence_of :country, :message => I18n.t('activerecord.errors.messages.mustbeselected'), :unless => "country_id.blank?"
@@ -45,6 +46,15 @@ class User < ActiveRecord::Base
     end
   end 
 
+  def has_full_address
+    (first_name and !first_name.empty?) and 
+    (last_name and !last_name.empty?) and
+    ((address_line_1 and !address_line_1.empty?) or (address_line_2 and !address_line_2.empty?)) and 
+    (city and !city.empty?) and 
+    (zipcode and !zipcode.empty?) and 
+    country
+  end
+  
   def User.authenticate(identifier, password)
     user = nil
     if not user = find_by_username(identifier)

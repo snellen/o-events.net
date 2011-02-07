@@ -3,6 +3,7 @@ class Country < ActiveRecord::Base
   has_many :competing_clubs
   has_many :competitors
   has_many :users
+  has_many :bills
   has_many :events
   has_many :citizens, :class_name => "User", :foreign_key => "nation_id"
   has_many :representatives, :class_name => "Competitor", :foreign_key => "nation_id"

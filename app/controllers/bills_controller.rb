@@ -3,11 +3,13 @@ class BillsController < ApplicationController
   # GET /bills/unpaid_fees
   def unpaid_fees
     @user = User.get_logged_in session
-    unpaid_teams = @user.teams.where('bill_id IS NULL')
+    unpaid_teams = @user.teams.where('bill_id IS NULL', :paid_by_club => false)
 
     @teams_by_event = Hash.new{|h, k| h[k] = []}
     for team in unpaid_teams do
-      @teams_by_event[team.team_pool.event] << team
+      if team.start_fee > 0
+        @teams_by_event[team.team_pool.event] << team
+      end
     end
     
     respond_to do |format|
@@ -19,8 +21,9 @@ class BillsController < ApplicationController
   # GET /bills
   # GET /bills.xml
   def index
-    @bills = Bill.all
-
+    @user = User.get_logged_in session
+    allBills = @user.bills
+    @bills = allBills.where(:id => Team.where(:bill_id => allBills.map{|b| b.id}, :paid_by_club => false).map {|t| t.bill_id}).order('created_at DESC')
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @bills }
@@ -30,8 +33,8 @@ class BillsController < ApplicationController
   # GET /bills/1
   # GET /bills/1.xml
   def show
-    @bill = Bill.find(params[:id])
-    check_auth @bill    
+    @user = User.get_logged_in session
+    @bill = @user.bills.find(params[:id])
     
     respond_to do |format|
       format.html # show.html.erb
@@ -42,28 +45,69 @@ class BillsController < ApplicationController
   # GET /bills/new
   # GET /bills/new.xml
   def new
+    raise "Missing parameter" unless params[:event]
+    @user = User.get_logged_in session
+    @event = Event.find(params[:event])
+    @teams = @user.teams.where(:team_pool_id => TeamPool.where(:event_id => @event.id).map{|tp| tp.id}, :bill_id => nil, :paid_by_club => false)
+    @total_amount = @teams.inject(0) { |sum, t| sum + t.start_fee }
     @bill = Bill.new
-
+    @userAddressKnown = false
+    if @user.has_full_address
+      @userAddressKnown = true
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @bill }
     end
   end
 
-  # GET /bills/1/edit
-  def edit
-    @bill = Bill.find(params[:id])
-    check_auth @bill
-  end
-
   # POST /bills
   # POST /bills.xml
   def create
-    @bill = Bill.new(params[:bill])
-
+    
+    #check user
+    @user = User.get_logged_in session
+    raise "Full address is required to create bills" unless @user.has_full_address
+    
+    #check teams
+    teamIds = params[:bill][:team_ids]
+    raise "Missing teams for bill" unless teamIds != nil and !teamIds.empty?
+    teams = Team.where(:id => teamIds)
+    raise "Invalid team ids" if teams.empty? #or teamsIds.size != teams.size
+    teams.map do |t|
+      raise "Invalid collection of teams" if t.user_id != @user.id or t.bill_id != nil
+    end
+    
+    @bill = Bill.new
+    @bill.exchange_rate = 1.0 #TODO
+    @bill.is_paper_bill = false
+    @bill.is_paper_bill_sent = false
+    @bill.is_paid = false
+    @bill.reference_number = generate_reference_number(@user)
+    
+    @bill.user = @user
+    @bill.first_name = @user.first_name
+    @bill.last_name = @user.last_name
+    @bill.address_line_1 = @user.address_line_1
+    @bill.address_line_2 = @user.address_line_2
+    @bill.city = @user.city
+    @bill.zipcode = @user.zipcode
+    @bill.province = @user.province
+    @bill.country = @user.country
+    
+    error = false
+    if @bill.save
+      teams.map do |t| 
+        t.bill = @bill
+        t.save
+      end
+    else
+      error = true
+    end
+    
     respond_to do |format|
-      if @bill.save
-        format.html { redirect_to(@bill, :notice => 'Payment group was successfully created.') }
+      if !error
+        format.html { redirect_to(@bill, :notice => 'Bill was successfully created.') }
         format.xml  { render :xml => @bill, :status => :created, :location => @bill }
       else
         format.html { render :action => "new" }
@@ -72,39 +116,16 @@ class BillsController < ApplicationController
     end
   end
 
-  # PUT /bills/1
-  # PUT /bills/1.xml
-  def update
-    @bill = Bill.find(params[:id])
-    check_auth @bill
-    
-    respond_to do |format|
-      if @bill.update_attributes(params[:bill])
-        format.html { redirect_to(@bill, :notice => 'Payment group was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @bill.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /bills/1
-  # DELETE /bills/1.xml
-  def destroy
-    @bill = Bill.find(params[:id])
-    check_auth @bill
-    @bill.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(bills_url) }
-      format.xml  { head :ok }
-    end
-  end
-  
   private
   #Check if current user has the right to access the bill
-  def check_auth(bill)
-    #TODO
+  def check_auth(user, bill)
+    raise "Permission denied" unless bill.user_id == user.id
   end
+  
+  def generate_reference_number(user)
+    randString = ""
+    19.times{randString  << (48 + rand(10)).chr}
+    ("%07d" % user.id)[-7..-1]+randString
+  end
+    
 end

@@ -1,6 +1,7 @@
 class Team < ActiveRecord::Base
   belongs_to :bill
   validates_presence_of :bill, :unless => "bill_id.blank?"
+  attr_protected :bill_id
   belongs_to :competing_club
   validates_presence_of :competing_club 
   belongs_to :team_pool
@@ -56,5 +57,10 @@ class Team < ActiveRecord::Base
     
   def is_single
     competitors.size == 1
+  end
+  
+  # returns team name if !is_single, "first<sep>last" else
+  def get_display_name(sep)
+      is_single ? competitors[0].first_name+sep+competitors[0].last_name : name
   end
 end

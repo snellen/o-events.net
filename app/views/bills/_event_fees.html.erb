@@ -2,12 +2,12 @@
     <tr>
       <th>Name</th>
       <th>Team Pool</th>
-      <th>Amount [<%= @event.currency.name %>] </th>
+      <th>Amount [<%= @event.currency.iso_code %>] </th>
     </tr>
 
   <% @teams.each do |team| %>
       <tr>
-      <td><%= team.is_single ? team.competitors[0].first_name : team.name %></td>
+      <td><%= team.get_display_name(", ") %></td>
       <td><%= team.team_pool.name %></td>
       <td><%= team.start_fee %></td>
     </tr>

@@ -3,29 +3,25 @@
 
   <table>
     <tr>
-      <th>Reference Number</th>
+      <th>Bill</th>
+      <th>Event</th>
+      <th>Date</th>
       <th>Amount</th>
-      <th>Paid</th>
-      <th></th>
-      <th></th>
+      <th>Status</th>
       <th></th>
     </tr>
 
   <% @bills.each do |bill| %>
     <tr>
-      <td><%= bill.reference_number %></td>
-      <td><%= bill.amount %></td>
-      <td><%= bill.is_paid %></td>
-      <td><%= link_to 'Show', bill %></td>
-      <td><%= link_to 'Edit', edit_bill_path(bill) %></td>
-      <td><%= link_to 'Destroy', bill, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= summary_string(bill,25) %></td>
+      <td><%= bill.event.name %></td>
+      <td><%= bill.created_at.to_date %></td>
+      <td><%= bill.amount %> <%= bill.event.currency.iso_code %></td>
+      <td><%= bill.is_paid ? "Paid" : "Unpaid" %></td>
+      <td><%= link_to 'Details', bill %></td>
     </tr>
   <% end %>
   </table>
-
-  <br />
-
-  <%= link_to 'New Bill', new_bill_path %>
 <% end %>
 
 <%= render :partial => 'bills/billsite' %>

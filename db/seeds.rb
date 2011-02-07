@@ -204,3 +204,5 @@
   Country.create( :iso_code => 'YE', :name => 'Yemen', :ioc_code => 'YEM')
   Country.create( :iso_code => 'ZM', :name => 'Zambia', :ioc_code => 'ZAM')
   Country.create( :iso_code => 'ZW', :name => 'Zimbabwe', :ioc_code => 'ZIM')
+
+  Currency.create(:name => "Schweizer Franken", :iso_code => "CHF")
