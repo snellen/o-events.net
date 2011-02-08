@@ -18,6 +18,7 @@
       <% for team in @teams do %>
          <%= f.hidden_field "team_ids", :name => "bill[team_ids][]", :value => team.id %>
       <% end %>
+      <%= f.hidden_field "team_ids_hash", :name => "bill[team_ids_hash]", :value => @teams_hash %>
       <% if !@userAddressKnown %>
         <p>
         Complete address is required to pay bills!

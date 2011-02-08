@@ -3,9 +3,26 @@ class Bill < ActiveRecord::Base
   has_many :teams
   belongs_to :user
   belongs_to :country
- 
-  #TODO: validations
   
+  validates_presence_of :user
+  validates_presence_of :country
+  validates_numericality_of :exchange_rate, :greater_than => 0
+  validates_inclusion_of :is_paper_bill, :in => [true, false]
+  validates_inclusion_of :is_paper_bill_sent, :in => [true, false]
+  validates_inclusion_of :is_paid, :in => [true, false]
+  validates_presence_of :reference_number
+  validates_format_of :reference_number, :with => /[0-9]+/
+  validates_presence_of :first_name
+  validates_length_of :first_name, :minimum => 1
+  validates_presence_of :last_name
+  validates_length_of :last_name, :minimum => 1
+  validates_presence_of :address_line_1
+  validates_length_of :address_line_1, :minimum => 1
+  validates_presence_of :city
+  validates_length_of :city, :minimum => 1
+  validates_presence_of :zipcode
+  validates_length_of :zipcode, :minimum => 1
+
   attr_protected :exchange_rate, :is_paper_bill, :is_paper_bill_sent, :is_paid, :reference_number
   
   def amount
