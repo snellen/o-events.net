@@ -1,53 +1,53 @@
-<%= form_for(@payment) do |f| %>
-  <% if @payment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@payment.errors.count, "error") %> prohibited this payment from being saved:</h2>
+  <%= form_for(@payment) do |f| %>
+    <% if @payment.errors.any? %>
+      <div id="error_explanation">
+        <h2>  <%= pluralize(@payment.errors.count, "error") %> prohibited this payment from being saved:  </h2>
 
-      <ul>
-      <% @payment.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @payment.errors.full_messages.each do |msg| %>
+          <li>  <%= msg %>  </li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :reference_number %>  <br />
+      <%= f.text_field :reference_number %>
+    </div>
+    <div class="field">
+      <%= f.label :valuta %>  <br />
+      <%= f.date_select :valuta %>
+    </div>
+    <div class="field">
+      <%= f.label :fees_valuta %>  <br />
+      <%= f.date_select :fees_valuta %>
+    </div>
+    <div class="field">
+      <%= f.label :registration_time %>  <br />
+      <%= f.datetime_select :registration_time %>
+    </div>
+    <div class="field">
+      <%= f.label :security_data %>  <br />
+      <%= f.text_field :security_data %>
+    </div>
+    <div class="field">
+      <%= f.label :method %>  <br />
+      <%= f.text_field :method %>
+    </div>
+    <div class="field">
+      <%= f.label :fees %>  <br />
+      <%= f.text_field :fees %>
+    </div>
+    <div class="field">
+      <%= f.label :fees_included %>  <br />
+      <%= f.check_box :fees_included %>
+    </div>
+    <div class="field">
+      <%= f.label :amount %>  <br />
+      <%= f.text_field :amount %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :reference_number %><br />
-    <%= f.text_field :reference_number %>
-  </div>
-  <div class="field">
-    <%= f.label :valuta %><br />
-    <%= f.date_select :valuta %>
-  </div>
-  <div class="field">
-    <%= f.label :fees_valuta %><br />
-    <%= f.date_select :fees_valuta %>
-  </div>
-  <div class="field">
-    <%= f.label :registration_time %><br />
-    <%= f.datetime_select :registration_time %>
-  </div>
-  <div class="field">
-    <%= f.label :security_data %><br />
-    <%= f.text_field :security_data %>
-  </div>
-  <div class="field">
-    <%= f.label :method %><br />
-    <%= f.text_field :method %>
-  </div>
-  <div class="field">
-    <%= f.label :fees %><br />
-    <%= f.text_field :fees %>
-  </div>
-  <div class="field">
-    <%= f.label :fees_included %><br />
-    <%= f.check_box :fees_included %>
-  </div>
-  <div class="field">
-    <%= f.label :amount %><br />
-    <%= f.text_field :amount %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

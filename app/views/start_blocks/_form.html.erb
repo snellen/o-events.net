@@ -1,21 +1,21 @@
-<%= form_for(@start_block) do |f| %>
-  <% if @start_block.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@start_block.errors.count, "error") %> prohibited this start_block from being saved:</h2>
+  <%= form_for(@start_block) do |f| %>
+    <% if @start_block.errors.any? %>
+      <div id="error_explanation">
+        <h2>  <%= pluralize(@start_block.errors.count, "error") %> prohibited this start_block from being saved:  </h2>
 
-      <ul>
-      <% @start_block.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @start_block.errors.full_messages.each do |msg| %>
+          <li>  <%= msg %>  </li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :start_block %>  <br />
+      <%= f.text_field :start_block %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :start_block %><br />
-    <%= f.text_field :start_block %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

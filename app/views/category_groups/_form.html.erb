@@ -1,21 +1,21 @@
-<%= form_for(@category_group) do |f| %>
-  <% if @category_group.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@category_group.errors.count, "error") %> prohibited this category_group from being saved:</h2>
+  <%= form_for(@category_group) do |f| %>
+    <% if @category_group.errors.any? %>
+      <div id="error_explanation">
+        <h2>  <%= pluralize(@category_group.errors.count, "error") %> prohibited this category_group from being saved:  </h2>
 
-      <ul>
-      <% @category_group.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @category_group.errors.full_messages.each do |msg| %>
+          <li>  <%= msg %>  </li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :fee_age_dependent %>  <br />
+      <%= f.check_box :fee_age_dependent %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :fee_age_dependent %><br />
-    <%= f.check_box :fee_age_dependent %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

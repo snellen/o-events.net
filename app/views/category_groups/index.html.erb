@@ -1,23 +1,23 @@
-<h1>Listing category_groups</h1>
+  <h1>Listing category_groups  </h1>
 
-<table>
-  <tr>
-    <th>Fee age dependent</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <table>
+    <tr>
+      <th>Fee age dependent  </th>
+      <th>  </th>
+      <th>  </th>
+      <th>  </th>
+    </tr>
 
-<% @category_groups.each do |category_group| %>
-  <tr>
-    <td><%= category_group.fee_age_dependent %></td>
-    <td><%= link_to 'Show', category_group %></td>
-    <td><%= link_to 'Edit', edit_category_group_path(category_group) %></td>
-    <td><%= link_to 'Destroy', category_group, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+  <% @category_groups.each do |category_group| %>
+    <tr>
+      <td>  <%= category_group.fee_age_dependent %>  </td>
+      <td>  <%= link_to 'Show', category_group %>  </td>
+      <td>  <%= link_to 'Edit', edit_category_group_path(category_group) %>  </td>
+      <td>  <%= link_to 'Destroy', category_group, :confirm => 'Are you sure?', :method => :delete %>  </td>
+    </tr>
+  <% end %>
+  </table>
 
-<br />
+  <br />
 
-<%= link_to 'New Category group', new_category_group_path %>
+  <%= link_to 'New Category group', new_category_group_path %>

@@ -16,7 +16,7 @@
       <td><%= summary_string(bill,25) %></td>
       <td><%= bill.event.name %></td>
       <td><%= bill.created_at.to_date %></td>
-      <td><%= bill.amount %> <%= bill.event.currency.iso_code %></td>
+      <td><%= format_amount(bill.amount) %> <%= bill.event.currency.iso_code %></td>
       <td><%= bill.is_paid ? "Paid" : "Unpaid" %></td>
       <td><%= link_to 'Details', bill %></td>
     </tr>

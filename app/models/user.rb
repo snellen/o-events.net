@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
   def has_full_address
     (first_name and !first_name.empty?) and 
     (last_name and !last_name.empty?) and
-    ((address_line_1 and !address_line_1.empty?) or (address_line_2 and !address_line_2.empty?)) and 
+    (address_line_1 and !address_line_1.empty?) and 
     (city and !city.empty?) and 
     (zipcode and !zipcode.empty?) and 
     country

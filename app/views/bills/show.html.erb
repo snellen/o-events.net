@@ -13,29 +13,28 @@
 
   <p>
     <b>Total amount:</b>
-    <%= @bill.amount %>
+    <%= format_amount(@bill.amount) %>
     <%= @bill.currency.iso_code %>
   </p>
-  
-  <br>
-  
   <p>
     <b>Status:</b>
     <%= @bill.is_paid ? "paid" : "unpaid" %>
   </p>
+  <% if !@bill.is_paid %>
+    <% if @bill.is_paper_bill%>
+       <p>
+        <b>This is a paper bill. The bill has <%@bill.is_paper_bill_sent ? "been sent" : "not been sent yet."%> </b>
+      </p>
+    <% else %>
+      <br />
+      <div>
+        <% # Allow the user to make payments only for non-paper bills %>
+        <%= render :partial => 'post_finance/payment_button'%>
+      </div>
+    <% end %>
+  <% end %>
   
-   <p>
-    <b>Is paper bill:</b>
-    <%= @bill.is_paper_bill ? "Yes" : "No" %>
-  </p>
-
-<% if @bill.is_paper_bill %>
-  <p>
-    <b>Is paper bill sent:</b>
-    <%= @bill.is_paper_bill_sent ? "Yes" : "No" %>
-  </p>
-<% end %>
-
+  <br />
   <%= link_to 'Back', bills_path %>
 
 <% end %>

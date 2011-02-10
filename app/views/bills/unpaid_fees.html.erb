@@ -8,7 +8,7 @@
     <%= render 'event_fees' %>
     <p>
       <b>Total amount:</b>
-      <%= @teams.inject(0) { |sum, t| sum + t.start_fee } %>
+      <%= format_amount(@teams.inject(0) { |sum, t| sum + t.start_fee }) %>
       <%= @event.currency.iso_code %>
     </p>
     <%= link_to "Pay", new_bill_path(:event => @event.id)%>  

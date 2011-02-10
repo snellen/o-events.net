@@ -10,4 +10,8 @@ module BillsHelper
     end
     truncate(result, :length => len, :omission => "...")
   end  
+  
+  def format_amount(n)
+    sprintf("%0.02f", n)
+  end
 end

@@ -1,27 +1,27 @@
-<% content_for :left do %>
-  <ul>
-    <li><a href="#">Ausschreibung</a></li>
-    <li><%= link_to 'Anmeldung', registration_overview_url(:event_id => @event.id) %></li>
+  <% content_for :left do %>
+    <ul>
+      <li>  <a href="#">Ausschreibung  </a>  </li>
+      <li>  <%= link_to 'Anmeldung', registration_overview_url(:event_id => @event.id) %>  </li>
     
-    <!--<li><a href="#">Directions</a></li>
-    <li><a href="#">Course Data</a></li>
-    <li><a href="#">Terrain</a></li>
-    <li><a href="#">Start lists</a></li>
-    <li><a href="#">Results</a></li>-->
-  </ul>
-<% end %>
+      <!--  <li>  <a href="#">Directions  </a>  </li>
+      <li>  <a href="#">Course Data  </a>  </li>
+      <li>  <a href="#">Terrain  </a>  </li>
+      <li>  <a href="#">Start lists  </a>  </li>
+      <li>  <a href="#">Results  </a>  </li>-->
+    </ul>
+  <% end %>
 
-<% #content_for :main must be defined by the parent view of this partial %>
+  <% #content_for :main must be defined by the parent view of this partial %>
 
-<% content_for :right do %>
-  <h4>Event Sponsors</h4>           
-  <p><%= link_to image_tag('/event_data/bescool11/sponsors/balhara.jpg', :alt => 'BalHaraMusic.com'), 'http://balharamusic.com' %></p>
-  <p><%= link_to image_tag('/event_data/bescool11/sponsors/sibg.jpg', :alt => 'sportidentbg.com'), 'http://sportidentbg.com' %></p>
-  <p><%= link_to image_tag('/event_data/bescool11/sponsors/supsport_small.png', :alt => 'supsport.ch'), 'http://supsport.ch' %></p>
+  <% content_for :right do %>
+    <h4>Event Sponsors  </h4>           
+    <p>  <%= link_to image_tag('/event_data/bescool11/sponsors/balhara.jpg', :alt => 'BalHaraMusic.com'), 'http://balharamusic.com' %>  </p>
+    <p>  <%= link_to image_tag('/event_data/bescool11/sponsors/sibg.jpg', :alt => 'sportidentbg.com'), 'http://sportidentbg.com' %>  </p>
+    <p>  <%= link_to image_tag('/event_data/bescool11/sponsors/supsport_small.png', :alt => 'supsport.ch'), 'http://supsport.ch' %>  </p>
   
-  <h4>Partner Event</h4>
-  <p><%= link_to image_tag('/event_data/bescool11/sponsors/velikdencup.gif', :alt => 'Velikden Cup'), 'http://variant5.org/velikdencup/' %></p>
-<% end %>
+    <h4>Partner Event  </h4>
+    <p>  <%= link_to image_tag('/event_data/bescool11/sponsors/velikdencup.gif', :alt => 'Velikden Cup'), 'http://variant5.org/velikdencup/' %>  </p>
+  <% end %>
 
-<p><%= image_tag '/event_data/bescool11/banner.png', :alt => 'Online-Anmeldung' %></p>
-<%= render :partial => 'layouts/three_columns' %>
+  <p>  <%= image_tag '/event_data/bescool11/banner.png', :alt => 'Online-Anmeldung' %>  </p>
+  <%= render :partial => 'layouts/three_columns' %>
