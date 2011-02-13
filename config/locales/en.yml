@@ -38,6 +38,7 @@ en:
     requiredfields:     "* marks required fields"      
     pleaseselect:     "Please select"
     selectnationfirst: "Please select a nation first"
+    nojavascript_submit:   "OK"
   layouts:
     application:
       title:           "O-events.net"
@@ -107,6 +108,7 @@ en:
         first_name:     "First Name"
         last_name:      "Last Name"
         phone:          "Phone Number"
+        address:        "Address"
         address_line_1: "Address Line 1"
         address_line_2: "Address Line 2"
         zipcode:        "Zip Code"
@@ -136,7 +138,6 @@ en:
       female:             "Female"      
     search:
       enter_username:     "Username:"
-      search_runner:      "Find a runner without a username:"
   sessions:
     new:
       signin:             "Sign in"
@@ -147,7 +148,10 @@ en:
     destroy:
       signout:             "Sign out"
   competitors:
+    form:
+      search_runner:      "Find a runner without a username:"
     add:
+      save:             "Save"           
       add_team_member:  "Add a Team Member"
       add:              "Add"      
       suggested:        "Suggested Runners"
@@ -168,7 +172,6 @@ en:
       register:          "Register"
   registration:
     search_user:
-      save:             "Save"     
       runner_not_found: "Runner not found. Please enter the required details in the form below."
       multiple_runners_found: "There are several runners matching the criteria. Please specify the details in the form below."      
   pleaselogin:          "Please log in"

@@ -7,7 +7,7 @@ class RegistrationController < ApplicationController
       @team_pool = @team.team_pool
     elsif(params[:team_pool_id])
       @team_pool = TeamPool.find(params[:team_pool_id])
-      @team = Team.new
+      @team = @team_pool.teams.build
       @competitors = []
     elsif(session[:reg_team])
       @team = session[:reg_team]
@@ -21,7 +21,7 @@ class RegistrationController < ApplicationController
   
   def set_session_params
       session[:reg_team]        = @team
-      session[:reg_competitors] = @competitors      
+      session[:reg_competitors] = @competitors     
   end
   
   # GET /registration/overview
@@ -47,8 +47,23 @@ class RegistrationController < ApplicationController
   
   #GET /registration/team_members
   def team_members
-    get_session_params    
-     
+    get_session_params
+    @fields = EventSetting.competitor_fields(@event) 
+    if (! @fields[:nation]) or (! @fields[:competing_club]) or (! @fields[:birthdate_y])
+      @search_form = false
+      @form_url = registration_team_members_url
+    else
+      @search_form = true
+      @form_url = registration_search_user_url
+    end
+    
+    if params[:comp_index].to_i >= 0 and @competitors.count > params[:comp_index].to_i
+      @competitor = @competitors[params[:comp_index].to_i]
+    else
+      @competitor = Competitor.new
+    end
+    
+    set_session_params
   end
 
   
@@ -79,38 +94,57 @@ class RegistrationController < ApplicationController
   # POST /registration/search_user
   def search_user
     get_session_params
+    @form_url = registration_team_members_url
     
-    udata = params[:user]
-    cmembers = User.where(:id => ClubMember.where(:club_id => params[:club_id]).map{|cm| cm.user_id})
+    # Search user if userdata submitted
+    if params[:user]
+      udata = params[:user]
+      cmembers = User.where(:id => ClubMember.where(:club_id => params[:club_id]).map{|cm| cm.user_id})
     
-    if udata[:username].nil?
-      res_users = cmembers.where(:first_name => udata[:first_name], :last_name => udata[:last_name], :birthdate_y => udata[:birthdate_y])
-    else
-      res_users = cmembers.where(:username => udata[:username])
-    end      
-    
-    # One result: Create a competitor, add to team
-    if res_users.count == 1 then
-      comp = Competitor.build_from_user(res_users.first,Club.find(params[:club_id]),@team_pool)      
-      if(@competitors.empty?)
-        comp.sortkey = 1
+      if udata[:username].empty?
+        res_users = cmembers.where(:first_name => udata[:first_name], :last_name => udata[:last_name], :birthdate_y => udata[:birthdate_y], :club_id => udata[:club_id])
       else
-        comp.sortkey = @competitors.maximum(:sortkey) + 1 # TODO this doesn't work on arrays
-      end
-      @competitors << comp      
-      redirect_to registration_team_members_url(:team_id => params[:team_id], :competition_group_id => params[:competition_group_id])
-    else
-      if res_users.empty? then
-        flash[:notice] = t('.runner_not_found')
+        res_users = cmembers.where(:username => udata[:username])
+      end      
+      
+      # One result
+      if res_users.count == 1
+        @competitor = Competitor.build_from_user(res_users.first,Club.find(params[:club_id]),@team_pool)
+        if(@competitors.empty?)
+          @competitor.sortkey = 1
+        else
+          @competitor.sortkey = @competitors.map{|c| c.sortkey}.max + 1
+        end
+        
+        cfields = EventSetting.competitor_fields(@event)
+        showform = false
+        cfields.each do |key,f|
+          if key == :address
+            if f[:required?] and ( (@competitor.address_line_1.empty? and @competitor.address_line_2.empty?) or @competitor.city.empty? or @competitor.country_id.nil? or @competitor.zipcode.empty?)
+              showform = true
+            end
+            elsif f[:required?] and @competitor.attributes[key].empty?
+            showform = true
+          end
+        end
+        
+        if !showform
+          @competitors << @competitor #TODO validate
+          set_session_params
+          redirect_to registration_team_members_url
+        end
       else
-        flash[:notice] = t('.multiple_runners_found')
+        if res_users.empty?
+          flash[:notice] = t('registration.search_user.runner_not_found')
+        else
+          flash[:notice] = t('registration.search_user.multiple_runners_found')
+        end
+        @competitor = Competitor.new
+        @competitor.first_name  = params[:user][:first_name]
+        @competitor.last_name   = params[:user][:last_name]
+        @competitor.birthdate_y = params[:user][:birthdate_y]
+        @competitor.nation_id  =  params[:user][:nation_id]
       end
-      comp = Competitor.new
-      comp.first_name  = params[:user][:first_name]
-      comp.last_name   = params[:user][:last_name]
-      comp.birthdate_y = params[:user][:birthdate_y]
-      comp.nation_id  = params[:user][:nation_id]
-      @competitors << comp
     end
   end
 

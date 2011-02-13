@@ -37,7 +37,8 @@ de:
   form:
     pleaseselect:       "Bitte auswählen"      
     requiredfields:     "Mit * markierte Angaben sind zwingend."        
-    selectnationfirst:  "Bitte zuerst Nationalität auswählen"    
+    selectnationfirst:  "Bitte zuerst Nationalität auswählen"
+    nojavascript_submit:   "OK"    
   layouts:
     application:
       title:           "O-events.net"
@@ -88,6 +89,7 @@ de:
         first_name:     "Vorname"
         last_name:      "Nachname"
         phone:          "Telefonnummer"
+        address:        "Adresse"
         address_line_1: "Adresse Zeile 1"
         address_line_2: "Adresse Zeile 2"
         zipcode:        "Postleitzahl"
@@ -138,12 +140,14 @@ de:
       female:             "Weiblich"
     search:
       enter_username:     "Benutzername:"
-      search_runner:      "Läufer ohne Benutzernamen suchen:"   
+   
   competitors:
     form:
       male:               "Männlich"
       female:             "Weiblich"
+      search_runner:      "Läufer ohne Benutzernamen suchen:"      
     add:
+      save:             "Speichern"      
       add_team_member:  "Neues Teammitglied"
       add:              "Hinzufügen"
       suggested:        "Kürzlich angemeldet"
@@ -173,7 +177,6 @@ de:
       register:          "Anmelden"
   registration:
     search_user:
-      save:             "Speichern"
       runner_not_found: "Läufer nicht gefunden. Bitte trage die nötigen Angaben ins Formular ein."
       multiple_runners_found: "Es wurden mehrere Läufer mit diesen Angaben gefunden. Bitte ergänze das untenstehende Formular."      
   pleaselogin:      "Bitte anmelden"

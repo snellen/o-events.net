@@ -4,48 +4,92 @@ The event settings are all stored as strings, but they may be converted to a dif
 Integers will be stored as strings, and booleans are either "1" or "0".
 
 
+[Start fees]
+startfees_enable:boolean                      True if start fees are defined. False if the event is free, and no bills should be generated.
+
+[Payment settings]
+payment_cash_enable:boolean                   True if cash payments to the organizer are accepted. 
+payment_ebanking_enable:boolean               True if E-Banking payments using an ESR number are accepted. These do not cause any fees.
+payment_postfinance_enable:boolean            True if PostFinance e-payments (card & e-finance) are accepted.
+payment_postfinance_coverfees:boolean         True if the organizer covers fees caused by PostFinance e-payments.
+payment_paypal_enable:boolean                 True if payments by PayPal are accepted.
+payment_paypal_coverfees:boolean              True if the organizer covers fees caused by PayPal payments.
+payment_esr_enable:boolean                    True if ESR (Swiss payment slip) payments are accepted.
+payment_esr_coverfees:boolean                 True if the organizer covers fees caused by ESR payments (CHF 2 for sending a bill).
+payment_organizer_enable:boolean              True if the organizer's custom payment method is accepted.
+payment_organizer_name:string                 The name of the custom payment method.
+payment_organizer_description:string          A short description of the custom payment method.
+payment_organizer_instructions:string         Contents of a page that is shown to the user AFTER selecting the custom payment method.
+
+
 [Data structure]
-license_number_show:boolean        True if the "license_number" field should be shown in the competitor form, and copied from user to competitor if available
-license_number_require:boolean     True if the "license_number" field should be mandatory
-email_show:boolean
-email_require:boolean
-phone_show:boolean
-phone_require:boolean
-address_show:boolean
-address_require:boolean
-city_show:boolean
-city_require:boolean
-birthdate_y_show:boolean
-birthdate_y_require:boolean
-competing_club_show:boolean
-competing_club_require:boolean
+competitor_license_number_show:boolean        True if the "license_number" field should be shown in the competitor form, and copied from user to competitor if available
+competitor_license_number_require:boolean     True if the "license_number" field should be mandatory
+competitor_email_show:boolean
+competitor_email_require:boolean
+competitor_phone_show:boolean
+competitor_phone_require:boolean
+competitor_address_show:boolean
+competitor_address_require:boolean
+competitor_city_show:boolean
+competitor_city_require:boolean
+competitor_birthdate_y_show:boolean           Required if shown
+competitor_competing_club_show:boolean        Required if shown. Nation must be shown when CompetingClub is shown.
+competitor_nation_show:boolean                Required if shown
 
 
 [Custom fields]
-num1_name:string         Name of the "num1" field
-num1_show:boolean        True if the "num1" field should be shown in the competitor form
-num1_require:boolean     True if the "num1" field should be mandatory
-num2_name:string         Name of the "num2" field
-num2_show:boolean        True if the "num2" field should be shown in the competitor form
-num2_require:boolean     True if the "num2" field should be mandatory
-num3_name:string         Name of the "num3" field
-num3_show:boolean        True if the "num3" field should be shown in the competitor form
-num3_require:boolean     True if the "num3" field should be mandatory
-text1_name:string        Name of the "text1" field
-text1_show:boolean       True if the "text1" field should be shown in the competitor form
-text1_require:boolean    True if the "text1" field should be mandatory
-text2_name:string        Name of the "text2" field
-text2_show:boolean       True if the "text2" field should be shown in the competitor form
-text2_require:boolean    True if the "text2" field should be mandatory
-text3_name:string        Name of the "text3" field
-text3_show:boolean       True if the "text3" field should be shown in the competitor form
-text3_require:boolean    True if the "text3" field should be mandatory
-flag1_name:string        Name of the "flag1" field
-flag1_show:boolean       True if the "flag1" field should be shown in the competitor form
-flag1_require:boolean    True if the "flag1" field should be mandatory
-flag2_name:string        Name of the "flag2" field
-flag2_show:boolean       True if the "flag2" field should be shown in the competitor form
-flag2_require:boolean    True if the "flag2" field should be mandatory
-flag3_name:string        Name of the "flag3" field
-flag3_show:boolean       True if the "flag3" field should be shown in the competitor form
-flag3_require:boolean    True if the "flag3" field should be mandatory
+competitor_num1_name:string         Name of the "num1" field
+competitor_num1_show:boolean        True if the "num1" field should be shown in the competitor form
+competitor_num1_require:boolean     True if the "num1" field should be mandatory
+competitor_num2_name:string         Name of the "num2" field
+competitor_num2_show:boolean        True if the "num2" field should be shown in the competitor form
+competitor_num2_require:boolean     True if the "num2" field should be mandatory
+competitor_num3_name:string         Name of the "num3" field
+competitor_num3_show:boolean        True if the "num3" field should be shown in the competitor form
+competitor_num3_require:boolean     True if the "num3" field should be mandatory
+competitor_text1_name:string        Name of the "text1" field
+competitor_text1_show:boolean       True if the "text1" field should be shown in the competitor form
+competitor_text1_require:boolean    True if the "text1" field should be mandatory
+competitor_text2_name:string        Name of the "text2" field
+competitor_text2_show:boolean       True if the "text2" field should be shown in the competitor form
+competitor_text2_require:boolean    True if the "text2" field should be mandatory
+competitor_text3_name:string        Name of the "text3" field
+competitor_text3_show:boolean       True if the "text3" field should be shown in the competitor form
+competitor_text3_require:boolean    True if the "text3" field should be mandatory
+competitor_flag1_name:string        Name of the "flag1" field
+competitor_flag1_show:boolean       True if the "flag1" field should be shown in the competitor form
+competitor_flag1_require:boolean    True if the "flag1" field should be mandatory
+competitor_flag2_name:string        Name of the "flag2" field
+competitor_flag2_show:boolean       True if the "flag2" field should be shown in the competitor form
+competitor_flag2_require:boolean    True if the "flag2" field should be mandatory
+competitor_flag3_name:string        Name of the "flag3" field
+competitor_flag3_show:boolean       True if the "flag3" field should be shown in the competitor form
+competitor_flag3_require:boolean    True if the "flag3" field should be mandatory
+team_num1_name:string               Name of the "num1" field
+team_num1_show:boolean              True if the "num1" field should be shown in the team form
+team_num1_require:boolean           True if the "num1" field should be mandatory
+team_num2_name:string               Name of the "num2" field
+team_num2_show:boolean              True if the "num2" field should be shown in the team form
+team_num2_require:boolean           True if the "num2" field should be mandatory
+team_num3_name:string               Name of the "num3" field
+team_num3_show:boolean              True if the "num3" field should be shown in the team form
+team_num3_require:boolean           True if the "num3" field should be mandatory
+team_text1_name:string              Name of the "text1" field
+team_text1_show:boolean             True if the "text1" field should be shown in the team form
+team_text1_require:boolean          True if the "text1" field should be mandatory
+team_text2_name:string              Name of the "text2" field
+team_text2_show:boolean             True if the "text2" field should be shown in the team form
+team_text2_require:boolean          True if the "text2" field should be mandatory
+team_text3_name:string              Name of the "text3" field
+team_text3_show:boolean             True if the "text3" field should be shown in the team form
+team_text3_require:boolean          True if the "text3" field should be mandatory
+team_flag1_name:string              Name of the "flag1" field
+team_flag1_show:boolean             True if the "flag1" field should be shown in the team form
+team_flag1_require:boolean          True if the "flag1" field should be mandatory
+team_flag2_name:string              Name of the "flag2" field
+team_flag2_show:boolean             True if the "flag2" field should be shown in the team form
+team_flag2_require:boolean          True if the "flag2" field should be mandatory
+team_flag3_name:string              Name of the "flag3" field
+team_flag3_show:boolean             True if the "flag3" field should be shown in the team form
+team_flag3_require:boolean          True if the "flag3" field should be mandatory

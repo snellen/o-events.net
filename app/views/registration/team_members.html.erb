@@ -2,4 +2,8 @@
   <%= render :partial => 'competitors/teammembers' %><br /><br %>
   <%= render :partial => 'competitors/add' %>
 <% end %>
+<ul><% params.each do |idx,p| %>
+<li><b><%= idx %>:</b> <%= p %></li>
+<% end %>
+</ul>
 <%= render :partial => 'events/eventsite' %>

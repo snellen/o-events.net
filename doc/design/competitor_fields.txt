@@ -1,0 +1,58 @@
+Competitor fields
+*****************
+
+MANDATORY
+- First name
+- Last name
+
+OPTIONAL, BUT USED IN SEARCH FORM
+- Year of Birth
+- Nationality
+- Club [not mandatory for user, but highly recommended]
+
+OPTIONAL, BUT MANDATORY FOR USERS
+- Email
+
+OPTIONAL, ALSO FOR USERS
+- License number
+- Phone
+- Address
+- City
+
+OPTIONAL, NOT AVAILABLE THROUGH USERS
+- Custom fields
+
+
+=> Situations:
+
+- No Year of Birth (competitor_birthdate_y_show == false)
+  => Works only if classes don't depend on year of birth AND if only name, nationality, club and custom fields are required.
+  => Search form accepts only username, otherwise all data is entered manually
+ 
+- No Nationality (competitor_nation_show == false)
+  => Works only if classes don't depend on nationality AND if only name, year of birth and custom fields are required.
+  => Search form accepts only username, otherwise all data is entered manually  
+  
+- No Club (competitor_competing_club_show == false)
+  => Works if only name, nationality, year of birth and custom fields are required.
+  => Search form accepts only username, otherwise all data is entered manually  
+  
+- No Anything
+  => Only the name is required
+  => Even then, username is accepted to search for the name
+  
+=> Form:
+
+- To simplify the user interface, use just one form
+- Top row: Search field for username (may be filled)
+- Name fields: Search fields for name (may be filled)
+- Nationality field: Selector for nationality (may be selected) or nothing
+- Club field: Selector for club (may be selected) or nothing
+- If the user has not done a search, end the form here and show suggested people
+- If search is disabled or a search has been done, show the rest of the fields
+  (fill them when editing an existing competitor)
+- The search by username is in the user/search partial, the rest is in competitors/form,
+  and the entire form is built in competitors/add.
+- Form action is search_user in search form mode, and team_members in competitor edit mode.
+  
+
