@@ -1,27 +1,27 @@
-<h1>Listing additional_fees</h1>
+  <h1>Listing additional_fees  </h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Amount</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <table>
+    <tr>
+      <th>Name  </th>
+      <th>Description  </th>
+      <th>Amount  </th>
+      <th>  </th>
+      <th>  </th>
+      <th>  </th>
+    </tr>
 
-<% @additional_fees.each do |additional_fee| %>
-  <tr>
-    <td><%= additional_fee.name %></td>
-    <td><%= additional_fee.description %></td>
-    <td><%= additional_fee.amount %></td>
-    <td><%= link_to 'Show', additional_fee %></td>
-    <td><%= link_to 'Edit', edit_additional_fee_path(additional_fee) %></td>
-    <td><%= link_to 'Destroy', additional_fee, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+  <% @additional_fees.each do |additional_fee| %>
+    <tr>
+      <td>  <%= additional_fee.name %>  </td>
+      <td>  <%= additional_fee.description %>  </td>
+      <td>  <%= additional_fee.amount %>  </td>
+      <td>  <%= link_to 'Show', additional_fee %>  </td>
+      <td>  <%= link_to 'Edit', edit_additional_fee_path(additional_fee) %>  </td>
+      <td>  <%= link_to 'Destroy', additional_fee, :confirm => 'Are you sure?', :method => :delete %>  </td>
+    </tr>
+  <% end %>
+  </table>
 
-<br />
+  <br />
 
-<%= link_to 'New Additional fee', new_additional_fee_path %>
+  <%= link_to 'New Additional fee', new_additional_fee_path %>

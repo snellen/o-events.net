@@ -1,15 +1,15 @@
-<table>
-    <tr>
-      <th>Name</th>
-      <th>Team Pool</th>
-      <th>Amount [<%= @event.currency.iso_code %>] </th>
-    </tr>
-
-  <% @teams.each do |team| %>
+  <table>
       <tr>
-      <td><%= team.get_display_name(", ") %></td>
-      <td><%= team.team_pool.name %></td>
-      <td><%= team.start_fee %></td>
-    </tr>
-  <% end %>
-</table>
+        <th>Name  </th>
+        <th>Team Pool  </th>
+        <th>Amount [  <%= @event.currency.iso_code %>]   </th>
+      </tr>
+
+    <% @teams.each do |team| %>
+        <tr>
+        <td>  <%= team.get_display_name(", ") %>  </td>
+        <td>  <%= team.team_pool.name %>  </td>
+        <td>  <%= format_amount(team.start_fee) %>  </td>
+      </tr>
+    <% end %>
+  </table>

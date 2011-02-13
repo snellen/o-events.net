@@ -1,65 +1,65 @@
-<h1> <%= t('.welcomeuser',  :username => @user.username) %></h1>
+  <h1>   <%= t('.welcomeuser',  :username => @user.username) %>  </h1>
 
-  <p>
-    <b> <%= User.human_attribute_name(:username) %>:</b>
-    <%= @user.username %>
-  </p>
-  <p>
-    <b> <%= User.human_attribute_name(:email)%>:</b>
-    <%= @user.email %>
-  </p>
-  <p>
-    <b> <%= User.human_attribute_name(:first_name) %>:</b>
-    <%= @user.first_name %>
-  </p>
-  <p>
-    <b> <%= User.human_attribute_name(:last_name) %>:</b>
-    <%= @user.last_name %>
-  </p>
-  <p>
-    <b> <%= User.human_attribute_name(:sex) %>:</b>
-    <%= @user.sex %>
-  </p>
-  <p>
-    <b> <%= User.human_attribute_name(:birthdate_y) %>:</b>
-    <%= @user.birthdate_y %>
-  </p>
-  <p>
-    <b> <%= User.human_attribute_name(:sicard_number) %>:</b>
-    <%= @user.sicard_number ? @user.sicard_number : t('.notspecified') %>
-  </p>
-  <p>
-    <b> <%= User.human_attribute_name(:nation_id) %>:</b>
-    <%= Country.find(@user.nation_id).name %>
-  </p>
+    <p>
+      <b>   <%= User.human_attribute_name(:username) %>:  </b>
+      <%= @user.username %>
+    </p>
+    <p>
+      <b>   <%= User.human_attribute_name(:email)%>:  </b>
+      <%= @user.email %>
+    </p>
+    <p>
+      <b>   <%= User.human_attribute_name(:first_name) %>:  </b>
+      <%= @user.first_name %>
+    </p>
+    <p>
+      <b>   <%= User.human_attribute_name(:last_name) %>:  </b>
+      <%= @user.last_name %>
+    </p>
+    <p>
+      <b>   <%= User.human_attribute_name(:sex) %>:  </b>
+      <%= @user.sex %>
+    </p>
+    <p>
+      <b>   <%= User.human_attribute_name(:birthdate_y) %>:  </b>
+      <%= @user.birthdate_y %>
+    </p>
+    <p>
+      <b>   <%= User.human_attribute_name(:sicard_number) %>:  </b>
+      <%= @user.sicard_number ? @user.sicard_number : t('.notspecified') %>
+    </p>
+    <p>
+      <b>   <%= User.human_attribute_name(:nation_id) %>:  </b>
+      <%= Country.find(@user.nation_id).name %>
+    </p>
   
-  <p>
-    <b> <%= User.human_attribute_name(:address_line_1) %>:</b>
-    <%= @user.address_line_1 != '' ? @user.address_line_1 : t('.notspecified') %>
-  </p>
-  <p>
-    <b> <%= User.human_attribute_name(:address_line_2) %>:</b>
-    <%= @user.address_line_2 != '' ? @user.address_line_2 : t('.notspecified') %>
-  </p>
-  <p>
-    <b> <%= User.human_attribute_name(:zipcode) %>:</b>
-    <%= @user.zipcode != '' ? @user.zipcode : t('.notspecified') %>
-  </p>
-  <p>
-    <b> <%= User.human_attribute_name(:city) %>:</b>
-    <%=  @user.city != '' ? @user.city : t('.notspecified') %>
-  </p>
-  <p>
-    <b> <%= User.human_attribute_name(:province) %>:</b>
-    <%= @user.province != '' ? @user.province : t('.notspecified') %>
-  </p>
-  <p>
-    <b> <%= User.human_attribute_name(:phone) %>:</b>
-    <%= @user.phone != '' ? @user.phone : t('.notspecified') %>
-  </p>
-  <p>
-    <b> <%= User.human_attribute_name(:country_id) %>:</b>
-    <%= @user.country_id ? Country.find(@user.country_id).name : t('.notspecified') %>
-  </p>
-  <br>
-<%= link_to t('.edit'), edit_user_path(@user) %>
+    <p>
+      <b>   <%= User.human_attribute_name(:address_line_1) %>:  </b>
+      <%= @user.address_line_1 != '' ? @user.address_line_1 : t('.notspecified') %>
+    </p>
+    <p>
+      <b>   <%= User.human_attribute_name(:address_line_2) %>:  </b>
+      <%= @user.address_line_2 != '' ? @user.address_line_2 : t('.notspecified') %>
+    </p>
+    <p>
+      <b>   <%= User.human_attribute_name(:zipcode) %>:  </b>
+      <%= @user.zipcode != '' ? @user.zipcode : t('.notspecified') %>
+    </p>
+    <p>
+      <b>   <%= User.human_attribute_name(:city) %>:  </b>
+      <%=  @user.city != '' ? @user.city : t('.notspecified') %>
+    </p>
+    <p>
+      <b>   <%= User.human_attribute_name(:province) %>:  </b>
+      <%= @user.province != '' ? @user.province : t('.notspecified') %>
+    </p>
+    <p>
+      <b>   <%= User.human_attribute_name(:phone) %>:  </b>
+      <%= @user.phone != '' ? @user.phone : t('.notspecified') %>
+    </p>
+    <p>
+      <b>   <%= User.human_attribute_name(:country_id) %>:  </b>
+      <%= @user.country_id ? Country.find(@user.country_id).name : t('.notspecified') %>
+    </p>
+    <br>
+  <%= link_to t('.edit'), edit_user_path(@user) %>

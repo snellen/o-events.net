@@ -8,4 +8,5 @@ tmp/**/*
 .buildpath
 .project
 .billsecret
+config/initializers/secrets.rb
 

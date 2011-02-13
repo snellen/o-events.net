@@ -132,9 +132,7 @@ class BillsController < ApplicationController
   end
    
   def secretString
-    IO.read("config/.billsecret")
-    rescue Exception 
-      "hGh%d_mrbyd-U2C#+;m}0yb4`Utl3F"
+    BILL_TEAM_ID_LIST_SECRET
   end
   
   def generate_teams_hash(teams)

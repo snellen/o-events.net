@@ -1,0 +1,39 @@
+<form method="post" action="https://e-payment.postfinance.ch/ncol/XXXX/orderstandard.asp">
+<!-- general parameters: see chapter 5.2 -->
+  <input type="hidden" name="PSPID" value="<%=pspid()%>">
+  <input type="hidden" name="orderID" value="<%=orderID(@bill)%>">
+  <input type="hidden" name="amount" value="<%=amount(@bill)%>">
+  <input type="hidden" name="currency" value="<%=currency(@bill)%>">
+  <input type="hidden" name="language" value="de_CH">
+<!-- optional customer details, highly recommended for fraud prevention: see chapter 5.2 -->
+  <input type="hidden" name="CN" value="<%=CN(@bill)%>">
+  <input type="hidden" name="EMAIL" value="<%=EMAIL(@bill)%>">
+  <input type="hidden" name="ownerZIP" value="<%=ownerZIP(@bill)%>">
+  <input type="hidden" name="owneraddress" value="<%=owneraddress(@bill)%>">
+  <input type="hidden" name="ownercty" value="<%=ownercty(@bill)%>">
+  <input type="hidden" name="ownertown" value="<%=ownertown(@bill)%>">
+  <input type="hidden" name="ownertelno" value="<%=ownertelno(@bill)%>">
+  <input type="hidden" name="COM" value="<%=bill_comment(@bill)%>">
+<!-- check before the payment: see chapter 6.2 -->
+  <input type="hidden" name="SHASign" value="<%=SHASign(@bill)%>">
+<!-- layout information: see chapter 7.1 -->
+  <input type="hidden" name="TITLE" value="<%=title(@bill)%>">
+<!-- dynamic template page: see chapter 7.2 -->
+<!-- payment methods/page specifics: see chapter 9.1 -->
+<!-- link to your website: see chapter 8.1 -->
+  <input type="hidden" name="homeurl" value="<%=events_index_url%>">
+  <input type="hidden" name="catalogurl" value="<%=events_index_url%>">
+<!-- post payment parameters: see chapter 8.2 -->
+<!-- post payment parameters: see chapter 8.3 -->
+  <input type="hidden" name="PARAMVAR" value="">
+<!-- post payment redirection: see chapter 8.2 -->
+  <input type="hidden" name="accepturl" value="<%= post_finance_payment_accepted_url %>">
+  <input type="hidden" name="declineurl" value="<%= post_finance_payment_declined_url %>">
+  <input type="hidden" name="exceptionurl" value="<%= post_finance_payment_exception_url %>">
+  <input type="hidden" name="cancelurl" value="<%= post_finance_payment_canceled_url %>">
+<!-- optional operation field: see chapter 9.2 -->
+  <input type="hidden" name="operation" value="<%=operation(@bill)%>">
+<!-- optional extra login field: see chapter 9.3 -->
+<!-- Alias details: see Alias Management documentation -->
+  <input type="submit" value="Pay using PostFinance">
+</form>

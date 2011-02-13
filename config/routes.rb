@@ -1,5 +1,15 @@
 OEventsNet::Application.routes.draw do
 
+  get "post_finance/payment_accepted"
+
+  get "post_finance/payment_declined"
+
+  get "post_finance/payment_canceled"
+
+  get "post_finance/payment_exception"
+
+  get "post_finance/post_sale"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -93,6 +103,14 @@ OEventsNet::Application.routes.draw do
       get "registration/team_options" => :team_options
     end
 
+    controller :post_finance do 
+      get "post_finance/payment_accepted" => :payment_accepted
+      get "post_finance/payment_declined" => :payment_declined
+      get "post_finance/payment_canceled" => :payment_canceled
+      get "post_finance/payment_exception" => :payment_exception
+      get "post_finance/post_sale" => :post_sale
+    end
+    
     #resource nesting is no longer used, it only complicates things
     
     resources :additional_fees      

@@ -1,23 +1,23 @@
-<div id="loginbox">
-  <%= link_to login_path, :class => "signin" do %>
-    <span><%= t('.signin') %></span>
-  <% end %>
-  <%= field_set_tag nil, :id => "signin_menu" do %>
-    <%= form_tag login_path, :id => 'signin' do %>
-      <div>
-        <label for="identifier" ><%= t('.username_or_email') %></label>
-        <%= text_field_tag :identifier, params[:identifier] %>
-      </div>
-      <div>
-        <label for="password" ><%= t('.password') %></label>
-        <%= password_field_tag :password, params[:password] %>
-       </div>
-       <div>
-         <%= submit_tag t('.submit') %>
-       </div>
+  <div id="loginbox">
+    <%= link_to login_path, :class => "signin" do %>
+      <span>  <%= t('.signin') %>  </span>
     <% end %>
-  <% end %>
-  <%= javascript_tag do %>
+    <%= field_set_tag nil, :id => "signin_menu" do %>
+      <%= form_tag login_path, :id => 'signin' do %>
+        <div>
+          <label for="identifier" >  <%= t('.username_or_email') %>  </label>
+          <%= text_field_tag :identifier, params[:identifier] %>
+        </div>
+        <div>
+          <label for="password" >  <%= t('.password') %>  </label>
+          <%= password_field_tag :password, params[:password] %>
+         </div>
+         <div>
+           <%= submit_tag t('.submit') %>
+         </div>
+      <% end %>
+    <% end %>
+    <%= javascript_tag do %>
         $(document).ready(function() {
 
             $(".signin").click(function(e) {          
@@ -38,5 +38,5 @@
 	    });			
 			
         });
-  <% end %>
-</div>
+    <% end %>
+  </div>

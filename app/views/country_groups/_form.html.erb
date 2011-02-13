@@ -1,17 +1,17 @@
-<%= form_for(@country_group) do |f| %>
-  <% if @country_group.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@country_group.errors.count, "error") %> prohibited this country_group from being saved:</h2>
+  <%= form_for(@country_group) do |f| %>
+    <% if @country_group.errors.any? %>
+      <div id="error_explanation">
+        <h2>  <%= pluralize(@country_group.errors.count, "error") %> prohibited this country_group from being saved:  </h2>
 
-      <ul>
-      <% @country_group.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @country_group.errors.full_messages.each do |msg| %>
+          <li>  <%= msg %>  </li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit %>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

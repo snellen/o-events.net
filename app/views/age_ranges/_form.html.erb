@@ -1,29 +1,29 @@
-<%= form_for(@age_range) do |f| %>
-  <% if @age_range.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@age_range.errors.count, "error") %> prohibited this age_range from being saved:</h2>
+  <%= form_for(@age_range) do |f| %>
+    <% if @age_range.errors.any? %>
+      <div id="error_explanation">
+        <h2>  <%= pluralize(@age_range.errors.count, "error") %> prohibited this age_range from being saved:  </h2>
 
-      <ul>
-      <% @age_range.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @age_range.errors.full_messages.each do |msg| %>
+          <li>  <%= msg %>  </li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :lower %>  <br />
+      <%= f.text_field :lower %>
+    </div>
+    <div class="field">
+      <%= f.label :upper %>  <br />
+      <%= f.text_field :upper %>
+    </div>
+    <div class="field">
+      <%= f.label :belongs_to %>  <br />
+      <%= f.text_field :belongs_to %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :lower %><br />
-    <%= f.text_field :lower %>
-  </div>
-  <div class="field">
-    <%= f.label :upper %><br />
-    <%= f.text_field :upper %>
-  </div>
-  <div class="field">
-    <%= f.label :belongs_to %><br />
-    <%= f.text_field :belongs_to %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

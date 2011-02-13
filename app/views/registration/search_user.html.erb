@@ -1,7 +1,7 @@
-<% content_for :main do %>
-  <%= render :partial => 'competitors/teammembers' %><br /><br %>
-  <h2><%= t('competitors.add.add_team_member') %></h2>
-  <p id="notice"><%= notice %></p>
-  <%= render :partial => 'competitors/form', :locals => {:url => registration_team_members_path, :save_button_caption => t('.save') } %>
-<% end %>
-<%= render :partial => 'events/eventsite' %>
+  <% content_for :main do %>
+    <%= render :partial => 'competitors/teammembers' %>  <br />  <br %>
+    <h2>  <%= t('competitors.add.add_team_member') %>  </h2>
+    <p id="notice">  <%= notice %>  </p>
+    <%= render :partial => 'competitors/form', :locals => {:url => registration_team_members_path, :save_button_caption => t('.save') } %>
+  <% end %>
+  <%= render :partial => 'events/eventsite' %>

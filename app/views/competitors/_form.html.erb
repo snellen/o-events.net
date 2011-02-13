@@ -1,8 +1,7 @@
-<%= form_for(@competitor, :url => url) do |f| %>
-  <% if @competitor.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@competitor.errors.count, "error") %> prohibited this competitor from being saved:</h2>
-
+  <%= form_for(@competitor, :url => url) do |f| %>
+    <% if @competitor.errors.any? %>
+      <div id="error_explanation">
+        <h2>  <%= pluralize(@competitor.errors.count, "error") %> prohibited this competitor from being saved:  </h2>
       <ul>
       <% @competitor.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -55,10 +54,30 @@
     </div>
   <% else %>      
     <div class="field">
-      <%= f.label :sex %>
-      <%= f.radio_button :sex, "M" %><%= t('.male') %>
-      <%= f.radio_button :sex, "F" %><%= t('.female') %> *
+      <%= t('form.requiredfields') %>
     </div>  
+  
+    <div class="field">
+      <%= f.label :nation_id %>
+      <%= select (:user, :nation_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect')) %> *
+    </div>
+    <div class="field">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+    </div>
+    <div class="field">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+    </div>
+    <div class="field">
+      <%= f.label :sex %>
+      <%= f.radio_button :sex, "M" %>  <%= t('.male') %>
+      <%= f.radio_button :sex, "F" %>  <%= t('.female') %> *
+    </div>  
+    <div class="field">
+      <%= f.label :birthdate_y %>
+      <%= f.text_field :birthdate_y %>
+    </div>
     <div class="field">
       <%= f.label :license_number %>
       <%= f.text_field :license_number %>
@@ -104,3 +123,4 @@
     </div>
   <% end %>
 <% end %>
+

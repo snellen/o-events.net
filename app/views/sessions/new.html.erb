@@ -1,19 +1,19 @@
-<div class="login_form_full">
-  <% if flash[:alert] %>
-    <p id="notice" ><%= flash[:alert] %></p>
-  <% end %>
-  <%= form_tag login_path do %>
-    <h1><%= t('.pleaselogin') %></h1>
-    <div class="field">
-      <label for="identifier" ><%= t('.username_or_email') %></label>
-      <%= text_field_tag :identifier, params[:identifier] %>
-    </div>
-    <div class="field">
-      <label for="password" ><%= t('.password') %></label>
-      <%= password_field_tag :password, params[:password] %>
-     </div>
-     <div>
-       <%= submit_tag  t('.submit')  %>
-     </div>
-   <% end %>
-</div>
+  <div class="login_form_full">
+    <% if flash[:alert] %>
+      <p id="notice" >  <%= flash[:alert] %>  </p>
+    <% end %>
+    <%= form_tag login_path do %>
+      <h1>  <%= t('.pleaselogin') %>  </h1>
+      <div class="field">
+        <label for="identifier" >  <%= t('.username_or_email') %>  </label>
+        <%= text_field_tag :identifier, params[:identifier] %>
+      </div>
+      <div class="field">
+        <label for="password" >  <%= t('.password') %>  </label>
+        <%= password_field_tag :password, params[:password] %>
+       </div>
+       <div>
+         <%= submit_tag  t('.submit')  %>
+       </div>
+     <% end %>
+  </div>

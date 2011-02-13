@@ -35,26 +35,26 @@
       </div>
       <div id="nav">
         <!-- skiplink anchor: navigation -->
-        <a id="navigation" name="navigation"></a>
+        <a id="navigation" name="navigation">  </a>
         <div class="hlist">
           <!-- main navigation: horizontal list -->
           <%
-            if session[:user_id]
-            myaccount = user_path(session[:user_id])
-            else
-              myaccount = login_path
-            end
-            navbar = [ { 'tab' => t('.browseevents'), 'url' => events_path }, { 'tab' => t('.newevent'), 'url' => new_event_path }, { 'tab' => t('.myclubs'), 'url' => clubs_path }, { 'tab' => t('.myaccount'), 'url' => myaccount }, { 'tab' => t('.mybills'), 'url' => bills_path }, { 'tab' => t('.faq'), 'url' => '#' } ]            
-          %>
+          if session[:user_id]
+          myaccount = user_path(session[:user_id])
+          else
+            myaccount = login_path
+          end
+          navbar = [ { 'tab' => t('.browseevents'), 'url' => events_path }, { 'tab' => t('.newevent'), 'url' => new_event_path }, { 'tab' => t('.myclubs'), 'url' => clubs_path }, { 'tab' => t('.myaccount'), 'url' => myaccount }, { 'tab' => t('.mybills'), 'url' => bills_path }, { 'tab' => t('.faq'), 'url' => '#' } ]            
+        %>
           <ul>
             <% if @title  %>
-              <li class="active"><strong><%= @title %></strong></li>
+              <li class="active">  <strong>  <%= @title %>  </strong>  </li>
             <% end %>
             <% navbar.each_with_index do |page,idx| %>
               <% if !@title && current_page?(page['url']) %>
-                <li class="active"><strong><%= page['tab'] %></strong></li>
+                <li class="active">  <strong>  <%= page['tab'] %>  </strong>  </li>
               <% else %>
-                <li><%= link_to page['tab'], page['url'] %></li>
+                <li>  <%= link_to page['tab'], page['url'] %>  </li>
               <% end %>
             <% end %>            
           </ul>
@@ -64,15 +64,15 @@
         <%= yield %>
       </div>
       <!-- begin: #footer -->
-      <div id="footer"><%= t('.supsportbanner', :supsport_link => link_to('supsport.ch','http://www.supsport.ch'), :donation_link => link_to(t('.donations'),'http://www.paypal.com')).html_safe %><br /><%= t('.poweredbyruby') %>
+      <div id="footer">  <%= t('.supsportbanner', :supsport_link => link_to('supsport.ch','http://www.supsport.ch'), :donation_link => link_to(t('.donations'),'http://www.paypal.com')).html_safe %>  <br />  <%= t('.poweredbyruby') %>
         <div id="bottomnav">
-          <a href="#"><%=t('.contact')%></a> | <a href="#"><%=t('.imprint')%></a>
+          <a href="#">  <%=t('.contact')%>  </a> |   <a href="#">  <%=t('.imprint')%>  </a>
         </div>
       </div>
     </div>
     <div id="border-bottom">
-      <div id="edge-bl"></div>
-      <div id="edge-br"></div>
+      <div id="edge-bl">  </div>
+      <div id="edge-br">  </div>
     </div>
   </div>
 </body>
