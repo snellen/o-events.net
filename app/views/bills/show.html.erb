@@ -26,11 +26,20 @@
         <b>This is a paper bill. The bill has <%@bill.is_paper_bill_sent ? "been sent" : "not been sent yet."%> </b>
       </p>
     <% else %>
-      <br />
-      <div>
-        <% # Allow the user to make payments only for non-paper bills %>
-        <%= render :partial => 'post_finance/payment_button'%>
-      </div>
+      <h2>Payment Options</h2>
+      <% # Allow the user to make payments only for non-paper bills %>
+      <table>
+        <%if PostFinanceController.enabledForEvent(@bill.event)%>
+          <tr>
+          <td>
+          Pay online using Post Finance. <br />
+          <br />
+          <%= render :partial => 'post_finance/bill_fees_and_total' %>
+          </td>
+          <td>   <%= render :partial => 'post_finance/payment_button'%> </td>
+        <% end %>
+        </tr>
+      </table>
     <% end %>
   <% end %>
   

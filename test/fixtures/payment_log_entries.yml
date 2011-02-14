@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  severity: 1
+  controller_name: MyString
+  action: MyString
+  payment_id: 1
+  ip_address: MyString
+  message: MyText
+
+two:
+  severity: 1
+  controller_name: MyString
+  action: MyString
+  payment_id: 1
+  ip_address: MyString
+  message: MyText

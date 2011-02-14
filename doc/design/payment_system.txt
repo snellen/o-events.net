@@ -42,3 +42,12 @@ Since E-Banking transaction don't cost fees it's up to the user to pay the bill 
 === PayPal ===
 TODO: Not supported in first version.
 
+== Logging ==
+All calls to actions of the payment controllers are logged in a dedicated table in the database. It contains the following columns:
+  severity: integer: 1 = info (regular case), 2 = warning (data was invalid), 3 = error (hash check failed...), 4 = fatal (internal software error)
+  controller_name:  The name of the controller that creted the entry. One of 'PostFinanceController', 'PaymentSlipController', 'EBankingController', 'PaypalController'
+  action: The action, which triggred the log entry. For example 'payment_accepted', 'payment_declined',...
+  payment: The id of the payment that is associated with the log entry (optional).
+  ip_address: The ip address of the client that invoked the action
+  message_string: additional information.(max 10 kB = 10 000 bytes), for example the full http request
+

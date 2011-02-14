@@ -1,5 +1,7 @@
 OEventsNet::Application.routes.draw do
 
+  resources :payment_log_entries
+
   get "post_finance/payment_accepted"
 
   get "post_finance/payment_declined"
@@ -149,6 +151,7 @@ OEventsNet::Application.routes.draw do
     resources :teams
     resources :total_results
     resources :users
+    resources :payment_log_entries, :only => [:show, :index]
     
     root :to => "events#index", :as => 'events_index'
   end

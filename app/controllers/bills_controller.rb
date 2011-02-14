@@ -82,7 +82,7 @@ class BillsController < ApplicationController
     end
     
     @bill = Bill.new
-    @bill.exchange_rate = 1.0 #TODO
+    @bill.exchange_rate = 1.0
     @bill.is_paper_bill = false
     @bill.is_paper_bill_sent = false
     @bill.is_paid = false
