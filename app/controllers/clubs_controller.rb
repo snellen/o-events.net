@@ -1,5 +1,5 @@
 class ClubsController < ApplicationController
-
+ 
   # GET /clubs
   # GET /clubs.xml
   def index
@@ -84,5 +84,6 @@ class ClubsController < ApplicationController
       format.html { redirect_to(clubs_url) }
       format.xml  { head :ok }
     end
-  end
+  end 
+
 end

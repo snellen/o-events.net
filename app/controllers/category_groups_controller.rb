@@ -79,5 +79,5 @@ class CategoryGroupsController < ApplicationController
       format.html { redirect_to(category_groups_url) }
       format.xml  { head :ok }
     end
-  end
+  end 
 end

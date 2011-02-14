@@ -1,5 +1,5 @@
 class AgeRangesController < ApplicationController
-  =begin # GET /age_ranges
+  # GET /age_ranges
   # GET /age_ranges.xml
   def index
     @age_ranges = AgeRange.all
@@ -79,5 +79,5 @@ class AgeRangesController < ApplicationController
       format.html { redirect_to(age_ranges_url) }
       format.xml  { head :ok }
     end
-  end =end
+  end 
 end

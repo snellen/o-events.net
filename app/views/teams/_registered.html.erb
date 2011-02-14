@@ -1,12 +1,12 @@
-<h1>Registered teams</h1>
+<h1><%= t('.registered_teams') %></h1>
 <p id="notice">  <%= notice %>  </p>
 
 <table>
   <tr>
-    <th>Team</th>
-    <th>Club</th>
-    <th>Category</th>    
-    <th>Start fee [<%= @event.currency.iso_code %>]</th>
+    <th><%= t('.team') %></th>
+    <th><%= t('.club') %></th>
+    <th><%= t('.category') %></th>    
+    <th><%= t('.start_fee', :currency => @event.currency.iso_code) %></th>
     <th></th>
     <th></th>
     <th></th>
@@ -18,12 +18,12 @@
     <td><%= team.competing_club.name %></td>
     <td><%= team.category_list %></td>
     <td><%= team.start_fee %></td>
-    <td><%= link_to t('.edit'), registration_team_members_path(:team_id => team.id) %></td>
-    <td><%= link_to t('.delete'), registration_main_path(:team_id => team.id), :confirm => t('.confirm_delete'), :method => :delete %></td>
+    <td><%= link_to icon('edit'), registration_team_members_path(:team_id => team.id) %></td>
+    <td><%= link_to icon('delete'), registration_main_path(:team_id => team.id), :confirm => t('.confirm_delete'), :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Team', registration_team_members_path %>
+<%= link_to icon('add_person')+' '+t('.new_team'), registration_team_members_path(:team_pool_id => @team_pool.id) %>

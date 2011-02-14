@@ -39,6 +39,10 @@ en:
     pleaseselect:     "Please select"
     selectnationfirst: "Please select a nation first"
     nojavascript_submit:   "OK"
+  icons:
+    edit: "Edit"
+    delete: "Delete"
+    add_person: "Add"    
   layouts:
     application:
       title:           "O-events.net"
@@ -178,10 +182,20 @@ en:
       competition:       "Competition"
       date:              "Date"
       register:          "Register"
+  events:
+    index:
+      browse_events:    "Browse events"
+      date:             "Date"
+      event:            "Event"
+      show:             "Show"      
   teams:
     registered:
-      edit:             "Edit"
-      delete:           "Delete"
+      new_team:         "Register a new team"
+      registered_teams: "Registered Teams"
+      team:             "Team"
+      club:             "Club"
+      category:         "Category"
+      start_fee:        "Start fee  [%{currency}]"
       confirm_delete:   "Are you sure you want to delete this team?"
   registration:
     search_user:

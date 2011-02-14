@@ -79,5 +79,5 @@ class CompetitionsController < ApplicationController
       format.html { redirect_to(competitions_url) }
       format.xml  { head :ok }
     end
-  end
+  end 
 end

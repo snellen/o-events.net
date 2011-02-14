@@ -79,5 +79,5 @@ class StartBlocksController < ApplicationController
       format.html { redirect_to(start_blocks_url) }
       format.xml  { head :ok }
     end
-  end
+  end 
 end

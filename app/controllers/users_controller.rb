@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_filter :authorize, :only => [:new,:create]
-
+=begin
   # GET /users
   # GET /users.xml
   def index
@@ -11,6 +11,7 @@ class UsersController < ApplicationController
       format.xml  { render :xml => @users }
     end
   end
+=end
 
   # GET /users/1
   # GET /users/1.xml
@@ -72,7 +73,8 @@ class UsersController < ApplicationController
       end
     end
   end
-
+  
+=begin
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
@@ -85,6 +87,7 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+=end
   
   protected
   # Check if sessionId matches paramId

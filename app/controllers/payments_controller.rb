@@ -79,5 +79,5 @@ class PaymentsController < ApplicationController
       format.html { redirect_to(payments_url) }
       format.xml  { head :ok }
     end
-  end
+  end 
 end

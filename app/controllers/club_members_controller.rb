@@ -79,5 +79,5 @@ class ClubMembersController < ApplicationController
       format.html { redirect_to(club_members_url) }
       format.xml  { head :ok }
     end
-  end
+  end 
 end
