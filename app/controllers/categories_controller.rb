@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  # GET /categories
+=begin   # GET /categories
   # GET /categories.xml
   def index
     @categories = Category.all
@@ -79,5 +79,5 @@ class CategoriesController < ApplicationController
       format.html { redirect_to(categories_url) }
       format.xml  { head :ok }
     end
-  end
+  end =end
 end
