@@ -130,6 +130,10 @@ de:
     new:
       register:           "Benutzerkonto erstellen"
     form:
+      account_data:       "Kontoangaben"
+      personal_data:      "Persönliche Daten"
+      address_data:       "Postadresse"
+      address_info:       "Die Angabe der Postadresse ist Voraussetzung für Online-Zahlungen; ansonsten ist sie freiwillig."
       password:           "Passwort"
       password_confirmation: "Passwort bestätigen"
       submit:             "Speichern"
@@ -174,6 +178,9 @@ de:
       username_or_email:  "Benutzername oder E-Mail"
       password:           "Passwort"
       submit:             "Anmelden"
+      register_info:      "Noch kein Benutzerkonto bei O-events.net? Bitte zuerst %{reglink}."
+      register:           "registrieren"
+      
     destroy:
       signout:             "Abmelden"
   competition_groups:

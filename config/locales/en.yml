@@ -125,6 +125,10 @@ en:
     new:
       register:           "Register"
     form:
+      account_data:       "Account Data"
+      personal_data:      "Personal Data"
+      address_data:       "Postal Address"
+      address_info:       "The address is required to make electronic payments with your account. Otherwise it is optional."
       password:           "Password"
       password_confirmation: "Confirm Password"
       submit:             "Save"
@@ -146,6 +150,8 @@ en:
       username_or_email:  "Username or E-mail"
       password:           "Password"
       submit:             "Login"
+      register_info:      "If you have no O-events.net account, please %{reglink} first."
+      register:           "register"      
     destroy:
       signout:             "Sign out"
   competitors:

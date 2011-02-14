@@ -9,7 +9,7 @@ div.field, div.actions {
 }
 
 div.field label {
-  width: 10em;
+  width: 14em;
   float: left;
   text-align: left;
   padding-top: 0.2em;
@@ -18,7 +18,7 @@ div.field label {
 }
 
 div.actions input[type="submit"]{
-  margin-left: 10em; 
+  margin-left: 14em; 
 }
 
 div.field input div.field select {

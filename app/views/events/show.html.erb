@@ -1,29 +1,20 @@
 <% content_for :main do %>
 
-  <p id="notice"><%= notice %></p>
+  <h2>Willkommen bei O-events.net</h2>
+  <p>O-events.net ist ein neues Online-Anmeldeportal für Orientierungsläufe. Die Seite ist momentan noch eine Baustelle und wird für den diesjährigen Berner sCOOL-Cup erstmals eingesetzt. Dennoch hoffen wir, dass die Anmeldung reibungslos funktioniert. Sollte dies nicht der Fall sein, schicke bitte eine E-Mail an <%= image_tag('/event_data/2011/bescool/email.png', :alt => 'email', :style => "position:relative;top:3px") %>.</p>
   
-  <p>
-    <b>Name:</b>
-    <%= @event.name %>
-  </p>
+  <p>Zur Zahlung des Startgeldes stehen die Online-Zahlungsarten PostFinance E-Finance und PostFinance Card zur Verfügung. Alternativ kannst du das Startgeld mittels E-Banking oder Einzahlungsschein auf unser Konto überweisen: <b>PC 60-181114-8, supsport.ch, 3097 Liebefeld</b>. Besten Dank!<br /><br /></p>
   
-  <p>
-    <b>Start date:</b>
-    <%= @event.start_date %>
-  </p>
+  <table><tr><th colspan = "2"><%= @event.name %></tr>
+  <tr><td>Datum:</td><td><%= date_interval(@event.start_date,@event.end_date) %></td></tr>
+  <tr><td>Ort: </td><td>Urtenen-Schönbühl</td></tr>
+  <tr><td>Veranstalter:</td><td>Bernischer Verband für Sport in der Schule (BVSS) und Verein „Berner sCOOL-Cup“ (OK)
+in Zusammenarbeit mit Bern. OL-Verband, Schweiz. OL-Verband und OLV Hindelbank</td></tr></table>
   
-  <p>
-    <b>End date:</b>
-    <%= @event.end_date %>
-  </p>
-  
-  <p>
-    <b>Slug:</b>
-    <%= @event.slug %>
-  </p>
-  
-  <%= link_to 'Edit', edit_event_path(@event) %> |
-  <%= link_to 'Back', events_path %>
+  <p><br />Hast du noch kein Benutzerkonto bei O-events.net?</p>
+  <p><%= button_to 'Zur Registrierung', new_user_url, :method => :get %><br /><br /></p>
+  <p>Bist du registriert und möchtest Teams anmelden?<br />
+  <%= button_to 'Zur Anmeldung', registration_overview_url(:event_id => @event.id), :method => :get %></p>
 <% end %>
   
 <%= render :partial => 'events/eventsite' %>

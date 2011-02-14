@@ -14,8 +14,8 @@
   <div class="field">
     <%= t('form.requiredfields') %>
   </div>
-
   <br>
+  <h2><%= t('.account_data') %></h2>
   <% if @user.new_record? %>
     <div class="field">
       <%= f.label :username %>
@@ -35,7 +35,7 @@
     <%= f.password_field :password_confirmation %> *
   </div>
   
-  <br>
+  <br><h2><%= t('.personal_data') %></h2>
   
   <div class="field">
     <%= f.label :first_name %>
@@ -63,7 +63,8 @@
     <%= select(:user, :nation_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect')) %> *
   </div>
   
-  <br>
+  <br><h2><%= t('.address_data') %></h2>
+  <p><%= t('.address_info') %></p>
   
   <div class="field">
     <%= f.label :address_line_1 %>

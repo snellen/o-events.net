@@ -12,8 +12,9 @@
         <label for="password" >  <%= t('.password') %>  </label>
         <%= password_field_tag :password, params[:password] %>
        </div>
-       <div>
+       <div class="actions">
          <%= submit_tag  t('.submit')  %>
        </div>
      <% end %>
+     <p><br /><%= t('.register_info', :reglink => link_to(t('.register'), new_user_path)).html_safe %></p>
   </div>

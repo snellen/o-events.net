@@ -1,5 +1,6 @@
   <% content_for :left do %>
     <ul>
+    <li>  <%= link_to 'Übersicht', @event %>  </li>    
       <li>  <a href="/event_data/2011/bescool/ausschreibung.pdf">Ausschreibung </a>  </li>
       <li>  <%= link_to 'Anmeldung', registration_overview_url(:event_id => @event.id) %>  </li>
     
