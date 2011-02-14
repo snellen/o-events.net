@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   
   before_filter :set_i18n_locale_from_params
   before_filter :authorize
+  before_filter :dev_mode
 
   
   protected
@@ -26,6 +27,12 @@ class ApplicationController < ActionController::Base
   def authorize
     unless User.find_by_id(session[:user_id])
       redirect_to login_path, :notice =>   t('.pleaselogin')
+    end
+  end
+  
+  def dev_mode
+    authenticate_or_request_with_http_basic do |username,password|
+      username == 'dev' && password == DEV_MODE_PASSWORD && DEV_MODE_PASSWORD.length > 6
     end
   end
   
