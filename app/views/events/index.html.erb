@@ -11,7 +11,7 @@
     <tr>
       <td><%= date_interval(event.start_date,event.end_date) %></td>
       <td><%= event.name %></td>
-      <td><%= link_to t('.show'), event.start_date.year.to_s+"/"+event.slug %></td>
+      <td><%= link_to t('.show'), event.slug_url %></td>
     </tr>
   <% end %>
   </table>

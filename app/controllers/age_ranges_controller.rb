@@ -79,5 +79,5 @@ class AgeRangesController < ApplicationController
       format.html { redirect_to(age_ranges_url) }
       format.xml  { head :ok }
     end
-  end 
+  end
 end
