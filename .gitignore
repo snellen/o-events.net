@@ -9,4 +9,5 @@ tmp/**/*
 .project
 .billsecret
 config/initializers/secrets.rb
+config/database.yml
 
