@@ -190,3 +190,5 @@ en:
       multiple_runners_found: "There are several runners matching the criteria. Please specify the details in the form below."      
   pleaselogin:           "Please log in"
   loginfailed:           "Invalid user/password combination"
+  userupdatesuccess:     "Your data was successfully updated."
+  usercreatesuccess:     "Thank you for registring and welcome to o-events.net!"

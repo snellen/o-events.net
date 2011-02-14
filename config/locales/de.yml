@@ -201,3 +201,5 @@ de:
       multiple_runners_found: "Es wurden mehrere Läufer mit diesen Angaben gefunden. Bitte ergänze das untenstehende Formular."      
   pleaselogin:      "Bitte anmelden"
   loginfailed:      "Ungültige Benutzername/Passwort Kombination"
+  userupdatesuccess:     "Ihre Daten wurden erfolgreich aktualisiert"
+  usercreatesuccess:     "Vielen Dank für die Registration und viel Spass mit o-events.net"
