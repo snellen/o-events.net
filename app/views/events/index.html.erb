@@ -21,7 +21,7 @@
       <td><%= event.start_date %></td>
       <td><%= event.end_date %></td>
       <td><%= event.slug %></td>
-      <td><%= link_to 'Show', event.start_date.year.to_s+"/"+event.slug %></td>
+      <td><%= link_to 'Show', event.slug_url %></td>
       <td><%= link_to 'Edit', edit_event_path(event) %></td>
       <td><%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>

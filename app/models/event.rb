@@ -20,4 +20,8 @@ class Event < ActiveRecord::Base
   #validates :end_date, :date => { :after_or_equal_to => :start_date }
   validates_presence_of :slug
   validates_format_of :slug, :with => /[a-z0-9]/i
+  
+  def slug_url
+    start_date.year.to_s+"/"+slug
+  end
 end
