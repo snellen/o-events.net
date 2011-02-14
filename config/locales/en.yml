@@ -33,7 +33,7 @@ en:
         other:         "Please correct the errors in the following fields:"
       header:
         one:           "1 error prohibited this %{model} from being saved"
-        other:         "%{count} error prohibited this %{model} from being saved"
+        other:         "%{count} errors prohibited this %{model} from being saved"
   form:
     requiredfields:     "* marks required fields"      
     pleaseselect:     "Please select"
@@ -66,6 +66,7 @@ en:
         between:        "must be between %{from} and %{to}"
         invalid:        "is invalid"
         mustbeselected: "must be selected"
+        not_a_number:   "is not a valid number"        
       models:
         user:
           attributes:
@@ -148,18 +149,19 @@ en:
     destroy:
       signout:             "Sign out"
   competitors:
-    form:
-      search_runner:      "Find a runner without a username:"
     add:
-      save:             "Save"           
+      search:           "Search"
       add_team_member:  "Add a Team Member"
-      add:              "Add"      
+      add_team_member_info: "You can add runners who are registered with O-events.net by typing their username in the 'Username' field. Other runners may be added by filling the form below."      
+      add:              "Add"   
+      cancel:           "Abbrechen"      
       suggested:        "Suggested Runners"
       suggested_desc:   "You have recently registered these runners for other events. Click on their names to add them to the team."
       runner:           "Runner"
       clubs:            "Clubs"
-    list:
-      new_members:      "Choose the Team Members"      
+    teammembers:
+      no_members:       "The team does not have any members yet."
+      new_members:      "Register New Team"      
       members:          "Team Members"
       name:             "Name"
       leader:           "Leader"   
@@ -170,9 +172,15 @@ en:
       competition:       "Competition"
       date:              "Date"
       register:          "Register"
+  teams:
+    registered:
+      edit:             "Edit"
+      delete:           "Delete"
+      confirm_delete:   "Are you sure you want to delete this team?"
   registration:
     search_user:
-      runner_not_found: "Runner not found. Please enter the required details in the form below."
+      search_runner:     "Add a runner without a username:"      
+      runner_not_found:  "Runner not found. Please enter the required details in the form below."
       multiple_runners_found: "There are several runners matching the criteria. Please specify the details in the form below."      
-  pleaselogin:          "Please log in"
-  loginfailed:          "Invalid user/password combination"
+  pleaselogin:           "Please log in"
+  loginfailed:           "Invalid user/password combination"

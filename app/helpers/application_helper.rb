@@ -4,7 +4,7 @@ module ApplicationHelper
   def date_interval(from, to, dformat='long')
     dformat = 'date.interval_'+dformat
 
-    if to.nil? || from.nil?
+    if to.nil? or from.nil?
       t(dformat+'.nil')
     else
       if to.year == from.year

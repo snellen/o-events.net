@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110206211717) do
+ActiveRecord::Schema.define(:version => 20110214023931) do
 
   create_table "additional_fees", :force => true do |t|
     t.string   "name"
@@ -160,6 +160,7 @@ ActiveRecord::Schema.define(:version => 20110206211717) do
     t.boolean  "flag3"
     t.integer  "team_id"
     t.integer  "sortkey"
+    t.integer  "event_id"
   end
 
   create_table "countries", :force => true do |t|

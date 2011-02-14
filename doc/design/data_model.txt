@@ -114,7 +114,8 @@ Competitor: A User who competes in an Event.
   nation:ref                Country represented by the competitor.
   team:ref                  The Team that the competitor is a part of.
   competing_club:ref        The club that this competitor represents (in the current event).        
-  user:ref                  The user that this competitor is a copy of. This reference is zero if a competitor was registered by another user, and is set to zero when the linked user is deleted.  
+  user:ref                  The user that this competitor is a copy of. This reference is zero if a competitor was registered by another user, and is set to zero when the linked user is deleted.
+  event:ref                 The event that this competitor participates in. This is needed to validate the competitor before the team has been saved.  
 ==
 Country: A political country, as used for postal addresses.
   name:string               Name of the country.

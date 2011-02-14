@@ -1,6 +1,9 @@
-<h2><%= t('.add_team_member') %></h2>
-  <%= render :partial => 'users/search', :locals => { :url => registration_search_user_url, :search_button_caption => t('.add') } %>
-  <%= render :partial => 'competitors/form', :locals => { :url => @form_url, :button_caption => (@search_form ? t('.search') : t('.save')) } %>
+<h2><%= t('.add_team_member') %></h2><p><%= t('.add_team_member_info') %></p>
+  <%= render :partial => 'users/search', :locals => { :url => registration_search_user_url, :search_button_caption => t('.add') } %>  
+  <%= render :partial => 'competitors/form', :locals => { :url => @form_url, :button_caption => (@search_form ? t('.search') : t('.add')) } %>
+  
+  <% if false %>
+  TODO implement suggested teams
   <br /><br />
   <h2><%= t('.suggested') %></h2>
   <p><%= t('.suggested_desc') %></p>
@@ -10,3 +13,4 @@
   <tr><td><a href="#"><b>Ueli Maurer</b> (1940)<br />OLG Zürich<br />ueli_svp</a></td><td><a href="#"><b>Martin Zoller</b> (1987)<br />Das bist du!<br />mzoller</a></td><td><a href="#"><b>Kurt Fröhlich</b> (1950)<br />OLG Dachsen<br />SQ6FRK</a></td></tr>
   <tr><td><a href="#"><b>Urs Meier</b> (1962)<br />OLK Argus<br /></a></td><td><a href="#"><b>Barbara Meier</b> (1967)<br />OLK Argus<br />barbara222</a></td><td><a href="#"><b>Linda Fröhlich</b> (2005)<br />OLG Dachsen<br /></a></td></tr>
   </table>
+  <% end %>

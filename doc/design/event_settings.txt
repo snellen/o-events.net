@@ -33,9 +33,13 @@ competitor_address_show:boolean
 competitor_address_require:boolean
 competitor_city_show:boolean
 competitor_city_require:boolean
+competitor_sex_show:boolean                   Required if shown
 competitor_birthdate_y_show:boolean           Required if shown
 competitor_competing_club_show:boolean        Required if shown. Nation must be shown when CompetingClub is shown.
 competitor_nation_show:boolean                Required if shown
+team_name_show:boolean                        Required if shown
+team_nation_show:boolean                      Required if shown.
+team_competing_club_show:boolean              Required if shown. Nation must be shown when CompetingClub is shown.
 
 
 [Custom fields]
@@ -58,14 +62,11 @@ competitor_text3_name:string        Name of the "text3" field
 competitor_text3_show:boolean       True if the "text3" field should be shown in the competitor form
 competitor_text3_require:boolean    True if the "text3" field should be mandatory
 competitor_flag1_name:string        Name of the "flag1" field
-competitor_flag1_show:boolean       True if the "flag1" field should be shown in the competitor form
-competitor_flag1_require:boolean    True if the "flag1" field should be mandatory
+competitor_flag1_show:boolean       True if the "flag1" field should be shown in the competitor form (flags cannot be optional)
 competitor_flag2_name:string        Name of the "flag2" field
 competitor_flag2_show:boolean       True if the "flag2" field should be shown in the competitor form
-competitor_flag2_require:boolean    True if the "flag2" field should be mandatory
 competitor_flag3_name:string        Name of the "flag3" field
 competitor_flag3_show:boolean       True if the "flag3" field should be shown in the competitor form
-competitor_flag3_require:boolean    True if the "flag3" field should be mandatory
 team_num1_name:string               Name of the "num1" field
 team_num1_show:boolean              True if the "num1" field should be shown in the team form
 team_num1_require:boolean           True if the "num1" field should be mandatory
@@ -86,10 +87,7 @@ team_text3_show:boolean             True if the "text3" field should be shown in
 team_text3_require:boolean          True if the "text3" field should be mandatory
 team_flag1_name:string              Name of the "flag1" field
 team_flag1_show:boolean             True if the "flag1" field should be shown in the team form
-team_flag1_require:boolean          True if the "flag1" field should be mandatory
 team_flag2_name:string              Name of the "flag2" field
 team_flag2_show:boolean             True if the "flag2" field should be shown in the team form
-team_flag2_require:boolean          True if the "flag2" field should be mandatory
 team_flag3_name:string              Name of the "flag3" field
 team_flag3_show:boolean             True if the "flag3" field should be shown in the team form
-team_flag3_require:boolean          True if the "flag3" field should be mandatory

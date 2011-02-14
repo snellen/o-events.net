@@ -1,12 +1,12 @@
 <h1>Registered teams</h1>
+<p id="notice">  <%= notice %>  </p>
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Registration time</th>
-    <th>Paid by club</th>
-    <th>Start fee</th>
-    <th>Is paid</th>
+    <th>Team</th>
+    <th>Club</th>
+    <th>Category</th>    
+    <th>Start fee [<%= @event.currency.iso_code %>]</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,14 +14,12 @@
 
 <% @teams.each do |team| %>
   <tr>
-    <td><%= team.name %></td>
-    <td><%= team.registration_time %></td>
-    <td><%= team.paid_by_club %></td>
+    <td><%= team.get_display_name %></td>
+    <td><%= team.competing_club.name %></td>
+    <td><%= team.category_list %></td>
     <td><%= team.start_fee %></td>
-    <td><%= team.is_paid %></td>
-    <td><%= link_to 'Show', team %></td>
-    <td><%= link_to 'Edit', edit_team_path(team) %></td>
-    <td><%= link_to 'Destroy', team, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to t('.edit'), registration_team_members_path(:team_id => team.id) %></td>
+    <td><%= link_to t('.delete'), registration_main_path(:team_id => team.id), :confirm => t('.confirm_delete'), :method => :delete %></td>
   </tr>
 <% end %>
 </table>

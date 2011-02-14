@@ -14,7 +14,7 @@ class RegistrationController < ApplicationController
       @competitors = session[:reg_competitors]
       @team_pool = @team.team_pool
     end
-    
+     
     @event = @team_pool.event
     @title = @event.name
   end
@@ -45,10 +45,21 @@ class RegistrationController < ApplicationController
     end
   end
   
+  #DELETE /registration/main
+  def team_delete
+    @team = Team.find(params[:team_id])
+    @team_pool = @team.team_pool
+    
+    #TODO destroy
+    
+    redirect_to registration_main_url(:team_pool_id => @team_pool.id, :notice => 'Deletion not implemented yet.')
+  end
+  
   #GET /registration/team_members
   def team_members
     get_session_params
-    @fields = EventSetting.competitor_fields(@event) 
+    @fields = EventSetting.competitor_fields(@event)
+    @custom_fields = EventSetting.custom_fields('competitor',@event)
     if (! @fields[:nation]) or (! @fields[:competing_club]) or (! @fields[:birthdate_y])
       @search_form = false
       @form_url = registration_team_members_url
@@ -57,10 +68,10 @@ class RegistrationController < ApplicationController
       @form_url = registration_search_user_url
     end
     
-    if params[:comp_index].to_i >= 0 and @competitors.count > params[:comp_index].to_i
-      @competitor = @competitors[params[:comp_index].to_i]
+    if params[:competitor_index].to_i >= 0 and @competitors.count > params[:competitor_index].to_i
+      @competitor = @competitors[params[:competitor_index].to_i]
     else
-      @competitor = Competitor.new
+      @competitor = @event.build_competitor
     end
     
     set_session_params
@@ -71,6 +82,9 @@ class RegistrationController < ApplicationController
   def team_addmember
     get_session_params
  
+    @competitor = @event.build_competitor
+    @competitor.attributes = params[:competitor] #TODO
+    
     set_session_params
     redirect_to registration_team_members_url
   end
@@ -78,6 +92,8 @@ class RegistrationController < ApplicationController
   # DELETE /registration/team_members
   def team_removemember
     get_session_params
+  
+    @competitors.delete_at(params[:competitor_index].to_i)
     
     set_session_params
     redirect_to registration_team_members_url
@@ -94,27 +110,30 @@ class RegistrationController < ApplicationController
   # POST /registration/search_user
   def search_user
     get_session_params
-    @form_url = registration_team_members_url
+    @fields = EventSetting.competitor_fields(@event)
+    @custom_fields = EventSetting.custom_fields('competitor',@event)
     
     # Search user if userdata submitted
     if params[:user]
       udata = params[:user]
-      cmembers = User.where(:id => ClubMember.where(:club_id => params[:club_id]).map{|cm| cm.user_id})
     
       if udata[:username].empty?
+        uclub = Club.find(udata[:competing_club_id])
+        cmembers = User.where(:id => uclub.club_members.map{|cm| cm.user_id})
         res_users = cmembers.where(:first_name => udata[:first_name], :last_name => udata[:last_name], :birthdate_y => udata[:birthdate_y], :club_id => udata[:club_id])
       else
-        res_users = cmembers.where(:username => udata[:username])
+        res_users = User.where(:username => udata[:username])
+        if res_users.count == 1
+          uclub = ClubMember.where(:user_id => res_users.first.id, :is_default => true).first
+          # TODO: Always show the form let the user select from their clubs; add a "New Club" button that opens a popup window.
+        end
       end      
       
       # One result
       if res_users.count == 1
-        @competitor = Competitor.build_from_user(res_users.first,Club.find(params[:club_id]),@team_pool)
-        if(@competitors.empty?)
-          @competitor.sortkey = 1
-        else
-          @competitor.sortkey = @competitors.map{|c| c.sortkey}.max + 1
-        end
+        @competitor = Competitor.build_from_user(res_users.first,uclub,@team_pool)
+        @competitor.event = @event
+        @competitor.sortkey = 1 # actual sortkey will be set when saving team
         
         cfields = EventSetting.competitor_fields(@event)
         showform = false
@@ -123,34 +142,41 @@ class RegistrationController < ApplicationController
             if f[:required?] and ( (@competitor.address_line_1.empty? and @competitor.address_line_2.empty?) or @competitor.city.empty? or @competitor.country_id.nil? or @competitor.zipcode.empty?)
               showform = true
             end
-            elsif f[:required?] and @competitor.attributes[key].empty?
+          elsif f[:required?] and @competitor.attributes[key].empty?
             showform = true
           end
         end
         
         if !showform
-          @competitors << @competitor #TODO validate
-          set_session_params
-          redirect_to registration_team_members_url
+          if @competitor.valid?
+            @competitors << @competitor
+            set_session_params
+            redirect_to registration_team_members_url
+          end
         end
-      else
+        
+      else # More than one result
+        
         if res_users.empty?
           flash[:notice] = t('registration.search_user.runner_not_found')
         else
           flash[:notice] = t('registration.search_user.multiple_runners_found')
         end
-        @competitor = Competitor.new
+        @competitor = @event.build_competitor
         @competitor.first_name  = params[:user][:first_name]
         @competitor.last_name   = params[:user][:last_name]
         @competitor.birthdate_y = params[:user][:birthdate_y]
         @competitor.nation_id  =  params[:user][:nation_id]
-      end
-    end
-  end
+      end #if
+    else #no user data
+      redirect_to registration_team_members_url
+    end #if
+  end #search_user
 
+  
   # GET /registration/team_options
   def team_options
     get_session_params
-  end    
+  end #team_options    
   
 end

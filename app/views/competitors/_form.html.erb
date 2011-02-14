@@ -1,26 +1,25 @@
-  <%= form_for(@competitor, :url => url) do |f| %>
-    <% if @competitor.errors.any? %>
-      <div id="error_explanation">
-        <h2>  <%= pluralize(@competitor.errors.count, "error") %> prohibited this competitor from being saved:  </h2>
-      <ul>
-      <% @competitor.errors.full_messages.each do |msg| %>
+<%= form_for(@competitor, :url => url) do |f| %>
+  <% if @competitor.errors.any? %>
+    <div id="error_explanation">
+      <h2>  <%= pluralize(@competitor.errors.count, "error") %> prohibited this competitor from being saved:  </h2>
+      <ul><% @competitor.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
-      <% end %>
-      </ul>
+      <% end %></ul>
     </div>
   <% end %>
   
-  <p><br /><b><%= t('.search_runner') %></b></p>
+  <%= hidden_field_tag 'competitor_index', params[:competitor_index] %>
+  
   <div class="field">
     <%= t('form.requiredfields') %>
-  </div>  
+  </div> 
   <% if @fields[:nation] %>
     <%= form_tag registration_team_members_url, :class => 'nation', :method => 'get' do %>
       <div class="field">
         <%= label_tag :nation_id, t('activerecord.attributes.competitor.nation_id') %>
         <%= f.select :nation_id, Country.all.map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect'), :onchange => 'this.form.submit()' %>
         <%= submit_tag t('form.nojavascript_submit') %>
-        <%= javascript_tag "$$('.nation input').each(Element.hide)" %>
+        <%= javascript_tag "$$('.nation input').each(Element.hide)" %> *
       </div>
     <% end %>
   <% end %>
@@ -28,7 +27,7 @@
     <div class="field">
       <%= f.label :club_id %>
       <% if params[:nation_id] %> 
-        <%= f.select (:competing_club, Club.where(:country_id => params[:nation_id]).map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect')) %>
+        <%= f.select (:competing_club, Club.where(:country_id => params[:nation_id]).map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect')) %> *
       <% else %>
         <%= f.select (:competing_club, [[t('form.selectnationfirst'), 0]]) %>
       <% end %>
@@ -36,16 +35,16 @@
   <% end %>
   <div class="field">
     <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
+    <%= f.text_field :first_name %> *
   </div>
   <div class="field">
     <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name %> *
   </div>
   <% if @fields[:birthdate_y] %>
     <div class="field">
       <%= f.label :birthdate_y %>
-      <%= f.text_field :birthdate_y %>
+      <%= f.text_field :birthdate_y %> *
     </div>
   <% end %>
   <% if @search_form %>    
@@ -53,73 +52,76 @@
       <%= submit_tag button_caption %>
     </div>
   <% else %>      
-    <div class="field">
-      <%= t('form.requiredfields') %>
-    </div>  
-  
-    <div class="field">
-      <%= f.label :nation_id %>
-      <%= select (:user, :nation_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect')) %> *
-    </div>
-    <div class="field">
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name %>
-    </div>
-    <div class="field">
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name %>
-    </div>
-    <div class="field">
-      <%= f.label :sex %>
-      <%= f.radio_button :sex, "M" %>  <%= t('.male') %>
-      <%= f.radio_button :sex, "F" %>  <%= t('.female') %> *
-    </div>  
-    <div class="field">
-      <%= f.label :birthdate_y %>
-      <%= f.text_field :birthdate_y %>
-    </div>
-    <div class="field">
-      <%= f.label :license_number %>
-      <%= f.text_field :license_number %>
-    </div>
-    <div class="field">
-      <%= f.label :region_code %>
-      <%= f.text_field :region_code %>
-    </div>
-    <div class="field">
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-    </div>
-    <div class="field">
-      <%= f.label :phone %>
-      <%= f.text_field :phone %>
-    </div>
-    <div class="field">
-      <%= f.label :address_line_1 %>
-      <%= f.text_field :address_line_1 %>
-    </div>
-    <div class="field">
-      <%= f.label :address_line_2 %>
-      <%= f.text_field :address_line_2 %>
-    </div>
-    <div class="field">
-      <%= f.label :zipcode %>
-      <%= f.text_field :zipcode %>
-    </div>
-    <div class="field">
-      <%= f.label :city %>
-      <%= f.text_field :city %>
-    </div>
-    <div class="field">
-      <%= f.label :province %>
-      <%= f.text_field :province %>
-    </div>
-    <div class="field">
-      <%= f.label :country_id %>
-      <%= select (:user, :country_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect')) %>
-    </div>
+    <% if @fields[:sex] %>  
+      <div class="field">
+        <%= f.label :sex %>
+        <%= f.radio_button :sex, "M" %>  <%= t('.male') %>
+        <%= f.radio_button :sex, "F" %>  <%= t('.female') %> *
+      </div>
+    <% end %>
+    <% if @fields[:license_number] %>    
+      <div class="field">
+        <%= f.label :license_number %>
+        <%= f.text_field :license_number %><%= field_asterisk(@fields[:license_number]) %>
+      </div>
+    <% end %>
+    <% if @fields[:email] %>    
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.text_field :email %><%= field_asterisk(@fields[:email]) %>
+      </div>
+    <% end %>
+    <% if @fields[:phone] %>        
+      <div class="field">
+        <%= f.label :phone %>
+        <%= f.text_field :phone %><%= field_asterisk(@fields[:phone]) %>
+      </div>
+    <% end %>
+    <% if @fields[:address] %>        
+      <div class="field">
+        <%= f.label :address_line_1 %>
+        <%= f.text_field :address_line_1 %><%= field_asterisk(@fields[:address]) %>
+      </div>
+      <div class="field">
+        <%= f.label :address_line_2 %>
+        <%= f.text_field :address_line_2 %>
+      </div>
+      <div class="field">
+        <%= f.label :zipcode %>
+        <%= f.text_field :zipcode %><%= field_asterisk(@fields[:address]) %>
+      </div>
+    <% end %>
+    <% if @fields[:city] %>
+      <div class="field">
+        <%= f.label :city %>
+        <%= f.text_field :city %><%= field_asterisk(@fields[:city]) %>
+        </div>
+    <% end %>
+    <% if @fields[:address] %> 
+      <div class="field">
+        <%= f.label :province %>
+        <%= f.text_field :province %>
+      </div>
+      <div class="field">
+        <%= f.label :country_id %>
+        <%= select (:user, :country_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect')) %><%= field_asterisk(@fields[:address]) %>
+      </div>
+    <% end %>      
+    <% @custom_fields.each do |cfname,cf| %>
+      <div class="field"><%= f.label cfname, cf[:name] %>
+      <% case cfname.to_s[0] %>
+        <% when ?t %>
+          <%= f.text_field cfname %> <%= field_asterisk(cf) %>
+        <% when ?n %>        
+          <%= f.text_field cfname %> <%= field_asterisk(cf) %>
+        <% when ?f %>
+          <%= f.check_box cfname %>
+      <% end  %>
+      </div>
+    <% end %>
     <div class="actions">
       <%= f.submit button_caption %>
+      <%= button_to t('competitors.add.cancel'), registration_team_members_url %>
     </div>
   <% end %>
 <% end %>

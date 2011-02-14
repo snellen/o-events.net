@@ -1,35 +1,38 @@
   <h1>
-  <% if(@team.nil?) %>
+  <% if(@team.id.nil?) %>
     <%= t('.new_members') %>
   <% else %>
     <%= t('.members') %>
   <% end %>
   </h1>
 
-  <table>
-    <tr>
-      <th>  <%= t('.leader') %>  </th>
-      <th>  <%= t('.name') %>  </th>
-      <th>  <%= t('activerecord.models.club') %>  </th>
-      <th>  </th>
-      <th>  </th>
-      <th>  </th>
-      <th>  </th>
-    </tr>
-
-  <% if(! @team.nil?) %>
-  <% @team.competitors.each do |idx,competitor| %>
-    <tr>  <%= form_for(competitor) do |f| %>
-      <td>  <%= f.radio_button :is_leader %>  </td>
-      <td>  <%= competitor.full_name %>  </td>
-      <td>  <%= competitor.competing_club.name %>  </td>
-      <td>  <%= link_to 'Move up', registration_team_members_path(:move => 'up'), :method => :post %>  </td>
-      <td>  <%= link_to 'Move up', registration_team_members_path(:move => 'down'), :method => :post %>  </td>
-      <td>  <%= link_to 'Edit', registration_team_members_path(:competitor_index => idx) %>  </td>
-      <td>  <%= link_to 'Delete', registration_team_members_path(:competitor_index => idx), :confirm => 'Are you sure?', :method => :delete %>  </td>
-    </tr>  <% end %>
-  <% end %>
-  <% end %>
-  </table>
+  <% if @competitors.empty? %>
+    <p><%= t('.no_members') %></p>
+  <% else %>
+    <table>
+      <tr>
+        <th>  <%= t('.leader') %>  </th>
+        <th>  <%= t('.name') %>  </th>
+        <th>  <%= t('activerecord.models.club') %>  </th>
+        <th>  </th>
+        <th>  </th>
+        <th>  </th>
+        <th>  </th>
+      </tr>
+  
+    <% @competitors.each do |idx,competitor| %>
+      <tr>  <%= form_for(competitor) do |f| %>
+        <td>  <%= f.radio_button :is_leader %>  </td>
+        <td>  <%= competitor.full_name %>  </td>
+        <td>  <%= competitor.competing_club.name %>  </td>
+        <td>  <%= link_to 'Move up', registration_team_members_path(:competitor_index => idx, :move => 'up'), :method => :post %>  </td>
+        <td>  <%= link_to 'Move up', registration_team_members_path(:competitor_index => idx, :move => 'down'), :method => :post %>  </td>
+        <td>  <%= link_to 'Edit', registration_team_members_path(:competitor_index => idx) %>  </td>
+        <td>  <%= link_to 'Delete', registration_team_members_path(:competitor_index => idx), :confirm => 'Are you sure?', :method => :delete %>  </td>
+      </tr>  <% end %>
+    <% end %>
+    </table>
 
   <br />  <%= button_to t('.team_complete'), registration_team_options_url %>
+  
+  <% end %>

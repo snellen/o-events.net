@@ -26,6 +26,10 @@ de:
       day_to: "%d.%m.%y" 
       single: "%d.%m.%y"
       nil: "unbekannt"
+  support:
+    array:
+      words_connector: ", "
+      last_word_connector: " und "
   errors:
     template:
       body:
@@ -66,6 +70,7 @@ de:
         between:        "muss zwischen %{from} und %{to} liegen"
         invalid:        "ist ungültig"
         mustbeselected: "muss ausgewählt werden"
+        not_a_number:   "ist keine gültige Zahl"
       models:
         user:
           attributes:
@@ -144,18 +149,20 @@ de:
   competitors:
     form:
       male:               "Männlich"
-      female:             "Weiblich"
-      search_runner:      "Läufer ohne Benutzernamen suchen:"      
+      female:             "Weiblich"      
     add:
-      save:             "Speichern"      
+      search:           "Suchen"      
       add_team_member:  "Neues Teammitglied"
+      add_team_member_info: "Du kannst Läufer hinzufügen, die bei O-events.net registriert sind, indem du ihren Benutzernamen ins Feld 'Benutzername' einträgst. Andere Läufer kannst du erfassen, indem du den Benutzernamen leer lässt und dafür die restlichen Felder ausfüllst." 
       add:              "Hinzufügen"
+      cancel:           "Abbrechen"
       suggested:        "Kürzlich angemeldet"
       suggested_desc:   "Hier sind Läufer aufgeführt, die du in letzter Zeit für andere Wettkämpfe angemeldet hast. Klicke auf ihre Namen, um sie zum Team hinzuzufügen."
       runner:           "Läufer"
       clubs:            "Vereine"
     teammembers:
-      new_members:      "Wähle die Teammitglieder"      
+      new_members:      "Neues Team anmelden"
+      no_members:       "Das Team hat noch keine Mitglieder."      
       members:          "Teamzusammensetzung"
       name:             "Name"
       leader:           "Admin."
@@ -175,8 +182,14 @@ de:
       competition:       "Wettkampf"
       date:              "Datum"
       register:          "Anmelden"
+  teams:
+    registered:
+      edit:             "Bearbeiten"
+      delete:           "Löschen"
+      confirm_delete:   "Team wirklich löschen?"      
   registration:
     search_user:
+      search_runner:      "Läufer ohne Benutzernamen hinzufügen:"      
       runner_not_found: "Läufer nicht gefunden. Bitte trage die nötigen Angaben ins Formular ein."
       multiple_runners_found: "Es wurden mehrere Läufer mit diesen Angaben gefunden. Bitte ergänze das untenstehende Formular."      
   pleaselogin:      "Bitte anmelden"

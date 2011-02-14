@@ -11,6 +11,7 @@ class Event < ActiveRecord::Base
   has_many :country_groups
   has_many :registration_deadlines
   has_many :team_pools
+  has_many :competitors
   has_and_belongs_to_many :languages
   validates_presence_of :name
   validates_presence_of :start_date

@@ -7,18 +7,19 @@ class Competitor < ActiveRecord::Base
   belongs_to :competing_club
   validates_presence_of :competing_club, :unless => "competing_club_id.blank?"
   belongs_to :nation, :class_name => "Country"
-  validates_presence_of :nation
+  validates_presence_of :nation, :unless => "nation_id.blank?"
   belongs_to :user
   validates_presence_of :user, :unless => "user_id.blank?"
-  belongs_to :team, :autosave => false
-  validates_presence_of :team, :unless => "team_id.blank?"
+  belongs_to :team
+  validates_presence_of :team, :unless => "team.id.blank?"
+  belongs_to :event
+  validates_presence_of :event
   has_one :leader_team, :foreign_key => "leader_id"
-  validates :email, :presence => true
-  validates_format_of :email, :with => /(\S+)@(\S+)/
-  validates :sex, :presence => true, :inclusion => {:in =>  %w( M F ), :allow_nil => true}
+  validates_format_of :email, :with => /(\S+)@(\S+)/, :allow_nil => true
+  validates :sex, :inclusion => {:in =>  %w( M F ), :allow_nil => true}
   validates :first_name, :presence => true
   validates :last_name, :presence => true
-  validates :birthdate_y, :presence => true, :numericality => {:only_integer => true, :allow_nil => true}, :inclusion => {:in => 1900..Date.today.year, :allow_nil => true}
+  validates :birthdate_y, :numericality => {:only_integer => true, :allow_nil => true}, :inclusion => {:in => 1900..Date.today.year, :allow_nil => true}
   validates :sortkey, :presence => true
   validates_inclusion_of :flag1, :in => [true, false], :unless => "flag1.blank?"
   validates_inclusion_of :flag2, :in => [true, false], :unless => "flag2.blank?"
@@ -26,6 +27,32 @@ class Competitor < ActiveRecord::Base
   validates_numericality_of :num1, :only_integer => true, :unless => "num1.blank?"
   validates_numericality_of :num2, :only_integer => true, :unless => "num2.blank?"
   validates_numericality_of :num3, :only_integer => true, :unless => "num3.blank?"
+  
+  # Optional fields which can be shown without being required
+  validates_each :license_number, :email, :phone, :city, :text1, :text2, :text3, :num1, :num2, :num3 do |record, attr, value|
+    if !record.event.nil?
+      record.errors.add attr, I18n.t('activerecord.errors.messages.blank') if value.nil? and EventSetting.get_b('competitor_'+attr.to_s+'_require',record.event)
+    end
+  end
+
+  # Optional fields which are required when shown 
+  validates_each :nation, :birthdate_y, :competing_club, :flag1, :flag2, :flag3 do |record, attr, value|
+    if !record.event.nil?
+      record.errors.add attr, I18n.t('activerecord.errors.messages.blank') if value.nil? and EventSetting.get_b('competitor_'+attr.to_s+'_show',record.event)
+    end
+  end  
+  
+  validate :presence_of_address
+  
+  
+  def presence_of_address
+    if !team.nil?
+      if (address_line_1.nil? and address_line_2.nil?) or (country_id.nil?) or (zipcode.nil?) #city is validated above
+        errors.add 'Address must be present' if EventSetting.get_b('competitor_address_require',team.team_pool.event)
+      end
+    end
+  end
+
   
   
   # Provides a reader for the full name
@@ -42,15 +69,10 @@ class Competitor < ActiveRecord::Base
   # The CompetingClub is saved immediately to avoid creating multiple CompetingClubs when saving multiple Competitors with the same club.
   def self.build_from_user(user,club,team_pool)
     attr = {:license_number => user.license_number, :region_code => user.region_code, :first_name => user.first_name, :last_name => user.last_name, :email => user.email, :phone => user.phone, :address_line_1 => user.address_line_1, :address_line_2 => user.address_line_2, :zipcode => user.zipcode, :city => user.city, :province => user.province, :sex => user.sex, :birthdate_y => user.birthdate_y, :birthdate_m => user.birthdate_m, :birthdate_d => user.birthdate_d, :country_id => user.country_id, :nation_id => user.nation_id, :user_id => user.id}
-    #res = Competitor.where(:user_id => user.id).where(:team_id => team_pool.teams.map{|t| t.id})     
-    #if res.empty?
-    #  c = self.new(attr)
-    #else
-    #  c = res.first
-    #  c.attributes = attr 
-    #end
     c = self.new(attr)
-    c.competing_club = CompetingClub.create_from_club(club,team_pool)
+    if !club.nil? # A competitor can be built, but not saved, without a competing club.
+      c.competing_club = CompetingClub.create_from_club(club,team_pool)
+    end
     c
   end
     
