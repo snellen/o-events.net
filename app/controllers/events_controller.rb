@@ -38,7 +38,7 @@ class EventsController < ApplicationController
       format.xml  { render :xml => @event }
     end
   end
-
+=begin 
   # GET /events/new
   # GET /events/new.xml
   def new
@@ -99,4 +99,5 @@ class EventsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+=end
 end

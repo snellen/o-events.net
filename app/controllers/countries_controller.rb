@@ -79,5 +79,5 @@ class CountriesController < ApplicationController
       format.html { redirect_to(countries_url) }
       format.xml  { head :ok }
     end
-  end
+  end 
 end

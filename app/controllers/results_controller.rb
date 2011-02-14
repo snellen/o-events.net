@@ -79,5 +79,5 @@ class ResultsController < ApplicationController
       format.html { redirect_to(results_url) }
       format.xml  { head :ok }
     end
-  end
+  end 
 end

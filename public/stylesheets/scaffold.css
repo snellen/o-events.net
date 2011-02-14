@@ -18,11 +18,13 @@ div.field label {
 }
 
 div.actions input[type="submit"]{
-  margin-left: 14em; 
+  margin-left: 14.5em; 
+  margin-bottom: 0.5em;
 }
 
-div.field input div.field select {
+div.field input, div.field select {
   margin-left: 0.5em;
+  width: 14em;
 }
 
 #notice {

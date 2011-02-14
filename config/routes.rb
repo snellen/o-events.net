@@ -1,17 +1,5 @@
 OEventsNet::Application.routes.draw do
 
-  resources :payment_log_entries
-
-  get "post_finance/payment_accepted"
-
-  get "post_finance/payment_declined"
-
-  get "post_finance/payment_canceled"
-
-  get "post_finance/payment_exception"
-
-  get "post_finance/post_sale"
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -85,6 +73,15 @@ OEventsNet::Application.routes.draw do
     post "registration/search_user" => :search_user      
     get "registration/team_options" => :team_options
   end
+
+  controller :post_finance do 
+    get "post_finance/payment_accepted" => :payment_accepted
+    get "post_finance/payment_declined" => :payment_declined
+    get "post_finance/payment_canceled" => :payment_canceled
+    get "post_finance/payment_exception" => :payment_exception
+    get "post_finance/post_sale" => :post_sale
+  end
+
   
   scope '(:locale)' do
     # put everything in here that should be localized
@@ -116,7 +113,17 @@ OEventsNet::Application.routes.draw do
     end
     
     #resource nesting is no longer used, it only complicates things
+
+    resources :events
+    match '/:year/:slug' => 'events#show', :constraints => { :year => /\d{4}/, :slug => /[a-z0-9]+/}
+    resources :bills, :only => [:index, :show, :new, :create] do
+        collection do 
+          get 'unpaid_fees', :as => 'unpaid_fees'
+        end
+    end
+    resources :users    
     
+=begin    
     resources :additional_fees      
     resources :age_ranges
     resources :categories
@@ -131,15 +138,8 @@ OEventsNet::Application.routes.draw do
     resources :countries
     resources :country_groups
     resources :currencies
-    resources :event_settings    
-    resources :events
-    match '/:year/:slug' => 'events#show', :constraints => { :year => /\d{4}/, :slug => /[a-z0-9]+/}
+    resources :event_settings
     resources :languages
-    resources :bills, :only => [:index, :show, :new, :create] do
-        collection do 
-          get 'unpaid_fees', :as => 'unpaid_fees'
-        end
-    end
     resources :payments      
     resources :registration_deadlines      
     resources :results
@@ -153,8 +153,8 @@ OEventsNet::Application.routes.draw do
     resources :team_registrations
     resources :teams
     resources :total_results
-    resources :users
     resources :payment_log_entries, :only => [:show, :index]
+=end
     
     root :to => "events#index", :as => 'events_index'
   end

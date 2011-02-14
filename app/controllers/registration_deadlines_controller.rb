@@ -79,5 +79,5 @@ class RegistrationDeadlinesController < ApplicationController
       format.html { redirect_to(registration_deadlines_url) }
       format.xml  { head :ok }
     end
-  end
+  end 
 end

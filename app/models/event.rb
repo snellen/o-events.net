@@ -22,6 +22,6 @@ class Event < ActiveRecord::Base
   validates_format_of :slug, :with => /[a-z0-9]/i
   
   def slug_url
-    start_date.year.to_s+"/"+slug
+    "/"+start_date.year.to_s+"/"+slug
   end
 end

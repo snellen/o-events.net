@@ -79,5 +79,5 @@ class ChipsController < ApplicationController
       format.html { redirect_to(chips_url) }
       format.xml  { head :ok }
     end
-  end
+  end 
 end

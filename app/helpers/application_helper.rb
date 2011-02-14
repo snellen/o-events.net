@@ -28,4 +28,13 @@ module ApplicationHelper
     @event.event_settings.where(:name => setting).first  
   end
   
+  # Displays an icon from /public/layout/icons, with localized title text
+  def icon(name)
+    if FileTest.exist?("public/layout/icons/#{name}.png")
+      image_tag "/layout/icons/#{name}.png", :alt => I18n.t('icons.'+name), :title => I18n.t('icons.'+name)
+    else
+      "[icon not found: #{name}]"      
+    end
+  end
+  
 end

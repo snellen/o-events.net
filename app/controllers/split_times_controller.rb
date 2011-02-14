@@ -79,5 +79,5 @@ class SplitTimesController < ApplicationController
       format.html { redirect_to(split_times_url) }
       format.xml  { head :ok }
     end
-  end
+  end 
 end

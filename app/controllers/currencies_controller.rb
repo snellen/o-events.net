@@ -79,5 +79,5 @@ class CurrenciesController < ApplicationController
       format.html { redirect_to(currencies_url) }
       format.xml  { head :ok }
     end
-  end
+  end 
 end

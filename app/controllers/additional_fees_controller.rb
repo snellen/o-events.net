@@ -1,4 +1,5 @@
 class AdditionalFeesController < ApplicationController
+  # GET /additional_fees
   # GET /additional_fees.xml
   def index
     @additional_fees = AdditionalFee.all

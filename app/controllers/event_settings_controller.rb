@@ -79,5 +79,5 @@ class EventSettingsController < ApplicationController
       format.html { redirect_to(event_settings_url) }
       format.xml  { head :ok }
     end
-  end
+  end 
 end

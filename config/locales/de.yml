@@ -42,7 +42,11 @@ de:
     pleaseselect:       "Bitte auswählen"      
     requiredfields:     "Mit * markierte Angaben sind zwingend."        
     selectnationfirst:  "Bitte zuerst Nationalität auswählen"
-    nojavascript_submit:   "OK"    
+    nojavascript_submit:   "OK"
+  icons:
+    edit: "Bearbeiten"
+    delete: "Löschen"    
+    add_person: "Hinzufügen"    
   layouts:
     application:
       title:           "O-events.net"
@@ -189,10 +193,20 @@ de:
       competition:       "Wettkampf"
       date:              "Datum"
       register:          "Anmelden"
+  events:
+    index:
+      browse_events:    "Wettkampfkalender"
+      date:             "Datum"
+      event:            "Wettkampf"
+      show:             "Anzeigen"
   teams:
     registered:
-      edit:             "Bearbeiten"
-      delete:           "Löschen"
+      new_team:         "Neues Team anmelden"     
+      registered_teams: "Angemeldete Teams"
+      team:             "Team"
+      club:             "Verein"
+      category:         "Kategorie"
+      start_fee:        "Startgeld [%{currency}]"      
       confirm_delete:   "Team wirklich löschen?"      
   registration:
     search_user:

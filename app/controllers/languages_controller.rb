@@ -79,5 +79,5 @@ class LanguagesController < ApplicationController
       format.html { redirect_to(languages_url) }
       format.xml  { head :ok }
     end
-  end
+  end 
 end

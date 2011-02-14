@@ -71,7 +71,7 @@ class RegistrationController < ApplicationController
     if params[:competitor_index].to_i >= 0 and @competitors.count > params[:competitor_index].to_i
       @competitor = @competitors[params[:competitor_index].to_i]
     else
-      @competitor = @event.build_competitor
+      @competitor = @event.competitors.build
     end
     
     set_session_params
@@ -82,7 +82,7 @@ class RegistrationController < ApplicationController
   def team_addmember
     get_session_params
  
-    @competitor = @event.build_competitor
+    @competitor = @event.competitors.build
     @competitor.attributes = params[:competitor] #TODO
     
     set_session_params
@@ -162,7 +162,7 @@ class RegistrationController < ApplicationController
         else
           flash[:notice] = t('registration.search_user.multiple_runners_found')
         end
-        @competitor = @event.build_competitor
+        @competitor = @event.competitors.build
         @competitor.first_name  = params[:user][:first_name]
         @competitor.last_name   = params[:user][:last_name]
         @competitor.birthdate_y = params[:user][:birthdate_y]
