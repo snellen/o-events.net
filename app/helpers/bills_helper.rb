@@ -6,7 +6,7 @@ module BillsHelper
       if i != 0
         result += ","
       end
-      result += " "+ (team.get_display_name(' '))
+      result += " "+ (team.get_display_name)
     end
     truncate(result, :length => len, :omission => "...")
   end  

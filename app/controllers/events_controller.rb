@@ -19,7 +19,18 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.xml
   def show
-    @event = Event.find(params[:id])
+    @event = nil
+    if params[:year] and params[:slug]
+      fromDate = Time.local(Integer(params[:year]), 1, 1)
+      toDate = Time.local(Integer(params[:year]), 12, 31)
+      events = Event.where(:slug => params[:slug], :start_date => (fromDate)..(toDate))
+      if events.size > 0
+        @event = events.first
+      end
+    end
+    if !@event
+      @event = Event.find(params[:id])
+    end
     @title = @event.name
 
     respond_to do |format|

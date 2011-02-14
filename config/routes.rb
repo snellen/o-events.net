@@ -133,6 +133,7 @@ OEventsNet::Application.routes.draw do
     resources :currencies
     resources :event_settings    
     resources :events
+    match '/:year/:slug' => 'events#show', :constraints => { :year => /\d{4}/, :slug => /[a-z0-9]+/}
     resources :languages
     resources :bills, :only => [:index, :show, :new, :create] do
         collection do 
