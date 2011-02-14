@@ -163,10 +163,8 @@ All payments must be made in Swiss francs (using current exchange rates, only if
   valuta:date                 The date on which the money is transferred.
   fees_valuta:date            The date on which the fees are debited from the account of supsport.ch.
   registration_time:datetime  A timestamp of the instant when the payment is registered in the O-events.net system.
-  security_data:string        A collection of header data used to track fradulent users of the payment system. Contains IP address, browser version, and other information.
   method:string               Method of payment, e.g. one of 'esr','postfinance_card','postfinance_efinance','paypal'
   fees:decimal                The fees which have to be paid to the payment service provider for this payment.
-  fees_included:boolean       Determines whether the fees are included in the amount. If this is false, the organizer covers the fees.
   amount:decimal              The amount of money that is debited to the user's bank or credit card account.
                               Note: The amount that gets credited to the organizer is (amount minus fees)! (If the organizer does not cover transaction fees, this is equal to the StartFees.)
                                     The amount of StartFees that the user has paid is (amount) if fees_included is true, and (amount minus fees) otherwise.

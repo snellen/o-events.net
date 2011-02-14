@@ -12,6 +12,7 @@ class Bill < ActiveRecord::Base
   validates_inclusion_of :is_paid, :in => [true, false]
   validates_presence_of :reference_number
   validates_format_of :reference_number, :with => /[0-9]+/
+  validates_uniqueness_of :reference_number
   validates_presence_of :first_name
   validates_length_of :first_name, :minimum => 1
   validates_presence_of :last_name
@@ -25,10 +26,17 @@ class Bill < ActiveRecord::Base
 
   attr_protected :exchange_rate, :is_paper_bill, :is_paper_bill_sent, :is_paid, :reference_number
   
+  # Amount in event currency
   def amount
     check_teams
-    sum = 0
-    teams.sum(:start_fee)
+    sum = BigDecimal.new("0.0")
+    teams.each{|t| sum += t.start_fee}
+    sum
+  end
+    
+  # Amount in CHF
+  def amountInCHF
+    amount*exchange_rate
   end
   
   def currency

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Severity:</b>
+  <%= @payment_log_entry.severity %>
+</p>
+
+<p>
+  <b>Controller name:</b>
+  <%= @payment_log_entry.controller_name %>
+</p>
+
+<p>
+  <b>Action:</b>
+  <%= @payment_log_entry.action %>
+</p>
+
+<p>
+  <b>Payment:</b>
+  <%= @payment_log_entry.payment_id %>
+</p>
+
+<p>
+  <b>Ip address:</b>
+  <%= @payment_log_entry.ip_address %>
+</p>
+
+<p>
+  <b>Message:</b>
+  <%= @payment_log_entry.message %>
+</p>
+
+
+<%= link_to 'Edit', edit_payment_log_entry_path(@payment_log_entry) %> |
+<%= link_to 'Back', payment_log_entries_path %>

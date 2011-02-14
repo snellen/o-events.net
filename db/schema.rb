@@ -227,15 +227,25 @@ ActiveRecord::Schema.define(:version => 20110214023931) do
     t.integer "nation_id"
   end
 
+  create_table "payment_log_entries", :force => true do |t|
+    t.integer  "severity"
+    t.string   "controller_name"
+    t.string   "action"
+    t.integer  "payment_id"
+    t.string   "ip_address"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "payment_log_entry_id"
+  end
+
   create_table "payments", :force => true do |t|
     t.string   "reference_number"
     t.date     "valuta"
     t.date     "fees_valuta"
     t.datetime "registration_time"
-    t.string   "security_data"
     t.string   "method"
     t.decimal  "fees"
-    t.boolean  "fees_included"
     t.decimal  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
