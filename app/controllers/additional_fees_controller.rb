@@ -1,5 +1,4 @@
 class AdditionalFeesController < ApplicationController
-  =begin # GET /additional_fees
   # GET /additional_fees.xml
   def index
     @additional_fees = AdditionalFee.all
@@ -79,5 +78,5 @@ class AdditionalFeesController < ApplicationController
       format.html { redirect_to(additional_fees_url) }
       format.xml  { head :ok }
     end
-  end =end
+  end
 end
