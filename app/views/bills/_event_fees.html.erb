@@ -1,8 +1,8 @@
   <table>
       <tr>
-        <th>Name  </th>
-        <th>Team Pool  </th>
-        <th>Amount [  <%= @event.currency.iso_code %>]   </th>
+        <th><%=t('.registration')%></th>
+        <th><%=t('.teampool')%></th>
+        <th><%=t('.amount')%> [<%= @event.currency.iso_code %>]   </th>
       </tr>
 
     <% @teams.each do |team| %>

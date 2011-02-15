@@ -52,7 +52,7 @@ class PostFinanceController < ApplicationController
     begin
       if checkSHAOutSignature(reqLog, params)
         payment = processPayment(reqLog, __method__, params)
-        message = payment ? "Payment successfull!": "Payment failed!"
+        message = payment ? t('.paymentsuccessful'): t('.paymentfailed')
         redirectToBill(params, message)
       else
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::ERROR,"Hash check failed!",nil)
@@ -61,7 +61,7 @@ class PostFinanceController < ApplicationController
       PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::FATAL,"Exception: "+e.to_s()+" bt: "+e.backtrace.to_s(),nil)
     end
     respond_to do |format|
-      format.html { redirect_to bills_url, :notice => "Payment failed (internal error)!" }
+      format.html { redirect_to bills_url, :notice => t('.paymentfailedinternalerror') }
     end
   end
 
@@ -72,7 +72,7 @@ class PostFinanceController < ApplicationController
         ncerror = params["NCERROR"]
         msg = "Payment for "+params["orderID"]+" declined (status "+params["STATUS"]+(ncerror ? ", error code "+ncerror : "")
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::WARNING,msg,nil)
-        if redirectToBill(params, "Payment was declined!")
+        if redirectToBill(params, t('.paymentdeclined'))
           return
         end
       else
@@ -82,7 +82,7 @@ class PostFinanceController < ApplicationController
       PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::FATAL,"Exception: "+e.to_s()+" bt: "+e.backtrace.to_s(),nil)
     end
     respond_to do |format|
-      format.html { redirect_to bills_url, :notice => "Payment failed (internal error)!" }
+      format.html { redirect_to bills_url, :notice => t('.paymentfailedinternalerror') }
     end
   end
 
@@ -93,7 +93,7 @@ class PostFinanceController < ApplicationController
         ncerror = params["NCERROR"]
         msg = "Payment for "+params["orderID"]+" canceled (status "+params["STATUS"]+")"+(ncerror ? ", error code "+ncerror : "")
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::INFO,msg,nil)
-        if redirectToBill(params, "Payment was canceled!")
+        if redirectToBill(params, t('.paymentcanceled'))
           return
         end
       else
@@ -103,7 +103,7 @@ class PostFinanceController < ApplicationController
       PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::FATAL,"Exception: "+e.to_s()+" bt: "+e.backtrace.to_s(),nil)
     end
     respond_to do |format|
-      format.html { redirect_to bills_url, :notice => "Payment failed (internal error)!" }
+      format.html { redirect_to bills_url, :notice => t('.paymentfailedinternalerror') }
     end
   end
 
@@ -114,7 +114,7 @@ class PostFinanceController < ApplicationController
         ncerror = params["NCERROR"]
         msg = "Payment for "+params["orderID"]+" exception (status "+params["STATUS"]+")"+(ncerror ? ", error code "+ncerror : "")
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::WARNING,msg,nil)
-        if redirectToBill(params, "Payment status uncertain!")
+        if redirectToBill(params, t('.paymentuncertain'))
           return
         end
       else
@@ -124,7 +124,7 @@ class PostFinanceController < ApplicationController
       PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::FATAL,"Exception: "+e.to_s()+" bt: "+e.backtrace.to_s(),nil)
     end
     respond_to do |format|
-      format.html { redirect_to bills_url, :notice => "Payment failed (internal error)!" }
+      format.html { redirect_to bills_url, :notice => t('.paymentfailedinternalerror') }
     end
   end
 
@@ -189,19 +189,15 @@ class PostFinanceController < ApplicationController
   private
   # Hashes the concatenation of the fields and the postfinance SHA-OUT "additional string"
   # See 10.2 SHA-OUT SIGNATURE in Advanced e-Commerce - Technical integration guide for e-Commerce - Version 3.4
-  def calculateSHAOutSignature(order_id,amount,currency,payment_method, acceptance, status,cardno, payid, ncerror, brand)
-    string = order_id
-    string += currency
-    string += amount
-    string += payment_method
-    string += acceptance
-    string += status
-    string += cardno
-    string += payid
-    string += ncerror
-    string += brand
+  def calculateSHAOutSignature(fields)
+    string = ""
+    for field in fields.each do
+      if field
+        string += field
+      end
+    end
     string += POSTFINANCE_SHA_OUT_SECRET
-    (Digest::SHA1.hexdigest(string)).upcase()
+    (Digest::SHA512.hexdigest(string)).upcase()
   end
   
   # true => ok, false => not ok
@@ -226,6 +222,21 @@ class PostFinanceController < ApplicationController
     if !(pm = params["PM"])
       message += "missing parameter PM;"
     end
+    if !(brand = params["BRAND"])
+      message += "missing parameter BRAND;"
+    end
+    if !(acceptance = params["ACCEPTANCE"])
+      message += "missing parameter ACCEPTANCE;"
+    end
+    if !(cardno = params["CARDNO"])
+      message += "missing parameter CARDNO;"
+    end
+    if !(payid = params["PAYID"])
+      message += "missing parameter PAYID;"
+    end
+    if !(payid = params["NCERROR"])
+      message += "missing parameter NCERROR;"
+    end
     
     if !message.empty?
       PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::WARNING,message,nil)
@@ -233,15 +244,11 @@ class PostFinanceController < ApplicationController
     end
   
     # Optional
-    acceptance = params["ACCEPTANCE"] ? params["ACCEPTANCE"] : "" 
-    cardno = params["CARDNO"] ? params["CARDNO"] : "" 
-    payid = params["PAYID"] ? params["PAYID"] : "" 
-    ncerror = params["NCERROR"] ? params["NCERROR"] : "" 
-    brand = params["BRAND"] ? params["BRAND"] : ""
+    trxdate = params["TRXDATE"] ? params["TRXDATE"] : ""
     
                                
-    shasign == calculateSHAOutSignature(orderID, amount, currency, pm, acceptance, status, 
-                                    cardno, payid, ncerror, brand)
+    shasign == calculateSHAOutSignature([orderID, amount, currency, pm, acceptance, status, 
+                                    cardno, payid, ncerror, brand])
   end
   
   # Return payment instance created if payment accepted

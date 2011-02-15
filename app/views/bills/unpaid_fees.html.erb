@@ -1,21 +1,21 @@
 <% content_for :main do %>
   <p id="notice"><%= notice %></p>
-  <h1>Unpaid Fees</h1>
+  <h1><%=t('bills.billsite.unbilledregistrations')%></h1>
   <% @teams_by_event.each_pair do |@event,@teams| %>
     <p>
       <h2><%= @event.name %></h2>
     </p>
     <%= render 'event_fees' %>
     <p>
-      <b>Total amount:</b>
+      <b><%=t('bills.new.totalamount')%>:</b>
       <%= format_amount(@teams.inject(0) { |sum, t| sum + t.start_fee }) %>
       <%= @event.currency.iso_code %>
     </p>
-    <%= link_to "Pay", new_bill_path(:event => @event.id)%>  
+     <%= get_button_to t('.pay'), new_bill_path, {:event => @event.id} %>
   <% end %>
   <br>
   <br>
-  <%= link_to 'Back', bills_path %>
+  <%= link_to t('.backtomybills'), bills_path %>
 <% end %>
 
 <%= render :partial => 'bills/billsite' %>

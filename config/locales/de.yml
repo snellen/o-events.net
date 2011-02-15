@@ -30,6 +30,7 @@ de:
     array:
       words_connector: ", "
       last_word_connector: " und "
+      two_words_connector: " , "
   errors:
     template:
       body:
@@ -88,6 +89,7 @@ de:
       user:             "Benutzer"
       club:             "Verein" 
       event:            "Wettkampf"
+      bill:             "Rechnung"
     attributes:
       user:
         username:       "Benutzername"
@@ -218,6 +220,62 @@ de:
   registration:
     search_user:      
       runner_not_found: "Läufer nicht gefunden. Bitte trage die nötigen Angaben ins Formular ein."
-      multiple_runners_found: "Es wurden mehrere Läufer mit diesen Angaben gefunden. Bitte ergänze das untenstehende Formular."      
+      multiple_runners_found: "Es wurden mehrere Läufer mit diesen Angaben gefunden. Bitte ergänze das untenstehende Formular."
+  bills:
+    billsite:
+      mybills:     "Meine Rechnungen"
+      unbilledregistrations:    "Unverrechnete Anmeldungen"
+    event_fees:
+      registration:      "Anmeldung"
+      teampool:          "Anmeldungsgruppe"
+      amount:            "Betrag"
+    index:
+      summary:           "Zusammenfassung"
+      date:              "Datum"
+      amount:            "Betrag"
+      status:            "Status"
+      paid:              "Bezahlt"
+      unpaid:            "Unbezahlt"
+      details:           "Details"
+    new:
+      newbill:           "Neue Rechnung erstellen"
+      totalamount:       "Gesamtbetrag"
+      acceptdescription: "Durch das Akzeptieren der Rechnung verpflichtest du dich den obenstehenden Betrag zu bezahlen."
+      acceptbill:        "Akzeptieren"
+      completeaddressreq: "Die Angabe der Postadresse ist Voraussetzung für Zahlungen! Klicke %{editlink} um deine Adresse zu erfassen."
+      usereditlinklabel: "hier"
+      totalzero:         "Der Gesamtbetrag der Rechnung ist 0 %{currency}."
+    show:
+      totalamount:       "Gesamtbetrag"
+      status:            "Status"
+      paid:              "Bezahlt"
+      unpaid:            "Unbezahlt"
+      paperbill:         "Diese Rechnung wird dir per Post zugestellt."
+      sendstatus:        "Die Rechnung wurde <b>%{status}</b>."
+      sent:              "versendet"
+      notsent:           "noch nicht versendet"
+      paymentoptionsdesc: "Diese Rechnung kann mit folgenden Zahlungsarten bezahlt werden:"
+      paypostfinance:    "Online-Zahlung mit PostFinance"
+      backtomybills:     "Zurück zu meinen Rechnungen"
+    unpaid_fees:
+      pay:               "Rechnung erstellen"
+      backtomybills:     "Zurück zu meinen Rechnungen"
+  post_finance:
+    payment_button:
+      submit:            "Jetzt mit PostFinance bezahlen"
+      postfinancebillcomment: "O-events.net Rechnung für %{event_name}, Teams/Läufer: %{registration_list}"
+    bill_fees_and_total:
+      paymentfees:       "Spesen"
+      totalamount:       "<b>Gesamtbetrag:</b> %{amount} CHF"
+      feescoveredbyorganizer: "Die Spesen werden vom Wettbewerbsveranstalter übernommen."
   pleaselogin:      "Bitte anmelden"
   loginfailed:      "Ungültige Benutzername/Passwort Kombination"
+  userupdatesuccess:     "Deine Daten wurden erfolgreich aktualisiert."
+  usercreatesuccess:     "Vielen Dank für die Registration und viel Spass mit o-events.net"
+  billcreationsuccess:  "Die Rechnung wurde erfolgreich erstellt."
+  paymentsuccessful:  "Bezahlung erfolgreich. Der Status der Rechnung wird in Kürze aktualisiert."
+  paymentfailed:  "Die Bezahlung konnte nicht verarbeitet werden."
+  paymentfailedinternalerror:  "Interner Fehler beim Verarbeiten der Zahlung. Die Daten zur Bezahlung wurden gespeichert und müssen manuell verarbeitet werden. Bitte melde diesen Fehler an support@o-events.net"
+  paymentdeclined: "Die Bezahlung wurde abgelehnt."
+  paymentcanceled: "Die Bezahlung wurde durch den Benutzer abgebrochen."
+  paymentuncertain: "Der Status der Zahlung ist unsicher. Bitte wende dich an support@o-events.net."
