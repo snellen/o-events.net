@@ -14,7 +14,7 @@ in Zusammenarbeit mit Bern. OL-Verband, Schweiz. OL-Verband und OLV Hindelbank</
   <p><br />Hast du noch kein Benutzerkonto bei O-events.net?</p>
   <p><%= button_to 'Zur Registrierung', new_user_url, :method => :get %><br /><br /></p>
   <p>Bist du registriert und möchtest Teams anmelden?<br />
-  <%= button_to 'Zur Anmeldung', registration_overview_url(:event_id => @event.id), :method => :get %></p>
+  <%= get_button_to 'Zur Anmeldung', registration_overview_url, {:event_id => @event.id} %></p>
 <% end %>
   
 <%= render :partial => 'events/eventsite' %>
