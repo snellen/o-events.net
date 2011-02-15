@@ -18,7 +18,11 @@
   </p>
   <p>
     <b><%=t('.status')%>:</b>
-    <%= @bill.is_paid ? t('.paid') : t('.unpaid') %>
+    <% if @bill.is_paid %>
+      <%= t('.paidon', :date => @bill.paid_at.strftime(t('date.default'))) %>
+    <% else %>
+      <%= t('.unpaid')%>
+    <% end %>
   </p>
   <% if !@bill.is_paid %>
     <% if @bill.is_paper_bill%>

@@ -28,7 +28,6 @@ class Bill < ActiveRecord::Base
   
   # Amount in event currency
   def amount
-    check_teams
     sum = BigDecimal.new("0.0")
     teams.each{|t| sum += t.start_fee}
     sum
@@ -44,31 +43,15 @@ class Bill < ActiveRecord::Base
   end
   
   def event
-    check_teams
     teams[0].team_pool.event
   end
-      
-  private
-  # Check if there is one or more teams (of the same event) in this bill
-  def check_teams
-    raise "Bill has no teams!" unless teams.size > 0
-    eventId = -1
-    userId = -1
-    for team in teams.each do
-      eventOfTeam = team.team_pool.event.id
-      userOfTeam = team.user.id
-      if eventId < 0
-        eventId = eventOfTeam
-      end
-      if userId < 0
-             userId = userOfTeam
-      end
-      if eventId != eventOfTeam
-        raise "Teams in bill inconsistent!"
-      end
-      if userId != userOfTeam
-        raise "User of teams in bill inconsistent!"
-      end
+  
+  # Returns the creation date of the newest payment, or nil if bill is not paid yet
+  def paid_at
+    if !is_paid
+      return nil
     end
-  end  
+    ps = payments.order('created_at DESC').limit(1)
+    ps.first.created_at 
+  end
 end
