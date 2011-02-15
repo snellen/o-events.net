@@ -53,7 +53,9 @@ class PostFinanceController < ApplicationController
       if checkSHAOutSignature(reqLog, params)
         payment = processPayment(reqLog, __method__, params)
         message = payment ? t('.paymentsuccessful'): t('.paymentfailed')
-        redirectToBill(params, message)
+        if redirectToBill(params, message)
+          return
+        end
       else
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::ERROR,"Hash check failed!",nil)
       end
@@ -155,7 +157,7 @@ class PostFinanceController < ApplicationController
     string += pspid
     optional_fields[:operation] && (string += optional_fields[:operation])
     string += POSTFINANCE_SHA_IN_SECRET
-    (Digest::SHA1.hexdigest(string)).upcase()
+    (Digest::SHA512.hexdigest(string)).upcase()
   end
   
   # Calculate the fees to be added to the event fee if the organizer does not cover the fees
@@ -216,9 +218,6 @@ class PostFinanceController < ApplicationController
     if !(status = params["STATUS"])
       message += "missing parameter STATUS;"
     end
-    if !(shasign = params["SHASIGN"])
-      message += "missing parameter SHASIGN;"
-    end
     if !(pm = params["PM"])
       message += "missing parameter PM;"
     end
@@ -234,8 +233,11 @@ class PostFinanceController < ApplicationController
     if !(payid = params["PAYID"])
       message += "missing parameter PAYID;"
     end
-    if !(payid = params["NCERROR"])
+    if !(ncerror = params["NCERROR"])
       message += "missing parameter NCERROR;"
+    end
+    if !(shasign = params["SHASIGN"])
+      message += "missing parameter SHASIGN;"
     end
     
     if !message.empty?
@@ -277,7 +279,7 @@ class PostFinanceController < ApplicationController
     if status == "9"
       curr = Currency.where(:iso_code => currencyCode)
       if curr.size == 1
-        newPayment = enterPayment(reqLog,action,refNum,bill, BigDecimal.new(params["amount"]), curr.first, status, pm)
+        newPayment = enterPayment(reqLog,action,refNum,bill, params["amount"], curr.first, status, pm)
         if newPayment
           checkBillPaid(newPayment,bill)
         end

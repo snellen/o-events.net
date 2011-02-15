@@ -3,7 +3,7 @@ class BillsController < ApplicationController
   # GET /bills/unpaid_fees
   def unpaid_fees
     @user = User.get_logged_in session
-    unpaid_teams = @user.teams.where('bill_id IS NULL', :paid_by_club => false)
+    unpaid_teams = @user.teams.where(:bill_id => nil, :paid_by_club => false)
 
     @teams_by_event = Hash.new{|h, k| h[k] = []}
     for team in unpaid_teams do
