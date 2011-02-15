@@ -82,6 +82,7 @@ en:
       user:             "User"
       club:             "Club"
       event:            "Event"
+      bill:             "Bill"
     attributes:
       user:
         username:       "Username"
@@ -201,8 +202,62 @@ en:
     search_user:
       search_runner:     "Add a runner without a username:"      
       runner_not_found:  "Runner not found. Please enter the required details in the form below."
-      multiple_runners_found: "There are several runners matching the criteria. Please specify the details in the form below."      
+      multiple_runners_found: "There are several runners matching the criteria. Please specify the details in the form below."
+  bills:
+    billsite:
+      mybills:     "My Bills"
+      unbilledregistrations:    "Unbilled Registrations"
+    event_fees:
+      registration:      "Registration"
+      teampool:          "Registration group"
+      amount:            "Amount"
+    index:
+      summary:           "Summary"
+      date:              "Date"
+      amount:            "Amount"
+      status:            "Status"
+      paid:              "Paid"
+      unpaid:            "Unpaid"
+      details:           "Details"
+    new:
+      newbill:           "Create new bill"
+      totalamount:       "Total amount"
+      acceptdescription: "By accepting the bill you commit yourself to paying the amount above."
+      acceptbill:        "Accept"
+      completeaddressreq: "The address is required to make electronic payments with your account! Please klick %{editlink} to complete your address."
+      usereditlinklabel: "here"
+      totalzero:         "The total amount of the bill is 0 %{currency}."
+    show:
+      totalamount:       "Total amount"
+      status:            "Status"
+      paid:              "Paid"
+      unpaid:            "Unpaid"
+      paperbill:         "This bill is sent by mail."
+      sendstatus:        "The bill has <b>%{status}</b>."
+      sent:              "been sent"
+      notsent:           "not been sent yet"
+      paymentoptionsdesc: "This bill can be payed with the following payment methods:"
+      paypostfinance:    "Online payment using PostFinance"
+      backtomybills:     "Back to my bills"
+    unpaid_fees:
+      pay:               "Create Bill"
+      backtomybills:     "Back to my bills"
+  post_finance:
+    payment_button:
+      submit:            "Pay now using PostFinance"
+    bill_fees_and_total:
+      paymentfees:       "Fee"
+      totalamount:       "<b>Total amount:</b> %{amount} CHF"
+      feescoveredbyorganizer: "The fee is covered by the event organizer."
   pleaselogin:           "Please log in"
   loginfailed:           "Invalid user/password combination"
   userupdatesuccess:     "Your data was successfully updated."
   usercreatesuccess:     "Thank you for registring and welcome to o-events.net!"
+  billcreationsuccess:  "The bill was created successfully."
+  paymentsuccessful:  "Payment successful. The status of the bill will be updated shortly."
+  paymentfailed:  "The payment could not be processed. The payment data was saved and has to be processed manually. Please contact the o-events.net team at support@o-events.net"
+  paymentfailedinternalerror:  "Internal error while processing the payment. The payment data was saved and has to be processed manually. Please contact the o-events.net team at support@o-events.net"
+  paymentdeclined: "Payment was declined."
+  paymentcanceled: "Payment canceled by the user."
+  paymentuncertain: "The status of the payment is uncertain. Please contact support@o-events.net."
+  postfinancebillcomment : "Bill from o-events.net for %{event_name}, Teams/Runner: %{registration_list}"

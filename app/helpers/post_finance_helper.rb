@@ -63,9 +63,9 @@ module PostFinanceHelper
           if i != 0
             list += ", "
           end
-          list += (team.get_display_name(' '))
+          list += (team.get_display_name())
     end
-    truncate("Rechnung für Wettkampf '"+bill.event.name+"', Teams/Läufer: "+list, :length => 100, :omission => "...")
+    truncate(t('.postfinancebillcomment', :event_name => bill.event.name, :registration_list => list), :length => 100, :omission => "...")
   end
     
   # Get sha signature as string in a format suitable for sending in the post finance payment submit form.

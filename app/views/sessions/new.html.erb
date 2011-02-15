@@ -1,7 +1,5 @@
   <div class="login_form_full">
-    <% if flash[:alert] %>
-      <p id="notice" >  <%= flash[:alert] %>  </p>
-    <% end %>
+    <p id="notice" >  <%= notice %>  </p>
     <%= form_tag login_path do %>
       <h1>  <%= t('.pleaselogin') %>  </h1>
       <div class="field">

@@ -79,8 +79,8 @@
    * Two column layout
    */
 
-  #two_column_col1 { float: left; width: 20%;  margin:0 }
-  #two_column_col2 { width: auto; margin: 0 0 0 20%}
+  #two_column_col1 { float: left; width: 30%;  margin:0 }
+  #two_column_col2 { width: auto; margin: 0 0 0 30%}
   #two_column_col1_content { width: auto; padding-right: 20px }
   #two_column_col2_content { padding-left: 20px }
   

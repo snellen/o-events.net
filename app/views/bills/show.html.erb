@@ -1,9 +1,9 @@
 <% content_for :main do %>
   <p id="notice"><%= notice %></p>
-  <h1> Bill </h1>
+  <h1> <%=t('activerecord.models.bill')%> </h1>
       
   <p>
-    <b>Event:</b>
+    <b><%=t('activerecord.models.event')%>:</b>
     <%= @bill.event.name %>
   </p>
   
@@ -12,27 +12,27 @@
   <%= render 'event_fees' %>
 
   <p>
-    <b>Total amount:</b>
+    <b><%=t('.totalamount')%>:</b>
     <%= format_amount(@bill.amount) %>
     <%= @bill.currency.iso_code %>
   </p>
   <p>
-    <b>Status:</b>
-    <%= @bill.is_paid ? "paid" : "unpaid" %>
+    <b><%=t('.status')%>:</b>
+    <%= @bill.is_paid ? t('.paid') : t('.unpaid') %>
   </p>
   <% if !@bill.is_paid %>
     <% if @bill.is_paper_bill%>
        <p>
-        <b>This is a paper bill. The bill has <%@bill.is_paper_bill_sent ? "been sent" : "not been sent yet."%> </b>
+        <%=t('.paperbill')%>
+        <%=t('.sendstatus', :status => (@bill.is_paper_bill_sent ? t('.sent') : t('.notsent'))).html_safe%>
       </p>
     <% else %>
-      <h2>Payment Options</h2>
-      <% # Allow the user to make payments only for non-paper bills %>
+      <p><%=t('.paymentoptionsdesc')%></p>
       <table>
         <%if PostFinanceController.enabledForEvent(@bill.event)%>
           <tr>
           <td>
-          Pay online using Post Finance. <br />
+          <%=t('.paypostfinance')%><br />
           <br />
           <%= render :partial => 'post_finance/bill_fees_and_total' %>
           </td>
@@ -44,7 +44,7 @@
   <% end %>
   
   <br />
-  <%= link_to 'Back', bills_path %>
+  <%= link_to t('.backtomybills'), bills_path %>
 
 <% end %>
 

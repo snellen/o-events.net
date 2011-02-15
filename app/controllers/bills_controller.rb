@@ -110,7 +110,7 @@ class BillsController < ApplicationController
     
     respond_to do |format|
       if !error
-        format.html { redirect_to(@bill, :notice => 'Bill was successfully created.') }
+        format.html { redirect_to(@bill, :notice => t('.billcreationsuccess')) }
         format.xml  { render :xml => @bill, :status => :created, :location => @bill }
       else
         format.html { render :action => "new" }
