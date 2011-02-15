@@ -257,6 +257,7 @@ de:
   post_finance:
     payment_button:
       submit:            "Jetzt mit PostFinance bezahlen"
+      postfinancebillcomment: "O-events.net Rechnung für %{event_name}, Teams/Läufer: %{registration_list}"
     bill_fees_and_total:
       paymentfees:       "Spesen"
       totalamount:       "<b>Gesamtbetrag:</b> %{amount} CHF"
@@ -272,4 +273,3 @@ de:
   paymentdeclined: "Die Bezahlung wurde abgelehnt."
   paymentcanceled: "Die Bezahlung wurde durch den Benutzer abgebrochen."
   paymentuncertain: "Der Status der Zahlung ist unsicher. Bitte wende dich an support@o-events.net."
-  postfinancebillcomment : "O-events.net rechnung für %{event_name}, Teams/Läufer: %{registration_list}"

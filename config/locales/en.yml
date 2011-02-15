@@ -245,6 +245,7 @@ en:
   post_finance:
     payment_button:
       submit:            "Pay now using PostFinance"
+      postfinancebillcomment: "Bill from o-events.net for %{event_name}, Teams/Runner: %{registration_list}"
     bill_fees_and_total:
       paymentfees:       "Fee"
       totalamount:       "<b>Total amount:</b> %{amount} CHF"
@@ -260,4 +261,3 @@ en:
   paymentdeclined: "Payment was declined."
   paymentcanceled: "Payment canceled by the user."
   paymentuncertain: "The status of the payment is uncertain. Please contact support@o-events.net."
-  postfinancebillcomment : "Bill from o-events.net for %{event_name}, Teams/Runner: %{registration_list}"
