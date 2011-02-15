@@ -10,15 +10,15 @@ module ApplicationHelper
       if to.year == from.year
         if to.month == from.month
           if to.day == from.day
-            from.strftime(t(dformat+'.single'))
+            l(from, :format => t(dformat+'.single'))
           else
-            from.strftime(t(dformat+'.day_from'))+to.strftime(t(dformat+'.day_to'))
+            l(from, :format => t(dformat+'.day_from')) + l(to, :format => t(dformat+'.day_to'))
           end
         else
-          from.strftime(t(dformat+'.month_from'))+to.strftime(t(dformat+'.month_to'))
+          l(from, :format => t(dformat+'.month_from')) + l(to, :format => t(dformat+'.month_to'))
         end
       else
-        from.strftime(t(dformat+'.year_from'))+to.strftime(t(dformat+'.year_to'))
+        l(from, :format => t(dformat+'.year_from')) + l(to, :format => t(dformat+'.year_to'))
       end
     end
   end

@@ -42,6 +42,8 @@ en:
   icons:
     edit: "Edit"
     delete: "Delete"
+    up: "Move up"
+    down: "Move down"
     add_person: "Add"    
   layouts:
     application:
@@ -160,8 +162,12 @@ en:
     destroy:
       signout:             "Sign out"
   competitors:
+    edit:
+      edit_team_member: "Teammitglied bearbeiten"
+      save:             "Speichern"    
     add:
       search:           "Search"
+      search_runner:     "Add a runner without a username:"      
       add_team_member:  "Add a Team Member"
       add_team_member_info: "You can add runners who are registered with O-events.net by typing their username in the 'Username' field. Other runners may be added by filling the form below."      
       add:              "Add"   
@@ -177,6 +183,7 @@ en:
       name:             "Name"
       leader:           "Leader"   
       team_complete:    "Team complete"
+      action:           "Action"      
   competition_groups:
     register_for:
       register_for:      "Register for"
@@ -199,8 +206,7 @@ en:
       start_fee:        "Start fee  [%{currency}]"
       confirm_delete:   "Are you sure you want to delete this team?"
   registration:
-    search_user:
-      search_runner:     "Add a runner without a username:"      
+    search_user:      
       runner_not_found:  "Runner not found. Please enter the required details in the form below."
       multiple_runners_found: "There are several runners matching the criteria. Please specify the details in the form below."
   bills:
