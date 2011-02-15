@@ -1,10 +1,10 @@
 <%= form_for(User.new, :url => url) do |f| %>
   <div class="field">
-    <b><%= f.label :username %></b>
+    <%= f.label :username %>
     <%= f.text_field :username %>
   </div>
   <div class="actions">
     <%= submit_tag search_button_caption %>
   </div>
 <% end %>
-<p><br /><b><%= t('registration.search_user.search_runner') %></b></p>
+

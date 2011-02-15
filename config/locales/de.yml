@@ -46,6 +46,8 @@ de:
   icons:
     edit: "Bearbeiten"
     delete: "Löschen"    
+    up: "Nach oben"
+    down: "Nach unten"
     add_person: "Hinzufügen"    
   layouts:
     application:
@@ -159,7 +161,8 @@ de:
       male:               "Männlich"
       female:             "Weiblich"      
     add:
-      search:           "Suchen"      
+      search:           "Suchen"
+      search_runner:      "Läufer ohne Benutzernamen hinzufügen:"      
       add_team_member:  "Neues Teammitglied"
       add_team_member_info: "Du kannst Läufer hinzufügen, die bei O-events.net registriert sind, indem du ihren Benutzernamen ins Feld 'Benutzername' einträgst. Andere Läufer kannst du erfassen, indem du den Benutzernamen leer lässt und dafür die restlichen Felder ausfüllst." 
       add:              "Hinzufügen"
@@ -168,13 +171,17 @@ de:
       suggested_desc:   "Hier sind Läufer aufgeführt, die du in letzter Zeit für andere Wettkämpfe angemeldet hast. Klicke auf ihre Namen, um sie zum Team hinzuzufügen."
       runner:           "Läufer"
       clubs:            "Vereine"
+    edit:
+      edit_team_member: "Teammitglied bearbeiten"
+      save:             "Speichern"
     teammembers:
       new_members:      "Neues Team anmelden"
       no_members:       "Das Team hat noch keine Mitglieder."      
       members:          "Teamzusammensetzung"
       name:             "Name"
       leader:           "Admin."
-      team_complete:    "Team komplett"      
+      team_complete:    "Team komplett"
+      action:           "Aktion"      
   sessions:
     new:
       signin:             "Anmelden"
@@ -209,8 +216,7 @@ de:
       start_fee:        "Startgeld [%{currency}]"      
       confirm_delete:   "Team wirklich löschen?"      
   registration:
-    search_user:
-      search_runner:      "Läufer ohne Benutzernamen hinzufügen:"      
+    search_user:      
       runner_not_found: "Läufer nicht gefunden. Bitte trage die nötigen Angaben ins Formular ein."
       multiple_runners_found: "Es wurden mehrere Läufer mit diesen Angaben gefunden. Bitte ergänze das untenstehende Formular."      
   pleaselogin:      "Bitte anmelden"

@@ -1,6 +1,12 @@
 <% content_for :main do %>
   <%= render :partial => 'competitors/teammembers' %><br /><br %>
-  <%= render :partial => 'competitors/add' %>
+  <p id="notice"><%= notice %></p>
+  <% if @competitor_index_TODO %>
+    <%= render :partial => 'competitors/edit' %>
+  <% else %>
+    <%= render :partial => 'competitors/add' %>
+  <% end %>
 <% end %>
+    
 <%= render :partial => 'events/eventsite' %>
 

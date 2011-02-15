@@ -1,0 +1,3 @@
+<h2><%= t('.edit_team_member') %></h2>
+<p id="notice"><%= notice %></p>
+<%= render :partial => 'competitors/form', :locals => { :url => registration_team_members_path, :button_caption => t('.save') } %>

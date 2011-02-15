@@ -1,0 +1,39 @@
+Formularchaos in Team
+
+registration/team_members
+  competitors/teammembers
+  competitors/add
+    competitors/search
+    competitors/form
+  competitors/edit
+    competitors/form
+  
+registration/search_user
+  competitors/teammembers
+  competitors/form
+  
+registration/team_options
+  teams/form
+  
+  
+Szenarien:
+
+* Neues Teammitglied
+  Oben competitors/teammembers
+  Dann competitors/search (nur Username)
+  Dann competitors/form (Such- oder Eintragsformular)
+  Button "Suchen" oder "Hinzufügen"
+  Link "Zur Teamliste"
+  
+* Schritt 2
+  Oben competitors/teammembers
+  Dann ggf. notice
+  Dann competitors_form (Eintragsformular)
+  Button "Hinzufügen"
+  Link "Zur Teamliste"
+  
+* Bestehendes Teammitglied
+  Oben competitors/teammembers
+  DAnn competitors_form (Eintragsformular)
+  Button "Speichern"
+  Link "Zur Teamliste"

@@ -13,8 +13,16 @@ class RegistrationController < ApplicationController
       @team = session[:reg_team]
       @competitors = session[:reg_competitors]
       @team_pool = @team.team_pool
+    end 
+    
+    if(params[:leader_index])
+      @leader_index = params[:leader_index]
+    elsif session[:leader_index]
+      @leader_index = session[:leader_index]
+    else
+      @leader_index = 0
     end
-     
+    
     @event = @team_pool.event
     @title = @event.name
   end
@@ -22,6 +30,7 @@ class RegistrationController < ApplicationController
   def set_session_params
       session[:reg_team]        = @team
       session[:reg_competitors] = @competitors     
+      session[:leader_index]    = @leader_index
   end
   
   # GET /registration/overview
@@ -68,7 +77,7 @@ class RegistrationController < ApplicationController
       @form_url = registration_search_user_url
     end
     
-    if params[:competitor_index].to_i >= 0 and @competitors.count > params[:competitor_index].to_i
+    if params[:competitor_index]
       @competitor = @competitors[params[:competitor_index].to_i]
     else
       @competitor = @event.competitors.build
