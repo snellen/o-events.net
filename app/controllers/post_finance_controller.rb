@@ -172,6 +172,7 @@ class PostFinanceController < ApplicationController
     else
       transactionFee += [amount*paymentComissionRate/100, paymentComissionMax].min
     end
+    transactionFee.round(2,BigDecimal::ROUND_UP)
     return transactionFee
   end
     

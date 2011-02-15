@@ -36,7 +36,7 @@ class Bill < ActiveRecord::Base
     
   # Amount in CHF
   def amountInCHF
-    amount*exchange_rate
+    (amount*exchange_rate).round(2,BigDecimal::ROUND_UP)
   end
   
   def currency
