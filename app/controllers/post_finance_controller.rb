@@ -196,7 +196,9 @@ class PostFinanceController < ApplicationController
     fieldsSorted = fields.sort()
     string = ""
     for item in fieldsSorted.each do
-      string += item[0].upcase()+"="+item[1]+secretString
+      if(!item[1].empty)
+        string += item[0].upcase()+"="+item[1]+secretString
+      end
     end
     (Digest::SHA512.hexdigest(string)).upcase()
   end
