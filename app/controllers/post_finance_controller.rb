@@ -1,5 +1,21 @@
 class PostFinanceController < ApplicationController
   skip_before_filter :authorize  
+  before_filter :paramsKeysToUpcase
+  
+  # Convert parameter names of parameters relevant for the transaction feedback (namely parmeters contained in ECOMMERCE_FEEDBACK_PARAMETERS)
+  # to upercase.
+  # This ensures some independence of the implementation on the side of post finance.
+  def paramsKeysToUpcase
+    origParams = params
+    origParams.each_pair do |param,value|
+      upParam = param.upcase()
+      if ECOMMERCE_FEEDBACK_PARAMETERS.include? upParam and !params[upParam]
+        params.delete(param)
+        params[upParam] = value
+      end 
+    end
+  end
+  
   # Log message severity
   class Severity
     INFO = 1
@@ -73,9 +89,11 @@ class PostFinanceController < ApplicationController
         ncerror = params["NCERROR"]
         msg = "Payment for "+params["ORDERID"]+" declined (status "+params["STATUS"]+(ncerror ? ", error code "+ncerror : "")
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::WARNING,msg,nil)
-        if redirectToBill(params, t('.paymentdeclined'))
-          return
+        msg = t('.paymentdeclined')
+        if !redirectToBill(params, msg)
+          redirectToBills(msg) # should not happen unless the bill reference number is invalid, but just in case
         end
+        return
       else
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::ERROR,"Hash check failed!",nil)
       end
@@ -94,9 +112,11 @@ class PostFinanceController < ApplicationController
         ncerror = params["NCERROR"]
         msg = "Payment for "+params["ORDERID"]+" canceled (status "+params["STATUS"]+")"+(ncerror ? ", error code "+ncerror : "")
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::INFO,msg,nil)
-        if redirectToBill(params, t('.paymentcanceled'))
-          return
+        msg = t('.paymentcanceled')
+        if !redirectToBill(params, msg)
+          redirectToBills(msg) # should not happen unless the bill reference number is invalid, but just in case
         end
+        return
       else
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::ERROR,"Hash check failed!",nil)
       end
@@ -115,9 +135,11 @@ class PostFinanceController < ApplicationController
         ncerror = params["NCERROR"]
         msg = "Payment for "+params["ORDERID"]+" exception (status "+params["STATUS"]+")"+(ncerror ? ", error code "+ncerror : "")
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::WARNING,msg,nil)
-        if redirectToBill(params, t('.paymentuncertain'))
-          return
+        msg = t('.paymentuncertain')
+        if !redirectToBill(params, msg)
+          redirectToBills(msg) # should not happen unless the bill reference number is invalid, but just in case
         end
+        return
       else
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::ERROR,"Hash check failed!",nil)
       end
@@ -205,7 +227,7 @@ class PostFinanceController < ApplicationController
   
   # true => ok, false => not ok
   def checkSHAOutSignature(reqLog, params)
-    fields = params.reject { |key,_| !ECOMMERCE_FEEDBACK_PARAMETERS.include? key }
+    fields = params.reject { |key,_| !ECOMMERCE_FEEDBACK_PARAMETERS.include? key}
     params["SHASIGN"] == PostFinanceController.calculateSHAOutSignature(fields)
   end
   
@@ -338,6 +360,12 @@ class PostFinanceController < ApplicationController
       end
     end
     return bill
+  end
+  
+  def redirectToBills(notice)
+    respond_to do |format|
+      format.html { redirect_to bills_url, :notice => notice }
+    end
   end
     
 end
