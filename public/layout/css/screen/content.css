@@ -195,8 +195,8 @@
   tbody td { border-bottom:1px solid #eee; }
 
   tbody tr:hover th[scope="row"],
-  tbody tr:hover tbody th.sub { background:#f0e8e8; }
-  tbody tr:hover td { background:#fff8f8; }
+  tbody tr:hover tbody th.sub { background:#e8e8f0; }
+  tbody tr:hover td { background:#f8f8ff; }
 
  /**
   * ------------------------------------------------------------------------------------------------- #
