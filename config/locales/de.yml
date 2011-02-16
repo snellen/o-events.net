@@ -263,6 +263,7 @@ de:
       completeaddressreq: "Die Angabe der Postadresse ist Voraussetzung für Zahlungen! Klicke %{editlink} um deine Adresse zu erfassen."
       usereditlinklabel: "hier"
       totalzero:         "Der Gesamtbetrag der Rechnung ist 0 %{currency}."
+      backtomybills:     "Zurück zu meinen Rechnungen"
     show:
       totalamount:       "Gesamtbetrag"
       status:            "Status"

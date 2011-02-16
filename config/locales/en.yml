@@ -252,6 +252,7 @@ en:
       completeaddressreq: "The address is required to make electronic payments with your account! Please klick %{editlink} to complete your address."
       usereditlinklabel: "here"
       totalzero:         "The total amount of the bill is 0 %{currency}."
+      backtomybills:     "Back to my bills"
     show:
       totalamount:       "Total amount"
       status:            "Status"
