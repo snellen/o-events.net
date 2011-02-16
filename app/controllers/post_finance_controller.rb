@@ -196,7 +196,7 @@ class PostFinanceController < ApplicationController
     fieldsSorted = fields.sort()
     string = ""
     for item in fieldsSorted.each do
-      if(!item[1].empty)
+      if(item[1].size > 0)
         string += item[0].upcase()+"="+item[1]+secretString
       end
     end
