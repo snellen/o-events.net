@@ -150,12 +150,13 @@ class PostFinanceController < ApplicationController
   
   # Hashes the concatenation of the fields and the postfinance SHA-IN "additional string"
   # See 10.1 SHA-IN SIGNATURE in Advanced e-Commerce - Technical integration guide for e-Commerce - Version 3.4
-  def self.calculateSHAInSignature(order_id,amount,currency,pspid,optional_fields)
-    string = order_id
-    string += amount
-    string += currency
-    string += pspid
-    optional_fields[:operation] && (string += optional_fields[:operation])
+  def self.calculateSHAInSignature(fields)
+    string = ""
+    for field in fields.each do
+      if field
+        string += field
+      end
+    end
     string += POSTFINANCE_SHA_IN_SECRET
     (Digest::SHA512.hexdigest(string)).upcase()
   end

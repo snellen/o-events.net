@@ -70,11 +70,7 @@ module PostFinanceHelper
     
   # Get sha signature as string in a format suitable for sending in the post finance payment submit form.
   def SHASign(bill)
-    PostFinanceController.calculateSHAInSignature(orderID(bill),  
-                                                 amount(bill), 
-                                                 currency(bill), 
-                                                 pspid(),
-                                                 {:operation => operation(bill)})
+    PostFinanceController.calculateSHAInSignature([orderID(bill), amount(bill), currency(bill), pspid(), operation(bill)])
   end
   
   # Title shown to the customer on the payment page of post finance
