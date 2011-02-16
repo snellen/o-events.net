@@ -30,9 +30,9 @@
     <div class="field">
       <%= f.label :club_id %>
       <% if params[:nation_id] %> 
-        <%= f.select (:competing_club, Club.where(:country_id => params[:nation_id]).map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect')) %> *
+        <%= f.select :competing_club, Club.where(:country_id => params[:nation_id]).map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect') %> *
       <% else %>
-        <%= f.select (:competing_club, [[t('form.selectnationfirst'), 0]]) %>
+        <%= f.select :competing_club, [[t('form.selectnationfirst'), 0]] %>
       <% end %>
     </div>
   <% end %>

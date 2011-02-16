@@ -3,7 +3,7 @@ class RegistrationController < ApplicationController
   def get_session_params
     if(params[:team_id])
       @team = Team.find(params[:team_id])
-      @competitors = @team.competitors
+      @competitors = Competitor.where(:team_id => @team.id).map{|c| c} # NOT: @team.competitors
       @team_pool = @team.team_pool
     elsif(params[:team_pool_id])
       @team_pool = TeamPool.find(params[:team_pool_id])
@@ -121,6 +121,8 @@ class RegistrationController < ApplicationController
     # Add/update a team member
     elsif params[:competitor]
       @competitor = @event.competitors.build
+      @competitor = Competitor.new
+      @competitor.event = @event
       @competitor.attributes = params[:competitor] #TODO: is this safe?
       @competitor.sortkey = 1
       

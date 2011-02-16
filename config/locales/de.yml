@@ -1,4 +1,4 @@
-# Localization file for English. Add more files in this directory for other locales.
+# Localization file for German. Add more files in this directory for other locales.
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 de:
@@ -44,7 +44,7 @@ de:
     requiredfields:     "Mit * markierte Angaben sind zwingend."        
     selectnationfirst:  "Bitte zuerst Nationalität auswählen"
     nojavascript_submit:   "OK"
-    cancel:           "Abbrechen"    
+    cancel: "Abbrechen"    
   table:
     action:           "Aktion"
   icons:
@@ -54,7 +54,11 @@ de:
     down: "Nach unten"
     add_person: "Hinzufügen"
     status_green: "Ja"
-    status_red: "Nein"    
+    status_red: "Nein"
+    tick: "Ja"
+    cross: "Nein"
+    thumbs_up: "Positiv"
+    thumbs_down: "Negativ"     
   layouts:
     application:
       title:           "O-events.net"

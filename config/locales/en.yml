@@ -49,7 +49,11 @@ en:
     down:         "Move down"
     add_person:   "Add"
     status_green: "Yes"
-    status_red:   "No"    
+    status_red:   "No"
+    yes: "Yes"
+    no: "No"
+    thumbs_up: "Positive"
+    thumbs_down: "Negative"    
   layouts:
     application:
       title:           "O-events.net"

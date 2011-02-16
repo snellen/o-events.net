@@ -1,4 +1,4 @@
- <% editable = (controller.action_name == 'team_members') %>
+ <% editable = (controller.action_name != 'team_options') %>
 
   <h1>
   <% if(@team.id.nil?) %>
@@ -28,7 +28,7 @@
         <% if editable %>
           <td>  <%= radio_button_tag :leader_index, idx, @leader_index == idx, :onclick => 'this.form.submit()' %>  </td>
         <% else %>
-          <td>  <%= @leader_index == idx ? '•' : '' %>  </td>
+          <td>  <%= @leader_index == idx ? icon('tick') : '' %>  </td>
         <% end %>
         <td>  <%= competitor.full_name %>  </td>
         <% if @fields[:competing_club] %>        
