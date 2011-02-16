@@ -16,7 +16,11 @@
     <div class="page">
       <div id="header">
         <div id="toplogo">
-          <img src="/layout/images/header/toplogo_beta.png" alt="O-events.net" />
+          <% if Rails.env == "development" %>
+            <img src="/layout/images/header/toplogo_testing.png" alt="O-events.net" />          
+          <% else %>
+            <img src="/layout/images/header/toplogo_beta.png" alt="O-events.net" />
+          <% end %>
         </div>
         <div id="topnav">
           <!-- start: skip link navigation -->
