@@ -32,6 +32,7 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
     end
     @title = @event.name
+    session[:event_tab] = {:tab => @title, :url => event_url(@event)}
 
     respond_to do |format|
       format.html # show.html.erb

@@ -1,6 +1,6 @@
 <% content_for :main do %>
   <%= render :partial => 'competitors/teammembers' %><br /><br %>
-  <p id="notice"><%= notice %></p>
+  <p id="notice"><%= flash[:notice] %></p>
   <% if params[:competitor_index] %>
     <%= render :partial => 'competitors/edit' %>
   <% else %>

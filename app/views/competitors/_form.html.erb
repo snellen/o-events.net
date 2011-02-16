@@ -9,7 +9,9 @@
     </div>
   <% end %> 
   
-  <%= hidden_field_tag 'competitor_index', params[:competitor_index] %>
+  <% if params[:competitor_index] %>
+    <%= hidden_field_tag 'competitor_index', params[:competitor_index] %>
+  <% end %>
   
   <div class="field">
     <%= t('form.requiredfields') %><br /><br />
@@ -120,9 +122,10 @@
       <% end  %>
       </div>
     <% end %>
+    
     <div class="actions">
       <%= f.submit button_caption %>
-      <%= button_to t('competitors.add.cancel'), registration_team_members_url %>
+      <%= get_button_to t('form.cancel'), registration_team_members_url %>
     </div>
   <% end %>
 <% end %>

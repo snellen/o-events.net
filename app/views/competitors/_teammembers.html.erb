@@ -1,3 +1,5 @@
+ <% editable = (controller.action_name == 'team_members') %>
+
   <h1>
   <% if(@team.id.nil?) %>
     <%= t('.new_members') %>
@@ -13,29 +15,40 @@
       <tr>
         <th>  <%= t('.leader') %>  </th>
         <th>  <%= t('.name') %>  </th>
-  <% if @fields[:competing_club] %>
-        <th>  <%= t('activerecord.models.club') %>  </th>
-  <% end %>
-        <th colspan="4"><%= t('table.action') %></th>
+        <% if @fields[:competing_club] %>
+          <th>  <%= t('activerecord.models.club') %>  </th>
+        <% end %>
+        <% if editable %>
+          <th colspan="4"><%= t('table.action') %></th>
+        <% end %>
       </tr>
       <%= form_tag registration_team_members_url do %>
     <% @competitors.each_with_index do |competitor,idx| %>
         <tr>
-        <td>  <%= radio_button_tag :leader, idx, @leader_index == idx, :onclick => 'this.form.submit()' %>  </td>
+        <% if editable %>
+          <td>  <%= radio_button_tag :leader_index, idx, @leader_index == idx, :onclick => 'this.form.submit()' %>  </td>
+        <% else %>
+          <td>  <%= @leader_index == idx ? '•' : '' %>  </td>
+        <% end %>
         <td>  <%= competitor.full_name %>  </td>
         <% if @fields[:competing_club] %>        
           <td>  <%= competitor.competing_club.name %>  </td>
         <% end %>
-        <td>  <%= link_to icon('up'), registration_team_members_path(:competitor_index => idx, :move => 'up'), :method => :post %>  </td>
-        <td>  <%= link_to icon('down'), registration_team_members_path(:competitor_index => idx, :move => 'down'), :method => :post %>  </td>
-        <td>  <%= link_to icon('edit'), registration_team_members_path(:competitor_index => idx) %>  </td>
-        <td>  <%= link_to icon('delete'), registration_team_members_path(:competitor_index => idx), :confirm => t('.confirm_delete'), :method => :delete %>  </td>
+        <% if editable %>
+          <td>  <%= link_to icon('up'), registration_team_members_path(:competitor_index => idx, :move => 'up'), :method => :post %>  </td>
+          <td>  <%= link_to icon('down'), registration_team_members_path(:competitor_index => idx, :move => 'down'), :method => :post %>  </td>
+          <td>  <%= link_to icon('edit'), registration_team_members_path(:competitor_index => idx) %>  </td>
+          <td>  <%= link_to icon('delete'), registration_team_members_path(:competitor_index => idx), :confirm => t('.confirm_delete'), :method => :delete %>  </td>
+        <% end %>
       </tr>
       <% end %>
     <% end %>
     
-    </table>
+    </table><br />
 
-  <br />  <%= button_to t('.team_complete'), registration_team_options_url %>
-  
+    <% if editable %>
+      <%= get_button_to t('.team_complete'), registration_team_options_url %>
+    <% else %>
+      <%= get_button_to t('.back_to_edit'), registration_team_members_url %>
+    <% end %>
   <% end %>
