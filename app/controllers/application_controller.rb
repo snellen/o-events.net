@@ -31,8 +31,10 @@ class ApplicationController < ActionController::Base
   end
   
   def dev_mode
-    authenticate_or_request_with_http_basic do |username,password|
-      username == 'dev' && password == DEV_MODE_PASSWORD && DEV_MODE_PASSWORD.length > 6
+    if ENABLE_DEV_MODE_AUTH
+      authenticate_or_request_with_http_basic do |username,password|
+        username == 'dev' && password == DEV_MODE_PASSWORD && DEV_MODE_PASSWORD.length > 6
+    end
     end
   end
   
