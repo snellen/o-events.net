@@ -1,4 +1,4 @@
-<b><%=t('.paymentfees')%></b> <%= format_amount(PostFinanceController.calculatePaymentFeesInCHF(@bill.amountInCHF)) %> CHF <br />
+<b><%=t('.paymentfees')%>:</b> <%= format_amount(PostFinanceController.calculatePaymentFeesInCHF(@bill.amountInCHF)) %> CHF <br />
 <% if EventSetting.get_b('payment_postfinance_coverfees',Event.find(@bill.event)) %>
 <%=t('.feescoveredbyorganizer')%><br />
 <% end %> 

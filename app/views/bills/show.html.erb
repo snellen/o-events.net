@@ -31,6 +31,7 @@
         <%=t('.sendstatus', :status => (@bill.is_paper_bill_sent ? t('.sent') : t('.notsent'))).html_safe%>
       </p>
     <% else %>
+      <br />
       <p><%=t('.paymentoptionsdesc')%></p>
       <table>
         <%if PostFinanceController.enabledForEvent(@bill.event)%>

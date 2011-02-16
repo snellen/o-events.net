@@ -90,8 +90,10 @@ class PostFinanceController < ApplicationController
         msg = "Payment for "+params["ORDERID"]+" declined (status "+params["STATUS"]+(ncerror ? ", error code "+ncerror : "")
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::WARNING,msg,nil)
         msg = t('.paymentdeclined')
-        if !redirectToBill(params, msg)
+        if !(bill = redirectToBill(params, msg))
           redirectToBills(msg) # should not happen unless the bill reference number is invalid, but just in case
+        else
+          increaseAbortCount(bill)
         end
         return
       else
@@ -113,8 +115,10 @@ class PostFinanceController < ApplicationController
         msg = "Payment for "+params["ORDERID"]+" canceled (status "+params["STATUS"]+")"+(ncerror ? ", error code "+ncerror : "")
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::INFO,msg,nil)
         msg = t('.paymentcanceled')
-        if !redirectToBill(params, msg)
+        if !(bill = redirectToBill(params, msg))
           redirectToBills(msg) # should not happen unless the bill reference number is invalid, but just in case
+        else
+          increaseAbortCount(bill)
         end
         return
       else
@@ -136,8 +140,10 @@ class PostFinanceController < ApplicationController
         msg = "Payment for "+params["ORDERID"]+" exception (status "+params["STATUS"]+")"+(ncerror ? ", error code "+ncerror : "")
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::WARNING,msg,nil)
         msg = t('.paymentuncertain')
-        if !redirectToBill(params, msg)
+        if !(bill = redirectToBill(params, msg))
           redirectToBills(msg) # should not happen unless the bill reference number is invalid, but just in case
+        else
+          increaseAbortCount(bill)
         end
         return
       else
@@ -208,6 +214,19 @@ class PostFinanceController < ApplicationController
   
   def self.enabledForEvent(event)
     EventSetting.get_b('payment_postfinance_enable',Event.find(event))
+  end
+    
+  def self.initBill(bill)
+    addInfos = bill.additional_bill_informations.where(:name => abortCountName)
+    if addInfos.size == 0 
+      addInfo = AdditionalBillInformation.new(:name => abortCountName, :value => 0.to_s, :bill => bill)
+      addInfo.save
+    end
+  end
+    
+  def self.getFullReferenceNumber(bill)
+    initBill(bill)
+    (bill.reference_number.to_s + PostFinanceController.getAbortCountFmt(bill))[0..29]
   end
   
   private
@@ -343,7 +362,7 @@ class PostFinanceController < ApplicationController
   end
   
   def getBillByRefnum(refNum)
-    bills = Bill.where(:reference_number => refNum)
+    bills = Bill.where(:reference_number => removeAbortCountFromRefnum(refNum))
     if bills.size != 1
       return nil
     else
@@ -368,4 +387,28 @@ class PostFinanceController < ApplicationController
     end
   end
     
+  # Get formated abort count
+  # max length 4
+  def self.getAbortCountFmt(bill)
+    addInfo = bill.additional_bill_informations.where(:name => PostFinanceController.abortCountName()).first
+    ("-"+addInfo.value)[0..3]
+  end
+    
+  # Increase abort count
+  def increaseAbortCount(bill)
+    addInfo = bill.additional_bill_informations.where(:name => PostFinanceController.abortCountName()).first
+    i = Integer(addInfo.value)
+    i = i + 1
+    addInfo.value = i
+    addInfo.save
+  end
+  
+  def removeAbortCountFromRefnum(refNum)
+    refNum[0..25]
+  end
+
+  def self.abortCountName()
+    "abort_count"
+  end
+
 end
