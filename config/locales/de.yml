@@ -44,12 +44,16 @@ de:
     requiredfields:     "Mit * markierte Angaben sind zwingend."        
     selectnationfirst:  "Bitte zuerst Nationalität auswählen"
     nojavascript_submit:   "OK"
+  table:
+    action:           "Aktion"
   icons:
     edit: "Bearbeiten"
     delete: "Löschen"    
     up: "Nach oben"
     down: "Nach unten"
-    add_person: "Hinzufügen"    
+    add_person: "Hinzufügen"
+    status_green: "Ja"
+    status_red: "Nein"    
   layouts:
     application:
       title:           "O-events.net"
@@ -90,6 +94,7 @@ de:
       club:             "Verein" 
       event:            "Wettkampf"
       bill:             "Rechnung"
+      competitor:       "Läufer"
     attributes:
       user:
         username:       "Benutzername"
@@ -183,7 +188,7 @@ de:
       name:             "Name"
       leader:           "Admin."
       team_complete:    "Team komplett"
-      action:           "Aktion"      
+      confirm_delete:   "Teammitglied wirklich löschen?"      
   sessions:
     new:
       signin:             "Anmelden"
@@ -217,10 +222,15 @@ de:
       category:         "Kategorie"
       start_fee:        "Startgeld [%{currency}]"      
       confirm_delete:   "Team wirklich löschen?"      
+      paid:             "Bezahlt"
+      pay_registrations: "Anmeldungen bezahlen"
   registration:
     search_user:      
       runner_not_found: "Läufer nicht gefunden. Bitte trage die nötigen Angaben ins Formular ein."
       multiple_runners_found: "Es wurden mehrere Läufer mit diesen Angaben gefunden. Bitte ergänze das untenstehende Formular."
+    team_delete:
+      deleted: "Das Team wurde gelöscht."
+      not_deletable: "Das Team konnte nicht gelöscht werden. Es ist schon in einer Rechnung aufgeführt oder hat bereits Resultate erzielt."      
   bills:
     billsite:
       mybills:     "Meine Rechnungen"

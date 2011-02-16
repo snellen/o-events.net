@@ -1,7 +1,7 @@
 <h2><%= t('.add_team_member') %></h2><p><%= t('.add_team_member_info') %></p>
   <%= render :partial => 'users/search', :locals => { :url => registration_search_user_url, :search_button_caption => t('.add') } %>
-  <h3><%= t('.search_runner') %></h3>
-  <p id="notice"><%= notice %></p>
+  <br /><h3><%= t('.search_runner') %></h3>
+  <p id="notice"><%= flash[:notice] %></p>
   <%= render :partial => 'competitors/form', :locals => { :url => @form_url, :button_caption => (@search_form ? t('.search') : t('.add')) } %>
   
   <% if false %>

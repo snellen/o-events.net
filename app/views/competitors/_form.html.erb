@@ -1,17 +1,18 @@
 <%= form_for(@competitor, :url => url) do |f| %>
   <% if @competitor.errors.any? %>
     <div id="error_explanation">
-      <h2>  <%= pluralize(@competitor.errors.count, "error") %> prohibited this competitor from being saved:  </h2>
+      <h2> <%= t('errors.template.header', :count=>@competitor.errors.count, :model=>t('activerecord.models.competitor')) %></h2>
+      <p><%= t('errors.template.body', :count=>@competitor.errors.size) %></p>      
       <ul><% @competitor.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %></ul>
     </div>
-  <% end %>
+  <% end %> 
   
   <%= hidden_field_tag 'competitor_index', params[:competitor_index] %>
   
   <div class="field">
-    <%= t('form.requiredfields') %>
+    <%= t('form.requiredfields') %><br /><br />
   </div> 
   <% if @fields[:nation] %>
     <%= form_tag registration_team_members_url, :class => 'nation', :method => 'get' do %>

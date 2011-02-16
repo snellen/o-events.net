@@ -1,7 +1,7 @@
 <% content_for :main do %>
   <%= render :partial => 'competitors/teammembers' %><br /><br %>
   <p id="notice"><%= notice %></p>
-  <% if @competitor_index_TODO %>
+  <% if params[:competitor_index] %>
     <%= render :partial => 'competitors/edit' %>
   <% else %>
     <%= render :partial => 'competitors/add' %>

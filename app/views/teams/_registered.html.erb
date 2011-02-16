@@ -7,9 +7,8 @@
     <th><%= t('.club') %></th>
     <th><%= t('.category') %></th>    
     <th><%= t('.start_fee', :currency => @event.currency.iso_code) %></th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th><%= t('.paid') %></th>
+    <th colspan="3"><%= t('table.action') %></th>
   </tr>
 
 <% @teams.each do |team| %>
@@ -18,12 +17,14 @@
     <td><%= team.competing_club.name %></td>
     <td><%= team.category_list %></td>
     <td><%= team.start_fee %></td>
+    <td><%= (team.bill and team.bill.is_paid) ? icon('status_green') : icon('status_red') %></td>
     <td><%= link_to icon('edit'), registration_team_members_path(:team_id => team.id) %></td>
-    <td><%= link_to icon('delete'), registration_main_path(:team_id => team.id), :confirm => t('.confirm_delete'), :method => :delete %></td>
+    <td><%= team.bill ? '' : link_to(icon('delete'), registration_main_path(:team_id => team.id), :confirm => t('.confirm_delete'), :method => :delete) %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
+<br /><br />
 
-<%= link_to icon('add_person')+' '+t('.new_team'), registration_team_members_path(:team_pool_id => @team_pool.id) %>
+<p><%= link_to icon('add_person')+' '+t('.new_team'), registration_team_members_path(:team_pool_id => @team_pool.id) %></p>
+<p><%= link_to icon('pay')+' '+t('.pay_registrations'), unpaid_fees_bills_path %></p>
