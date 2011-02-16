@@ -25,6 +25,9 @@ class RegistrationController < ApplicationController
     
     @event = @team_pool.event
     @title = @event.name
+    
+    @fields = EventSetting.competitor_fields(@event)
+    @custom_fields = EventSetting.custom_fields('competitor',@event)    
   end
   
   def set_session_params
@@ -56,19 +59,30 @@ class RegistrationController < ApplicationController
   
   #DELETE /registration/main
   def team_delete
-    @team = Team.find(params[:team_id])
+    @team = User.find(session[:user_id]).teams.find(params[:team_id])
     @team_pool = @team.team_pool
+
+    if ! @team.bill and @team.total_results.empty?    
+      @team.team_registrations.each do |tr|
+        tr.destroy
+      end
+      
+      @team.competitors.each do |c|
+        c.destroy
+      end
+      
+      @team.destroy
+      redirect_to registration_main_url(:team_pool_id => @team_pool.id, :notice => t('.deleted'))
+    else
+      redirect_to registration_main_url(:team_pool_id => @team_pool.id, :notice => t('.not_deletable'))
+    end
     
-    #TODO destroy
-    
-    redirect_to registration_main_url(:team_pool_id => @team_pool.id, :notice => 'Deletion not implemented yet.')
+
   end
   
   #GET /registration/team_members
   def team_members
     get_session_params
-    @fields = EventSetting.competitor_fields(@event)
-    @custom_fields = EventSetting.custom_fields('competitor',@event)
     if (! @fields[:nation]) or (! @fields[:competing_club]) or (! @fields[:birthdate_y])
       @search_form = false
       @form_url = registration_team_members_url
@@ -92,17 +106,30 @@ class RegistrationController < ApplicationController
     get_session_params
  
     @competitor = @event.competitors.build
-    @competitor.attributes = params[:competitor] #TODO
+    @competitor.attributes = params[:competitor] #TODO: is this safe?
+    @competitor.sortkey = 1
     
-    set_session_params
-    redirect_to registration_team_members_url
+    if @competitor.valid?
+       if params[:competitor_index]
+         @competitors[params[:competitor_index].to_i] = @competitor
+       else
+         @competitors << @competitor
+       end
+       set_session_params       
+       redirect_to registration_team_members_url
+    else
+       render :action => 'team_members'
+    end
+      
   end
   
   # DELETE /registration/team_members
   def team_removemember
     get_session_params
   
-    @competitors.delete_at(params[:competitor_index].to_i)
+    if params[:competitor_index]
+      @competitors.delete_at(params[:competitor_index].to_i)
+    end
     
     set_session_params
     redirect_to registration_team_members_url

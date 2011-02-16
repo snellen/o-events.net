@@ -11,7 +11,7 @@ class Competitor < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :user, :unless => "user_id.blank?"
   belongs_to :team
-  validates_presence_of :team, :unless => "team.id.blank?"
+  validates_presence_of :team, :unless => "team_id.blank?"
   belongs_to :event
   validates_presence_of :event
   has_one :leader_team, :foreign_key => "leader_id"
@@ -27,6 +27,7 @@ class Competitor < ActiveRecord::Base
   validates_numericality_of :num1, :only_integer => true, :unless => "num1.blank?"
   validates_numericality_of :num2, :only_integer => true, :unless => "num2.blank?"
   validates_numericality_of :num3, :only_integer => true, :unless => "num3.blank?"
+
   
   # Optional fields which can be shown without being required
   validates_each :license_number, :email, :phone, :city, :text1, :text2, :text3, :num1, :num2, :num3 do |record, attr, value|
@@ -46,12 +47,12 @@ class Competitor < ActiveRecord::Base
   
   
   def presence_of_address
-    if !team.nil?
+    if team
       if (address_line_1.nil? and address_line_2.nil?) or (country_id.nil?) or (zipcode.nil?) #city is validated above
         errors.add 'Address must be present' if EventSetting.get_b('competitor_address_require',team.team_pool.event)
       end
     end
-  end
+  end 
 
   
   

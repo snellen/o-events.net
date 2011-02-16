@@ -5,26 +5,28 @@ pre {
 }
 
 div.field, div.actions {
-  margin-bottom: 15px;
+  padding: 0; 
 }
 
 div.field label {
-  width: 14em;
+  width: 160px;
   float: left;
+  margin: 6px;
+  /* margin-top: 6px; */
   text-align: left;
-  padding-top: 0.2em;
-  margin-right: 0.1em;
-  display: block;
+  padding-top: 3px; 
+  /* display: block; */
 }
 
 div.actions input[type="submit"]{
-  margin-left: 14.5em; 
-  margin-bottom: 0.5em;
+  /* float: left; */
+  margin: 6px 6px 6px 178px; 
 }
 
 div.field input, div.field select {
-  margin-left: 0.5em;
-  width: 14em;
+  /* float: left; */  
+  margin: 6px;
+  width: 180px;
 }
 
 #notice {
@@ -32,14 +34,18 @@ div.field input, div.field select {
 }
 
 .field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: inline-block;
+  /* padding: 6px; */
+  background-color: #007;
+  /* display: inline-block; */
+}
+
+.field_with_errors label {
+  color: #fff;
 }
 
 #error_explanation {
-  width: 450px;
-  border: 2px solid red;
+  width: 388px;
+  border: 2px solid #007;
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
@@ -52,8 +58,8 @@ div.field input, div.field select {
   padding: 5px 5px 5px 15px;
   font-size: 12px;
   margin: -7px;
-  margin-bottom: 0px;
-  background-color: #c00;
+  margin-bottom: 10px;
+  background-color: #007;
   color: #fff;
 }
 

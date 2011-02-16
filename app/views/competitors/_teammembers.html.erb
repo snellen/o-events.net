@@ -16,7 +16,7 @@
   <% if @fields[:competing_club] %>
         <th>  <%= t('activerecord.models.club') %>  </th>
   <% end %>
-        <th colspan="4"><%= t('.action') %></th>
+        <th colspan="4"><%= t('table.action') %></th>
       </tr>
       <%= form_tag registration_team_members_url do %>
     <% @competitors.each_with_index do |competitor,idx| %>
@@ -29,7 +29,7 @@
         <td>  <%= link_to icon('up'), registration_team_members_path(:competitor_index => idx, :move => 'up'), :method => :post %>  </td>
         <td>  <%= link_to icon('down'), registration_team_members_path(:competitor_index => idx, :move => 'down'), :method => :post %>  </td>
         <td>  <%= link_to icon('edit'), registration_team_members_path(:competitor_index => idx) %>  </td>
-        <td>  <%= link_to icon('delete'), registration_team_members_path(:competitor_index => idx), :confirm => 'Are you sure?', :method => :delete %>  </td>
+        <td>  <%= link_to icon('delete'), registration_team_members_path(:competitor_index => idx), :confirm => t('.confirm_delete'), :method => :delete %>  </td>
       </tr>
       <% end %>
     <% end %>
