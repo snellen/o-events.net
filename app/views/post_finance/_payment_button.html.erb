@@ -1,4 +1,4 @@
-<form method="post" action="https://e-payment.postfinance.ch/ncol/test/orderstandard.asp">
+<form method="post" action="https://e-payment.postfinance.ch/ncol/prod/orderstandard.asp">
   <%@formFields = buildFormForBill(@bill)%>
   <%@formFields.each_pair do |name, value|%>
     <input type="hidden" name="<%=name%>" value="<%=value%>">
