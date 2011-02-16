@@ -39,6 +39,7 @@ en:
     pleaseselect:     "Please select"
     selectnationfirst: "Please select a nation first"
     nojavascript_submit:   "OK"
+    cancel:           "Abbrechen"    
   table:
     action: "Action"
   icons:
@@ -133,6 +134,9 @@ en:
         nation_id:      "Nation"
       event:
         start_date:     "Start date"
+      team:
+        name:           "Team Name"
+        category:       "Category"        
   users:
     new:
       register:           "Register"
@@ -175,8 +179,7 @@ en:
       search_runner:     "Add a runner without a username:"      
       add_team_member:  "Add a Team Member"
       add_team_member_info: "You can add runners who are registered with O-events.net by typing their username in the 'Username' field. Other runners may be added by filling the form below."      
-      add:              "Add"   
-      cancel:           "Abbrechen"      
+      add:              "Add"         
       suggested:        "Suggested Runners"
       suggested_desc:   "You have recently registered these runners for other events. Click on their names to add them to the team."
       runner:           "Runner"
@@ -187,9 +190,10 @@ en:
       members:          "Team Members"
       name:             "Name"
       leader:           "Leader"   
-      team_complete:    "Team complete"
+      team_complete:    "Team Complete >"
       action:           "Action"
-      confirm_delete:   "Are you sure you want to delete this team member?"      
+      confirm_delete:   "Are you sure you want to delete this team member?"
+      back_to_edit:     "< Edit Team Members"      
   competition_groups:
     register_for:
       register_for:      "Register for"
@@ -213,6 +217,8 @@ en:
       confirm_delete:   "Are you sure you want to delete this team?"
       paid:             "Paid"  
       pay_registrations: "Pay for registrations"      
+    form:
+      team_options:    "More Information About the Team"
   registration:
     search_user:      
       runner_not_found:  "Runner not found. Please enter the required details in the form below."
@@ -220,6 +226,8 @@ en:
     team_delete:
       deleted: "The team has been deleted."
       not_deletable: "This team cannot be deleted because it is already part of a bill, and/or it already has results."
+    team_options:
+      save_team: "Save Team"            
   bills:
     billsite:
       mybills:     "My Bills"

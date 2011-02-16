@@ -1,37 +1,73 @@
-<%= form_for(@team) do |f| %>
+<h2><%= t('.team_options') %></h2>
+
+<%= form_for(@team, :url => registration_team_options_url) do |f| %>
   <% if @team.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
-
+      <h2> <%= t('errors.template.header', :count=>@team.errors.count, :model=>t('activerecord.models.team')) %></h2>
+      <p><%= t('errors.template.body', :count=>@user.errors.size) %></p>
       <ul>
-      <% @team.errors.full_messages.each do |msg| %>
+      <% @user.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
-  <% end %>
+  <% end %>  
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= t('form.requiredfields') %><br /><br />
   </div>
+
+  <% if @fields[:nation] %>
+    <%= form_tag registration_team_options_url, :class => 'nation', :method => 'get' do %>
+      <div class="field">
+        <%= label_tag :nation_id, t('activerecord.attributes.competitor.nation_id') %>
+        <%= f.select :nation_id, Country.all.map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect'), :onchange => 'this.form.submit()' %>
+        <%= submit_tag t('form.nojavascript_submit') %>
+        <%= javascript_tag "$$('.nation input').each(Element.hide)" %> *
+      </div>
+    <% end %>
+  <% end %>
+  <% if @fields[:competing_club] %>
+    <div class="field">
+      <%= f.label :club_id %>
+      <% if params[:nation_id] %> 
+        <%= f.select (:competing_club, Club.where(:country_id => params[:nation_id]).map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect')) %> *
+      <% else %>
+        <%= f.select (:competing_club, [[t('form.selectnationfirst'), 0]]) %>
+      <% end %>
+    </div>
+  <% end %>
+  <% if @fields[:name] %>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %> *
+    </div>
+  <% end %>
+
+  <% @custom_fields.each do |cfname,cf| %>
+    <div class="field"><%= f.label cfname, cf[:name] %>
+    <% case cfname.to_s[0] %>
+      <% when ?t %>
+        <%= f.text_field cfname %> <%= field_asterisk(cf) %>
+      <% when ?n %>        
+        <%= f.text_field cfname %> <%= field_asterisk(cf) %>
+      <% when ?f %>
+        <%= f.check_box cfname %>
+    <% end  %>
+    </div>
+  <% end %>  
+
   <div class="field">
-    <%= f.label :registration_time %><br />
-    <%= f.datetime_select :registration_time %>
-  </div>
+    <%= label_tag :main_category, t('activerecord.attributes.team.category') %>
+    <%= select_tag :main_category, @team_pool.categories.all.map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect') %> *
+  </div>  
+  
   <div class="field">
-    <%= f.label :paid_by_club %><br />
-    <%= f.check_box :paid_by_club %>
+    <div style="margin-left:180px">Startgeld: <b>CHF 10.00</b></div>
   </div>
-  <div class="field">
-    <%= f.label :start_fee %><br />
-    <%= f.text_field :start_fee %>
-  </div>
-  <div class="field">
-    <%= f.label :is_paid %><br />
-    <%= f.check_box :is_paid %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  
+  <div class="actions"><br /><br />
+    <%= f.submit button_caption %>
+    <%= get_button_to t('form.cancel'), registration_main_url, {:team_pool_id => @team_pool.id} %>
   </div>
 <% end %>

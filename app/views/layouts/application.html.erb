@@ -44,18 +44,22 @@
           else
             myaccount = login_path
           end
-          #navbar = [ { 'tab' => t('.browseevents'), 'url' => events_path }, { 'tab' => t('.newevent'), 'url' => new_event_path }, { 'tab' => t('.myclubs'), 'url' => clubs_path }, { 'tab' => t('.myaccount'), 'url' => myaccount }, { 'tab' => t('.mybills'), 'url' => bills_path }, { 'tab' => t('.faq'), 'url' => '#' } ]
-          navbar = [ { 'tab' => t('.browseevents'), 'url' => events_path }, { 'tab' => t('.myaccount'), 'url' => myaccount }, { 'tab' => t('.mybills'), 'url' => bills_path } ]
+          #navbar = [ { :tab => t('.browseevents'), :url => events_path }, { :tab => t('.newevent'), :url => new_event_path }, { :tab => t('.myclubs'), :url => clubs_path }, { :tab => t('.myaccount'), :url => myaccount }, { :tab => t('.mybills'), :url => bills_path }, { :tab => t('.faq'), :url => '#' } ]
+          navbar = [ { :tab => t('.browseevents'), :url => events_path }, { :tab => t('.myaccount'), :url => myaccount }, { :tab => t('.mybills'), :url => bills_path } ]
+          
+          if session[:event_tab] and !@title
+            navbar = [ { :tab => session[:event_tab][:tab], :url => session[:event_tab][:url] } ] + navbar
+          end
         %>
           <ul>
             <% if @title  %>
               <li class="active">  <strong>  <%= @title %>  </strong>  </li>
             <% end %>
             <% navbar.each_with_index do |page,idx| %>
-              <% if !@title && current_page?(page['url']) %>
-                <li class="active">  <strong>  <%= page['tab'] %>  </strong>  </li>
+              <% if !@title and current_page?(page[:url]) %>
+                <li class="active">  <strong>  <%= page[:tab] %>  </strong>  </li>
               <% else %>
-                <li>  <%= link_to page['tab'], page['url'] %>  </li>
+                <li>  <%= link_to page[:tab], page[:url] %>  </li>
               <% end %>
             <% end %>            
           </ul>

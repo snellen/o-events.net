@@ -1,4 +1,6 @@
 <% content_for :main do %>
-  <%= render :partial => 'teams/form', :locals => {} %><br /><br %>
+  <%= render :partial => 'competitors/teammembers' %><br /><br %>
+  <p id="notice"><%= notice %></p>
+  <%= render :partial => 'teams/form', :locals => {:button_caption => t('.save_team')} %><br /><br %>
 <% end %>
 <%= render :partial => 'events/eventsite' %>

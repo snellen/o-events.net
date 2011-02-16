@@ -39,7 +39,7 @@ module ApplicationHelper
   
   # Displays a GET form with a button that includes parameters as hidden fields
   # (The Rails button_to helper does not support parameters in GET forms)
-  def get_button_to(caption, url, get_params)
+  def get_button_to(caption, url, get_params = {})
     url = ERB::Util.h(url)
     caption = ERB::Util.h(caption)
     ret = '<form method="get" action="'+url+'"  class="button_to">'

@@ -44,6 +44,7 @@ de:
     requiredfields:     "Mit * markierte Angaben sind zwingend."        
     selectnationfirst:  "Bitte zuerst Nationalität auswählen"
     nojavascript_submit:   "OK"
+    cancel:           "Abbrechen"    
   table:
     action:           "Aktion"
   icons:
@@ -139,6 +140,9 @@ de:
       event:
         start_date:     "Startdatum"      
         end_date:       "Enddatum"  
+      team:
+        name:           "Teamname"
+        category:       "Kategorie"
   users:
     new:
       register:           "Benutzerkonto erstellen"
@@ -173,7 +177,6 @@ de:
       add_team_member:  "Neues Teammitglied"
       add_team_member_info: "Du kannst Läufer hinzufügen, die bei O-events.net registriert sind, indem du ihren Benutzernamen ins Feld 'Benutzername' einträgst. Andere Läufer kannst du erfassen, indem du den Benutzernamen leer lässt und dafür die restlichen Felder ausfüllst." 
       add:              "Hinzufügen"
-      cancel:           "Abbrechen"
       suggested:        "Kürzlich angemeldet"
       suggested_desc:   "Hier sind Läufer aufgeführt, die du in letzter Zeit für andere Wettkämpfe angemeldet hast. Klicke auf ihre Namen, um sie zum Team hinzuzufügen."
       runner:           "Läufer"
@@ -187,8 +190,9 @@ de:
       members:          "Teamzusammensetzung"
       name:             "Name"
       leader:           "Admin."
-      team_complete:    "Team komplett"
-      confirm_delete:   "Teammitglied wirklich löschen?"      
+      team_complete:    "Team komplett >"
+      confirm_delete:   "Teammitglied wirklich löschen?"
+      back_to_edit:     "< Teammitglieder bearbeiten"      
   sessions:
     new:
       signin:             "Anmelden"
@@ -224,13 +228,17 @@ de:
       confirm_delete:   "Team wirklich löschen?"      
       paid:             "Bezahlt"
       pay_registrations: "Anmeldungen bezahlen"
+    form:
+      team_options:    "Weitere Angaben zum Team"
   registration:
     search_user:      
       runner_not_found: "Läufer nicht gefunden. Bitte trage die nötigen Angaben ins Formular ein."
       multiple_runners_found: "Es wurden mehrere Läufer mit diesen Angaben gefunden. Bitte ergänze das untenstehende Formular."
     team_delete:
       deleted: "Das Team wurde gelöscht."
-      not_deletable: "Das Team konnte nicht gelöscht werden. Es ist schon in einer Rechnung aufgeführt oder hat bereits Resultate erzielt."      
+      not_deletable: "Das Team konnte nicht gelöscht werden. Es ist schon in einer Rechnung aufgeführt oder hat bereits Resultate erzielt."
+    team_options:
+      save_team: "Team speichern"      
   bills:
     billsite:
       mybills:     "Meine Rechnungen"
