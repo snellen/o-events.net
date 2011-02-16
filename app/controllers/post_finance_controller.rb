@@ -1,6 +1,5 @@
 class PostFinanceController < ApplicationController
-  skip_before_filter :authorize
-    
+  skip_before_filter :authorize  
   # Log message severity
   class Severity
     INFO = 1
@@ -148,17 +147,16 @@ class PostFinanceController < ApplicationController
     POSTFINANCE_PSP_ID
   end
   
-  # Hashes the concatenation of the fields and the postfinance SHA-IN "additional string"
-  # See 10.1 SHA-IN SIGNATURE in Advanced e-Commerce - Technical integration guide for e-Commerce - Version 3.4
+  # Hashes the fields with the SHA-IN Passphrase
+  # See 11.1 SHA-1-IN signature in Advanced e-Commerce - Technical integration guide for e-Commerce - Version 5.0
   def self.calculateSHAInSignature(fields)
-    string = ""
-    for field in fields.each do
-      if field
-        string += field
-      end
-    end
-    string += POSTFINANCE_SHA_IN_SECRET
-    (Digest::SHA512.hexdigest(string)).upcase()
+    calculateSignature(fields, POSTFINANCE_SHA_IN_SECRET)
+  end
+  
+  # Hashes the fields with the SHA-OUT Passphrase
+  # See 11.1 SHA-1-IN signature in Advanced e-Commerce - Technical integration guide for e-Commerce - Version 5.0
+  def self.calculateSHAOutSignature(fields)
+    calculateSignature(fields, POSTFINANCE_SHA_OUT_SECRET)
   end
   
   # Calculate the fees to be added to the event fee if the organizer does not cover the fees
@@ -191,68 +189,23 @@ class PostFinanceController < ApplicationController
   end
   
   private
-  # Hashes the concatenation of the fields and the postfinance SHA-OUT "additional string"
-  # See 10.2 SHA-OUT SIGNATURE in Advanced e-Commerce - Technical integration guide for e-Commerce - Version 3.4
-  def calculateSHAOutSignature(fields)
+  
+  # Concatenates all key, value pairs in fields in the format {key=value}secretString and hashes the resulting string with SHA512
+  # see Chapter 11 Appendix: SHA in e-Commerce Advanced Technical Integration Guide for e-Commerce v.5.0
+  def self.calculateSignature(fields, secretString)
+    fieldsSorted = fields.sort()
     string = ""
-    for field in fields.each do
-      if field
-        string += field
-      end
+    for item in fieldsSorted.each do
+      string += item[0].upcase()+"="+item[1]+secretString
     end
-    string += POSTFINANCE_SHA_OUT_SECRET
+    puts string
     (Digest::SHA512.hexdigest(string)).upcase()
   end
   
   # true => ok, false => not ok
   def checkSHAOutSignature(reqLog, params)
-    message = ""
-    # Mandatory parameters
-    if !(orderID = params["orderID"])
-      message += "missing parameter orderID;"
-    end
-    if !(amount = params["amount"])
-      message += "missing parameter amount;"
-    end
-    if !(currency = params["currency"])
-      message += "missing parameter currency;"
-    end
-    if !(status = params["STATUS"])
-      message += "missing parameter STATUS;"
-    end
-    if !(pm = params["PM"])
-      message += "missing parameter PM;"
-    end
-    if !(brand = params["BRAND"])
-      message += "missing parameter BRAND;"
-    end
-    if !(acceptance = params["ACCEPTANCE"])
-      message += "missing parameter ACCEPTANCE;"
-    end
-    if !(cardno = params["CARDNO"])
-      message += "missing parameter CARDNO;"
-    end
-    if !(payid = params["PAYID"])
-      message += "missing parameter PAYID;"
-    end
-    if !(ncerror = params["NCERROR"])
-      message += "missing parameter NCERROR;"
-    end
-    if !(shasign = params["SHASIGN"])
-      message += "missing parameter SHASIGN;"
-    end
-    
-    if !message.empty?
-      PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::WARNING,message,nil)
-      return false
-    end
-  
-    # Optional
-    trxdate = params["TRXDATE"] ? params["TRXDATE"] : ""
-    
-                               
-    shasign == calculateSHAOutSignature([orderID, amount, currency, pm, acceptance, status, 
-                                    cardno, payid, ncerror, brand])
+                                  
+    shasign == PostFinanceController.calculateSHAOutSignature(params)
   end
   
   # Return payment instance created if payment accepted
