@@ -53,7 +53,9 @@ class PostFinanceController < ApplicationController
       if checkSHAOutSignature(reqLog, params)
         payment = processPayment(reqLog, __method__, params)
         message = payment ? t('.paymentsuccessful'): t('.paymentfailed')
-        redirectToBill(params, message)
+        if redirectToBill(params, message)
+          return
+        end
       else
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::ERROR,"Hash check failed!",nil)
       end
@@ -148,14 +150,15 @@ class PostFinanceController < ApplicationController
   
   # Hashes the concatenation of the fields and the postfinance SHA-IN "additional string"
   # See 10.1 SHA-IN SIGNATURE in Advanced e-Commerce - Technical integration guide for e-Commerce - Version 3.4
-  def self.calculateSHAInSignature(order_id,amount,currency,pspid,optional_fields)
-    string = order_id
-    string += amount
-    string += currency
-    string += pspid
-    optional_fields[:operation] && (string += optional_fields[:operation])
+  def self.calculateSHAInSignature(fields)
+    string = ""
+    for field in fields.each do
+      if field
+        string += field
+      end
+    end
     string += POSTFINANCE_SHA_IN_SECRET
-    (Digest::SHA1.hexdigest(string)).upcase()
+    (Digest::SHA512.hexdigest(string)).upcase()
   end
   
   # Calculate the fees to be added to the event fee if the organizer does not cover the fees
@@ -170,6 +173,7 @@ class PostFinanceController < ApplicationController
     else
       transactionFee += [amount*paymentComissionRate/100, paymentComissionMax].min
     end
+    transactionFee.round(2,BigDecimal::ROUND_UP)
     return transactionFee
   end
     
@@ -216,9 +220,6 @@ class PostFinanceController < ApplicationController
     if !(status = params["STATUS"])
       message += "missing parameter STATUS;"
     end
-    if !(shasign = params["SHASIGN"])
-      message += "missing parameter SHASIGN;"
-    end
     if !(pm = params["PM"])
       message += "missing parameter PM;"
     end
@@ -234,8 +235,11 @@ class PostFinanceController < ApplicationController
     if !(payid = params["PAYID"])
       message += "missing parameter PAYID;"
     end
-    if !(payid = params["NCERROR"])
+    if !(ncerror = params["NCERROR"])
       message += "missing parameter NCERROR;"
+    end
+    if !(shasign = params["SHASIGN"])
+      message += "missing parameter SHASIGN;"
     end
     
     if !message.empty?
@@ -277,7 +281,7 @@ class PostFinanceController < ApplicationController
     if status == "9"
       curr = Currency.where(:iso_code => currencyCode)
       if curr.size == 1
-        newPayment = enterPayment(reqLog,action,refNum,bill, BigDecimal.new(params["amount"]), curr.first, status, pm)
+        newPayment = enterPayment(reqLog,action,refNum,bill, params["amount"], curr.first, status, pm)
         if newPayment
           checkBillPaid(newPayment,bill)
         end

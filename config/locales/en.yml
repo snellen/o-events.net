@@ -247,7 +247,7 @@ en:
     show:
       totalamount:       "Total amount"
       status:            "Status"
-      paid:              "Paid"
+      paidon:            "Paid on %{date}"
       unpaid:            "Unpaid"
       paperbill:         "This bill is sent by mail."
       sendstatus:        "The bill has <b>%{status}</b>."

@@ -12,7 +12,7 @@ module PostFinanceHelper
     
   # Get amount in CHF as string in a format suitable for sending in the post finance payment submit form.
   def amount(bill)
-    (PostFinanceController.totalInCHF(bill)*100).round(0,BigDecimal::ROUND_UP).to_int().to_s()
+    (PostFinanceController.totalInCHF(bill)*100).to_int().to_s()
   end
   
   # Get currency as string in a format suitable for sending in the post finance payment submit form.
@@ -70,11 +70,7 @@ module PostFinanceHelper
     
   # Get sha signature as string in a format suitable for sending in the post finance payment submit form.
   def SHASign(bill)
-    PostFinanceController.calculateSHAInSignature(orderID(bill),  
-                                                 amount(bill), 
-                                                 currency(bill), 
-                                                 pspid(),
-                                                 {:operation => operation(bill)})
+    PostFinanceController.calculateSHAInSignature([orderID(bill), amount(bill), currency(bill), pspid(), operation(bill)])
   end
   
   # Title shown to the customer on the payment page of post finance

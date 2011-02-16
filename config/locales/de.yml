@@ -258,7 +258,7 @@ de:
     show:
       totalamount:       "Gesamtbetrag"
       status:            "Status"
-      paid:              "Bezahlt"
+      paidon:            "Bezahlt am %{date}"
       unpaid:            "Unbezahlt"
       paperbill:         "Diese Rechnung wird dir per Post zugestellt."
       sendstatus:        "Die Rechnung wurde <b>%{status}</b>."
