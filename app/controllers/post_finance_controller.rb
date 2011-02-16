@@ -71,7 +71,7 @@ class PostFinanceController < ApplicationController
     begin
       if checkSHAOutSignature(reqLog,params)
         ncerror = params["NCERROR"]
-        msg = "Payment for "+params["orderID"]+" declined (status "+params["STATUS"]+(ncerror ? ", error code "+ncerror : "")
+        msg = "Payment for "+params["ORDERID"]+" declined (status "+params["STATUS"]+(ncerror ? ", error code "+ncerror : "")
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::WARNING,msg,nil)
         if redirectToBill(params, t('.paymentdeclined'))
           return
@@ -92,7 +92,7 @@ class PostFinanceController < ApplicationController
     begin
       if checkSHAOutSignature(reqLog,params)
         ncerror = params["NCERROR"]
-        msg = "Payment for "+params["orderID"]+" canceled (status "+params["STATUS"]+")"+(ncerror ? ", error code "+ncerror : "")
+        msg = "Payment for "+params["ORDERID"]+" canceled (status "+params["STATUS"]+")"+(ncerror ? ", error code "+ncerror : "")
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::INFO,msg,nil)
         if redirectToBill(params, t('.paymentcanceled'))
           return
@@ -113,7 +113,7 @@ class PostFinanceController < ApplicationController
     begin
       if checkSHAOutSignature(reqLog,params)
         ncerror = params["NCERROR"]
-        msg = "Payment for "+params["orderID"]+" exception (status "+params["STATUS"]+")"+(ncerror ? ", error code "+ncerror : "")
+        msg = "Payment for "+params["ORDERID"]+" exception (status "+params["STATUS"]+")"+(ncerror ? ", error code "+ncerror : "")
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::WARNING,msg,nil)
         if redirectToBill(params, t('.paymentuncertain'))
           return
@@ -198,14 +198,13 @@ class PostFinanceController < ApplicationController
     for item in fieldsSorted.each do
       string += item[0].upcase()+"="+item[1]+secretString
     end
-    puts string
     (Digest::SHA512.hexdigest(string)).upcase()
   end
   
   # true => ok, false => not ok
   def checkSHAOutSignature(reqLog, params)
-                                  
-    shasign == PostFinanceController.calculateSHAOutSignature(params)
+    fields = params.reject { |key,_| !ECOMMERCE_FEEDBACK_PARAMETERS.include? key }
+    params["SHASIGN"] == PostFinanceController.calculateSHAOutSignature(fields)
   end
   
   # Return payment instance created if payment accepted
@@ -213,16 +212,16 @@ class PostFinanceController < ApplicationController
   # param params the parameters of the request
   # param the name of the action that invoked this method (user for logging)  
   def processPayment(reqLog, action, params)
-    refNum = params["orderID"]
+    refNum = params["ORDERID"]
     bill = getBillByRefnum(refNum)
     if !bill
       message = "Invalid reference_number: "+refNum
       PAYMENT_LOG_MESSAGE(reqLog,action,Severity::WARNING,message,nil)
       return nil
     end
-    amount = params["amount"]
+    amount = params["AMOUNT"]
     status = params["STATUS"]
-    currencyCode = params["currency"]
+    currencyCode = params["CURRENCY"]
     pm = params["PM"]
     payments = bill.payments.where(:method => ["postfinance_card", "postfinance_efinance"])
     if payments.size > 0
@@ -234,7 +233,7 @@ class PostFinanceController < ApplicationController
     if status == "9"
       curr = Currency.where(:iso_code => currencyCode)
       if curr.size == 1
-        newPayment = enterPayment(reqLog,action,refNum,bill, params["amount"], curr.first, status, pm)
+        newPayment = enterPayment(reqLog,action,refNum,bill, params["AMOUNT"], curr.first, status, pm)
         if newPayment
           checkBillPaid(newPayment,bill)
         end
@@ -329,7 +328,7 @@ class PostFinanceController < ApplicationController
   end
   
   def redirectToBill(p, notice)
-    refNum = p["orderID"]
+    refNum = p["ORDERID"]
     bill = getBillByRefnum(refNum)
     if bill
       respond_to do |format|

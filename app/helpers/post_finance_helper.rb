@@ -37,8 +37,21 @@ module PostFinanceHelper
     FormFields.each_pair do |name, val|
       formHash[name] = instance_exec(bill, &val)
     end
-    formHash["SHASIGN"] = PostFinanceController.calculateSHAInSignature(formHash)
+    formHash[signatureField] = PostFinanceController.calculateSHAInSignature(formHash)
     formHash
   end
+  
+  def getFieldsList()
+    list = []
+    FormFields.each_pair do |name, val|
+      list << name
+    end
+    list
+  end
+  
+  def signatureField
+    "SHASIGN"
+  end
+  
   
 end
