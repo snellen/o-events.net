@@ -256,6 +256,7 @@ en:
       completeaddressreq: "The address is required to make electronic payments with your account! Please klick %{editlink} to complete your address."
       usereditlinklabel: "here"
       totalzero:         "The total amount of the bill is 0 %{currency}."
+      backtomybills:     "Back to my bills"
     show:
       totalamount:       "Total amount"
       status:            "Status"
@@ -275,6 +276,7 @@ en:
     payment_button:
       submit:            "Pay now using PostFinance"
       postfinancebillcomment: "Bill from o-events.net for %{event_name}, Teams/Runner: %{registration_list}"
+      paymentsforoevents:   "Payment for O-Events.net"
     bill_fees_and_total:
       paymentfees:       "Fee"
       totalamount:       "<b>Total amount:</b> %{amount} CHF"

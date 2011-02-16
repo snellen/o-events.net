@@ -48,6 +48,7 @@ class BillsController < ApplicationController
     raise "Missing parameter" unless params[:event]
     @user = User.get_logged_in session
     @event = Event.find(params[:event])
+    raise "Invalid event!" unless @event
     @teams = @user.teams.where(:team_pool_id => TeamPool.where(:event_id => @event.id).map{|tp| tp.id}, :bill_id => nil, :paid_by_club => false)
     @teams_hash = generate_teams_hash(@teams)
     @total_amount = @teams.inject(0) { |sum, t| sum + t.start_fee }

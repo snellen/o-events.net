@@ -1,5 +1,21 @@
 class PostFinanceController < ApplicationController
   skip_before_filter :authorize  
+  before_filter :paramsKeysToUpcase
+  
+  # Convert parameter names of parameters relevant for the transaction feedback (namely parmeters contained in ECOMMERCE_FEEDBACK_PARAMETERS)
+  # to upercase.
+  # This ensures some independence of the implementation on the side of post finance.
+  def paramsKeysToUpcase
+    origParams = params
+    origParams.each_pair do |param,value|
+      upParam = param.upcase()
+      if ECOMMERCE_FEEDBACK_PARAMETERS.include? upParam and !params[upParam]
+        params.delete(param)
+        params[upParam] = value
+      end 
+    end
+  end
+  
   # Log message severity
   class Severity
     INFO = 1
@@ -71,11 +87,15 @@ class PostFinanceController < ApplicationController
     begin
       if checkSHAOutSignature(reqLog,params)
         ncerror = params["NCERROR"]
-        msg = "Payment for "+params["orderID"]+" declined (status "+params["STATUS"]+(ncerror ? ", error code "+ncerror : "")
+        msg = "Payment for "+params["ORDERID"]+" declined (status "+params["STATUS"]+(ncerror ? ", error code "+ncerror : "")
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::WARNING,msg,nil)
-        if redirectToBill(params, t('.paymentdeclined'))
-          return
+        msg = t('.paymentdeclined')
+        if !(bill = redirectToBill(params, msg))
+          redirectToBills(msg) # should not happen unless the bill reference number is invalid, but just in case
+        else
+          increaseAbortCount(bill)
         end
+        return
       else
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::ERROR,"Hash check failed!",nil)
       end
@@ -92,11 +112,15 @@ class PostFinanceController < ApplicationController
     begin
       if checkSHAOutSignature(reqLog,params)
         ncerror = params["NCERROR"]
-        msg = "Payment for "+params["orderID"]+" canceled (status "+params["STATUS"]+")"+(ncerror ? ", error code "+ncerror : "")
+        msg = "Payment for "+params["ORDERID"]+" canceled (status "+params["STATUS"]+")"+(ncerror ? ", error code "+ncerror : "")
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::INFO,msg,nil)
-        if redirectToBill(params, t('.paymentcanceled'))
-          return
+        msg = t('.paymentcanceled')
+        if !(bill = redirectToBill(params, msg))
+          redirectToBills(msg) # should not happen unless the bill reference number is invalid, but just in case
+        else
+          increaseAbortCount(bill)
         end
+        return
       else
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::ERROR,"Hash check failed!",nil)
       end
@@ -113,11 +137,15 @@ class PostFinanceController < ApplicationController
     begin
       if checkSHAOutSignature(reqLog,params)
         ncerror = params["NCERROR"]
-        msg = "Payment for "+params["orderID"]+" exception (status "+params["STATUS"]+")"+(ncerror ? ", error code "+ncerror : "")
+        msg = "Payment for "+params["ORDERID"]+" exception (status "+params["STATUS"]+")"+(ncerror ? ", error code "+ncerror : "")
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::WARNING,msg,nil)
-        if redirectToBill(params, t('.paymentuncertain'))
-          return
+        msg = t('.paymentuncertain')
+        if !(bill = redirectToBill(params, msg))
+          redirectToBills(msg) # should not happen unless the bill reference number is invalid, but just in case
+        else
+          increaseAbortCount(bill)
         end
+        return
       else
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::ERROR,"Hash check failed!",nil)
       end
@@ -187,6 +215,19 @@ class PostFinanceController < ApplicationController
   def self.enabledForEvent(event)
     EventSetting.get_b('payment_postfinance_enable',Event.find(event))
   end
+    
+  def self.initBill(bill)
+    addInfos = bill.additional_bill_informations.where(:name => abortCountName)
+    if addInfos.size == 0 
+      addInfo = AdditionalBillInformation.new(:name => abortCountName, :value => 0.to_s, :bill => bill)
+      addInfo.save
+    end
+  end
+    
+  def self.getFullReferenceNumber(bill)
+    initBill(bill)
+    (bill.reference_number.to_s + PostFinanceController.getAbortCountFmt(bill))[0..29]
+  end
   
   private
   
@@ -196,16 +237,17 @@ class PostFinanceController < ApplicationController
     fieldsSorted = fields.sort()
     string = ""
     for item in fieldsSorted.each do
-      string += item[0].upcase()+"="+item[1]+secretString
+      if(item[1].size > 0)
+        string += item[0].upcase()+"="+item[1]+secretString
+      end
     end
-    puts string
     (Digest::SHA512.hexdigest(string)).upcase()
   end
   
   # true => ok, false => not ok
   def checkSHAOutSignature(reqLog, params)
-                                  
-    shasign == PostFinanceController.calculateSHAOutSignature(params)
+    fields = params.reject { |key,_| !ECOMMERCE_FEEDBACK_PARAMETERS.include? key}
+    params["SHASIGN"] == PostFinanceController.calculateSHAOutSignature(fields)
   end
   
   # Return payment instance created if payment accepted
@@ -213,16 +255,16 @@ class PostFinanceController < ApplicationController
   # param params the parameters of the request
   # param the name of the action that invoked this method (user for logging)  
   def processPayment(reqLog, action, params)
-    refNum = params["orderID"]
+    refNum = params["ORDERID"]
     bill = getBillByRefnum(refNum)
     if !bill
       message = "Invalid reference_number: "+refNum
       PAYMENT_LOG_MESSAGE(reqLog,action,Severity::WARNING,message,nil)
       return nil
     end
-    amount = params["amount"]
+    amount = params["AMOUNT"]
     status = params["STATUS"]
-    currencyCode = params["currency"]
+    currencyCode = params["CURRENCY"]
     pm = params["PM"]
     payments = bill.payments.where(:method => ["postfinance_card", "postfinance_efinance"])
     if payments.size > 0
@@ -234,7 +276,7 @@ class PostFinanceController < ApplicationController
     if status == "9"
       curr = Currency.where(:iso_code => currencyCode)
       if curr.size == 1
-        newPayment = enterPayment(reqLog,action,refNum,bill, params["amount"], curr.first, status, pm)
+        newPayment = enterPayment(reqLog,action,refNum,bill, params["AMOUNT"], curr.first, status, pm)
         if newPayment
           checkBillPaid(newPayment,bill)
         end
@@ -320,7 +362,7 @@ class PostFinanceController < ApplicationController
   end
   
   def getBillByRefnum(refNum)
-    bills = Bill.where(:reference_number => refNum)
+    bills = Bill.where(:reference_number => removeAbortCountFromRefnum(refNum))
     if bills.size != 1
       return nil
     else
@@ -329,7 +371,7 @@ class PostFinanceController < ApplicationController
   end
   
   def redirectToBill(p, notice)
-    refNum = p["orderID"]
+    refNum = p["ORDERID"]
     bill = getBillByRefnum(refNum)
     if bill
       respond_to do |format|
@@ -338,5 +380,35 @@ class PostFinanceController < ApplicationController
     end
     return bill
   end
+  
+  def redirectToBills(notice)
+    respond_to do |format|
+      format.html { redirect_to bills_url, :notice => notice }
+    end
+  end
     
+  # Get formated abort count
+  # max length 4
+  def self.getAbortCountFmt(bill)
+    addInfo = bill.additional_bill_informations.where(:name => PostFinanceController.abortCountName()).first
+    ("-"+addInfo.value)[0..3]
+  end
+    
+  # Increase abort count
+  def increaseAbortCount(bill)
+    addInfo = bill.additional_bill_informations.where(:name => PostFinanceController.abortCountName()).first
+    i = Integer(addInfo.value)
+    i = i + 1
+    addInfo.value = i
+    addInfo.save
+  end
+  
+  def removeAbortCountFromRefnum(refNum)
+    refNum[0..25]
+  end
+
+  def self.abortCountName()
+    "abort_count"
+  end
+
 end

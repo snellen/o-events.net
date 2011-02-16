@@ -1,4 +1,5 @@
 class Bill < ActiveRecord::Base
+  has_many :additional_bill_informations
   has_many :payments
   has_many :teams
   belongs_to :user

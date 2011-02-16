@@ -267,6 +267,7 @@ de:
       completeaddressreq: "Die Angabe der Postadresse ist Voraussetzung für Zahlungen! Klicke %{editlink} um deine Adresse zu erfassen."
       usereditlinklabel: "hier"
       totalzero:         "Der Gesamtbetrag der Rechnung ist 0 %{currency}."
+      backtomybills:     "Zurück zu meinen Rechnungen"
     show:
       totalamount:       "Gesamtbetrag"
       status:            "Status"
@@ -286,6 +287,7 @@ de:
     payment_button:
       submit:            "Jetzt mit PostFinance bezahlen"
       postfinancebillcomment: "O-events.net Rechnung für %{event_name}, Teams/Läufer: %{registration_list}"
+      paymentsforoevents:   "Zahlung für O-Events.net"
     bill_fees_and_total:
       paymentfees:       "Spesen"
       totalamount:       "<b>Gesamtbetrag:</b> %{amount} CHF"
