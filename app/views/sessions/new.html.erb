@@ -1,6 +1,10 @@
   <div class="login_form_full">
     <p id="notice" >  <%= notice %>  </p>
-    <%= form_tag login_path do %>
+    <% addParam = {} %>
+    <% if Rails.env != "development"%>
+      <% addParam = {:only_path => false, :protocol => 'https://'}%>
+    <%end%>
+    <%= form_tag login_path addParam do %>
       <h1>  <%= t('.pleaselogin') %>  </h1>
       <div class="field">
         <label for="identifier" >  <%= t('.username_or_email') %>  </label>
