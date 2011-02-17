@@ -42,8 +42,18 @@
           <%= render :partial => 'post_finance/bill_fees_and_total' %>
           </td>
           <td>   <%= render :partial => 'post_finance/payment_button'%> </td>
+          </tr>
         <% end %>
-        </tr>
+        <%if EbankingController.enabledForEvent(@bill.event)%>
+          <tr>
+          <td>
+          <%=t('.payebanking')%><br />
+          <br />
+          <%= render :partial => 'ebanking/bill_fees_and_total' %>
+          </td>
+          <td>   <%= render :partial => 'ebanking/payment_button'%> </td>
+          </tr>
+        <% end %>
       </table>
     <% end %>
   <% end %>

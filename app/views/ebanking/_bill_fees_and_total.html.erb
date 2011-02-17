@@ -1,0 +1,6 @@
+<b><%=t('.fees')%></b> <%= format_amount(EbankingController.calculatePaymentFees(@bill)) %> CHF <br />
+<% if EventSetting.get_b('payment_ebanking_coverfees',Event.find(@bill.event)) and  EbankingController.calculatePaymentFees(@bill) > 0 %>
+<%=t('.feescoveredbyorganizer')%><br />
+<% end %> 
+<br />
+<%=t('.totalamount', :amount => format_amount(EbankingController.total(@bill))).html_safe%><br />

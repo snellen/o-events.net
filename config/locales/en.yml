@@ -279,12 +279,23 @@ en:
       notsent:           "not been sent yet"
       paymentoptionsdesc: "This bill can be payed with the following payment methods:"
       paypostfinance:    "Online payment using PostFinance"
+      payebanking:       "Pay with E-Banking"
       backtomybills:     "Back to my bills"
     unpaid_fees:
       pay:               "Create Bill"
       backtomybills:     "Back to my bills"
       unbilledfeesdescription: "This page shows all unbilled registrations grouped by event. All registrations for an event can be paid with a single bill."
       nounbilledfees:    "You currently don't have any unbilled registrations."
+  ebanking:
+    show:
+      backtobill:         "Back to bill"
+      paymentdata:        "Payment information for E-Banking transaction"
+    payment_button:
+      showdata:           "Show payment information"
+    bill_fees_and_total:
+      fees:               "Fee"
+      totalamount:       "<b>Total amount:</b> %{amount} CHF"
+      feescoveredbyorganizer: "The fee is covered by the event organizer."
   post_finance:
     payment_button:
       submit:            "Pay now using PostFinance"

@@ -287,12 +287,23 @@ de:
       notsent:           "noch nicht versendet"
       paymentoptionsdesc: "Diese Rechnung kann mit folgenden Zahlungsarten bezahlt werden:"
       paypostfinance:    "Online-Zahlung mit PostFinance"
+      payebanking:       "Zahlung per E-Banking Direktüberweisung"
       backtomybills:     "Zurück zu meinen Rechnungen"
     unpaid_fees:
       pay:               "Rechnung erstellen"
       unbilledfeesdescription: "Auf dieser Seite werden alle deine unverrechneten Anmeldungen nach Wettkampf gruppiert aufgelistet. Alle Anmeldungen für einen Wettkampf kannst du mit einer Rechnung bezahlen."
       nounbilledfees:    "Zur Zeit hast du keine unverrechneten Anmeldungen."
       backtomybills:     "Zurück zu meinen Rechnungen"
+  ebanking:
+    show:
+      backtobill:         "Zurück zur Rechnung"
+      paymentdata:        "Zahlungsdaten für E-Banking Überweisung"
+    payment_button:
+      showdata:           "Zahlungsinformation anzeigen"
+    bill_fees_and_total:
+      fees:               "Spesen"
+      totalamount:       "<b>Gesamtbetrag:</b> %{amount} CHF"
+      feescoveredbyorganizer: "Die Spesen werden vom Veranstalter des Wettkampfes übernommen."
   post_finance:
     payment_button:
       submit:            "Jetzt mit PostFinance bezahlen"

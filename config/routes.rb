@@ -83,6 +83,9 @@ OEventsNet::Application.routes.draw do
     get "post_finance/post_sale" => :post_sale
   end
 
+  controller :ebanking do
+    get "/ebanking/show/:bill" => :show, :as => 'show_ebanking'
+  end
   
   scope '(:locale)' do
     # put everything in here that should be localized
@@ -112,6 +115,10 @@ OEventsNet::Application.routes.draw do
       get "post_finance/payment_canceled" => :payment_canceled
       get "post_finance/payment_exception" => :payment_exception
       get "post_finance/post_sale" => :post_sale
+    end
+    
+    controller :ebanking do
+      get "/ebanking/show/:bill" => :show, :as => 'show_ebanking'
     end
     
     #resource nesting is no longer used, it only complicates things
