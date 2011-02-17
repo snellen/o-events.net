@@ -20,7 +20,7 @@
   <% if @fields[:nation] %>
     <%= form_tag registration_team_options_url, :class => 'nation', :method => 'get' do %>
       <div class="field">
-        <%= required_label :nation_id %>
+        <%= team_required_label :nation_id %>
         <%= f.select :nation_id, Country.all.map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect'), :onchange => 'this.form.submit()' %>
         <%= submit_tag t('form.nojavascript_submit') %>
         <%= javascript_tag "$$('.nation input').each(Element.hide)" %>
@@ -29,7 +29,7 @@
   <% end %>
   <% if @fields[:competing_club] %>
     <div class="field">
-      <%= required_label :club_id %>
+      <%= team_required_label :club_id %>
       <% if params[:nation_id] %> 
         <%= f.select :competing_club, Club.where(:country_id => params[:nation_id]).map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect') %>
       <% else %>
@@ -39,7 +39,7 @@
   <% end %>
   <% if @fields[:name] %>
     <div class="field">
-      <%= required_label :name %>
+      <%= team_required_label :name %>
       <%= f.text_field :name %>
     </div>
   <% end %>
@@ -61,7 +61,7 @@
   <% end %>  
 
   <div class="field">
-    <%= required_label :main_category %>
+    <%= team_required_label :main_category %>
     <%= select_tag :main_category, options_for_select(@team_pool.categories.all.map  {|c| [c.name,c.id]}, @main_category), :include_blank=>t('form.pleaseselect') %>
   </div>  
   

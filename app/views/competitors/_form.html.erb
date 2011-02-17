@@ -37,48 +37,48 @@
     </div>
   <% end %>
   <div class="field">
-    <%= required_label :first_name %>
+    <%= comp_required_label :first_name %>
     <%= f.text_field :first_name %>    
   </div>
   <div class="field">
-    <%= required_label :last_name %>
+    <%= comp_required_label :last_name %>
     <%= f.text_field :last_name %>
   </div>
   <% if @fields[:birthdate_y] %>
     <div class="field">
-      <%= required_label :birthdate_y %>
+      <%= comp_required_label :birthdate_y %>
       <%= f.text_field :birthdate_y %>
     </div>
   <% end %>
   <% if !@search_form %>    
     <% if @fields[:sex] %>  
       <div class="field">
-        <%= required_label :sex %>
+        <%= comp_required_label :sex %>
         <%= f.radio_button :sex, "M" %>  <%= t('.male') %>
         <%= f.radio_button :sex, "F" %>  <%= t('.female') %>
       </div>
     <% end %>
     <% if @fields[:license_number] %>    
       <div class="field">
-        <%= required_label :license_number, @fields[:license_number][:required?] %>
+        <%= comp_required_label :license_number, @fields[:license_number][:required?] %>
         <%= f.text_field :license_number %>
       </div>
     <% end %>
     <% if @fields[:email] %>    
       <div class="field">
-        <%= required_label :email, @fields[:email][:required?] %>
+        <%= comp_required_label :email, @fields[:email][:required?] %>
         <%= f.text_field :email %>
       </div>
     <% end %>
     <% if @fields[:phone] %>        
       <div class="field">
-        <%= required_label :phone, @fields[:phone][:required?] %>
+        <%= comp_required_label :phone, @fields[:phone][:required?] %>
         <%= f.text_field :phone %>
       </div>
     <% end %>
     <% if @fields[:address] %>        
       <div class="field">
-        <%= required_label :address_line_1, @fields[:address][:required?] %>
+        <%= comp_required_label :address_line_1, @fields[:address][:required?] %>
         <%= f.text_field :address_line_1 %>
       </div>
       <div class="field">
@@ -86,13 +86,13 @@
         <%= f.text_field :address_line_2 %>
       </div>
       <div class="field">
-        <%= required_label :zipcode, @fields[:address][:required?] %>
+        <%= comp_required_label :zipcode, @fields[:address][:required?] %>
         <%= f.text_field :zipcode %>
       </div>
     <% end %>
     <% if @fields[:city] %>
       <div class="field">
-        <%= required_label :city, @fields[:city][:required?] %>
+        <%= comp_required_label :city, @fields[:city][:required?] %>
         <%= f.text_field :city %>
         </div>
     <% end %>
@@ -102,7 +102,7 @@
         <%= f.text_field :province %>
       </div>
       <div class="field">
-        <%= required_label :country_id, @fields[:address][:required?] %>
+        <%= comp_required_label :country_id, @fields[:address][:required?] %>
         <%= select (:user, :country_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect')) %>
       </div>
     <% end %>      
