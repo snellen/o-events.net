@@ -205,6 +205,8 @@
   *
   * @section content-misc
   */
+  
+  input[type="submit"] { background-color: #06c; color:#ffd; padding:4px 6px; font-size:80%; font-weight:bold; border: 2px solid #06c; border-style:outset; }
 
  /**
   * (en) Emphasizing external Hyperlinks via CSS

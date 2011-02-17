@@ -291,7 +291,7 @@ de:
     bill_fees_and_total:
       paymentfees:       "Spesen"
       totalamount:       "<b>Gesamtbetrag:</b> %{amount} CHF"
-      feescoveredbyorganizer: "Die Spesen werden vom Wettbewerbsveranstalter übernommen."
+      feescoveredbyorganizer: "Die Spesen werden vom Veranstalter des Wettkampfes übernommen."
   pleaselogin:      "Bitte anmelden"
   loginfailed:      "Ungültige Benutzername/Passwort Kombination"
   userupdatesuccess:     "Deine Daten wurden erfolgreich aktualisiert."
