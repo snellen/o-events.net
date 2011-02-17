@@ -37,7 +37,7 @@
         <%if PostFinanceController.enabledForEvent(@bill.event)%>
           <tr>
           <td>
-          <%=t('.paypostfinance')%><br />
+          <h3><%=t('.paypostfinance')%></h3>
           <br />
           <%= render :partial => 'post_finance/bill_fees_and_total' %>
           </td>
@@ -47,7 +47,7 @@
         <%if EbankingController.enabledForEvent(@bill.event)%>
           <tr>
           <td>
-          <%=t('.payebanking')%><br />
+          <h3><%=t('.payebanking')%></h3>
           <br />
           <%= render :partial => 'ebanking/bill_fees_and_total' %>
           </td>
