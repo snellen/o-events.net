@@ -1,12 +1,12 @@
 <h2><%= t('.team_options') %></h2>
 
-<%= form_for(@team, :url => registration_team_options_url) do |f| %>
-  <% if @team.errors.any? %>
+<%= form_for(@team, :url => registration_main_url) do |f| %>
+  <% if @all_errors.any? %>
     <div id="error_explanation">
-      <h2> <%= t('errors.template.header', :count=>@team.errors.count, :model=>t('activerecord.models.team')) %></h2>
-      <p><%= t('errors.template.body', :count=>@user.errors.size) %></p>
+      <h2> <%= t('errors.template.header', :count=>@all_errors.count, :model=>t('activerecord.models.team')) %></h2>
+      <p><%= t('errors.template.body', :count=>@all_errors.count) %></p>
       <ul>
-      <% @user.errors.full_messages.each do |msg| %>
+      <% @all_errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -59,7 +59,7 @@
 
   <div class="field">
     <%= label_tag :main_category, t('activerecord.attributes.team.category') %>
-    <%= select_tag :main_category, @team_pool.categories.all.map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect') %> *
+    <%= select_tag :main_category, options_for_select(@team_pool.categories.all.map  {|c| [c.name,c.id]}), :include_blank=>t('form.pleaseselect') %> *
   </div>  
   
   <div class="field">
@@ -68,6 +68,9 @@
   
   <div class="actions"><br /><br />
     <%= f.submit button_caption %>
+  </div>
+<% end %>  
+  <div class="actions">
     <%= get_button_to t('form.cancel'), registration_main_url, {:team_pool_id => @team_pool.id} %>
   </div>
-<% end %>
+

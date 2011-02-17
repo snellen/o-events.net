@@ -40,7 +40,7 @@
   #bottomnav { position:absolute; bottom:10px; right:10px; text-align:right; color: #aaa; background: transparent; }
   #nav { overflow:hidden; }
   div.hlist { background-color: #c8ddf3;}
-  #main { margin: 0; background: #fff; padding: 20px }
+  #main { margin: 0; background: #fff; padding: 20px; min-height: 500px; }
   #footer { position:relative; padding: 10px 20px; color:#666; background: #f9f9f9; border-top: 5px #efefef solid; }
 
   /* (en) navigation: horizontal adjustment | (de) horizontale Ausrichtung  */

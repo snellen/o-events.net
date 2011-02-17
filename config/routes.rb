@@ -65,11 +65,12 @@ OEventsNet::Application.routes.draw do
   controller :registration do
     get "registration/overview" => :overview
     get "registration/main" => :main
-    delete "registration/main" => :team_delete    
+    delete "registration/main" => :team_delete
+    post "registration/main" => :team_save
+    put "registration/main" => :team_save    
     get "registration/team_members" => :team_members
     post "registration/team_members" => :team_addmember
     delete "registration/team_members" => :team_removemember
-    post "registration/team_save" => :team_save
     post "registration/search_user" => :search_user      
     get "registration/team_options" => :team_options
   end
@@ -96,10 +97,11 @@ OEventsNet::Application.routes.draw do
       get "registration/overview" => :overview
       get "registration/main" => :main
       delete "registration/main" => :team_delete
+      post "registration/main" => :team_save
+      put "registration/main" => :team_save      
       get "registration/team_members" => :team_members
       post "registration/team_members" => :team_addmember
       delete "registration/team_members" => :team_removemember
-      post "registration/team_save" => :team_save
       post "registration/search_user" => :search_user      
       get "registration/team_options" => :team_options
     end

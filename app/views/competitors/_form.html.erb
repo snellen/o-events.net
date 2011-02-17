@@ -50,11 +50,7 @@
       <%= f.text_field :birthdate_y %> *
     </div>
   <% end %>
-  <% if @search_form %>    
-    <div class="actions">
-      <%= submit_tag button_caption %>
-    </div>
-  <% else %>      
+  <% if !@search_form %>    
     <% if @fields[:sex] %>  
       <div class="field">
         <%= f.label :sex %>
@@ -123,10 +119,14 @@
       </div>
     <% end %>
     
-    <div class="actions">
-      <%= f.submit button_caption %>
-      <%= get_button_to t('form.cancel'), registration_team_members_url %>
-    </div>
   <% end %>
+  <div class="actions">
+    <%= f.submit button_caption %>
+  </div>     
 <% end %>
+
+<div class="actions">  
+  <%= get_button_to t('form.cancel'), registration_team_members_url %>
+</div>         
+
 

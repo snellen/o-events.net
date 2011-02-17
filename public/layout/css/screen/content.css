@@ -186,13 +186,14 @@
   table.full { width:100%; }
   table.fixed { table-layout:fixed; }
 
-  th,td { padding:0.5em; vertical-align: top }
+  th,td { padding:0.5em 0.7em; vertical-align: top }
   thead th { color:#000; border-bottom:2px #800 solid; }
   tbody th { background:#cdf; color:#333; }
   tbody th[scope="row"], tbody th.sub { background:#f0f0f0; }
 
   tbody th { border-bottom:1px solid #fff; text-align:left; }
   tbody td { border-bottom:1px solid #eee; }
+  tbody td.ctr { text-align:center; }
 
   tbody tr:hover th[scope="row"],
   tbody tr:hover tbody th.sub { background:#e8e8f0; }
@@ -206,7 +207,7 @@
   * @section content-misc
   */
   
-  input[type="submit"] { background-color: #06c; color:#ffd; padding:4px 6px; font-size:80%; font-weight:bold; border: 2px solid #06c; border-style:outset; }
+  input[type="submit"] { background-color: #06c; color:#ffd; padding:3px 6px 2px 6px; font-size:80%; font-weight:bold; border: 2px solid #06c; border-style:outset; }
 
  /**
   * (en) Emphasizing external Hyperlinks via CSS

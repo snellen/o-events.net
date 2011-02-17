@@ -50,10 +50,11 @@ en:
     add_person:   "Add"
     status_green: "Yes"
     status_red:   "No"
-    yes: "Yes"
-    no: "No"
+    tick: "Yes"
+    cross: "No"
     thumbs_up: "Positive"
-    thumbs_down: "Negative"    
+    thumbs_down: "Negative"
+    not_deletable: "Cannot be deleted"    
   layouts:
     application:
       title:           "O-events.net"
@@ -89,8 +90,14 @@ en:
               taken:    "has already been taken"
              email:
               taken:    "has already been taken"
+        team_registration:
+          too_young:  "One or more competitors are too young for category %{cat}"
+          too_old:    "One or more competitors are too young for category %{cat}"
+          too_many_members: "Teams with more than %{n} members are not allowed in category %{cat}"
+            
     models:
       user:             "User"
+      team:             "Team"      
       club:             "Club"
       event:            "Event"
       bill:             "Bill"
@@ -194,10 +201,10 @@ en:
       members:          "Team Members"
       name:             "Name"
       leader:           "Leader"   
-      team_complete:    "Team Complete >"
+      team_complete:    "Team Complete"
       action:           "Action"
       confirm_delete:   "Are you sure you want to delete this team member?"
-      back_to_edit:     "< Edit Team Members"      
+      back_to_edit:     "Edit Team Members"      
   competition_groups:
     register_for:
       register_for:      "Register for"

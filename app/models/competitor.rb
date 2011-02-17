@@ -47,9 +47,9 @@ class Competitor < ActiveRecord::Base
   
   
   def presence_of_address
-    if team
+    if !event.nil?
       if (address_line_1.nil? and address_line_2.nil?) or (country_id.nil?) or (zipcode.nil?) #city is validated above
-        errors.add 'Address must be present' if EventSetting.get_b('competitor_address_require',team.team_pool.event)
+        errors.add 'Address must be present' if EventSetting.get_b('competitor_address_require',event) #TODO I18n
       end
     end
   end 
@@ -65,6 +65,13 @@ class Competitor < ActiveRecord::Base
       first_name+' '+last_name
     end
   end
+  
+  # Calculates the age
+  # TODO: This may need to use the exact date of birth, depending on event settings
+  def age
+    Time.now.year - birthdate_y
+  end
+  
   
   # Builds a Competitor and CompetingClub for the specified User and Club. (The TeamPool is needed to find existing CompetingClubs.)
   # The CompetingClub is saved immediately to avoid creating multiple CompetingClubs when saving multiple Competitors with the same club.

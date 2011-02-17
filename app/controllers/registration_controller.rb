@@ -26,24 +26,38 @@ class RegistrationController < ApplicationController
       session[:leader_index]    = @leader_index
   end
   
+  def clear_session_params
+      session[:reg_team]        = nil
+      session[:reg_competitors] = nil     
+      session[:leader_index]    = nil    
+  end
+  
   # GET /registration/overview
   def overview
-    @event = Event.find(params[:event_id])
-    @title = @event.name
-    @team_pools = @event.team_pools
-    if @team_pools.count == 1
-      redirect_to registration_main_url(:team_pool_id => @team_pools.first.id)
+    if params[:event_id]
+      @event = Event.find(params[:event_id])
+      @title = @event.name
+      @team_pools = @event.team_pools
+      if @team_pools.count == 1
+        redirect_to registration_main_url(:team_pool_id => @team_pools.first.id)
+      end
+    else
+      redirect_to events_url
     end
   end
 
   # GET /registration/main
   def main
-    @team_pool = TeamPool.find(params[:team_pool_id])
-    @teams = @team_pool.teams.where(:user_id => session[:user_id])
-    @event = @team_pool.event
-    @title = @event.name
-    if @teams.empty?
-      redirect_to registration_team_members_url(:team_pool_id => @team_pool.id)
+    if params[:team_pool_id]
+      @team_pool = TeamPool.find(params[:team_pool_id])
+      @teams = @team_pool.teams.where(:user_id => session[:user_id])
+      @event = @team_pool.event
+      @title = @event.name
+      if @teams.empty?
+        redirect_to registration_team_members_url(:team_pool_id => @team_pool.id)
+      end
+    else
+      redirect_to events_url
     end
   end
   
@@ -135,6 +149,15 @@ class RegistrationController < ApplicationController
          set_session_params       
          redirect_to registration_team_members_url
       else
+         @fields = EventSetting.competitor_fields(@event)
+         @custom_fields = EventSetting.custom_fields('competitor',@event)
+         if (! @fields[:nation]) or (! @fields[:competing_club]) or (! @fields[:birthdate_y])
+           @search_form = false
+           @form_url = registration_team_members_url
+         else
+           @search_form = true
+           @form_url = registration_search_user_url
+         end
          render :action => 'team_members'
       end
     end
@@ -159,17 +182,70 @@ class RegistrationController < ApplicationController
     redirect_to registration_team_members_url
   end
   
-  # POST /registration/team_save
+  # POST /registration/main
   def team_save
     get_session_params
+    printf 'initiallllllllllllllllllllllllllllllllllyy'
     
-    #TODO save team
+    @team.attributes = params[:team] #TODO: is this safe?
+    @team.registration_time ||= Time.now #TODO: Make sure to handle this field correctly in existing teams.
+    @team.paid_by_club ||= false
+    @team.user = User.find(session[:user_id])
+    @team.start_fee = 10
     
-    # Also TODO: check max_team_size, clear session variables, etc.
+    if params[:main_category].to_i > 0
+      team_reg = Category.find(params[:main_category].to_i).team_registrations.build
+      team_reg.team = @team
+      team_reg.competition = @event.competitions.first #TODO: Replace this by generalized code with several team_registrations
+      if team_reg.valid?        
+        
+        #TODO: Later, make sure that the total start fee of paid teams cannot be modified - or at least not reduced.
+        @team.team_registrations.each do |reg|
+          reg.destroy
+        end        
+      
+        if @team.save  
+          
+          team_reg.save!
+
+          printf 'Before destroyyyyyyyyyyyyyyyyyyyyyyyy'+@competitors.count.to_s
+          
+          @team.competitors.each do |comp|
+            comp.destroy
+          end
+          
+          @competitors.each_with_index do |comp,idx|
+            comp.sortkey = idx
+            comp.team = @team
+            comp.save!            
+          end
+
+          printf 'After competitorsssssssssssssssssssssssssssssssss'+@competitors.count.to_s
+          
+          @team.leader = @competitors[@leader_index]
+          @team.save!          
+        end #if team
+        
+        @all_errors = @team.errors
+      else
+        @all_errors = team_reg.errors        
+      end #if team_reg
+    else
+      @team.errors.clear
+      @team.errors.add(:category, I18n.t('activerecord.errors.messages.mustbeselected'))
+      @all_errors = @team.errors
+    end #if category
+
     
-    set_session_params
-    redirect_to registration_team_options_url
-  end
+    if @all_errors.any?
+      @fields = EventSetting.team_fields(@event)
+      @custom_fields = EventSetting.custom_fields('team',@event)
+      render :action => 'team_options'
+    else
+      clear_session_params
+      redirect_to registration_main_url(:team_pool_id => @team_pool.id)
+    end
+  end #team_save
   
   # POST /registration/search_user
   def search_user
@@ -256,6 +332,7 @@ class RegistrationController < ApplicationController
     get_session_params
     @fields = EventSetting.team_fields(@event)
     @custom_fields = EventSetting.custom_fields('team',@event)
+    @all_errors = @team.errors
 
     # TODO: Set competing club and nation to team leader's values if not set for the team (and if fields active at all)
     

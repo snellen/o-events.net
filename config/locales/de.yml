@@ -58,7 +58,8 @@ de:
     tick: "Ja"
     cross: "Nein"
     thumbs_up: "Positiv"
-    thumbs_down: "Negativ"     
+    thumbs_down: "Negativ"
+    not_deletable: "Kann nicht gelöscht werden"
   layouts:
     application:
       title:           "O-events.net"
@@ -94,8 +95,13 @@ de:
               taken:    "wird bereits verwendet"
              email:
               taken:    "wird bereits verwendet"
+        team_registration:
+          too_young:  "Ein oder mehrere Läufer sind zu jung für die Kategorie %{cat}"
+          too_old:    "Ein oder mehrere Läufer sind zu alt für die Kategorie %{cat}"
+          too_many_members: "Teams mit mehr als %{n} Mitgliedern sind in Kategorie %{cat} nicht erlaubt"              
     models:
       user:             "Benutzer"
+      team:             "Team"
       club:             "Verein" 
       event:            "Wettkampf"
       bill:             "Rechnung"
@@ -194,9 +200,9 @@ de:
       members:          "Teamzusammensetzung"
       name:             "Name"
       leader:           "Admin."
-      team_complete:    "Team komplett >"
+      team_complete:    "Team komplett"
       confirm_delete:   "Teammitglied wirklich löschen?"
-      back_to_edit:     "< Teammitglieder bearbeiten"      
+      back_to_edit:     "Teammitglieder bearbeiten"      
   sessions:
     new:
       signin:             "Anmelden"
