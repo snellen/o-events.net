@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   before_filter :set_i18n_locale_from_params
   before_filter :authorize
   before_filter :dev_mode
+  before_filter :redirect_to_ssl
+  
 
   
   protected
@@ -36,6 +38,10 @@ class ApplicationController < ActionController::Base
         username == 'dev' && password == DEV_MODE_PASSWORD && DEV_MODE_PASSWORD.length > 6
     end
     end
+  end
+  
+  def redirect_to_ssl
+     redirect_to :protocol => "https://" unless (request.ssl? or request.local?)
   end
   
   def noticeInfo(message)
