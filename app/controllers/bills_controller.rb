@@ -24,6 +24,7 @@ class BillsController < ApplicationController
     @user = User.get_logged_in session
     allBills = @user.bills
     @bills = allBills.where(:id => Team.where(:bill_id => allBills.map{|b| b.id}, :paid_by_club => false).map {|t| t.bill_id}).order('created_at DESC')
+    @userHasUnbilledFees = (@user.teams.where(:bill_id => nil, :paid_by_club => false).size > 0)
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @bills }

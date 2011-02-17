@@ -1,7 +1,13 @@
 <% content_for :main do %>
   <%= notice %>
   <h1><%=t('bills.billsite.mybills')%></h1>
-
+  <p> <%=t('.description')%> </p>
+  <br>
+  <%if @userHasUnbilledFees %>
+    <p> <b> <%=t('.unbilledfees', :unbilledfees => link_to(t('bills.billsite.unbilledregistrations'), unpaid_fees_bills_path ) ).html_safe%> </b> </p>
+    <br>
+  <% end %>
+  <% if @bills.size > 0 %>
   <table>
     <tr>
       <th><%=t('.summary')%></th>
@@ -23,6 +29,9 @@
     </tr>
   <% end %>
   </table>
+  <% else %>
+    <p> <%=t('.nobills')%> </p>
+  <% end %>
 <% end %>
 
 <%= render :partial => 'bills/billsite' %>

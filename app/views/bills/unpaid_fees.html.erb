@@ -1,7 +1,11 @@
 <% content_for :main do %>
-  <p id="notice"><%= notice %></p>
+  <%= notice %>
   <h1><%=t('bills.billsite.unbilledregistrations')%></h1>
+  <%=t('.unbilledfeesdescription') %>
+  <%if @teams_by_event.size > 0 %>
   <% @teams_by_event.each_pair do |@event,@teams| %>
+    <br>
+    <br>
     <p>
       <h2><%= @event.name %></h2>
     </p>
@@ -12,6 +16,12 @@
       <%= @event.currency.iso_code %>
     </p>
      <%= get_button_to t('.pay'), new_bill_path, {:event => @event.id} %>
+  <% end %>
+  <% else %>
+    <br>
+    <br>
+    <br>
+    <p> <%=t('.nounbilledfees')%> </p>
   <% end %>
   <br>
   <br>

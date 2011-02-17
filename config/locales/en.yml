@@ -241,6 +241,7 @@ en:
       teampool:          "Registration group"
       amount:            "Amount"
     index:
+      unbilledfees:      "You have unbilled registrations. Go to %{unbilledfeeslink} to create a bill."
       summary:           "Summary"
       date:              "Date"
       amount:            "Amount"
@@ -248,6 +249,8 @@ en:
       paid:              "Paid"
       unpaid:            "Unpaid"
       details:           "Details"
+      description:       "This page lists all your bills. Please use the Unbilled Registrations button on the left to create new bills for your unbilled registrations."
+      nobills:           "You currently dont have any bills."
     new:
       newbill:           "Create new bill"
       totalamount:       "Total amount"
@@ -272,6 +275,8 @@ en:
     unpaid_fees:
       pay:               "Create Bill"
       backtomybills:     "Back to my bills"
+      unbilledfeesdescription: "This page shows all unbilled registrations grouped by event. All registrations for an event can be paid with a single bill."
+      nounbilledfees:    "You currently don't have any unbilled registrations."
   post_finance:
     payment_button:
       submit:            "Pay now using PostFinance"
