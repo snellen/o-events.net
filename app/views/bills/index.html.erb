@@ -1,26 +1,34 @@
 <% content_for :main do %>
   <%= notice %>
   <h1><%=t('bills.billsite.mybills')%></h1>
-
+  <p> <%=t('.description')%> </p>
+  <br>
+  <%if @userHasUnbilledFees %>
+    <p> <b> <%=t('.unbilledfees', :unbilledfees => link_to(t('bills.billsite.unbilledregistrations'), unpaid_fees_bills_path ) ).html_safe%> </b> </p>
+    <br>
+  <% end %>
   <table>
     <tr>
-      <th><%=t('.summary')%></th>
       <th><%=t('activerecord.models.event')%></th>
+      <th><%=t('.summary')%></th>
       <th><%=t('.date')%></th>
       <th><%=t('.amount')%></th>
       <th><%=t('.status')%></th>
       <th></th>
     </tr>
-
+<% if @bills.size > 0 %>
   <% @bills.each do |bill| %>
     <tr>
-      <td><%= summary_string(bill,25) %></td>
       <td><%= bill.event.name %></td>
+      <td><%= summary_string(bill,25) %></td>
       <td><%= bill.created_at.to_date %></td>
       <td><%= format_amount(bill.amount) %> <%= bill.event.currency.iso_code %></td>
       <td><%= bill.is_paid ? t('.paid') : t('.unpaid') %></td>
       <td><%= link_to t('.details'), bill %></td>
     </tr>
+  <% end %>
+  <% else %>
+    <td> <%=t('.nobills')%> <br></td>
   <% end %>
   </table>
 <% end %>

@@ -176,7 +176,6 @@ de:
       female:             "Weiblich"
     search:
       enter_username:     "Benutzername:"
-   
   competitors:
     form:
       male:               "Männlich"
@@ -205,16 +204,15 @@ de:
       back_to_edit:     "Teammitglieder bearbeiten"      
   sessions:
     new:
-      signin:             "Anmelden"
+      signin:             "Einloggen"
       pleaselogin:        "Anmeldung"
       username_or_email:  "Benutzername oder E-Mail"
       password:           "Passwort"
-      submit:             "Anmelden"
+      submit:             "Einloggem"
       register_info:      "Noch kein Benutzerkonto bei O-events.net? Bitte zuerst %{reglink}."
       register:           "registrieren"
-      
     destroy:
-      signout:             "Abmelden"
+      signout:             "Ausloggen"
   competition_groups:
     register_for:
       register_for:      "Anmeldung für"
@@ -258,6 +256,7 @@ de:
       teampool:          "Anmeldungsgruppe"
       amount:            "Betrag"
     index:
+      unbilledfees:      "Du hast unverrechnete Anmeldungen. Gehe zu %{unbilledfees} um eine Rechnung zu erfassen."
       summary:           "Zusammenfassung"
       date:              "Datum"
       amount:            "Betrag"
@@ -265,6 +264,8 @@ de:
       paid:              "Bezahlt"
       unpaid:            "Unbezahlt"
       details:           "Details"
+      description:       "Diese Seite listet alle deine Rechnungen auf. Unter dem Menüpunkt \"Unverrechnete Anmeldungen\" links kannst du neue Rechnungen für deine kostenpflichtigen Anmeldungen erfassen."
+      nobills:           "Du hast keine Rechnungen."
     new:
       newbill:           "Neue Rechnung erstellen"
       totalamount:       "Gesamtbetrag"
@@ -288,6 +289,8 @@ de:
       backtomybills:     "Zurück zu meinen Rechnungen"
     unpaid_fees:
       pay:               "Rechnung erstellen"
+      unbilledfeesdescription: "Auf dieser Seite werden alle deine unverrechneten Anmeldungen nach Wettbewerb gruppiert aufgelistet. Alle Anmeldungen für einen Wettbewerb kannst du mit einer Rechnung bezahlen."
+      nounbilledfees:    "Zur Zeit has du keine unverrechneten Anmeldungen."
       backtomybills:     "Zurück zu meinen Rechnungen"
   post_finance:
     payment_button:
@@ -298,7 +301,7 @@ de:
       paymentfees:       "Spesen"
       totalamount:       "<b>Gesamtbetrag:</b> %{amount} CHF"
       feescoveredbyorganizer: "Die Spesen werden vom Veranstalter des Wettkampfes übernommen."
-  pleaselogin:      "Bitte anmelden"
+  pleaselogin:      "Bitte einloggen"
   loginfailed:      "Ungültige Benutzername/Passwort Kombination"
   userupdatesuccess:     "Deine Daten wurden erfolgreich aktualisiert."
   usercreatesuccess:     "Vielen Dank für die Registration und viel Spass mit o-events.net"

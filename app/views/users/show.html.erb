@@ -1,13 +1,15 @@
   <p id="notice"><%= notice %></p>
   <h1>   <%= t('.welcomeuser',  :username => @user.username) %>  </h1>
+  <h2><%= t('users.form.account_data') %></h2>
     <p>
-      <b>   <%= User.human_attribute_name(:username) %>:  </b>
+      <b>   <%= User.human_attribute_name(:username) %>:</b>
       <%= @user.username %>
     </p>
     <p>
       <b>   <%= User.human_attribute_name(:email)%>:  </b>
       <%= @user.email %>
     </p>
+  <br><h2><%= t('users.form.personal_data') %></h2>
     <p>
       <b>   <%= User.human_attribute_name(:first_name) %>:  </b>
       <%= @user.first_name %>
@@ -32,7 +34,7 @@
       <b>   <%= User.human_attribute_name(:nation_id) %>:  </b>
       <%= Country.find(@user.nation_id).name %>
     </p>
-  
+    <br><h2><%= t('users.form.address_data') %></h2>
     <p>
       <b>   <%= User.human_attribute_name(:address_line_1) %>:  </b>
       <%= @user.address_line_1 != '' ? @user.address_line_1 : t('.notspecified') %>
