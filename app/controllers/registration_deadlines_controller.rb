@@ -44,7 +44,7 @@ class RegistrationDeadlinesController < ApplicationController
 
     respond_to do |format|
       if @registration_deadline.save
-        format.html { redirect_to(@registration_deadline, :notice => 'Registration deadline was successfully created.') }
+        format.html { redirect_to(@registration_deadline, :notice => noticeInfo('Registration deadline was successfully created.')) }
         format.xml  { render :xml => @registration_deadline, :status => :created, :location => @registration_deadline }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class RegistrationDeadlinesController < ApplicationController
 
     respond_to do |format|
       if @registration_deadline.update_attributes(params[:registration_deadline])
-        format.html { redirect_to(@registration_deadline, :notice => 'Registration deadline was successfully updated.') }
+        format.html { redirect_to(@registration_deadline, :notice => noticeInfo('Registration deadline was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

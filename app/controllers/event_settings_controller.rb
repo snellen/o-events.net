@@ -44,7 +44,7 @@ class EventSettingsController < ApplicationController
 
     respond_to do |format|
       if @event_setting.save
-        format.html { redirect_to(@event_setting, :notice => 'Event setting was successfully created.') }
+        format.html { redirect_to(@event_setting, :notice => noticeInfo('Event setting was successfully created.')) }
         format.xml  { render :xml => @event_setting, :status => :created, :location => @event_setting }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class EventSettingsController < ApplicationController
 
     respond_to do |format|
       if @event_setting.update_attributes(params[:event_setting])
-        format.html { redirect_to(@event_setting, :notice => 'Event setting was successfully updated.') }
+        format.html { redirect_to(@event_setting, :notice => noticeInfo('Event setting was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

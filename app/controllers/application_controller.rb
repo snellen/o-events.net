@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
 
   def authorize
     unless User.find_by_id(session[:user_id])
-      redirect_to login_path, :notice =>   t('.pleaselogin')
+      redirect_to login_path, :notice =>   noticeInfo(t('.pleaselogin'))
     end
   end
   
@@ -36,6 +36,19 @@ class ApplicationController < ActionController::Base
         username == 'dev' && password == DEV_MODE_PASSWORD && DEV_MODE_PASSWORD.length > 6
     end
     end
+  end
+  
+  def noticeInfo(message)
+    noticeTag(message, "notice")
+  end
+  
+  def noticeError(message)
+    noticeTag(message, "notice_error")
+  end
+  
+  private
+  def noticeTag(message, divId)
+    ("<p id="+divId+">"+message.html_safe+"</p>").html_safe
   end
   
 end

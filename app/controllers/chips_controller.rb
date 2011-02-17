@@ -44,7 +44,7 @@ class ChipsController < ApplicationController
 
     respond_to do |format|
       if @chip.save
-        format.html { redirect_to(@chip, :notice => 'Chip was successfully created.') }
+        format.html { redirect_to(@chip, :notice => noticeInfo('Chip was successfully created.')) }
         format.xml  { render :xml => @chip, :status => :created, :location => @chip }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class ChipsController < ApplicationController
 
     respond_to do |format|
       if @chip.update_attributes(params[:chip])
-        format.html { redirect_to(@chip, :notice => 'Chip was successfully updated.') }
+        format.html { redirect_to(@chip, :notice => noticeInfo('Chip was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -44,7 +44,7 @@ class AgeRangesController < ApplicationController
 
     respond_to do |format|
       if @age_range.save
-        format.html { redirect_to(@age_range, :notice => 'Age range was successfully created.') }
+        format.html { redirect_to(@age_range, :notice => noticeInfo('Age range was successfully created.')) }
         format.xml  { render :xml => @age_range, :status => :created, :location => @age_range }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class AgeRangesController < ApplicationController
 
     respond_to do |format|
       if @age_range.update_attributes(params[:age_range])
-        format.html { redirect_to(@age_range, :notice => 'Age range was successfully updated.') }
+        format.html { redirect_to(@age_range, :notice => noticeInfo('Age range was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

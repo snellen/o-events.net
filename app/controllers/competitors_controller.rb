@@ -44,7 +44,7 @@ class CompetitorsController < ApplicationController
 
     respond_to do |format|
       if @competitor.save
-        format.html { redirect_to(@competitor, :notice => 'Competitor was successfully created.') }
+        format.html { redirect_to(@competitor, :notice => noticeInfo('Competitor was successfully created.')) }
         format.xml  { render :xml => @competitor, :status => :created, :location => @competitor }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class CompetitorsController < ApplicationController
 
     respond_to do |format|
       if @competitor.update_attributes(params[:competitor])
-        format.html { redirect_to(@competitor, :notice => 'Competitor was successfully updated.') }
+        format.html { redirect_to(@competitor, :notice => noticeInfo('Competitor was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

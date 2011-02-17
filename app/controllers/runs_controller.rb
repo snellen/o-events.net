@@ -44,7 +44,7 @@ class RunsController < ApplicationController
 
     respond_to do |format|
       if @run.save
-        format.html { redirect_to(@run, :notice => 'Run was successfully created.') }
+        format.html { redirect_to(@run, :notice => noticeInfo('Run was successfully created.')) }
         format.xml  { render :xml => @run, :status => :created, :location => @run }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class RunsController < ApplicationController
 
     respond_to do |format|
       if @run.update_attributes(params[:run])
-        format.html { redirect_to(@run, :notice => 'Run was successfully updated.') }
+        format.html { redirect_to(@run, :notice => noticeInfo('Run was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

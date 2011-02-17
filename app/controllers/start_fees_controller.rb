@@ -44,7 +44,7 @@ class StartFeesController < ApplicationController
 
     respond_to do |format|
       if @start_fee.save
-        format.html { redirect_to(@start_fee, :notice => 'Start fee was successfully created.') }
+        format.html { redirect_to(@start_fee, :notice => noticeInfo('Start fee was successfully created.')) }
         format.xml  { render :xml => @start_fee, :status => :created, :location => @start_fee }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class StartFeesController < ApplicationController
 
     respond_to do |format|
       if @start_fee.update_attributes(params[:start_fee])
-        format.html { redirect_to(@start_fee, :notice => 'Start fee was successfully updated.') }
+        format.html { redirect_to(@start_fee, :notice => noticeInfo('Start fee was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
