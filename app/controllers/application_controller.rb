@@ -41,7 +41,9 @@ class ApplicationController < ActionController::Base
   end
   
   def redirect_to_ssl
+    unless User.find_by_id(session[:user_id])
      redirect_to :protocol => "https://" unless (request.ssl? or request.local?)
+    end
   end
   
   def noticeInfo(message)
