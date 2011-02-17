@@ -206,10 +206,10 @@ de:
   sessions:
     new:
       signin:             "Einloggen"
-      pleaselogin:        "Anmeldung"
+      pleaselogin:        "Einloggen"
       username_or_email:  "Benutzername oder E-Mail"
       password:           "Passwort"
-      submit:             "Einloggem"
+      submit:             "Einloggen"
       register_info:      "Noch kein Benutzerkonto bei O-events.net? Bitte zuerst %{reglink}."
       register:           "registrieren"
     destroy:
@@ -291,7 +291,7 @@ de:
     unpaid_fees:
       pay:               "Rechnung erstellen"
       unbilledfeesdescription: "Auf dieser Seite werden alle deine unverrechneten Anmeldungen nach Wettkampf gruppiert aufgelistet. Alle Anmeldungen für einen Wettkampf kannst du mit einer Rechnung bezahlen."
-      nounbilledfees:    "Zur Zeit has du keine unverrechneten Anmeldungen."
+      nounbilledfees:    "Zur Zeit hast du keine unverrechneten Anmeldungen."
       backtomybills:     "Zurück zu meinen Rechnungen"
   post_finance:
     payment_button:
