@@ -185,7 +185,7 @@
   table caption { font-variant:small-caps; }
   table.full { width:100%; }
   table.fixed { table-layout:fixed; }
-  table.bills_show th, table.bills_show td { vertical-align: middle; }
+  table.bills_show th, table.bills_show td { vertical-align: middle; padding: 12px 8px } 
 
   th,td { padding:0.5em 0.7em; vertical-align: top; }
   thead th { color:#000; border-bottom:2px #800 solid; }
