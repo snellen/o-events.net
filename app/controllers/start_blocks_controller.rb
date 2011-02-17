@@ -44,7 +44,7 @@ class StartBlocksController < ApplicationController
 
     respond_to do |format|
       if @start_block.save
-        format.html { redirect_to(@start_block, :notice => 'Start block was successfully created.') }
+        format.html { redirect_to(@start_block, :notice => noticeInfo('Start block was successfully created.')) }
         format.xml  { render :xml => @start_block, :status => :created, :location => @start_block }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class StartBlocksController < ApplicationController
 
     respond_to do |format|
       if @start_block.update_attributes(params[:start_block])
-        format.html { redirect_to(@start_block, :notice => 'Start block was successfully updated.') }
+        format.html { redirect_to(@start_block, :notice => noticeInfo('Start block was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

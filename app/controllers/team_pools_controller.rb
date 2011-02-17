@@ -44,7 +44,7 @@ class TeamPoolsController < ApplicationController
 
     respond_to do |format|
       if @team_pool.save
-        format.html { redirect_to(@team_pool, :notice => 'Team pool was successfully created.') }
+        format.html { redirect_to(@team_pool, :notice => noticeInfo('Team pool was successfully created.')) }
         format.xml  { render :xml => @team_pool, :status => :created, :location => @team_pool }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class TeamPoolsController < ApplicationController
 
     respond_to do |format|
       if @team_pool.update_attributes(params[:team_pool])
-        format.html { redirect_to(@team_pool, :notice => 'Team pool was successfully updated.') }
+        format.html { redirect_to(@team_pool, :notice => noticeInfo('Team pool was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -44,7 +44,7 @@ class TotalResultsController < ApplicationController
 
     respond_to do |format|
       if @total_result.save
-        format.html { redirect_to(@total_result, :notice => 'Total result was successfully created.') }
+        format.html { redirect_to(@total_result, :notice => noticeInfo('Total result was successfully created.')) }
         format.xml  { render :xml => @total_result, :status => :created, :location => @total_result }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class TotalResultsController < ApplicationController
 
     respond_to do |format|
       if @total_result.update_attributes(params[:total_result])
-        format.html { redirect_to(@total_result, :notice => 'Total result was successfully updated.') }
+        format.html { redirect_to(@total_result, :notice => noticeInfo('Total result was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

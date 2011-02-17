@@ -44,7 +44,7 @@ class TeamRegistrationsController < ApplicationController
 
     respond_to do |format|
       if @team_registration.save
-        format.html { redirect_to(@team_registration, :notice => 'Team registration was successfully created.') }
+        format.html { redirect_to(@team_registration, :notice => noticeInfo('Team registration was successfully created.')) }
         format.xml  { render :xml => @team_registration, :status => :created, :location => @team_registration }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class TeamRegistrationsController < ApplicationController
 
     respond_to do |format|
       if @team_registration.update_attributes(params[:team_registration])
-        format.html { redirect_to(@team_registration, :notice => 'Team registration was successfully updated.') }
+        format.html { redirect_to(@team_registration, :notice => noticeInfo('Team registration was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

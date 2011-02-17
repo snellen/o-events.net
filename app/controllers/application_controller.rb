@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   before_filter :set_i18n_locale_from_params
   before_filter :authorize
   before_filter :dev_mode
+  before_filter :redirect_to_ssl
+  
 
   
   protected
@@ -26,14 +28,35 @@ class ApplicationController < ActionController::Base
 
   def authorize
     unless User.find_by_id(session[:user_id])
-      redirect_to login_path, :notice =>   t('.pleaselogin')
+      redirect_to login_path, :notice =>   noticeInfo(t('.pleaselogin'))
     end
   end
   
   def dev_mode
-    authenticate_or_request_with_http_basic do |username,password|
-      username == 'dev' && password == DEV_MODE_PASSWORD && DEV_MODE_PASSWORD.length > 6
+    if ENABLE_DEV_MODE_AUTH
+      authenticate_or_request_with_http_basic do |username,password|
+        username == 'dev' && password == DEV_MODE_PASSWORD && DEV_MODE_PASSWORD.length > 6
     end
+    end
+  end
+  
+  def redirect_to_ssl
+    if User.find_by_id(session[:user_id])
+     redirect_to :protocol => "https://" unless (request.ssl? or request.local?)
+    end
+  end
+  
+  def noticeInfo(message)
+    noticeTag(message, "notice")
+  end
+  
+  def noticeError(message)
+    noticeTag(message, "notice_error")
+  end
+  
+  private
+  def noticeTag(message, divId)
+    ("<p id="+divId+">"+message.html_safe+"</p>").html_safe
   end
   
 end

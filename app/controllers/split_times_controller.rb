@@ -44,7 +44,7 @@ class SplitTimesController < ApplicationController
 
     respond_to do |format|
       if @split_time.save
-        format.html { redirect_to(@split_time, :notice => 'Split time was successfully created.') }
+        format.html { redirect_to(@split_time, :notice => noticeInfo('Split time was successfully created.')) }
         format.xml  { render :xml => @split_time, :status => :created, :location => @split_time }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class SplitTimesController < ApplicationController
 
     respond_to do |format|
       if @split_time.update_attributes(params[:split_time])
-        format.html { redirect_to(@split_time, :notice => 'Split time was successfully updated.') }
+        format.html { redirect_to(@split_time, :notice => noticeInfo('Split time was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

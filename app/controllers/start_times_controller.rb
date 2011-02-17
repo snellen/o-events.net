@@ -44,7 +44,7 @@ class StartTimesController < ApplicationController
 
     respond_to do |format|
       if @start_time.save
-        format.html { redirect_to(@start_time, :notice => 'Start time was successfully created.') }
+        format.html { redirect_to(@start_time, :notice => noticeInfo('Start time was successfully created.')) }
         format.xml  { render :xml => @start_time, :status => :created, :location => @start_time }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class StartTimesController < ApplicationController
 
     respond_to do |format|
       if @start_time.update_attributes(params[:start_time])
-        format.html { redirect_to(@start_time, :notice => 'Start time was successfully updated.') }
+        format.html { redirect_to(@start_time, :notice => noticeInfo('Start time was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

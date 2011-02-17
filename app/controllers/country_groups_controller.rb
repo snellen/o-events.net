@@ -44,7 +44,7 @@ class CountryGroupsController < ApplicationController
 
     respond_to do |format|
       if @country_group.save
-        format.html { redirect_to(@country_group, :notice => 'Country group was successfully created.') }
+        format.html { redirect_to(@country_group, :notice => noticeInfo('Country group was successfully created.')) }
         format.xml  { render :xml => @country_group, :status => :created, :location => @country_group }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class CountryGroupsController < ApplicationController
 
     respond_to do |format|
       if @country_group.update_attributes(params[:country_group])
-        format.html { redirect_to(@country_group, :notice => 'Country group was successfully updated.') }
+        format.html { redirect_to(@country_group, :notice => noticeInfo('Country group was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

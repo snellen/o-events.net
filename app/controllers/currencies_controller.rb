@@ -44,7 +44,7 @@ class CurrenciesController < ApplicationController
 
     respond_to do |format|
       if @currency.save
-        format.html { redirect_to(@currency, :notice => 'Currency was successfully created.') }
+        format.html { redirect_to(@currency, :notice => noticeInfo('Currency was successfully created.')) }
         format.xml  { render :xml => @currency, :status => :created, :location => @currency }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class CurrenciesController < ApplicationController
 
     respond_to do |format|
       if @currency.update_attributes(params[:currency])
-        format.html { redirect_to(@currency, :notice => 'Currency was successfully updated.') }
+        format.html { redirect_to(@currency, :notice => noticeInfo('Currency was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

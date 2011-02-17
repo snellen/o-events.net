@@ -44,7 +44,7 @@ class CompetitionGroupsController < ApplicationController
 
     respond_to do |format|
       if @competition_group.save
-        format.html { redirect_to(@competition_group, :notice => 'Competition group was successfully created.') }
+        format.html { redirect_to(@competition_group, :notice => noticeInfo('Competition group was successfully created.')) }
         format.xml  { render :xml => @competition_group, :status => :created, :location => @competition_group }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class CompetitionGroupsController < ApplicationController
 
     respond_to do |format|
       if @competition_group.update_attributes(params[:competition_group])
-        format.html { redirect_to(@competition_group, :notice => 'Competition group was successfully updated.') }
+        format.html { redirect_to(@competition_group, :notice => noticeInfo('Competition group was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

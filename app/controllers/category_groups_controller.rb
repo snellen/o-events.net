@@ -44,7 +44,7 @@ class CategoryGroupsController < ApplicationController
 
     respond_to do |format|
       if @category_group.save
-        format.html { redirect_to(@category_group, :notice => 'Category group was successfully created.') }
+        format.html { redirect_to(@category_group, :notice => noticeInfo('Category group was successfully created.')) }
         format.xml  { render :xml => @category_group, :status => :created, :location => @category_group }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class CategoryGroupsController < ApplicationController
 
     respond_to do |format|
       if @category_group.update_attributes(params[:category_group])
-        format.html { redirect_to(@category_group, :notice => 'Category group was successfully updated.') }
+        format.html { redirect_to(@category_group, :notice => noticeInfo('Category group was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

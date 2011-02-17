@@ -62,9 +62,9 @@ class RegistrationController < ApplicationController
       end
       
       @team.destroy
-      redirect_to registration_main_url(:team_pool_id => @team_pool.id, :notice => t('.deleted'))
+      redirect_to registration_main_url(:team_pool_id => @team_pool.id, :notice => noticeInfo(t('.deleted')))
     else
-      redirect_to registration_main_url(:team_pool_id => @team_pool.id, :notice => t('.not_deletable'))
+      redirect_to registration_main_url(:team_pool_id => @team_pool.id, :notice => noticeInfo(t('.not_deletable')))
     end
     
 

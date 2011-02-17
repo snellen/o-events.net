@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to user_url(@user.id), :notice => t('.usercreatesuccess') }
+        format.html { redirect_to user_url(@user.id), :notice => noticeInfo(t('.usercreatesuccess')) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
@@ -65,7 +65,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to user_url, :id => @user.id, :notice => t('.userupdatesuccess') }
+        format.html { redirect_to user_url, :id => @user.id, :notice => noticeInfo(t('.userupdatesuccess')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

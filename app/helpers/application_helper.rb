@@ -49,4 +49,5 @@ module ApplicationHelper
     ret += '<div><input type="submit" value="'+caption+'" /></div></form>'
     ret.html_safe
   end
+  
 end

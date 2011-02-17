@@ -44,7 +44,7 @@ class AdditionalFeesController < ApplicationController
 
     respond_to do |format|
       if @additional_fee.save
-        format.html { redirect_to(@additional_fee, :notice => 'Additional fee was successfully created.') }
+        format.html { redirect_to(@additional_fee, :notice => noticeInfo('Additional fee was successfully created.')) }
         format.xml  { render :xml => @additional_fee, :status => :created, :location => @additional_fee }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class AdditionalFeesController < ApplicationController
 
     respond_to do |format|
       if @additional_fee.update_attributes(params[:additional_fee])
-        format.html { redirect_to(@additional_fee, :notice => 'Additional fee was successfully updated.') }
+        format.html { redirect_to(@additional_fee, :notice => noticeInfo('Additional fee was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

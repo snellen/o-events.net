@@ -44,7 +44,7 @@ class CompetingClubsController < ApplicationController
 
     respond_to do |format|
       if @competing_club.save
-        format.html { redirect_to(@competing_club, :notice => 'Competing club was successfully created.') }
+        format.html { redirect_to(@competing_club, :notice => noticeInfo('Competing club was successfully created.')) }
         format.xml  { render :xml => @competing_club, :status => :created, :location => @competing_club }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class CompetingClubsController < ApplicationController
 
     respond_to do |format|
       if @competing_club.update_attributes(params[:competing_club])
-        format.html { redirect_to(@competing_club, :notice => 'Competing club was successfully updated.') }
+        format.html { redirect_to(@competing_club, :notice => noticeInfo('Competing club was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
