@@ -1,4 +1,4 @@
- <% editable = (controller.action_name != 'team_options') %>
+ <% editable = (controller.action_name != 'team_options' and controller.action_name != 'team_save') %>
 
   <h1>
   <% if(@team.id.nil?) %>

@@ -24,15 +24,13 @@
         <% else %>
           <p><%=t('.acceptdescription')%></p> 
         <% end %>
-        <div class="actions">
-          <%= f.submit t('.acceptbill'), :disabled => !@userAddressKnown%>
-        </div>
+          <br /><%= f.submit t('.acceptbill'), :disabled => !@userAddressKnown%><br /><br />
       <% end %>
     <% else %>
       <p> <%=t('.totalzero',:currency => @event.currency.iso_code)%></p>
     <% end %>
 
-    <%= link_to t('.backtomybills'), bills_path %>
+    <%= link_to '<< '+t('.backtomybills'), bills_path %>
 
   <% end %>
 

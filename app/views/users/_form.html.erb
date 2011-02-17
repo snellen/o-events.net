@@ -18,40 +18,40 @@
   <h2><%= t('.account_data') %></h2>
   <% if @user.new_record? %>
     <div class="field">
-      <%= required_label :username %>
+      <%= user_required_label :username %>
       <%= f.text_field :username %>
     </div>
   <% end %>
   <div class="field">
-    <%= required_label :email %>
+    <%= user_required_label :email %>
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= required_label :password, t('.password') %>
+    <%= user_required_label :password, t('.password') %>
     <%= f.password_field :password %>
   </div>
   <div class="field">
-    <%= required_label :password_confirmation, t('.password_confirmation') %>
+    <%= user_required_label :password_confirmation, t('.password_confirmation') %>
     <%= f.password_field :password_confirmation %>
   </div>
   
   <br><h2><%= t('.personal_data') %></h2>
   
   <div class="field">
-    <%= required_label :first_name %>
+    <%= user_required_label :first_name %>
     <%= f.text_field :first_name %>
   </div>
   <div class="field">
-    <%= required_label :last_name %>
+    <%= user_required_label :last_name %>
     <%= f.text_field :last_name %>
   </div>
   <div class="field">
-    <%= required_label :sex %>
+    <%= user_required_label :sex %>
     <%= f.radio_button :sex, "M" %><%= t('.male') %>
     <%= f.radio_button :sex, "F" %><%= t('.female') %>
   </div>
   <div class="field"><br />
-    <%= required_label :birthdate_y %>
+    <%= user_required_label :birthdate_y %>
     <%= f.text_field :birthdate_y %>
   </div>
   <div class="field">
@@ -59,7 +59,7 @@
     <%= f.text_field :sicard_number %>
   </div>
   <div class="field">
-    <%= required_label :nation_id %>
+    <%= user_required_label :nation_id %>
     <%= select(:user, :nation_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect')) %>
   </div>
   
