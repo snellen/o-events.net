@@ -206,10 +206,10 @@ de:
   sessions:
     new:
       signin:             "Einloggen"
-      pleaselogin:        "Anmeldung"
+      pleaselogin:        "Einloggen"
       username_or_email:  "Benutzername oder E-Mail"
       password:           "Passwort"
-      submit:             "Einloggem"
+      submit:             "Einloggen"
       register_info:      "Noch kein Benutzerkonto bei O-events.net? Bitte zuerst %{reglink}."
       register:           "registrieren"
     destroy:
