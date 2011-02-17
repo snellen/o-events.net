@@ -26,48 +26,28 @@ class Team < ActiveRecord::Base
   validates_numericality_of :num1, :only_integer => true, :unless => "num1.blank?"
   validates_numericality_of :num2, :only_integer => true, :unless => "num2.blank?"
   validates_numericality_of :num3, :only_integer => true, :unless => "num3.blank?"
-  
-  # Optional fields which can be shown without being required
+
+  # Custom fields which can be shown without being required
   validates_each :text1, :text2, :text3, :num1, :num2, :num3 do |record, attr, value|
     if !record.team_pool.nil?
-      record.errors.add attr, I18n.t('activerecord.errors.messages.blank') if value.nil? and EventSetting.get_b('team_'+attr.to_s+'_require',record.team_pool.event)
+      record.errors.add EventSetting.get_s('team_'+attr.to_s+'_name',record.team_pool.event), I18n.t('activerecord.errors.messages.blank') if value.blank? and EventSetting.get_b('team_'+attr.to_s+'_require',record.team_pool.event)
     end
   end
-
+  
   # Optional fields which are required when shown 
-  validates_each :nation, :name, :competing_club, :flag1, :flag2, :flag3 do |record, attr, value|
+  validates_each :nation, :name, :competing_club do |record, attr, value|
     if !record.team_pool.nil?
-      record.errors.add attr, I18n.t('activerecord.errors.messages.blank') if value.nil? and EventSetting.get_b('team_'+attr.to_s+'_show',record.team_pool.event)
+      record.errors.add attr, I18n.t('activerecord.errors.messages.blank') if value.blank? and EventSetting.get_b('team_'+attr.to_s+'_show',record.team_pool.event)
     end
   end    
-  
-  
-  # TODO the following two functions may be obsolete.  
-  
-  # Adds a competitor to the team.
-  # Defines the team leader if the team was empty, and sets a sortkey for the new competitor.
-  def add_member(competitor)
-    if @competitors.empty?
-      @leader = competitor
-      competitor.sortkey = 1
-    else
-      competitor.sortkey = @competitors.maximum(:sortkey)+1
+
+  # Custom fields which are required when shown 
+  validates_each :flag1, :flag2, :flag3 do |record, attr, value|
+    if !record.team_pool.nil?
+      record.errors.add EventSetting.get_s('team_'+attr.to_s+'_name',record.team_pool.event), I18n.t('activerecord.errors.messages.blank') if value.blank? and EventSetting.get_b('team_'+attr.to_s+'_show',record.team_pool.event)
     end
-    @competitors << competitor
-  end
-  
-  # Removes a competitor from the team and destroys it.
-  def remove_member(competitor)
-    competitor.destroy
-    self.reload
-    if @leader_id == competitor.id
-      if @competitors.count == 1
-        @leader = nil
-      else
-        @leader = @competitors.first
-      end
-    end
-  end
+  end    
+
     
   def is_single
     category.max_team_size == 1
@@ -83,7 +63,7 @@ class Team < ActiveRecord::Base
   end
   
   def category_list
-    Category.where(:id => team_registrations.map{|reg| reg.id}).map{|cat| cat.name}.to_sentence
+    Category.where(:id => team_registrations.map{|reg| reg.category_id}).map{|cat| cat.name}.to_sentence
   end
   
   def member_names

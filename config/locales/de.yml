@@ -130,6 +130,8 @@ de:
         birthdate_d:    "Geburtstag"
         country_id:     "Land"
         nation_id:      "Nationalität"
+        password:           "Passwort"
+        password_confirmation: "Passwort bestätigen"
       competitor:
         email:          "E-mail-Adresse"
         license_number: "Lizenznummer/SOLV-Nummer"
@@ -153,6 +155,7 @@ de:
       team:
         name:           "Teamname"
         category:       "Kategorie"
+        main_category:  "Kategorie"
   users:
     new:
       register:           "Benutzerkonto erstellen"
@@ -161,8 +164,6 @@ de:
       personal_data:      "Persönliche Daten"
       address_data:       "Postadresse"
       address_info:       "Die Angabe der Postadresse ist Voraussetzung für Online-Zahlungen; ansonsten ist sie freiwillig."
-      password:           "Passwort"
-      password_confirmation: "Passwort bestätigen"
       submit:             "Speichern"
       pleaseselect:       "Bitte auswählen"
       male:               "Männlich"
@@ -289,7 +290,7 @@ de:
       backtomybills:     "Zurück zu meinen Rechnungen"
     unpaid_fees:
       pay:               "Rechnung erstellen"
-      unbilledfeesdescription: "Auf dieser Seite werden alle deine unverrechneten Anmeldungen nach Wettbewerb gruppiert aufgelistet. Alle Anmeldungen für einen Wettbewerb kannst du mit einer Rechnung bezahlen."
+      unbilledfeesdescription: "Auf dieser Seite werden alle deine unverrechneten Anmeldungen nach Wettkampf gruppiert aufgelistet. Alle Anmeldungen für einen Wettkampf kannst du mit einer Rechnung bezahlen."
       nounbilledfees:    "Zur Zeit has du keine unverrechneten Anmeldungen."
       backtomybills:     "Zurück zu meinen Rechnungen"
   post_finance:

@@ -49,5 +49,9 @@ module ApplicationHelper
     ret += '<div><input type="submit" value="'+caption+'" /></div></form>'
     ret.html_safe
   end
+
+  def format_amount(n)
+    sprintf("%0.02f", n)
+  end
   
 end

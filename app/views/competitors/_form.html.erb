@@ -37,63 +37,63 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %> *
+    <%= required_label :first_name %>
+    <%= f.text_field :first_name %>    
   </div>
   <div class="field">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %> *
+    <%= required_label :last_name %>
+    <%= f.text_field :last_name %>
   </div>
   <% if @fields[:birthdate_y] %>
     <div class="field">
-      <%= f.label :birthdate_y %>
-      <%= f.text_field :birthdate_y %> *
+      <%= required_label :birthdate_y %>
+      <%= f.text_field :birthdate_y %>
     </div>
   <% end %>
   <% if !@search_form %>    
     <% if @fields[:sex] %>  
       <div class="field">
-        <%= f.label :sex %>
+        <%= required_label :sex %>
         <%= f.radio_button :sex, "M" %>  <%= t('.male') %>
-        <%= f.radio_button :sex, "F" %>  <%= t('.female') %> *
+        <%= f.radio_button :sex, "F" %>  <%= t('.female') %>
       </div>
     <% end %>
     <% if @fields[:license_number] %>    
       <div class="field">
-        <%= f.label :license_number %>
-        <%= f.text_field :license_number %><%= field_asterisk(@fields[:license_number]) %>
+        <%= required_label :license_number, @fields[:license_number][:required?] %>
+        <%= f.text_field :license_number %>
       </div>
     <% end %>
     <% if @fields[:email] %>    
       <div class="field">
-        <%= f.label :email %>
-        <%= f.text_field :email %><%= field_asterisk(@fields[:email]) %>
+        <%= required_label :email, @fields[:email][:required?] %>
+        <%= f.text_field :email %>
       </div>
     <% end %>
     <% if @fields[:phone] %>        
       <div class="field">
-        <%= f.label :phone %>
-        <%= f.text_field :phone %><%= field_asterisk(@fields[:phone]) %>
+        <%= required_label :phone, @fields[:phone][:required?] %>
+        <%= f.text_field :phone %>
       </div>
     <% end %>
     <% if @fields[:address] %>        
       <div class="field">
-        <%= f.label :address_line_1 %>
-        <%= f.text_field :address_line_1 %><%= field_asterisk(@fields[:address]) %>
+        <%= required_label :address_line_1, @fields[:address][:required?] %>
+        <%= f.text_field :address_line_1 %>
       </div>
       <div class="field">
         <%= f.label :address_line_2 %>
         <%= f.text_field :address_line_2 %>
       </div>
       <div class="field">
-        <%= f.label :zipcode %>
-        <%= f.text_field :zipcode %><%= field_asterisk(@fields[:address]) %>
+        <%= required_label :zipcode, @fields[:address][:required?] %>
+        <%= f.text_field :zipcode %>
       </div>
     <% end %>
     <% if @fields[:city] %>
       <div class="field">
-        <%= f.label :city %>
-        <%= f.text_field :city %><%= field_asterisk(@fields[:city]) %>
+        <%= required_label :city, @fields[:city][:required?] %>
+        <%= f.text_field :city %>
         </div>
     <% end %>
     <% if @fields[:address] %> 
@@ -102,18 +102,21 @@
         <%= f.text_field :province %>
       </div>
       <div class="field">
-        <%= f.label :country_id %>
-        <%= select (:user, :country_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect')) %><%= field_asterisk(@fields[:address]) %>
+        <%= required_label :country_id, @fields[:address][:required?] %>
+        <%= select (:user, :country_id, Country.find(:all).map  {|c| [c.name,c.id]}, :include_blank=>t('form.pleaseselect')) %>
       </div>
     <% end %>      
     <% @custom_fields.each do |cfname,cf| %>
-      <div class="field"><%= f.label cfname, cf[:name] %>
+      <div class="field">
       <% case cfname.to_s[0] %>
         <% when ?t %>
-          <%= f.text_field cfname %> <%= field_asterisk(cf) %>
-        <% when ?n %>        
-          <%= f.text_field cfname %> <%= field_asterisk(cf) %>
+          <%= label :competitor, cfname, cf[:name]+(cf[:required?] ? ' *' : '') %>
+          <%= f.text_field cfname %>
+        <% when ?n %>
+          <%= label :competitor, cfname, cf[:name]+(cf[:required?] ? ' *' : '') %>        
+          <%= f.text_field cfname %>
         <% when ?f %>
+          <%= label :competitor, cfname, cf[:name] %>
           <%= f.check_box cfname %>
       <% end  %>
       </div>
@@ -125,8 +128,10 @@
   </div>     
 <% end %>
 
-<div class="actions">  
-  <%= get_button_to t('form.cancel'), registration_team_members_url %>
+<div class="actions">
+  <% if params[:competitor_index] %>
+    <%= get_button_to t('form.cancel'), registration_team_members_url %>
+  <% end %>
 </div>         
 
 

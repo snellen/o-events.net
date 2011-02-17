@@ -41,6 +41,13 @@
   #nav { overflow:hidden; }
   div.hlist { background-color: #c8ddf3;}
   #main { margin: 0; background: #fff; padding: 20px; min-height: 500px; }
+  
+  /* IE6 min height - UNTESTED (MZ) - */
+  * html div#main { 
+   height: expression( this.scrollHeight < 501 ? "500px" : "auto" ); /* sets min-height for IE */
+  }
+
+  
   #footer { position:relative; padding: 10px 20px; color:#666; background: #f9f9f9; border-top: 5px #efefef solid; }
 
   /* (en) navigation: horizontal adjustment | (de) horizontale Ausrichtung  */

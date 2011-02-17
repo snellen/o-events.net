@@ -3,33 +3,46 @@ class RegistrationController < ApplicationController
   def get_session_params
     if(params[:team_id])
       @team = Team.find(params[:team_id])
-      @competitors = Competitor.where(:team_id => @team.id).map{|c| c} # NOT: @team.competitors
+      #@competitors = Competitor.where(:team_id => @team.id).map{|c| c} # NOT: @team.competitors
+      @competitors = Competitor.where(:team_id => @team.id).find(:all, :order => 'sortkey').map{|c| c.clone}
+      @leader_index = Competitor.where(:team_id => @team.id).find(:all, :order => 'sortkey').map{|c| c.id}.index(@team.leader.id)      
       @team_pool = @team.team_pool
     elsif(params[:team_pool_id])
       @team_pool = TeamPool.find(params[:team_pool_id])
       @team = @team_pool.teams.build
       @competitors = []
+      @leader_index = 0
     elsif(session[:reg_team])
       @team = session[:reg_team]
       @competitors = session[:reg_competitors]
       @team_pool = @team.team_pool
+      @leader_index = session[:leader_index].to_i      
     end 
-    
+
+    if params[:main_category]
+      @main_category = params[:main_category]
+    elsif @team.id
+      @main_category = @team.team_registrations.first.category.id # TODO generalize
+    else
+      @main_category = 0
+    end
+      
     @event = @team_pool.event
-    @title = @event.name
-    @leader_index = session[:leader_index].to_i    
+    @title = @event.name    
   end
   
   def set_session_params
-      session[:reg_team]        = @team
-      session[:reg_competitors] = @competitors     
-      session[:leader_index]    = @leader_index
+      session[:reg_team]          = @team
+      session[:reg_competitors  ] = @competitors   
+      session[:reg_main_category] = @main_category
+      session[:leader_index]      = @leader_index
   end
   
   def clear_session_params
-      session[:reg_team]        = nil
-      session[:reg_competitors] = nil     
-      session[:leader_index]    = nil    
+      session[:reg_team]          = nil
+      session[:reg_competitors]   = nil     
+      session[:leader_index]      = nil    
+      session[:reg_main_category] = nil
   end
   
   # GET /registration/overview
@@ -122,6 +135,11 @@ class RegistrationController < ApplicationController
         @competitors[dest] = @competitors[src]
         @competitors[src] = temp
       end
+      if @leader_index == src
+        @leader_index = dest
+      elsif @leader_index == dest
+        @leader_index = src
+      end
       
       set_session_params      
       redirect_to registration_team_members_url
@@ -185,13 +203,13 @@ class RegistrationController < ApplicationController
   # POST /registration/main
   def team_save
     get_session_params
-    printf 'initiallllllllllllllllllllllllllllllllllyy'
     
     @team.attributes = params[:team] #TODO: is this safe?
     @team.registration_time ||= Time.now #TODO: Make sure to handle this field correctly in existing teams.
     @team.paid_by_club ||= false
     @team.user = User.find(session[:user_id])
     @team.start_fee = 10
+    @team.leader = nil
     
     if params[:main_category].to_i > 0
       team_reg = Category.find(params[:main_category].to_i).team_registrations.build
@@ -207,20 +225,16 @@ class RegistrationController < ApplicationController
         if @team.save  
           
           team_reg.save!
-
-          printf 'Before destroyyyyyyyyyyyyyyyyyyyyyyyy'+@competitors.count.to_s
           
           @team.competitors.each do |comp|
             comp.destroy
           end
           
           @competitors.each_with_index do |comp,idx|
-            comp.sortkey = idx
-            comp.team = @team
-            comp.save!            
+            @competitors[idx].sortkey = idx
+            @competitors[idx].team = @team
+            @competitors[idx].save!            
           end
-
-          printf 'After competitorsssssssssssssssssssssssssssssssss'+@competitors.count.to_s
           
           @team.leader = @competitors[@leader_index]
           @team.save!          

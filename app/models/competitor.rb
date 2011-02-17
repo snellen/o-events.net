@@ -30,16 +30,30 @@ class Competitor < ActiveRecord::Base
 
   
   # Optional fields which can be shown without being required
-  validates_each :license_number, :email, :phone, :city, :text1, :text2, :text3, :num1, :num2, :num3 do |record, attr, value|
+  validates_each :license_number, :email, :phone, :city do |record, attr, value|
     if !record.event.nil?
-      record.errors.add attr, I18n.t('activerecord.errors.messages.blank') if value.nil? and EventSetting.get_b('competitor_'+attr.to_s+'_require',record.event)
+      record.errors.add attr, I18n.t('activerecord.errors.messages.blank') if value.blank? and EventSetting.get_b('competitor_'+attr.to_s+'_require',record.event)
     end
   end
+  
+  # Custom fields which can be shown without being required
+  validates_each :text1, :text2, :text3, :num1, :num2, :num3 do |record, attr, value|
+    if !record.event.nil?
+      record.errors.add EventSetting.get_s('competitor_'+attr.to_s+'_name',record.event), I18n.t('activerecord.errors.messages.blank') if value.blank? and EventSetting.get_b('competitor_'+attr.to_s+'_require',record.event)
+    end
+  end  
 
   # Optional fields which are required when shown 
-  validates_each :nation, :birthdate_y, :competing_club, :flag1, :flag2, :flag3 do |record, attr, value|
+  validates_each :nation, :birthdate_y, :competing_club do |record, attr, value|
     if !record.event.nil?
-      record.errors.add attr, I18n.t('activerecord.errors.messages.blank') if value.nil? and EventSetting.get_b('competitor_'+attr.to_s+'_show',record.event)
+      record.errors.add attr, I18n.t('activerecord.errors.messages.blank') if value.blank? and EventSetting.get_b('competitor_'+attr.to_s+'_show',record.event)
+    end
+  end  
+
+  # Custom fields which are required when shown 
+  validates_each :flag1, :flag2, :flag3 do |record, attr, value|
+    if !record.event.nil?
+      record.errors.add EventSetting.get_s('competitor_'+attr.to_s+'_name',record.event), I18n.t('activerecord.errors.messages.blank') if value.blank? and EventSetting.get_b('competitor_'+attr.to_s+'_show',record.event)
     end
   end  
   
@@ -48,7 +62,7 @@ class Competitor < ActiveRecord::Base
   
   def presence_of_address
     if !event.nil?
-      if (address_line_1.nil? and address_line_2.nil?) or (country_id.nil?) or (zipcode.nil?) #city is validated above
+      if (address_line_1.blank? and address_line_2.blank?) or (country_id.blank?) or (zipcode.blank?) #city is validated above
         errors.add 'Address must be present' if EventSetting.get_b('competitor_address_require',event) #TODO I18n
       end
     end

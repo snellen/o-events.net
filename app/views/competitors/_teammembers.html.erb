@@ -19,6 +19,7 @@
       <tr>
         <th>  <%= t('.leader') %>  </th>
         <th>  <%= t('.name') %>  </th>
+        <th>  Schuljahr  </th>
         <% if @fields[:competing_club] %>
           <th>  <%= t('activerecord.models.club') %>  </th>
         <% end %>
@@ -34,6 +35,7 @@
             <td class="ctr">  <%= @leader_index == idx ? icon('tick') : '' %>  </td>
           <% end %>
           <td>  <%= competitor.full_name %>  </td>
+          <td>  <%= competitor.num1.to_s %>  </td>
           <% if @fields[:competing_club] %>        
             <td>  <%= competitor.competing_club.name %>  </td>
           <% end %>
@@ -52,7 +54,8 @@
     <% end %>
 
     <% if editable %>
-      <%= get_button_to t('.team_complete')+' >', registration_team_options_url %>
+      <%= get_button_to t('.team_complete')+' >', registration_team_options_url %><br />
+      <%= get_button_to t('form.cancel'), registration_main_url, {:team_pool_id => @team_pool.id} %>
     <% else %>
       <%= get_button_to '< '+t('.back_to_edit'), registration_team_members_url %>
     <% end %>

@@ -12,7 +12,7 @@
   <%= render 'event_fees' %>
 
   <p>
-    <b><%=t('.totalamount')%>:</b>
+    <br /><b><%=t('.totalamount')%>:</b>
     <%= format_amount(@bill.amount) %>
     <%= @bill.currency.iso_code %>
   </p>
@@ -33,7 +33,7 @@
     <% else %>
       <br />
       <p><%=t('.paymentoptionsdesc')%></p>
-      <table>
+      <table class="bills_show">
         <%if PostFinanceController.enabledForEvent(@bill.event)%>
           <tr>
           <td>

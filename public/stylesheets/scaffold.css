@@ -29,6 +29,9 @@ div.field input, div.field select {
   width: 180px;
 }
 
+span.required_field{
+}
+
 #notice {
   color: green;
 }
@@ -38,9 +41,7 @@ div.field input, div.field select {
 }
 
 .field_with_errors {
-  /* padding: 6px; */
   background-color: #007;
-  /* display: inline-block; */
 }
 
 .field_with_errors label {

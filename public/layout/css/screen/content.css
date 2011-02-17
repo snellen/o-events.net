@@ -131,7 +131,7 @@
   /* (en) maximum constrast for tab focus - change with great care */
   /* (en) Maximaler Kontrast für Tab Focus - Ändern Sie diese Regel mit Bedacht */
   /* a:focus { text-decoration:underline; color:#000; background: #fff; outline: 3px #f93 solid; } */
-  a:focus { outline: 2px #f00 solid }
+  /* a:focus { outline: 2px #f00 solid } */
   a:hover,
    a:active { color:#182E7A; text-decoration:underline; outline: 0 none; } 
 
@@ -185,8 +185,9 @@
   table caption { font-variant:small-caps; }
   table.full { width:100%; }
   table.fixed { table-layout:fixed; }
+  table.bills_show th, table.bills_show td { vertical-align: middle; }
 
-  th,td { padding:0.5em 0.7em; vertical-align: top }
+  th,td { padding:0.5em 0.7em; vertical-align: top; }
   thead th { color:#000; border-bottom:2px #800 solid; }
   tbody th { background:#cdf; color:#333; }
   tbody th[scope="row"], tbody th.sub { background:#f0f0f0; }

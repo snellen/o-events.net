@@ -14,7 +14,7 @@
   <tr>
     <td><%= team.get_display_name %></td>
     <td><%= team.category_list %></td>
-    <td><%= team.start_fee %></td>
+    <td><%= format_amount(team.start_fee) %></td>
     <td class="ctr"><%= (team.bill and team.bill.is_paid) ? icon('status_green') : icon('status_red') %></td>
     <td><%= link_to icon('edit'), registration_team_members_path(:team_id => team.id) %></td>
     <td><%= team.bill ? icon('not_deletable') : link_to(icon('delete'), registration_main_path(:team_id => team.id), :confirm => t('.confirm_delete'), :method => :delete) %></td>

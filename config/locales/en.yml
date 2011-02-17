@@ -147,7 +147,8 @@ en:
         start_date:     "Start date"
       team:
         name:           "Team Name"
-        category:       "Category"        
+        category:       "Category"
+        main_category:  "Category"        
   users:
     new:
       register:           "Register"
