@@ -249,7 +249,7 @@ en:
       paid:              "Paid"
       unpaid:            "Unpaid"
       details:           "Details"
-      description:       "This page lists all your bills. Please use the Unbilled Registrations button on the left to create new bills for your unbilled registrations."
+      description:       "This page lists all your bills. Please use the \"Unbilled Registrations\" button on the left to create new bills for your unbilled registrations."
       nobills:           "You currently dont have any bills."
     new:
       newbill:           "Create new bill"
