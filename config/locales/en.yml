@@ -288,6 +288,15 @@ en:
       nounbilledfees:    "You currently don't have any unbilled registrations."
   ebanking:
     show:
+      hint:               "Please note that the bill will remain marked as \"Unpaid\" until the payment is registered with our system (usually within a couple of days)."
+      pleasetransferto:   "Please transfer to"
+      accountnumber:      "Account Number"
+      postcheck:          "Post Check: %{accountno}"
+      iban:               "IBAN: %{accountno}"
+      iban_bic:           "BIC: %{bic}"
+      refnumber:          "Reference Number:"
+      addressofbeneficiary: "Address of Beneficiary:"
+      amount:             "Amount:"
       backtobill:         "Back to bill"
       paymentdata:        "Payment information for E-Banking transaction"
     payment_button:

@@ -1,14 +1,21 @@
-<h1><%=t('.paymentdata')%></h1>
-  <table><tr><th colspan = "2"> Überweisung bitte an </tr>
-  <tr><td><b>Kontonummer:</td><td>Post Check: 60-181114-8 <br />
+<% content_for :main do %>
+
+  <h1><%=t('.paymentdata')%></h1>
+  <p><%=t('.hint')%></p>
+  <table><tr><th colspan = "2"> <%=t('.pleasetransferto')%> </tr>
+  <tr><td><b><%=t('.accountnumber')%></td><td> <%=t('.postcheck', :accountno => "60-181114-8")%> <br />
    <br />
    <br />
-   IBAN: CH37 0900 0000 6018 1114 8</b><br />
-   BIC: POFICHBEXXX</b></td></tr>
-   <tr><td><b>Referenznummer:</b></td> <td> <%=@bill.reference_number%></td></tr>
-  <tr><td><b>Adresse des Empfängers: </b></td><td>supsport.ch <br />CH-3097 Liebefeld</td></tr>
-   <tr><td><b>Betrag:</b></td> <td> <%=format_amount(EbankingController.total(@bill))%> CHF</td></tr>
+   <%=t('.iban', :accountno => "CH37 0900 0000 6018 1114 8")%></b><br />
+   <%= t('.iban_bic',:bic => "POFICHBEXXX")%></b></td></tr>
+   <tr><td><b><%=t('.refnumber')%></b></td> <td> <%=@bill.reference_number%></td></tr>
+  <tr><td><b><%=t('.addressofbeneficiary')%></b></td><td>supsport.ch <br />CH-3097 Liebefeld</td></tr>
+   <tr><td><b><%=t('.amount')%></b></td> <td> <%=format_amount(EbankingController.total(@bill))%> CHF</td></tr>
   </table>
 <br />
   <%= link_to '<< '+t('.backtobill'), bill_path(:id => @bill.id) %>
+  <%end%>
+
+<%= render :partial => 'bills/billsite' %>
+
 

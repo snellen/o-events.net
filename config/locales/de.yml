@@ -296,6 +296,15 @@ de:
       backtomybills:     "Zurück zu meinen Rechnungen"
   ebanking:
     show:
+      hint:               "Bitte beachte, dass die Rechnung weiterhin als \"Unbezahlt\" angezeigt wird bis die Zahlung bei uns eintrifft, was unter Umständen mehrere Tage dauern kann."
+      pleasetransferto:   "Überweisung bitte an"
+      accountnumber:      "Kontonummer:"
+      postcheck:          "Post Check: %{accountno}"
+      iban:               "IBAN: %{accountno}"
+      iban_bic:           "BIC: %{bic}"
+      refnumber:          "Referenznummer:"
+      addressofbeneficiary: "Adresse des Empfängers:"
+      amount:             "Betrag:"
       backtobill:         "Zurück zur Rechnung"
       paymentdata:        "Zahlungsdaten für E-Banking Überweisung"
     payment_button:
