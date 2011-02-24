@@ -74,7 +74,7 @@ de:
       imprint:         "Impressum"
       welcomeuser:     "Wilkommen %{user}!"
       welcomeguest:    "Wilkommen Gast! Bitte %{reglink} oder"
-      register:        "registrieren"
+      register:        "ein Benutzerkonto erstellen"
       supsportbanner:  "O-events.net ist ein kostenloser Dienst von %{supsport_link} - Deine %{donation_link} halten es am laufen."
       donations:       "Spenden"
       poweredbyruby:   "Die Seite verwendet Ruby on Rails mit einem Layout basierend auf YAML."
@@ -172,7 +172,6 @@ de:
       notspecified:       "keine Angabe"
       welcomeuser:        "Willkommen %{username}"
       edit:               "Bearbeiten"
-      submit:             "Registrieren"
       male:               "Männlich"
       female:             "Weiblich"
     search:

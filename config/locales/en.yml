@@ -69,7 +69,7 @@ en:
       imprint:         "Imprint"
       welcomeguest:    "Welcome Guest! Please %{reglink} or"
       welcomeuser:     "Welcome %{user}!"
-      register:        "register"
+      register:        "create a user account"
       supsportbanner:  "O-events.net is a free service of %{supsport_link} - Your %{donation_link} keep it running."
       poweredbyruby:   "Powered by Ruby on Rails. Layout based on YAML."
       donations:       "donations"
@@ -125,6 +125,8 @@ en:
         birthdate_d:    "Day of Birth"
         country_id:     "Country"
         nation_id:      "Nation"
+        password:           "Password"
+        password_confirmation: "Confirm Password"
       competitor:
         email:          "E-mail Address"
         license_number: "License Number"
@@ -151,7 +153,7 @@ en:
         main_category:  "Category"        
   users:
     new:
-      register:           "Register"
+      register:           "Create an Account"
     form:
       account_data:       "Account Data"
       personal_data:      "Personal Data"
@@ -166,7 +168,6 @@ en:
       notspecified:       "not specified"
       welcomeuser:        "Welcome %{username}"
       edit:               "Edit"
-      submit:             "Register"
       male:               "Male"
       female:             "Female"      
     search:
@@ -179,7 +180,7 @@ en:
       password:           "Password"
       submit:             "Login"
       register_info:      "If you have no O-events.net account, please %{reglink} first."
-      register:           "register"      
+      register:           "create a user account"      
     destroy:
       signout:             "Sign out"
   competitors:
