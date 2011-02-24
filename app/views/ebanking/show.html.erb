@@ -8,7 +8,7 @@
    <br />
    <%=t('.iban', :accountno => "CH37 0900 0000 6018 1114 8")%></b><br />
    <%= t('.iban_bic',:bic => "POFICHBEXXX")%></b></td></tr>
-   <tr><td><b><%=t('.refnumber')%></b></td> <td> <%=@bill.reference_number%></td></tr>
+   <tr><td><b><%=t('.refnumber')%></b></td> <td> <%=getFullReferenceNumber(@bill.reference_number)%></td></tr>
   <tr><td><b><%=t('.addressofbeneficiary')%></b></td><td>supsport.ch <br />CH-3097 Liebefeld</td></tr>
    <tr><td><b><%=t('.amount')%></b></td> <td> <%=format_amount(EbankingController.total(@bill))%> CHF</td></tr>
   </table>

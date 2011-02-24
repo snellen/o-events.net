@@ -1,0 +1,10 @@
+<% content_for :left do %>
+  <ul>
+    <li><%= link_to t('.mydata'), user_path %></li>
+    <li><%= link_to t('.myevents'), "#" %></li>
+  </ul>
+<% end %>
+<h1>   <%= t('.welcomeuser',  :username => @user.username) %>  </h1>
+<% #content_for :main must be defined by the parent view of this partial %>
+
+<%= render :partial => 'layouts/two_columns' %>
