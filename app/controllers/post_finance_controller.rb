@@ -67,7 +67,7 @@ class PostFinanceController < ApplicationController
     begin
       if checkSHAOutSignature(reqLog, params)
         payment = processPayment(reqLog, __method__, params)
-        message = payment ? t('.paymentsuccessful'): t('.paymentfailed', :mailtag => "<a href=\"mailto:support@o-events.net@\">")
+        message = payment ? t('.paymentsuccessful'): t('.paymentfailed', :mailtag => "<a href=\"mailto:support@o-events.net\">support@o-events.net</a>").html_safe
         if redirectToBill(params, message)
           return
         end
@@ -78,7 +78,7 @@ class PostFinanceController < ApplicationController
       PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::FATAL,"Exception: "+e.to_s()+" bt: "+e.backtrace.to_s(),nil)
     end
     respond_to do |format|
-      format.html { redirect_to bills_url, :notice => noticeError(t('.paymentfailedinternalerror'), :mailtag => "<a href=\"mailto:support@o-events.net@\">") }
+      format.html { redirect_to bills_url, :notice => noticeError(t('.paymentfailedinternalerror', :mailtag => "<a href=\"mailto:support@o-events.net\">support@o-events.net</a>").html_safe) }
     end
   end
 
@@ -103,7 +103,7 @@ class PostFinanceController < ApplicationController
       PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::FATAL,"Exception: "+e.to_s()+" bt: "+e.backtrace.to_s(),nil)
     end
     respond_to do |format|
-      format.html { redirect_to bills_url, :notice => noticeError(t('.paymentfailedinternalerror', :mailtag => "<a href=\"mailto:support@o-events.net@\">")) }
+      format.html { redirect_to bills_url, :notice => noticeError(t('.paymentfailedinternalerror', :mailtag => "<a href=\"mailto:support@o-events.net\">support@o-events.net</a>").html_safe) }
     end
   end
 
@@ -128,7 +128,7 @@ class PostFinanceController < ApplicationController
       PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::FATAL,"Exception: "+e.to_s()+" bt: "+e.backtrace.to_s(),nil)
     end
     respond_to do |format|
-      format.html { redirect_to bills_url, :notice => noticeError(t('.paymentfailedinternalerror'), :mailtag => "<a href=\"mailto:support@o-events.net@\">") }
+      format.html { redirect_to bills_url, :notice => noticeError(t('.paymentfailedinternalerror', :mailtag => "<a href=\"mailto:support@o-events.net\">support@o-events.net</a>").html_safe) }
     end
   end
 
@@ -139,7 +139,7 @@ class PostFinanceController < ApplicationController
         ncerror = params["NCERROR"]
         msg = "Payment for "+params["ORDERID"]+" exception (status "+params["STATUS"]+")"+(ncerror ? ", error code "+ncerror : "")
         PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::WARNING,msg,nil)
-        msg = t('.paymentuncertain', :mailtag => "<a href=\"mailto:support@o-events.net@\">")
+        msg = t('.paymentuncertain', :mailtag => "<a href=\"mailto:support@o-events.net\">support@o-events.net</a>").html_safe
         if !(bill = redirectToBill(params, msg))
           redirectToBills(msg) # should not happen unless the bill reference number is invalid, but just in case
         else
@@ -153,7 +153,7 @@ class PostFinanceController < ApplicationController
       PAYMENT_LOG_MESSAGE(reqLog,__method__,Severity::FATAL,"Exception: "+e.to_s()+" bt: "+e.backtrace.to_s(),nil)
     end
     respond_to do |format|
-      format.html { redirect_to bills_url, :notice => noticeError(t('.paymentfailedinternalerror'), :mailtag => "<a href=\"mailto:support@o-events.net@\">") }
+      format.html { redirect_to bills_url, :notice => noticeError(t('.paymentfailedinternalerror', :mailtag => "<a href=\"mailto:support@o-events.net\">support@o-events.net</a>").html_safe) }
     end
   end
 
