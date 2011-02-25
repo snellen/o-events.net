@@ -269,7 +269,7 @@ de:
     new:
       newbill:           "Neue Rechnung erstellen"
       totalamount:       "Gesamtbetrag"
-      acceptdescription: "Durch das Akzeptieren der Rechnung verpflichtest du dich den obenstehenden Betrag zu bezahlen."
+      acceptdescription: "Durch das Akzeptieren werden alle Anmeldungen definitiv und du verpflichtest dich den obenstehenden Betrag zu bezahlen."
       acceptbill:        "Akzeptieren"
       completeaddressreq: "Die Angabe der Postadresse ist Voraussetzung für Zahlungen! Klicke %{editlink} um deine Adresse zu erfassen."
       usereditlinklabel: "hier"

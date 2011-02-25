@@ -1,8 +1,8 @@
   <div id="loginbox">
-    <%= link_to login_path, :class => "signin" do %>
+    <%= link_to login_path, :class => "signin", :id => "signin" do %>
       <span>  <%= t('.signin') %>  </span>
     <% end %>
-    <%= field_set_tag nil, :id => "signin_menu" do %>
+    <%= field_set_tag nil, :id => "signin_menu", :style => "display:none" do %>
       <%= form_tag login_path, :id => 'signin' do %>
         <div>
           <label for="identifier" >  <%= t('.username_or_email') %>  </label>
@@ -18,25 +18,27 @@
       <% end %>
     <% end %>
     <%= javascript_tag do %>
-        $(document).ready(function() {
-
-            $(".signin").click(function(e) {          
-		e.preventDefault();
-                $("fieldset#signin_menu").toggle();
-		$(".signin").toggleClass("menu-open");
-            });
+     document.observe("dom:loaded", function() {
+       
+       $('signin').observe('click',
+         function(e) {      
+           //alert('signin click observed')  
+		   e.preventDefault();
+           $('signin_menu').toggle();
+		   $('signin').toggleClassName('menu-open');
+          }
+       );
 			
-	    $("fieldset#signin_menu").mouseup(function() {
-		return false
-	    });
-
-	    $(document).mouseup(function(e) {
-		if($(e.target).parent("a.signin").length==0) {
-		   $(".signin").removeClass("menu-open");
-		   $("fieldset#signin_menu").hide();
-		}
-	    });			
-			
-        });
+	   document.observe('mouseup',
+	     function(e) {
+		   if(!e.element().descendantOf('loginbox')) {
+		     $('signin').removeClassName("menu-open");
+		     $('signin_menu').hide();
+		   }
+	      }
+	    );
+	    
+     });
+     
     <% end %>
   </div>

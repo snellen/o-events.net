@@ -263,7 +263,7 @@ en:
     new:
       newbill:           "Create new bill"
       totalamount:       "Total amount"
-      acceptdescription: "By accepting the bill you commit yourself to paying the amount above."
+      acceptdescription: "By accepting the bill all registrations become definitive and you commit yourself to paying the amount above."
       acceptbill:        "Accept"
       completeaddressreq: "The address is required to make electronic payments with your account! Please klick %{editlink} to complete your address."
       usereditlinklabel: "here"
