@@ -1,5 +1,5 @@
   <div class="login_form_full">
-    <p id="notice" >  <%= notice %>  </p>
+   <%= notice %>
     <% addParam = {} %>
     <% if Rails.env != "development"%>
       <% addParam = {:only_path => false, :protocol => 'https://'}%>

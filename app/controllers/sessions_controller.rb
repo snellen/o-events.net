@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to events_index_url
     else
-      redirect_to login_url, :alert => t('.loginfailed')
+      redirect_to login_url, :notice => noticeError(t('.loginfailed'))
     end
   end
 
