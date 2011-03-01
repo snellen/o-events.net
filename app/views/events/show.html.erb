@@ -3,7 +3,7 @@
   <h2>Willkommen bei O-events.net</h2>
   <p>O-events.net ist ein neues Online-Anmeldeportal für Orientierungsläufe. Die Seite ist momentan noch eine Baustelle und wird für den diesjährigen Berner sCOOL-Cup erstmals eingesetzt. Dennoch hoffen wir, dass die Anmeldung reibungslos funktioniert. Sollte dies nicht der Fall sein, schicke bitte eine E-Mail an <%= image_tag('/event_data/2011/bescool/email.png', :alt => 'email', :style => "position:relative;top:3px") %>.</p>
   
-  <p>Zur Zahlung des Startgeldes kannst du auf der Seite <%=link_to "Unverrechnete Anmeldungen", unpaid_fees_bills_path %> alle deine Anmeldungen zu einer Rechnung zusammenfassen und bequem mit einer einzelnen Zahlung bezahlen. Es stehen die Online-Zahlungsarten PostFinance E-Finance und PostFinance Card sowie Zahlung mittels E-Banking oder Einzahlungsschein zur Verfügung. <br />Besten Dank!<br /><br /></p>
+  <p>Auf der Seite <%=link_to "Unverrechnete Anmeldungen", unpaid_fees_bills_path %> kannst du deine Anmeldungen zu einer Rechnung zusammenfassen und bequem mit einer einzelnen Zahlung bezahlen. Es stehen die Online-Zahlungsarten PostFinance E-Finance und PostFinance Card sowie Zahlung mittels E-Banking oder Einzahlungsschein zur Verfügung. <br />Besten Dank!<br /><br /></p>
   
   <table><tr><th colspan = "2"><%= @event.name %></tr>
   <tr><td>Datum:</td><td><%= date_interval(@event.start_date,@event.end_date) %></td></tr>
