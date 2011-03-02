@@ -203,12 +203,13 @@ de:
       confirm_delete:   "Teammitglied wirklich löschen?"
       back_to_edit:     "Teammitglieder bearbeiten"      
   sessions:
-    new:
-      signin:             "Einloggen"
-      pleaselogin:        "Einloggen"
+    form:
       username_or_email:  "Benutzername oder E-Mail"
       password:           "Passwort"
       submit:             "Einloggen"
+    new:
+      pleaselogin:        "Einloggen"
+      signin:             "Einloggen"
       register_info:      "Noch kein Benutzerkonto bei O-events.net? Bitte zuerst %{reglink}."
       register:           "registrieren"
     destroy:

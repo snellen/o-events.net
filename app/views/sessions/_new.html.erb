@@ -3,19 +3,7 @@
       <span>  <%= t('.signin') %>  </span>
     <% end %>
     <%= field_set_tag nil, :id => "signin_menu", :style => "display:none" do %>
-      <%= form_tag login_path, :id => 'signin' do %>
-        <div>
-          <label for="identifier" >  <%= t('.username_or_email') %>  </label>
-          <%= text_field_tag :identifier, params[:identifier] %>
-        </div>
-        <div>
-          <label for="password" >  <%= t('.password') %>  </label>
-          <%= password_field_tag :password, params[:password] %>
-         </div>
-         <div>
-           <%= submit_tag t('.submit') %>
-         </div>
-      <% end %>
+     <%= render :partial => 'sessions/form', :locals => {:formTagParam => {:id => 'signin'}} %>
     <% end %>
     <%= javascript_tag do %>
      document.observe("dom:loaded", function() {

@@ -1,0 +1,17 @@
+    <% addParam = (defined? formTagParam) ? formTagParam : {} %>
+    <% if Rails.env != "development"%>
+      <% addParam << {:only_path => false, :protocol => 'https://'}%>
+    <%end%>
+    <%= form_tag login_path, addParam do %>
+      <div <%= (defined? divClass) ? divClass.html_safe : ""%> >
+        <label for="identifier" >  <%= t('sessions.form.username_or_email') %>  </label>
+        <%= text_field_tag :identifier, params[:identifier] %>
+      </div>
+      <div <%= (defined? divClass) ? divClass.html_safe : ""%> >
+        <label for="password" >  <%= t('sessions.form.password') %>  </label>
+        <%= password_field_tag :password, params[:password] %>
+       </div>
+       <div  <%= (defined? submitClass) ? submitClass.html_safe : ""%> >
+         <%= submit_tag  t('.submit')  %>
+       </div>
+     <% end %>

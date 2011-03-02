@@ -173,12 +173,13 @@ en:
     search:
       enter_username:     "Username:"
   sessions:
-    new:
-      signin:             "Sign in"
-      pleaselogin:        "Please log in"
+    form:
       username_or_email:  "Username or E-mail"
       password:           "Password"
       submit:             "Login"
+    new:
+      pleaselogin:        "Please log in"
+      signin:             "Sign in"
       register_info:      "If you have no O-events.net account, please %{reglink} first."
       register:           "create a user account"      
     destroy:
