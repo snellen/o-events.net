@@ -15,8 +15,14 @@ class UsersController < ApplicationController
 
   # GET /users/1
   # GET /users/1.xml
+  # GET /myaccount
   def show
-    @user = User.find(params[:id])
+    if params[:id]
+      checkid session[:user_id], params[:id]
+      @user = User.find(params[:id])
+    else
+      @user = User.get_logged_in(session)
+    end
 
     respond_to do |format|
       format.html # show.html.erb

@@ -44,13 +44,8 @@
         <div class="hlist">
           <!-- main navigation: horizontal list -->
           <%
-          if session[:user_id]
-          myaccount = user_path(session[:user_id])
-          else
-            myaccount = login_path
-          end
           #navbar = [ { :tab => t('.browseevents'), :url => events_path }, { :tab => t('.newevent'), :url => new_event_path }, { :tab => t('.myclubs'), :url => clubs_path }, { :tab => t('.myaccount'), :url => myaccount }, { :tab => t('.mybills'), :url => bills_path }, { :tab => t('.faq'), :url => '#' } ]
-          navbar = [ { :tab => t('.browseevents'), :url => events_path }, { :tab => t('.myaccount'), :url => myaccount }, { :tab => t('.mybills'), :url => bills_path } ]
+          navbar = [ { :tab => t('.browseevents'), :url => events_path }, { :tab => t('.myaccount'), :url => myaccount_path }, { :tab => t('.mybills'), :url => bills_path } ]
           
           if session[:event_tab] and !@title
             navbar = [ { :tab => session[:event_tab][:tab], :url => session[:event_tab][:url] } ] + navbar

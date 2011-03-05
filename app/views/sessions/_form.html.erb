@@ -14,4 +14,9 @@
        <div  <%= (defined? submitClass) ? submitClass.html_safe : ""%> >
          <%= submit_tag  t('.submit')  %>
        </div>
+       <% if params[:redirect_path] %>
+         <%= hidden_field_tag :redirect_path, params[:redirect_path] %>
+       <% elsif defined?redirect_path %>
+         <%= hidden_field_tag :redirect_path, redirect_path %>
+       <% end %>
      <% end %>

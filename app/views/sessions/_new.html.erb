@@ -3,7 +3,7 @@
       <span>  <%= t('.signin') %>  </span>
     <% end %>
     <%= field_set_tag nil, :id => "signin_menu", :style => "display:none" do %>
-     <%= render :partial => 'sessions/form', :locals => {:formTagParam => {:id => 'signin'}} %>
+     <%= render :partial => 'sessions/form', :locals => {:formTagParam => {:id => 'signin'}, :redirect_path => request.path} %>
     <% end %>
     <%= javascript_tag do %>
      document.observe("dom:loaded", function() {
