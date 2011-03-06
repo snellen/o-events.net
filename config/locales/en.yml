@@ -82,7 +82,9 @@ en:
         between:        "must be between %{from} and %{to}"
         invalid:        "is invalid"
         mustbeselected: "must be selected"
-        not_a_number:   "is not a valid number"        
+        not_a_number:   "is not a valid number"
+        greaterthan:    "must be greater than %{min}"
+        lessthan:       "must be less than %{max}"
       models:
         user:
           attributes:

@@ -46,12 +46,18 @@ team_competing_club_show:boolean              Required if shown. Nation must be 
 competitor_num1_name:string         Name of the "num1" field
 competitor_num1_show:boolean        True if the "num1" field should be shown in the competitor form
 competitor_num1_require:boolean     True if the "num1" field should be mandatory
+competitor_num1_max:integer         Max value of the "num1" field. No limit of not set.
+competitor_num1_min:integer         Min value of the "num1" field. No limit of not set.
 competitor_num2_name:string         Name of the "num2" field
 competitor_num2_show:boolean        True if the "num2" field should be shown in the competitor form
 competitor_num2_require:boolean     True if the "num2" field should be mandatory
+competitor_num2_max:integer         Max value of the "num2" field. No limit of not set.
+competitor_num2_min:integer         Min value of the "num2" field. No limit of not set.
 competitor_num3_name:string         Name of the "num3" field
 competitor_num3_show:boolean        True if the "num3" field should be shown in the competitor form
 competitor_num3_require:boolean     True if the "num3" field should be mandatory
+competitor_num3_max:integer         Max value of the "num3" field. No limit of not set.
+competitor_num3_min:integer         Min value of the "num3" field. No limit of not set.
 competitor_text1_name:string        Name of the "text1" field
 competitor_text1_show:boolean       True if the "text1" field should be shown in the competitor form
 competitor_text1_require:boolean    True if the "text1" field should be mandatory
@@ -70,12 +76,18 @@ competitor_flag3_show:boolean       True if the "flag3" field should be shown in
 team_num1_name:string               Name of the "num1" field
 team_num1_show:boolean              True if the "num1" field should be shown in the team form
 team_num1_require:boolean           True if the "num1" field should be mandatory
+team_num1_max:integer               Max value of the "num1" field. No limit of not set.
+team_num1_min:integer               Min value of the "num1" field. No limit of not set.
 team_num2_name:string               Name of the "num2" field
 team_num2_show:boolean              True if the "num2" field should be shown in the team form
+team_num2_max:integer               Max value of the "num2" field. No limit of not set.
+team_num2_min:integer               Min value of the "num2" field. No limit of not set.
 team_num2_require:boolean           True if the "num2" field should be mandatory
 team_num3_name:string               Name of the "num3" field
 team_num3_show:boolean              True if the "num3" field should be shown in the team form
 team_num3_require:boolean           True if the "num3" field should be mandatory
+team_num3_max:integer               Max value of the "num3" field. No limit of not set.
+team_num3_min:integer               Min value of the "num3" field. No limit of not set.
 team_text1_name:string              Name of the "text1" field
 team_text1_show:boolean             True if the "text1" field should be shown in the team form
 team_text1_require:boolean          True if the "text1" field should be mandatory

@@ -88,6 +88,8 @@ de:
         invalid:        "ist ungültig"
         mustbeselected: "muss ausgewählt werden"
         not_a_number:   "ist keine gültige Zahl"
+        greaterthan:    "muss grösser als %{min} sein"
+        lessthan:       "muss kleiner als %{max} sein"
       models:
         user:
           attributes:
