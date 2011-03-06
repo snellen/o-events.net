@@ -7,8 +7,9 @@ class BillsController < ApplicationController
 
     @teams_by_event = Hash.new{|h, k| h[k] = []}
     for team in unpaid_teams do
-      if team.start_fee > 0
-        @teams_by_event[team.team_pool.event] << team
+      event = team.team_pool.event
+      if EventSetting.get_b('startfees_enable',event)
+        @teams_by_event[event] << team
       end
     end
     

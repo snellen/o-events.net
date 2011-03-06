@@ -5,6 +5,11 @@ NOTE: The models are spelled with CapitalLetters here and in the diagram, but wi
       Also, i18n of event-specific strings is not implemented in the DB structure (yet).
 
 ==
+AdditionalBillInformations: Generic container used by the payment controllers to store additional information about the bill.
+  name:string            Name of the information. Used for by-name lookup
+  value:string           Some value...
+  bill:ref               The bill the information refers to.
+==
 AdditionalFee: Fees for additional services which do not depend on the Competitors' age, Category, or other parameters. Example: Set of training maps provided by the organizer.
   name:string            The name of the fee, as determined by the event organizer.
   description:string     A short description of the fee. 

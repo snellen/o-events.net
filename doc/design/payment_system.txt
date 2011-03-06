@@ -25,11 +25,13 @@ exceptionurl: https://www.o-events.net/post_finance/exception      ->  action Po
 The post sale request is expected at:
 https://www.o-events.net/post_finance/post_sale  ->  action PostFinance#post_sale
 
+PostFinance only allows to start exactly one payment per reference number. This means payments with the same reference number can not be repeated even if they failed; a behaviour that's undesired in case of o-events.net. To solve this a post finance controller specific "abort counter" is kept in the AdditionalBillInformation of the bill. The counter is initialized with 0 and is increased when a payment is aborted (cancel, exception, declined). The counter is appended to the reference number that is sent to the postfinance page, so that when the user retries to pay he uses a reference number that hasn't been used yet.
+
 The bare http request for all actions are logged to the payment log. All actions check the hash of the incoming request and ignore the request if the hash doesn't match. The actions of the PostFinance controller are specified as follows:
 PostFinance#payment_accepted: Lookup Bill by reference_number (read from parameter orderID). If the bill has no payment, create a new one, set all attributes and save . Check if Bill is fully paid, update is_paid flag.
-PostFinance#payment_declined: TODO
-PostFinance#payment_canceled: TODO
-PostFinance#exception: TODO
+PostFinance#payment_declined: Log, increase abort count
+PostFinance#payment_canceled: Log, increase abort count
+PostFinance#exception: Log, increase abort count
 
 PostFinance#post_sale: Lookup Bill by reference_number (read from parameter orderID). If the bill has no payment, create a new one, check is Bill is fully paid, update is_paid flag.
 
