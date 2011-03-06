@@ -3,14 +3,11 @@ class BillsController < ApplicationController
   # GET /bills/unpaid_fees
   def unpaid_fees
     @user = User.get_logged_in session
-    unpaid_teams = @user.teams.where(:bill_id => nil, :paid_by_club => false)
+    unpaid_teams = getUnbilledTeams(@user)
 
     @teams_by_event = Hash.new{|h, k| h[k] = []}
     for team in unpaid_teams do
-      event = team.team_pool.event
-      if EventSetting.get_b('startfees_enable',event)
-        @teams_by_event[event] << team
-      end
+      @teams_by_event[team.team_pool.event] << team
     end
     
     respond_to do |format|
@@ -25,7 +22,7 @@ class BillsController < ApplicationController
     @user = User.get_logged_in session
     allBills = @user.bills
     @bills = allBills.where(:id => Team.where(:bill_id => allBills.map{|b| b.id}, :paid_by_club => false).map {|t| t.bill_id}).order('created_at DESC')
-    @userHasUnbilledFees = (@user.teams.where(:bill_id => nil, :paid_by_club => false).size > 0)
+    @userHasUnbilledFees = getUnbilledTeams(@user).size > 0
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @bills }
@@ -149,6 +146,12 @@ class BillsController < ApplicationController
   def check_team_hash(teams, hash)
     h = generate_teams_hash(teams)
     h == hash
+  end
+  
+  def getUnbilledTeams(user)
+    unbilledTeams = []
+    user.teams.where(:bill_id => nil, :paid_by_club => false).map{|t| unbilledTeams << t if EventSetting.get_b("startfees_enable",t.team_pool.event)}
+    return unbilledTeams
   end
   
 end
