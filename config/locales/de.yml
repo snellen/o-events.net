@@ -261,7 +261,7 @@ de:
       save_team: "Team speichern"      
   bills:
     billsite:
-      mybills:     "Meine Rechnungen"
+      mybills:     "Übersicht"
       unbilledregistrations:    "Unverrechnete Anmeldungen"
     event_fees:
       registration:      "Anmeldung"
