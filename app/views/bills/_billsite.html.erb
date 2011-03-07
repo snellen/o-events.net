@@ -1,10 +1,10 @@
 <% content_for :left do %>
   <ul>
-    <li><%= link_to t('.mybills'), bills_path %></li>
+    <li><%= link_to t('.overview'), bills_path %></li>
     <li><%= link_to t('.unbilledregistrations'), unpaid_fees_bills_path %></li>
   </ul>
 <% end %>
-
+<h1><%=t('.mybills')%></h1>
 <% #content_for :main must be defined by the parent view of this partial %>
 
 <%= render :partial => 'layouts/two_columns' %>

@@ -255,8 +255,9 @@ en:
       save_team: "Save Team"            
   bills:
     billsite:
-      mybills:     "Overview"
+      mybills:     "My Bills"
       unbilledregistrations:    "Unbilled Registrations"
+      overview:          "Overview"
     event_fees:
       registration:      "Registration"
       teampool:          "Registration group"

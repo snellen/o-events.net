@@ -1,6 +1,6 @@
 <% content_for :main do %>
   <%= notice %>
-  <h1><%=t('bills.billsite.unbilledregistrations')%></h1>
+  <h2><%=t('bills.billsite.unbilledregistrations')%></h2>
   <%=t('.unbilledfeesdescription') %>
   <%if @teams_by_event.size > 0 %>
   <% @teams_by_event.each_pair do |@event,@teams| %>
