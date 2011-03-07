@@ -1,7 +1,8 @@
 <% content_for :left do %>
   <ul>
-    <li><%= link_to t('.mydata'), user_path %></li>
-    <li><%= link_to t('.myevents'), "#" %></li>
+    <li><%= link_to t('.mydata'), myaccount_path %></li>
+    <li><%= link_to t('.changedata'), edit_user_path(@user) %></li>
+    <li><%= link_to t('.changepassword'), change_password_user_path(:id => @user.id) %></li>
   </ul>
 <% end %>
 <h1>   <%= t('.welcomeuser',  :username => @user.username) %>  </h1>

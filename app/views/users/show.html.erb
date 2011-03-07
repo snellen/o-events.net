@@ -1,5 +1,5 @@
+  <% content_for :main do %>
   <%= notice %>
-  <h1>   <%= t('.welcomeuser',  :username => @user.username) %>  </h1>
   <h2><%= t('users.form.account_data') %></h2>
     <p>
       <b>   <%= User.human_attribute_name(:username) %>:</b>
@@ -64,4 +64,5 @@
       <%= @user.country_id ? Country.find(@user.country_id).name : t('.notspecified') %>
     </p>
     <br>
-  <%= link_to t('.edit'), edit_user_path(@user) %>
+  <%end%>
+<%= render :partial => 'users/usersite' %>

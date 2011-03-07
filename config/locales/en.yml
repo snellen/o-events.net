@@ -85,6 +85,7 @@ en:
         not_a_number:   "is not a valid number"
         greaterthan:    "must be greater than %{min}"
         lessthan:       "must be less than %{max}"
+        too_short:      "is too short (minimum is %{count} characters)"
       models:
         user:
           attributes:
@@ -92,6 +93,8 @@ en:
               taken:    "has already been taken"
              email:
               taken:    "has already been taken"
+             password:
+              confirmation: "doesn't match confirmation"
         team_registration:
           too_young:  "One or more competitors are too young for category %{cat}"
           too_old:    "One or more competitors are too young for category %{cat}"
@@ -129,6 +132,7 @@ en:
         nation_id:      "Nation"
         password:           "Password"
         password_confirmation: "Confirm Password"
+        old_password:   "Old Password"
       competitor:
         email:          "E-mail Address"
         license_number: "License Number"
@@ -154,6 +158,11 @@ en:
         category:       "Category"
         main_category:  "Category"        
   users:
+    usersite:
+      welcomeuser:        "Welcome %{username}"
+      mydata:             "My Data"
+      changedata:         "Change Data"
+      changepassword:     "Change Password"
     new:
       register:           "Create an Account"
     form:

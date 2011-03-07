@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   validates :email, :presence => true, :uniqueness => true
   validates_format_of :email, :with => /(\S+)@(\S+)/
   validates :password, :confirmation => true
+  validates_length_of :password, :minimum => 4
   validates :sex, :presence => true, :inclusion => {:in =>  %w( M F ), :message => I18n.t('activerecord.errors.messages.invalid'), :allow_nil => true}
   validates :first_name, :presence => true
   validates :last_name, :presence => true
@@ -23,9 +24,12 @@ class User < ActiveRecord::Base
   validates :sicard_number, :numericality => {:only_integer => true, :allow_nil => true}, :inclusion => {:in => 1..16777216, :message => I18n.t('activerecord.errors.messages.between', :from => 1, :to => 16777216), :allow_nil => true}
 
   attr_accessor :password_confirmation
+  attr_accessor :old_password
   attr_reader :password
 
   validate :password_must_be_present
+  validate :check_old_password
+  validate :password_change_only_if_old_password_provided
 
   # 'password' is a virtual attribute
   def password=(password)
@@ -77,6 +81,18 @@ class User < ActiveRecord::Base
 
     def password_must_be_present
       errors.add(:password, I18n.t('activerecord.errors.messages.blank') ) unless hashed_password.present?
+    end
+    
+    def password_change_only_if_old_password_provided
+      if !new_record? and hashed_password.present? and !old_password
+        errors.add(:old_password, I18n.t('activerecord.errors.messages.blank') )
+      end
+    end
+    
+    def check_old_password
+      if old_password and !User.authenticate(username, old_password)
+        errors.add(:old_password, I18n.t('activerecord.errors.messages.invalid') )
+      end
     end
 
     def generate_salt

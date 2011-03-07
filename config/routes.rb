@@ -130,7 +130,11 @@ OEventsNet::Application.routes.draw do
           get 'unpaid_fees', :as => 'unpaid_fees'
         end
     end
-    resources :users
+    resources :users do
+      member do
+        get 'change_password', :as => 'change_password'
+      end
+    end
     match '/myaccount' => 'users#show', :as => 'myaccount'
     
 =begin    

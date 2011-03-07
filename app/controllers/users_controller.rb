@@ -13,6 +13,11 @@ class UsersController < ApplicationController
   end
 =end
 
+  # GET /users/:id/change_password
+  def change_password
+    @user = User.find(params[:id])
+  end
+    
   # GET /users/1
   # GET /users/1.xml
   # GET /myaccount
@@ -74,7 +79,8 @@ class UsersController < ApplicationController
         format.html { redirect_to user_url, :id => @user.id, :notice => noticeInfo(t('.userupdatesuccess')) }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        action = (params[:user].include?(:old_password) and params[:user].include?(:password) and params[:user].include?(:password_confirmation)) ? "change_password" : "edit" 
+        format.html { render :action => action }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end

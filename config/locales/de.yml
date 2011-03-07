@@ -90,6 +90,7 @@ de:
         not_a_number:   "ist keine gültige Zahl"
         greaterthan:    "muss grösser als %{min} sein"
         lessthan:       "muss kleiner als %{max} sein"
+        too_short:      "ist zu kurz (minimum ist %{count} zeichen)"
       models:
         user:
           attributes:
@@ -97,6 +98,8 @@ de:
               taken:    "wird bereits verwendet"
              email:
               taken:    "wird bereits verwendet"
+             password:
+              confirmation: "stimmt nicht mit Bestätigung überein"
         team_registration:
           too_young:  "Ein oder mehrere Läufer sind zu jung für die Kategorie %{cat}"
           too_old:    "Ein oder mehrere Läufer sind zu alt für die Kategorie %{cat}"
@@ -134,6 +137,7 @@ de:
         nation_id:      "Nationalität"
         password:           "Passwort"
         password_confirmation: "Passwort bestätigen"
+        old_password:   "Altes Passwort"
       competitor:
         email:          "E-mail-Adresse"
         license_number: "Lizenznummer/SOLV-Nummer"
@@ -159,6 +163,11 @@ de:
         category:       "Kategorie"
         main_category:  "Kategorie"
   users:
+    usersite:
+      welcomeuser:        "Willkommen %{username}"
+      mydata:             "Meine Angaben"
+      changedata:         "Angaben Ändern"
+      changepassword:     "Passwort Ändern"
     new:
       register:           "Benutzerkonto erstellen"
     form:
