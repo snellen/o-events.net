@@ -19,7 +19,7 @@
   <p>
     <b><%=t('.status')%>:</b>
     <% if @bill.is_paid %>
-      <%= t('.paidon', :date => @bill.paid_at.strftime(t('date.default'))) %>
+      <%= t('.paidon', :date => l(@bill.paid_at, :format => t('date.default'))) %>
     <% else %>
       <%= t('.unpaid')%>
     <% end %>

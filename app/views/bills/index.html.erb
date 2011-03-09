@@ -21,7 +21,7 @@
     <tr>
       <td><%= bill.event.name %></td>
       <td><%= summary_string(bill,25) %></td>
-      <td><%= bill.created_at.to_date %></td>
+      <td><%= l(bill.created_at, :format => t('date.default')) %></td>
       <td><%= format_amount(bill.amount) %> <%= bill.event.currency.iso_code %></td>
       <td><%= bill.is_paid ? t('.paid') : t('.unpaid') %></td>
       <td><%= link_to t('.details'), bill %></td>

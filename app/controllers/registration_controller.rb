@@ -66,6 +66,10 @@ class RegistrationController < ApplicationController
       @teams = @team_pool.teams.where(:user_id => session[:user_id])
       @event = @team_pool.event
       @title = @event.name
+      deadline = @event.registration_deadlines.order('date DESC').limit(1).first
+      @lastRegistrationDeadline =  deadline ? deadline.date : @event.start_date
+      puts '@lastRegistrationDeadline => '+@lastRegistrationDeadline.to_s
+      @registrationClosed = (@lastRegistrationDeadline < Date.today)
       if @teams.empty?
         redirect_to registration_team_members_url(:team_pool_id => @team_pool.id)
       end

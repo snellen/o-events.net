@@ -22,7 +22,12 @@
 <% end %>
 </table>
 
-<br /><br />
-
-<p><%= link_to icon('add_person')+' '+t('.new_team'), registration_team_members_path(:team_pool_id => @team_pool.id) %></p>
+<% if !@registrationClosed %>
+  <br />
+  <p> <%= t('.registrationdeadline') %>: <b><%=l(@lastRegistrationDeadline, :format => t('date.default'))%></b> </p>
+  <p><%= link_to icon('add_person')+' '+t('.new_team'), registration_team_members_path(:team_pool_id => @team_pool.id) %></p>
+<% else %>
+  <br /><br />
+  <p> <%= t('.registrationclosed') %> </p>
+<% end %>
 <p><%= link_to icon('pay')+' '+t('.pay_registrations'), unpaid_fees_bills_path %></p>

@@ -233,6 +233,8 @@ en:
       show:             "Show"      
   teams:
     registered:
+      registrationdeadline: "Registration deadline"
+      registrationclosed: "Registration for this event is closed."
       new_team:         "Register a new team"
       registered_teams: "Registered Teams"
       team:             "Team"

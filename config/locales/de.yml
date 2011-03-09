@@ -239,6 +239,8 @@ de:
       show:             "Anzeigen"
   teams:
     registered:
+      registrationdeadline: "Letzter Anmeldetermin"
+      registrationclosed: "Für diesen Wettkampf weren keine Anmeldungen mehr entgegengenommen."
       new_team:         "Neues Team anmelden"     
       registered_teams: "Angemeldete Teams"
       team:             "Team"
