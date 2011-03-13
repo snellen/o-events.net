@@ -68,6 +68,9 @@
   /* Titles with links next to them (added by MZ) */
   h2.with_link { display:inline; margin-right:10px }
 
+  /* Title of left-side navigation */
+  h4.nav_title { line-height: 1.5em; margin: 0 0 0.5em 1.5em; }
+  
   /* --- Lists | Listen  -------------------------------------------------------------------------------- */
 
   ul, ol, dl { line-height:1.5em; margin:0 0 1em 1em; }

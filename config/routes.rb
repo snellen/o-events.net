@@ -1,5 +1,7 @@
 OEventsNet::Application.routes.draw do
 
+  resources :member_roles
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -136,6 +138,9 @@ OEventsNet::Application.routes.draw do
       end
     end
     match '/myaccount' => 'users#show', :as => 'myaccount'
+
+    resources :teams
+    resources :payments    
     
 =begin    
     resources :additional_fees      
@@ -154,7 +159,6 @@ OEventsNet::Application.routes.draw do
     resources :currencies
     resources :event_settings
     resources :languages
-    resources :payments      
     resources :registration_deadlines      
     resources :results
     resources :runs
@@ -165,7 +169,6 @@ OEventsNet::Application.routes.draw do
     resources :team_members
     resources :team_pools
     resources :team_registrations
-    resources :teams
     resources :total_results
     resources :payment_log_entries, :only => [:show, :index]
 =end

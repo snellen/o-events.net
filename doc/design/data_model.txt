@@ -162,6 +162,11 @@ Language: A language in which some of the site content is available.
 Log: Chronological list of modifications in the other database tables. Logging may be limited to important transactions (e.g. payments) as soon as the software becomes stable.
   <TODO>
 ==
+MemberRole: Role of a club member within the club or within one of the club's events. Determines the rights that the member has.
+  role:enum             One of 'member_admin','registration_admin','event_admin','event_officer','full_member','postmaster'
+  club_member:ref       The club member that has this role.
+  event:ref             The event that this role is valid for. Currently only needed for 'event_officer'.
+==
 Payment: Represents a payment from the user to o-events.net using either an e-payment platform or a Swiss ESR payment slip. (All payments are processed automatically.)
 All payments must be made in Swiss francs (using current exchange rates, only if accepted by the organizer) or in the event's official currency.
   reference_number:string     The ESR or E-Payment reference number.

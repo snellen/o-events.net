@@ -1,4 +1,16 @@
   <% content_for :left do %>
+  
+    <% if true %>
+      <h4 class="nav_title">Administration</h4>
+      <ul>
+        <li> <%= link_to 'Anmeldungen', teams_url(:event_id => @event.id) %> </li>
+        <li> <%= link_to 'Zahlungen', payments_url(:event_id => @event.id) %> </li>
+        <li> <%= link_to 'Export', export_todo_url(:event_id => @event.id) %> </li>
+      </ul>
+      <br />  
+      <h4 class="nav_title">Wettkampf</h4>          
+    <% end %>
+    
     <ul>
     <li>  <%= link_to 'Übersicht', @event.slug_url %>  </li>    
       <li>  <a href="/event_data/2011/bescool/ausschreibung.pdf">Ausschreibung </a>  </li>
@@ -10,6 +22,7 @@
       <li>  <a href="#">Start lists  </a>  </li>
       <li>  <a href="#">Results  </a>  </li>-->
     </ul>
+   
   <% end %>
 
   <% #content_for :main must be defined by the parent view of this partial %>

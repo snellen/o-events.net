@@ -1,0 +1,23 @@
+<h1>Listing member_roles</h1>
+
+<table>
+  <tr>
+    <th>Role</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @member_roles.each do |member_role| %>
+  <tr>
+    <td><%= member_role.role %></td>
+    <td><%= link_to 'Show', member_role %></td>
+    <td><%= link_to 'Edit', edit_member_role_path(member_role) %></td>
+    <td><%= link_to 'Destroy', member_role, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Member role', new_member_role_path %>

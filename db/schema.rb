@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110216170934) do
+ActiveRecord::Schema.define(:version => 20110313192850) do
 
   create_table "additional_bill_informations", :force => true do |t|
     t.integer  "bill_id"
@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(:version => 20110216170934) do
 
   create_table "club_members", :force => true do |t|
     t.boolean  "is_default"
-    t.integer  "role"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
@@ -228,6 +227,14 @@ ActiveRecord::Schema.define(:version => 20110216170934) do
     t.string   "iso_code"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "member_roles", :force => true do |t|
+    t.string   "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "club_member_id"
+    t.integer  "event_id"
   end
 
   create_table "nation_groups_nations", :id => false, :force => true do |t|
