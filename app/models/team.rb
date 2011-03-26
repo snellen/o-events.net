@@ -50,14 +50,14 @@ class Team < ActiveRecord::Base
 
   # Range check of numerical fields
   validates_each :num1, :num2, :num3 do |record, attr, value|
-    if !record.event.nil?
-      if maxStr = EventSetting.get_s('competitor_'+attr.to_s+'_max',record.event)
+    if !record.team_pool.event.nil?
+      if maxStr = EventSetting.get_s('competitor_'+attr.to_s+'_max',record.team_pool.event) and !value.blank?
         max = maxStr.to_i
-        record.errors.add EventSetting.get_s('competitor_'+attr.to_s+'_name',record.event), I18n.t('activerecord.errors.messages.lessthan', :max => max) if value > max
+        record.errors.add EventSetting.get_s('competitor_'+attr.to_s+'_name',record.team_pool.event), I18n.t('activerecord.errors.messages.lessthan', :max => max) if value > max
       end
-      if minStr = EventSetting.get_s('competitor_'+attr.to_s+'_min',record.event)
+      if minStr = EventSetting.get_s('competitor_'+attr.to_s+'_min',record.team_pool.event) and !value.blank?
         min = minStr.to_i
-        record.errors.add EventSetting.get_s('competitor_'+attr.to_s+'_name',record.event), I18n.t('activerecord.errors.messages.greaterthan', :min => min) if value < min
+        record.errors.add EventSetting.get_s('competitor_'+attr.to_s+'_name',record.team_pool.event), I18n.t('activerecord.errors.messages.greaterthan', :min => min) if value < min
       end
     end
   end  
