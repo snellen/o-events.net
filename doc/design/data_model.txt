@@ -153,6 +153,21 @@ EventSetting: A configuration setting in the current event. See event_settings.t
   value:string      The value of the setting. Some settings may contain marshaled arrays, although this should be avoided if possible.
   event:ref         The event for which this setting is valid.
 ==
+==
+FileFormat: The definition of a CSV-like file format which can be used for import and export operations.
+  name:string               The name of the format.
+  charset:string            The character encoding of the files. 'iso-8859-1' and 'utf-8' are examples of character encodings.
+  line_separator:string     The line separator to be used in the files. Line separators in the header will be replaced by this separator.  
+  header:string             The header line(s) of the files. Will be written to exported files and verified in imported files.
+  column_separator:string   The separator to be put between every two columns in the file.
+  string_delimiter:string   The character to be printed before and after strings.
+  club:ref                  The club that uses this file format.
+==
+FileFormatField: The specification of a data field in the file format.
+  field:string          TODO: add descriptions & more fields. Include information about date formats, name format etc... how?
+  is_string:boolean
+  file_format:ref
+==
 Language: A language in which some of the site content is available.
   english_name:string     The English name of this language.
   native_name:string      The name of this language in this language. Note that other translations of the language name may be provided through the i18n system - they are available here: http://en.wikipedia.org/wiki/ISO_639-1_language_matrix.
